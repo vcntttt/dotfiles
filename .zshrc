@@ -16,6 +16,13 @@ alias logout="cinnamon-session-quit --logout"
 alias nf="neofetch"
 alias tgz=comprimir
 alias xmp="sudo xampp"
+# ver Archivos
+alias ls='lsd'
+alias l='ls -l'
+alias la='lsd -a'
+alias lla='lsd -la'
+export LS_COLORS="ow=01;90;40"
+
 HISTFILE=~/.zsh_history
 HISTSIZE=100
 SAVEHIST=100
