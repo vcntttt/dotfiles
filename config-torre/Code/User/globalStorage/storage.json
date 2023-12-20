@@ -91,6 +91,28 @@
                                     "id": "openRecentFile",
                                     "uri": {
                                         "$mid": 1,
+                                        "external": "file:///home/vrivera/.p10k.zsh",
+                                        "path": "/home/vrivera/.p10k.zsh",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "~/.p10k.zsh"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/vrivera/.zshrc",
+                                        "path": "/home/vrivera/.zshrc",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "~/.zshrc"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
                                         "external": "file:///home/vrivera/git-packages/dotfiles/.gitignore",
                                         "path": "/home/vrivera/git-packages/dotfiles/.gitignore",
                                         "scheme": "file"
@@ -508,8 +530,7 @@
                                 },
                                 {
                                     "id": "workbench.action.togglePanel",
-                                    "label": "&&Panel",
-                                    "checked": true
+                                    "label": "&&Panel"
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -803,8 +824,7 @@
                 "items": [
                     {
                         "id": "workbench.action.navigateBack",
-                        "label": "&&Atrás",
-                        "enabled": false
+                        "label": "&&Atrás"
                     },
                     {
                         "id": "workbench.action.navigateForward",
@@ -1732,10 +1752,10 @@
             "backupPath": "/home/vrivera/.config/Code/Backups/a0b8727f7422b48f9d9a7c4da33c50ee",
             "uiState": {
                 "mode": 1,
-                "x": 22,
-                "y": 52,
-                "width": 1876,
-                "height": 1006
+                "x": 967,
+                "y": 562,
+                "width": 931,
+                "height": 496
             }
         },
         "openedWindows": []
