@@ -1,0 +1,83 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.minimap.enabled": false,
+    "explorer.confirmDelete": false,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#121016",
+        "statusBar.noFolderBackground": "#121016",
+        "statusBar.debuggingBackground": "#525156",
+        "debugToolBar.background": "#121016"
+    },
+    "explorer.confirmDragAndDrop": false,
+    "editor.wordWrap": "on",
+    "liveServer.settings.donotVerifyTags": true,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "workbench.colorTheme": "Ayu Mirage",
+    "codeium.enableConfig": {
+        "*": true,
+        "cpp": false
+    },
+    "liveServer.settings.donotShowInfoMsg": true,
+    "vscord.app.name": "Visual Studio Code",
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+
+    "terminal.integrated.env.windows": {},
+    "workbench.productIconTheme": "fluent-icons",
+    "terminal.integrated.env.linux": {},
+    "console-ninja.featureSet": "Community",
+
+    "codeium.enableCodeLens": false,
+    "vscord.status.problems.enabled": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.cursorWidth": 2,
+
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "Arch-WSL (WSL)": {
+            "path": "C:\\Windows\\System32\\wsl.exe",
+            "args": [
+                "-d",
+                "Arch-WSL"
+            ]
+        }
+    },
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe",
+    "editor.linkedEditing": true,
+    "[json]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
+    "editor.tabSize": 2,
+    "editor.guides.bracketPairs": true,
+    "editor.stickyScroll.scrollWithEditor": false,
+    // Formateadores
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
+    },
+    "standard.enable": true,
+    "standard.autoFixOnSave": true,
+    "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "window.zoomLevel": 1,
+}

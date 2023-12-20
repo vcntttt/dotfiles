@@ -1,0 +1,64 @@
+2023-12-20 18:01:13.804 [INFO]: No proxy settings found
+2023-12-20 18:01:14.112 [INFO]: Creating manager directory: /tmp/b9e528fb-c1a2-4cdf-b7be-4d48511c82fe/codeium/manager
+2023-12-20 18:01:14.629 [INFO]: Using cached LS with valid crc32: /home/vrivera/.vscode/extensions/codeium.codeium-1.6.13/dist/3056e905a51e39039573c9a3623a1746671cdf15/language_server_linux_x64
+2023-12-20 18:01:14.644 [INFO]: Language server started
+2023-12-20 18:01:14.782 [INFO]: [Language Server (stderr)]:
+I1220 18:01:14.782106 78517 main.go:526] Release language-server-v1.6.12 (3056e905a51e39039573c9a3623a1746671cdf15)
+I1220 18:01:14.782167 78517 main.go:538] Starting language server manager with pid 78517
+2023-12-20 18:01:14.783 [INFO]: [Language Server (stderr)]:
+I1220 18:01:14.782251 78517 main.go:107] Manager acquired its lock file /tmp/b9e528fb-c1a2-4cdf-b7be-4d48511c82fe/codeium/manager/locks/manager.lock
+I1220 18:01:14.782699 78517 main.go:245] Waiting for random port file in /tmp/b9e528fb-c1a2-4cdf-b7be-4d48511c82fe/codeium/manager/child_random_port_1703106074782333860_1313316961494432808 to be created
+2023-12-20 18:01:14.923 [INFO]: [Language Server (stderr)]:
+I1220 18:01:14.923380 78527 main.go:532] Starting language server process with pid 78527
+2023-12-20 18:01:14.924 [INFO]: [Language Server (stderr)]:
+I1220 18:01:14.924190 78527 proxy.go:113] proxyplease.proxy> No proxy provided. Attempting to infer from system.
+I1220 18:01:14.924226 78527 proxy.go:113] proxyplease.proxy> No proxy could be determined. Assuming a direct connection.
+I1220 18:01:14.924266 78527 client.go:589] [DEBUG] GET https://server.codeium.com/exa.api_server_pb.ApiServerService/GetCompletions
+2023-12-20 18:01:15.442 [INFO]: [Language Server (stderr)]:
+I1220 18:01:15.442208 78527 transport.go:27] Successfully dialed proxy
+2023-12-20 18:01:15.449 [INFO]: [Language Server (stderr)]:
+I1220 18:01:15.449142 78527 server.go:532] Successfully created API server client
+I1220 18:01:15.449189 78527 transport.go:27] Successfully dialed proxy
+2023-12-20 18:01:15.454 [INFO]: [Language Server (stderr)]:
+I1220 18:01:15.454044 78527 server.go:538] Successfully created API streaming client
+2023-12-20 18:01:15.536 [INFO]: [Language Server (stderr)]:
+I1220 18:01:15.535495 78527 server.go:547] Successfully initialized tokenizer
+I1220 18:01:15.535596 78527 unleash.go:95] Initializing Unleash
+2023-12-20 18:01:15.978 [INFO]: [Language Server (stderr)]:
+I1220 18:01:15.978450 78527 unleash.go:115] Successfully initialized Unleash
+2023-12-20 18:01:15.979 [INFO]: [Language Server (stderr)]:
+I1220 18:01:15.978560 78527 search_provider.go:156] Using database at /home/vrivera/.codeium/database/9c0694567290725d9dcba14ade58e297/1/MODEL_EMBED_6591
+2023-12-20 18:01:15.981 [INFO]: [Language Server (stderr)]:
+I1220 18:01:15.980715 78527 search_provider.go:168] Successfully created embedding search database
+2023-12-20 18:01:15.982 [INFO]: [Language Server (stderr)]:
+I1220 18:01:15.981590 78527 search_provider.go:214] Successfully created embedding search provider
+I1220 18:01:15.981627 78527 server.go:613] Successfully created exact search provider
+2023-12-20 18:01:16.035 [INFO]: [Language Server (stderr)]:
+I1220 18:01:16.034439 78527 server.go:634] Successfully created completion provider
+I1220 18:01:16.034529 78527 server.go:672] Child process attempting to acquire lock file /tmp/b9e528fb-c1a2-4cdf-b7be-4d48511c82fe/codeium/manager/locks/child_lock_1703106074782367243_3968092295844594011
+2023-12-20 18:01:16.036 [INFO]: [Language Server (stderr)]:
+I1220 18:01:16.034625 78527 server.go:682] Child process acquired lock file /tmp/b9e528fb-c1a2-4cdf-b7be-4d48511c82fe/codeium/manager/locks/child_lock_1703106074782367243_3968092295844594011
+2023-12-20 18:01:16.045 [INFO]: [Language Server (stderr)]:
+I1220 18:01:16.044550 78527 server.go:341] Language server will attempt to listen on host 127.0.0.1
+2023-12-20 18:01:16.045 [INFO]: [Language Server (stderr)]:
+I1220 18:01:16.044829 78527 server.go:385] Language server listening on random port at 40889
+2023-12-20 18:01:16.046 [INFO]: [Language Server (stderr)]:
+I1220 18:01:16.045842 78527 web_server.go:229] Chat Web Server listening at ws://127.0.0.1:40737
+2023-12-20 18:01:16.087 [INFO]: [Language Server (stderr)]:
+I1220 18:01:16.087247 78517 main.go:281] Language server manager found random server port 40889
+I1220 18:01:16.087320 78517 main.go:282] Language server manager found random lsp port 42101
+2023-12-20 18:01:16.088 [INFO]: [Language Server (stderr)]:
+I1220 18:01:16.087365 78517 main.go:289] Language server manager attempting to connect to language server at 127.0.0.1:40889
+2023-12-20 18:01:16.118 [INFO]: [Language Server (stderr)]:
+I1220 18:01:16.118405 78517 main.go:160] Fixing language server port at 40889
+I1220 18:01:16.118427 78517 main.go:340] Language server manager successfully connected to new language server at 127.0.0.1:40889
+2023-12-20 18:01:16.150 [INFO]: Found language server running on port 40889
+2023-12-20 18:01:16.180 [INFO]: Downloaded binary: /home/vrivera/.codeium/bin/af6b6c543b224d348a8876f0c06245d9ea7929c5/ripgrep_linux_x64
+2023-12-20 18:01:16.191 [INFO]: [Language Server (stderr)]:
+I1220 18:01:16.186443 78527 server.go:1741] Skipped changelog download for version 1.6.13
+2023-12-20 18:01:16.242 [WARN]: User not logged in
+2023-12-20 18:01:21.088 [INFO]: Disposing language server process
+2023-12-20 18:01:21.089 [INFO]: Deleting manager directory: /tmp/b9e528fb-c1a2-4cdf-b7be-4d48511c82fe/codeium/manager
+2023-12-20 18:01:21.090 [INFO]: Successfully disposed language server
+2023-12-20 18:01:21.113 [INFO]: [Language Server (stderr)]:
+W1220 18:01:21.089048 78517 main.go:111] Language server manager got signal terminated, shutting down

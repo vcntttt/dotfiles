@@ -1,0 +1,493 @@
+2023-12-20 17:59:54.666 [info] Started initializing default profile extensions in extensions installation folder. file:///home/vrivera/.vscode/extensions
+2023-12-20 17:59:54.818 [warning] Failed to create default profile extensions manifest in extensions installation folder. file:///home/vrivera/.vscode/extensions Unable to create file 'vscode-userdata:/home/vrivera/.vscode/extensions/extensions.json' that already exists when overwrite flag is not set
+2023-12-20 17:59:54.819 [info] Completed initializing default profile extensions in extensions installation folder. file:///home/vrivera/.vscode/extensions
+2023-12-20 18:00:36.271 [info] Getting Manifest... zhucy.project-tree
+2023-12-20 18:00:36.273 [info] Getting Manifest... monokai.theme-monokai-pro-vscode
+2023-12-20 18:00:36.274 [info] Getting Manifest... wallabyjs.console-ninja
+2023-12-20 18:00:36.274 [info] Getting Manifest... wayou.vscode-todo-highlight
+2023-12-20 18:00:36.274 [info] Getting Manifest... mhutchie.git-graph
+2023-12-20 18:00:36.275 [info] Getting Manifest... equinusocio.vsc-material-theme
+2023-12-20 18:00:36.275 [info] Getting Manifest... daltonmenezes.aura-theme
+2023-12-20 18:00:36.276 [info] Getting Manifest... vincentfiestada.cold-horizon-vscode
+2023-12-20 18:00:36.276 [info] Getting Manifest... esbenp.prettier-vscode
+2023-12-20 18:00:36.276 [info] Getting Manifest... miguelsolorio.fluent-icons
+2023-12-20 18:00:36.276 [info] Getting Manifest... christian-kohler.path-intellisense
+2023-12-20 18:00:36.277 [info] Getting Manifest... dsznajder.es7-react-js-snippets
+2023-12-20 18:00:36.277 [info] Getting Manifest... dbaeumer.vscode-eslint
+2023-12-20 18:00:36.277 [info] Getting Manifest... davidanson.vscode-markdownlint
+2023-12-20 18:00:36.278 [info] Getting Manifest... ms-vscode-remote.remote-wsl
+2023-12-20 18:00:36.278 [info] Getting Manifest... ritwickdey.liveserver
+2023-12-20 18:00:36.280 [info] Getting Manifest... astro-build.astro-vscode
+2023-12-20 18:00:36.280 [info] Getting Manifest... pkief.material-icon-theme
+2023-12-20 18:00:36.280 [info] Getting Manifest... leonardssh.vscord
+2023-12-20 18:00:36.281 [info] Getting Manifest... mongodb.mongodb-vscode
+2023-12-20 18:00:36.281 [info] Getting Manifest... yoavbls.pretty-ts-errors
+2023-12-20 18:00:36.281 [info] Getting Manifest... pflannery.vscode-versionlens
+2023-12-20 18:00:36.282 [info] Getting Manifest... dotjoshjohnson.xml
+2023-12-20 18:00:36.282 [info] Getting Manifest... zhuangtongfa.material-theme
+2023-12-20 18:00:36.283 [info] Getting Manifest... seyyedkhandon.firacode
+2023-12-20 18:00:36.283 [info] Getting Manifest... sdras.night-owl
+2023-12-20 18:00:36.283 [info] Getting Manifest... rangav.vscode-thunder-client
+2023-12-20 18:00:36.284 [info] Getting Manifest... dnlytras.nord-wave
+2023-12-20 18:00:36.284 [info] Getting Manifest... formulahendry.code-runner
+2023-12-20 18:00:36.285 [info] Getting Manifest... uloco.theme-bluloco-dark
+2023-12-20 18:00:36.285 [info] Getting Manifest... gruntfuggly.activitusbar
+2023-12-20 18:00:36.285 [info] Getting Manifest... usernamehw.errorlens
+2023-12-20 18:00:36.285 [info] Getting Manifest... ms-ceintl.vscode-language-pack-es
+2023-12-20 18:00:36.286 [info] Getting Manifest... naumovs.color-highlight
+2023-12-20 18:00:36.286 [info] Getting Manifest... adpyke.codesnap
+2023-12-20 18:00:36.286 [info] Getting Manifest... enkia.tokyo-night
+2023-12-20 18:00:36.287 [info] Getting Manifest... teabyii.ayu
+2023-12-20 18:00:36.287 [info] Getting Manifest... kisstkondoros.vscode-gutter-preview
+2023-12-20 18:00:36.287 [info] Getting Manifest... wakatime.vscode-wakatime
+2023-12-20 18:00:36.287 [info] Getting Manifest... ms-vsliveshare.vsliveshare
+2023-12-20 18:00:36.288 [info] Getting Manifest... meganrogge.template-string-converter
+2023-12-20 18:00:36.288 [info] Getting Manifest... bradlc.vscode-tailwindcss
+2023-12-20 18:00:36.288 [info] Getting Manifest... ms-python.pylint
+2023-12-20 18:00:36.288 [info] Getting Manifest... ms-python.autopep8
+2023-12-20 18:00:36.289 [info] Getting Manifest... codeium.codeium
+2023-12-20 18:00:36.289 [info] Getting Manifest... ms-vscode.live-server
+2023-12-20 18:00:36.289 [info] Getting Manifest... ms-python.vscode-pylance
+2023-12-20 18:00:36.290 [info] Getting Manifest... ms-python.python
+2023-12-20 18:00:36.744 [info] Installing extension: esbenp.prettier-vscode
+2023-12-20 18:00:36.745 [info] Installing the extension without checking dependencies and pack esbenp.prettier-vscode
+2023-12-20 18:00:36.745 [info] Installing extension: formulahendry.code-runner
+2023-12-20 18:00:36.745 [info] Installing the extension without checking dependencies and pack formulahendry.code-runner
+2023-12-20 18:00:36.745 [info] Installing extension: ms-vscode-remote.remote-wsl
+2023-12-20 18:00:36.745 [info] Installing the extension without checking dependencies and pack ms-vscode-remote.remote-wsl
+2023-12-20 18:00:36.745 [info] Installing extension: usernamehw.errorlens
+2023-12-20 18:00:36.746 [info] Installing the extension without checking dependencies and pack usernamehw.errorlens
+2023-12-20 18:00:36.746 [info] Installing extension: ms-python.pylint
+2023-12-20 18:00:36.746 [info] Installing the extension without checking dependencies and pack ms-python.pylint
+2023-12-20 18:00:36.746 [info] Installing extension: ms-vsliveshare.vsliveshare
+2023-12-20 18:00:36.746 [info] Installing the extension without checking dependencies and pack ms-vsliveshare.vsliveshare
+2023-12-20 18:00:36.746 [info] Installing extension: ms-python.autopep8
+2023-12-20 18:00:36.747 [info] Installing the extension without checking dependencies and pack ms-python.autopep8
+2023-12-20 18:00:36.747 [info] Installing extension: ms-python.python
+2023-12-20 18:00:36.747 [info] Installing the extension without checking dependencies and pack ms-python.python
+2023-12-20 18:00:36.748 [info] Installing extension: ms-vscode.live-server
+2023-12-20 18:00:36.748 [info] Installing the extension without checking dependencies and pack ms-vscode.live-server
+2023-12-20 18:00:36.748 [info] Installing extension: ms-ceintl.vscode-language-pack-es
+2023-12-20 18:00:36.748 [info] Installing the extension without checking dependencies and pack ms-ceintl.vscode-language-pack-es
+2023-12-20 18:00:36.748 [info] Installing extension: ms-python.vscode-pylance
+2023-12-20 18:00:36.749 [info] Installing the extension without checking dependencies and pack ms-python.vscode-pylance
+2023-12-20 18:00:36.749 [info] Installing extension: wallabyjs.console-ninja
+2023-12-20 18:00:36.749 [info] Installing the extension without checking dependencies and pack wallabyjs.console-ninja
+2023-12-20 18:00:36.749 [info] Installing extension: wayou.vscode-todo-highlight
+2023-12-20 18:00:36.749 [info] Installing the extension without checking dependencies and pack wayou.vscode-todo-highlight
+2023-12-20 18:00:36.749 [info] Installing extension: daltonmenezes.aura-theme
+2023-12-20 18:00:36.749 [info] Installing the extension without checking dependencies and pack daltonmenezes.aura-theme
+2023-12-20 18:00:36.749 [info] Installing extension: mhutchie.git-graph
+2023-12-20 18:00:36.750 [info] Installing the extension without checking dependencies and pack mhutchie.git-graph
+2023-12-20 18:00:36.750 [info] Installing extension: ritwickdey.liveserver
+2023-12-20 18:00:36.750 [info] Installing the extension without checking dependencies and pack ritwickdey.liveserver
+2023-12-20 18:00:36.750 [info] Installing extension: zhucy.project-tree
+2023-12-20 18:00:36.750 [info] Installing the extension without checking dependencies and pack zhucy.project-tree
+2023-12-20 18:00:36.750 [info] Installing extension: monokai.theme-monokai-pro-vscode
+2023-12-20 18:00:36.750 [info] Installing the extension without checking dependencies and pack monokai.theme-monokai-pro-vscode
+2023-12-20 18:00:36.751 [info] Installing extension: equinusocio.vsc-material-theme
+2023-12-20 18:00:36.751 [info] Installing the extension without checking dependencies and pack equinusocio.vsc-material-theme
+2023-12-20 18:00:36.751 [info] Installing extension: codeium.codeium
+2023-12-20 18:00:36.751 [info] Installing the extension without checking dependencies and pack codeium.codeium
+2023-12-20 18:00:36.751 [info] Installing extension: davidanson.vscode-markdownlint
+2023-12-20 18:00:36.751 [info] Installing the extension without checking dependencies and pack davidanson.vscode-markdownlint
+2023-12-20 18:00:36.752 [info] Installing extension: zhuangtongfa.material-theme
+2023-12-20 18:00:36.752 [info] Installing the extension without checking dependencies and pack zhuangtongfa.material-theme
+2023-12-20 18:00:36.752 [info] Installing extension: astro-build.astro-vscode
+2023-12-20 18:00:36.752 [info] Installing the extension without checking dependencies and pack astro-build.astro-vscode
+2023-12-20 18:00:36.752 [info] Installing extension: pkief.material-icon-theme
+2023-12-20 18:00:36.752 [info] Installing the extension without checking dependencies and pack pkief.material-icon-theme
+2023-12-20 18:00:36.753 [info] Installing extension: pflannery.vscode-versionlens
+2023-12-20 18:00:36.753 [info] Installing the extension without checking dependencies and pack pflannery.vscode-versionlens
+2023-12-20 18:00:36.753 [info] Installing extension: rangav.vscode-thunder-client
+2023-12-20 18:00:36.753 [info] Installing the extension without checking dependencies and pack rangav.vscode-thunder-client
+2023-12-20 18:00:36.753 [info] Installing extension: seyyedkhandon.firacode
+2023-12-20 18:00:36.753 [info] Installing the extension without checking dependencies and pack seyyedkhandon.firacode
+2023-12-20 18:00:36.753 [info] Installing extension: sdras.night-owl
+2023-12-20 18:00:36.754 [info] Installing the extension without checking dependencies and pack sdras.night-owl
+2023-12-20 18:00:36.754 [info] Installing extension: bradlc.vscode-tailwindcss
+2023-12-20 18:00:36.754 [info] Installing the extension without checking dependencies and pack bradlc.vscode-tailwindcss
+2023-12-20 18:00:36.754 [info] Installing extension: dsznajder.es7-react-js-snippets
+2023-12-20 18:00:36.754 [info] Installing the extension without checking dependencies and pack dsznajder.es7-react-js-snippets
+2023-12-20 18:00:36.754 [info] Installing extension: kisstkondoros.vscode-gutter-preview
+2023-12-20 18:00:36.755 [info] Installing the extension without checking dependencies and pack kisstkondoros.vscode-gutter-preview
+2023-12-20 18:00:36.755 [info] Installing extension: christian-kohler.path-intellisense
+2023-12-20 18:00:36.755 [info] Installing the extension without checking dependencies and pack christian-kohler.path-intellisense
+2023-12-20 18:00:36.755 [info] Installing extension: yoavbls.pretty-ts-errors
+2023-12-20 18:00:36.755 [info] Installing the extension without checking dependencies and pack yoavbls.pretty-ts-errors
+2023-12-20 18:00:36.755 [info] Installing extension: dbaeumer.vscode-eslint
+2023-12-20 18:00:36.755 [info] Installing the extension without checking dependencies and pack dbaeumer.vscode-eslint
+2023-12-20 18:00:36.756 [info] Installing extension: miguelsolorio.fluent-icons
+2023-12-20 18:00:36.756 [info] Installing the extension without checking dependencies and pack miguelsolorio.fluent-icons
+2023-12-20 18:00:36.756 [info] Installing extension: mongodb.mongodb-vscode
+2023-12-20 18:00:36.756 [info] Installing the extension without checking dependencies and pack mongodb.mongodb-vscode
+2023-12-20 18:00:36.756 [info] Installing extension: vincentfiestada.cold-horizon-vscode
+2023-12-20 18:00:36.756 [info] Installing the extension without checking dependencies and pack vincentfiestada.cold-horizon-vscode
+2023-12-20 18:00:36.756 [info] Installing extension: leonardssh.vscord
+2023-12-20 18:00:36.757 [info] Installing the extension without checking dependencies and pack leonardssh.vscord
+2023-12-20 18:00:36.757 [info] Installing extension: dotjoshjohnson.xml
+2023-12-20 18:00:36.757 [info] Installing the extension without checking dependencies and pack dotjoshjohnson.xml
+2023-12-20 18:00:36.757 [info] Installing extension: adpyke.codesnap
+2023-12-20 18:00:36.757 [info] Installing the extension without checking dependencies and pack adpyke.codesnap
+2023-12-20 18:00:36.757 [info] Installing extension: teabyii.ayu
+2023-12-20 18:00:36.757 [info] Installing the extension without checking dependencies and pack teabyii.ayu
+2023-12-20 18:00:36.758 [info] Installing extension: naumovs.color-highlight
+2023-12-20 18:00:36.758 [info] Installing the extension without checking dependencies and pack naumovs.color-highlight
+2023-12-20 18:00:36.758 [info] Installing extension: uloco.theme-bluloco-dark
+2023-12-20 18:00:36.758 [info] Installing the extension without checking dependencies and pack uloco.theme-bluloco-dark
+2023-12-20 18:00:36.758 [info] Installing extension: dnlytras.nord-wave
+2023-12-20 18:00:36.758 [info] Installing the extension without checking dependencies and pack dnlytras.nord-wave
+2023-12-20 18:00:36.758 [info] Installing extension: meganrogge.template-string-converter
+2023-12-20 18:00:36.759 [info] Installing the extension without checking dependencies and pack meganrogge.template-string-converter
+2023-12-20 18:00:36.759 [info] Installing extension: enkia.tokyo-night
+2023-12-20 18:00:36.759 [info] Installing the extension without checking dependencies and pack enkia.tokyo-night
+2023-12-20 18:00:36.759 [info] Installing extension: wakatime.vscode-wakatime
+2023-12-20 18:00:36.759 [info] Installing the extension without checking dependencies and pack wakatime.vscode-wakatime
+2023-12-20 18:00:36.759 [info] Installing extension: gruntfuggly.activitusbar
+2023-12-20 18:00:36.760 [info] Installing the extension without checking dependencies and pack gruntfuggly.activitusbar
+2023-12-20 18:00:39.415 [warning] Extension signature verification failed with error 'UnknownError': usernamehw.errorlens
+2023-12-20 18:00:39.474 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/usernamehw.errorlens-3.16.0: usernamehw.errorlens
+2023-12-20 18:00:39.479 [info] Renamed to /home/vrivera/.vscode/extensions/usernamehw.errorlens-3.16.0
+2023-12-20 18:00:39.482 [info] Extracting extension completed. usernamehw.errorlens
+2023-12-20 18:00:39.492 [info] Extension installed successfully: usernamehw.errorlens
+2023-12-20 18:00:39.569 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:40.768 [warning] Extension signature verification failed with error 'UnknownError': ms-vscode-remote.remote-wsl
+2023-12-20 18:00:40.898 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/ms-vscode-remote.remote-wsl-0.81.8: ms-vscode-remote.remote-wsl
+2023-12-20 18:00:40.899 [info] Renamed to /home/vrivera/.vscode/extensions/ms-vscode-remote.remote-wsl-0.81.8
+2023-12-20 18:00:40.900 [info] Extracting extension completed. ms-vscode-remote.remote-wsl
+2023-12-20 18:00:40.945 [info] Extension installed successfully: ms-vscode-remote.remote-wsl
+2023-12-20 18:00:40.950 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:42.217 [warning] Extension signature verification failed with error 'UnknownError': zhuangtongfa.material-theme
+2023-12-20 18:00:42.253 [warning] Extension signature verification failed with error 'UnknownError': esbenp.prettier-vscode
+2023-12-20 18:00:42.387 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/zhuangtongfa.material-theme-3.16.2: zhuangtongfa.material-theme
+2023-12-20 18:00:42.390 [info] Renamed to /home/vrivera/.vscode/extensions/zhuangtongfa.material-theme-3.16.2
+2023-12-20 18:00:42.393 [info] Extracting extension completed. zhuangtongfa.material-theme
+2023-12-20 18:00:42.412 [info] Extension installed successfully: zhuangtongfa.material-theme
+2023-12-20 18:00:42.493 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:42.502 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/esbenp.prettier-vscode-10.1.0: esbenp.prettier-vscode
+2023-12-20 18:00:42.504 [info] Renamed to /home/vrivera/.vscode/extensions/esbenp.prettier-vscode-10.1.0
+2023-12-20 18:00:42.507 [info] Extracting extension completed. esbenp.prettier-vscode
+2023-12-20 18:00:42.523 [info] Extension installed successfully: esbenp.prettier-vscode
+2023-12-20 18:00:42.557 [warning] Extension signature verification failed with error 'UnknownError': wakatime.vscode-wakatime
+2023-12-20 18:00:42.589 [warning] Extension signature verification failed with error 'UnknownError': ms-python.pylint
+2023-12-20 18:00:42.592 [warning] Extension signature verification failed with error 'UnknownError': wayou.vscode-todo-highlight
+2023-12-20 18:00:42.639 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/wakatime.vscode-wakatime-24.4.0: wakatime.vscode-wakatime
+2023-12-20 18:00:42.643 [info] Renamed to /home/vrivera/.vscode/extensions/wakatime.vscode-wakatime-24.4.0
+2023-12-20 18:00:42.647 [info] Extracting extension completed. wakatime.vscode-wakatime
+2023-12-20 18:00:42.659 [info] Extension installed successfully: wakatime.vscode-wakatime
+2023-12-20 18:00:42.665 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/wayou.vscode-todo-highlight-1.0.5: wayou.vscode-todo-highlight
+2023-12-20 18:00:42.669 [info] Renamed to /home/vrivera/.vscode/extensions/wayou.vscode-todo-highlight-1.0.5
+2023-12-20 18:00:42.672 [info] Extracting extension completed. wayou.vscode-todo-highlight
+2023-12-20 18:00:42.683 [info] Extension installed successfully: wayou.vscode-todo-highlight
+2023-12-20 18:00:43.253 [warning] Extension signature verification failed with error 'UnknownError': ms-python.autopep8
+2023-12-20 18:00:43.253 [warning] Extension signature verification failed with error 'UnknownError': ms-vsliveshare.vsliveshare
+2023-12-20 18:00:43.254 [warning] Extension signature verification failed with error 'UnknownError': mhutchie.git-graph
+2023-12-20 18:00:43.254 [warning] Extension signature verification failed with error 'UnknownError': monokai.theme-monokai-pro-vscode
+2023-12-20 18:00:43.254 [warning] Extension signature verification failed with error 'UnknownError': zhucy.project-tree
+2023-12-20 18:00:43.254 [warning] Extension signature verification failed with error 'UnknownError': formulahendry.code-runner
+2023-12-20 18:00:43.254 [warning] Extension signature verification failed with error 'UnknownError': ms-ceintl.vscode-language-pack-es
+2023-12-20 18:00:43.254 [warning] Extension signature verification failed with error 'UnknownError': daltonmenezes.aura-theme
+2023-12-20 18:00:43.254 [warning] Extension signature verification failed with error 'UnknownError': ms-vscode.live-server
+2023-12-20 18:00:43.262 [warning] Extension signature verification failed with error 'UnknownError': wallabyjs.console-ninja
+2023-12-20 18:00:43.262 [warning] Extension signature verification failed with error 'UnknownError': equinusocio.vsc-material-theme
+2023-12-20 18:00:43.265 [warning] Extension signature verification failed with error 'UnknownError': davidanson.vscode-markdownlint
+2023-12-20 18:00:43.265 [warning] Extension signature verification failed with error 'UnknownError': codeium.codeium
+2023-12-20 18:00:43.521 [warning] Extension signature verification failed with error 'UnknownError': ritwickdey.liveserver
+2023-12-20 18:00:43.523 [warning] Extension signature verification failed with error 'UnknownError': dsznajder.es7-react-js-snippets
+2023-12-20 18:00:43.524 [warning] Extension signature verification failed with error 'UnknownError': vincentfiestada.cold-horizon-vscode
+2023-12-20 18:00:43.524 [warning] Extension signature verification failed with error 'UnknownError': yoavbls.pretty-ts-errors
+2023-12-20 18:00:43.525 [warning] Extension signature verification failed with error 'UnknownError': kisstkondoros.vscode-gutter-preview
+2023-12-20 18:00:43.525 [warning] Extension signature verification failed with error 'UnknownError': dbaeumer.vscode-eslint
+2023-12-20 18:00:43.525 [warning] Extension signature verification failed with error 'UnknownError': bradlc.vscode-tailwindcss
+2023-12-20 18:00:43.526 [warning] Extension signature verification failed with error 'UnknownError': ms-python.vscode-pylance
+2023-12-20 18:00:43.526 [warning] Extension signature verification failed with error 'UnknownError': christian-kohler.path-intellisense
+2023-12-20 18:00:43.526 [warning] Extension signature verification failed with error 'UnknownError': ms-python.python
+2023-12-20 18:00:43.527 [warning] Extension signature verification failed with error 'UnknownError': naumovs.color-highlight
+2023-12-20 18:00:43.527 [warning] Extension signature verification failed with error 'UnknownError': astro-build.astro-vscode
+2023-12-20 18:00:43.527 [warning] Extension signature verification failed with error 'UnknownError': sdras.night-owl
+2023-12-20 18:00:43.528 [warning] Extension signature verification failed with error 'UnknownError': pkief.material-icon-theme
+2023-12-20 18:00:43.528 [warning] Extension signature verification failed with error 'UnknownError': seyyedkhandon.firacode
+2023-12-20 18:00:43.528 [warning] Extension signature verification failed with error 'UnknownError': rangav.vscode-thunder-client
+2023-12-20 18:00:43.528 [warning] Extension signature verification failed with error 'UnknownError': leonardssh.vscord
+2023-12-20 18:00:43.529 [warning] Extension signature verification failed with error 'UnknownError': pflannery.vscode-versionlens
+2023-12-20 18:00:43.529 [warning] Extension signature verification failed with error 'UnknownError': gruntfuggly.activitusbar
+2023-12-20 18:00:43.530 [warning] Extension signature verification failed with error 'UnknownError': teabyii.ayu
+2023-12-20 18:00:43.530 [warning] Extension signature verification failed with error 'UnknownError': miguelsolorio.fluent-icons
+2023-12-20 18:00:43.534 [warning] Extension signature verification failed with error 'UnknownError': dotjoshjohnson.xml
+2023-12-20 18:00:43.594 [warning] Extension signature verification failed with error 'UnknownError': meganrogge.template-string-converter
+2023-12-20 18:00:43.594 [warning] Extension signature verification failed with error 'UnknownError': enkia.tokyo-night
+2023-12-20 18:00:43.595 [warning] Extension signature verification failed with error 'UnknownError': mongodb.mongodb-vscode
+2023-12-20 18:00:43.596 [warning] Extension signature verification failed with error 'UnknownError': adpyke.codesnap
+2023-12-20 18:00:43.596 [warning] Extension signature verification failed with error 'UnknownError': dnlytras.nord-wave
+2023-12-20 18:00:43.731 [warning] Extension signature verification failed with error 'UnknownError': uloco.theme-bluloco-dark
+2023-12-20 18:00:43.733 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/zhucy.project-tree-0.3.0: zhucy.project-tree
+2023-12-20 18:00:43.761 [info] Renamed to /home/vrivera/.vscode/extensions/zhucy.project-tree-0.3.0
+2023-12-20 18:00:43.778 [info] Extracting extension completed. zhucy.project-tree
+2023-12-20 18:00:43.786 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/daltonmenezes.aura-theme-2.1.2: daltonmenezes.aura-theme
+2023-12-20 18:00:43.805 [info] Extension installed successfully: zhucy.project-tree
+2023-12-20 18:00:43.820 [info] Renamed to /home/vrivera/.vscode/extensions/daltonmenezes.aura-theme-2.1.2
+2023-12-20 18:00:43.835 [info] Extracting extension completed. daltonmenezes.aura-theme
+2023-12-20 18:00:43.854 [info] Extension installed successfully: daltonmenezes.aura-theme
+2023-12-20 18:00:43.882 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:43.931 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/vincentfiestada.cold-horizon-vscode-1.3.0: vincentfiestada.cold-horizon-vscode
+2023-12-20 18:00:43.951 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/meganrogge.template-string-converter-0.6.1: meganrogge.template-string-converter
+2023-12-20 18:00:43.962 [info] Renamed to /home/vrivera/.vscode/extensions/vincentfiestada.cold-horizon-vscode-1.3.0
+2023-12-20 18:00:43.969 [info] Renamed to /home/vrivera/.vscode/extensions/meganrogge.template-string-converter-0.6.1
+2023-12-20 18:00:43.978 [info] Extracting extension completed. vincentfiestada.cold-horizon-vscode
+2023-12-20 18:00:43.985 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/kisstkondoros.vscode-gutter-preview-0.30.0: kisstkondoros.vscode-gutter-preview
+2023-12-20 18:00:43.987 [info] Extracting extension completed. meganrogge.template-string-converter
+2023-12-20 18:00:43.995 [info] Extension installed successfully: vincentfiestada.cold-horizon-vscode
+2023-12-20 18:00:44.006 [info] Renamed to /home/vrivera/.vscode/extensions/kisstkondoros.vscode-gutter-preview-0.30.0
+2023-12-20 18:00:44.011 [info] Extension installed successfully: meganrogge.template-string-converter
+2023-12-20 18:00:44.021 [info] Extracting extension completed. kisstkondoros.vscode-gutter-preview
+2023-12-20 18:00:44.029 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/dbaeumer.vscode-eslint-2.4.2: dbaeumer.vscode-eslint
+2023-12-20 18:00:44.038 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/dnlytras.nord-wave-0.3.5: dnlytras.nord-wave
+2023-12-20 18:00:44.044 [info] Extension installed successfully: kisstkondoros.vscode-gutter-preview
+2023-12-20 18:00:44.052 [info] Renamed to /home/vrivera/.vscode/extensions/dbaeumer.vscode-eslint-2.4.2
+2023-12-20 18:00:44.056 [info] Renamed to /home/vrivera/.vscode/extensions/dnlytras.nord-wave-0.3.5
+2023-12-20 18:00:44.065 [info] Extracting extension completed. dbaeumer.vscode-eslint
+2023-12-20 18:00:44.070 [info] Extracting extension completed. dnlytras.nord-wave
+2023-12-20 18:00:44.079 [info] Extension installed successfully: dbaeumer.vscode-eslint
+2023-12-20 18:00:44.091 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/monokai.theme-monokai-pro-vscode-1.2.1: monokai.theme-monokai-pro-vscode
+2023-12-20 18:00:44.097 [info] Extension installed successfully: dnlytras.nord-wave
+2023-12-20 18:00:44.107 [info] Renamed to /home/vrivera/.vscode/extensions/monokai.theme-monokai-pro-vscode-1.2.1
+2023-12-20 18:00:44.110 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/enkia.tokyo-night-1.0.6: enkia.tokyo-night
+2023-12-20 18:00:44.111 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/leonardssh.vscord-5.1.18: leonardssh.vscord
+2023-12-20 18:00:44.121 [info] Extracting extension completed. monokai.theme-monokai-pro-vscode
+2023-12-20 18:00:44.138 [info] Renamed to /home/vrivera/.vscode/extensions/enkia.tokyo-night-1.0.6
+2023-12-20 18:00:44.140 [info] Renamed to /home/vrivera/.vscode/extensions/leonardssh.vscord-5.1.18
+2023-12-20 18:00:44.146 [info] Extension installed successfully: monokai.theme-monokai-pro-vscode
+2023-12-20 18:00:44.151 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/davidanson.vscode-markdownlint-0.53.0: davidanson.vscode-markdownlint
+2023-12-20 18:00:44.154 [info] Extracting extension completed. enkia.tokyo-night
+2023-12-20 18:00:44.156 [info] Extracting extension completed. leonardssh.vscord
+2023-12-20 18:00:44.171 [info] Renamed to /home/vrivera/.vscode/extensions/davidanson.vscode-markdownlint-0.53.0
+2023-12-20 18:00:44.175 [info] Extension installed successfully: enkia.tokyo-night
+2023-12-20 18:00:44.185 [info] Extension installed successfully: leonardssh.vscord
+2023-12-20 18:00:44.185 [info] Extracting extension completed. davidanson.vscode-markdownlint
+2023-12-20 18:00:44.200 [info] Extension installed successfully: davidanson.vscode-markdownlint
+2023-12-20 18:00:44.282 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/yoavbls.pretty-ts-errors-0.5.2: yoavbls.pretty-ts-errors
+2023-12-20 18:00:44.293 [info] Renamed to /home/vrivera/.vscode/extensions/yoavbls.pretty-ts-errors-0.5.2
+2023-12-20 18:00:44.302 [info] Extracting extension completed. yoavbls.pretty-ts-errors
+2023-12-20 18:00:44.316 [info] Extension installed successfully: yoavbls.pretty-ts-errors
+2023-12-20 18:00:44.368 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/seyyedkhandon.firacode-2.2.1: seyyedkhandon.firacode
+2023-12-20 18:00:44.387 [info] Renamed to /home/vrivera/.vscode/extensions/seyyedkhandon.firacode-2.2.1
+2023-12-20 18:00:44.396 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/ms-vscode.live-server-0.4.13: ms-vscode.live-server
+2023-12-20 18:00:44.398 [info] Extracting extension completed. seyyedkhandon.firacode
+2023-12-20 18:00:44.409 [info] Extension installed successfully: seyyedkhandon.firacode
+2023-12-20 18:00:44.412 [info] Renamed to /home/vrivera/.vscode/extensions/ms-vscode.live-server-0.4.13
+2023-12-20 18:00:44.425 [info] Extracting extension completed. ms-vscode.live-server
+2023-12-20 18:00:44.438 [info] Extension installed successfully: ms-vscode.live-server
+2023-12-20 18:00:44.463 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/bradlc.vscode-tailwindcss-0.10.3: bradlc.vscode-tailwindcss
+2023-12-20 18:00:44.476 [info] Renamed to /home/vrivera/.vscode/extensions/bradlc.vscode-tailwindcss-0.10.3
+2023-12-20 18:00:44.489 [info] Extracting extension completed. bradlc.vscode-tailwindcss
+2023-12-20 18:00:44.497 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/uloco.theme-bluloco-dark-3.7.4: uloco.theme-bluloco-dark
+2023-12-20 18:00:44.505 [info] Extension installed successfully: bradlc.vscode-tailwindcss
+2023-12-20 18:00:44.510 [info] Renamed to /home/vrivera/.vscode/extensions/uloco.theme-bluloco-dark-3.7.4
+2023-12-20 18:00:44.510 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/christian-kohler.path-intellisense-2.8.5: christian-kohler.path-intellisense
+2023-12-20 18:00:44.519 [info] Extracting extension completed. uloco.theme-bluloco-dark
+2023-12-20 18:00:44.523 [info] Renamed to /home/vrivera/.vscode/extensions/christian-kohler.path-intellisense-2.8.5
+2023-12-20 18:00:44.532 [info] Extension installed successfully: uloco.theme-bluloco-dark
+2023-12-20 18:00:44.535 [info] Extracting extension completed. christian-kohler.path-intellisense
+2023-12-20 18:00:44.546 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/mhutchie.git-graph-1.30.0: mhutchie.git-graph
+2023-12-20 18:00:44.546 [info] Extension installed successfully: christian-kohler.path-intellisense
+2023-12-20 18:00:44.563 [info] Renamed to /home/vrivera/.vscode/extensions/mhutchie.git-graph-1.30.0
+2023-12-20 18:00:44.574 [info] Extracting extension completed. mhutchie.git-graph
+2023-12-20 18:00:44.586 [info] Extension installed successfully: mhutchie.git-graph
+2023-12-20 18:00:44.617 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/sdras.night-owl-2.0.1: sdras.night-owl
+2023-12-20 18:00:44.629 [info] Renamed to /home/vrivera/.vscode/extensions/sdras.night-owl-2.0.1
+2023-12-20 18:00:44.644 [info] Extracting extension completed. sdras.night-owl
+2023-12-20 18:00:44.667 [info] Extension installed successfully: sdras.night-owl
+2023-12-20 18:00:44.722 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/equinusocio.vsc-material-theme-34.3.1: equinusocio.vsc-material-theme
+2023-12-20 18:00:44.731 [info] Renamed to /home/vrivera/.vscode/extensions/equinusocio.vsc-material-theme-34.3.1
+2023-12-20 18:00:44.736 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/rangav.vscode-thunder-client-2.16.3: rangav.vscode-thunder-client
+2023-12-20 18:00:44.740 [info] Extracting extension completed. equinusocio.vsc-material-theme
+2023-12-20 18:00:44.760 [info] Extension installed successfully: equinusocio.vsc-material-theme
+2023-12-20 18:00:44.761 [info] Renamed to /home/vrivera/.vscode/extensions/rangav.vscode-thunder-client-2.16.3
+2023-12-20 18:00:44.774 [info] Extracting extension completed. rangav.vscode-thunder-client
+2023-12-20 18:00:44.785 [info] Extension installed successfully: rangav.vscode-thunder-client
+2023-12-20 18:00:44.843 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/ms-ceintl.vscode-language-pack-es-1.85.2023121309: ms-ceintl.vscode-language-pack-es
+2023-12-20 18:00:44.845 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/codeium.codeium-1.6.13: codeium.codeium
+2023-12-20 18:00:44.855 [info] Renamed to /home/vrivera/.vscode/extensions/ms-ceintl.vscode-language-pack-es-1.85.2023121309
+2023-12-20 18:00:44.857 [info] Renamed to /home/vrivera/.vscode/extensions/codeium.codeium-1.6.13
+2023-12-20 18:00:44.863 [info] Extracting extension completed. ms-ceintl.vscode-language-pack-es
+2023-12-20 18:00:44.865 [info] Extracting extension completed. codeium.codeium
+2023-12-20 18:00:44.875 [info] Adding language packs from the extension ms-ceintl.vscode-language-pack-es
+2023-12-20 18:00:44.890 [info] Extension installed successfully: codeium.codeium
+2023-12-20 18:00:44.973 [info] Extension installed successfully: ms-ceintl.vscode-language-pack-es
+2023-12-20 18:00:45.084 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/miguelsolorio.fluent-icons-0.0.18: miguelsolorio.fluent-icons
+2023-12-20 18:00:45.093 [info] Renamed to /home/vrivera/.vscode/extensions/miguelsolorio.fluent-icons-0.0.18
+2023-12-20 18:00:45.099 [info] Extracting extension completed. miguelsolorio.fluent-icons
+2023-12-20 18:00:45.109 [info] Extension installed successfully: miguelsolorio.fluent-icons
+2023-12-20 18:00:45.184 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:45.205 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/teabyii.ayu-1.0.5: teabyii.ayu
+2023-12-20 18:00:45.213 [info] Renamed to /home/vrivera/.vscode/extensions/teabyii.ayu-1.0.5
+2023-12-20 18:00:45.223 [info] Extracting extension completed. teabyii.ayu
+2023-12-20 18:00:45.238 [info] Extension installed successfully: teabyii.ayu
+2023-12-20 18:00:45.256 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/formulahendry.code-runner-0.12.1: formulahendry.code-runner
+2023-12-20 18:00:45.264 [info] Renamed to /home/vrivera/.vscode/extensions/formulahendry.code-runner-0.12.1
+2023-12-20 18:00:45.271 [info] Extracting extension completed. formulahendry.code-runner
+2023-12-20 18:00:45.280 [info] Extension installed successfully: formulahendry.code-runner
+2023-12-20 18:00:45.729 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/dsznajder.es7-react-js-snippets-4.4.3: dsznajder.es7-react-js-snippets
+2023-12-20 18:00:45.737 [info] Renamed to /home/vrivera/.vscode/extensions/dsznajder.es7-react-js-snippets-4.4.3
+2023-12-20 18:00:45.742 [info] Extracting extension completed. dsznajder.es7-react-js-snippets
+2023-12-20 18:00:45.751 [info] Extension installed successfully: dsznajder.es7-react-js-snippets
+2023-12-20 18:00:45.802 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/ms-python.autopep8-2023.8.0: ms-python.autopep8
+2023-12-20 18:00:45.811 [info] Renamed to /home/vrivera/.vscode/extensions/ms-python.autopep8-2023.8.0
+2023-12-20 18:00:45.818 [info] Extracting extension completed. ms-python.autopep8
+2023-12-20 18:00:45.828 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:45.832 [info] Extension installed successfully: ms-python.autopep8
+2023-12-20 18:00:45.864 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/ms-python.pylint-2023.10.1: ms-python.pylint
+2023-12-20 18:00:45.867 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/naumovs.color-highlight-2.5.0: naumovs.color-highlight
+2023-12-20 18:00:45.871 [info] Renamed to /home/vrivera/.vscode/extensions/ms-python.pylint-2023.10.1
+2023-12-20 18:00:45.873 [info] Renamed to /home/vrivera/.vscode/extensions/naumovs.color-highlight-2.5.0
+2023-12-20 18:00:45.877 [info] Extracting extension completed. ms-python.pylint
+2023-12-20 18:00:45.878 [info] Extracting extension completed. naumovs.color-highlight
+2023-12-20 18:00:45.890 [info] Extension installed successfully: ms-python.pylint
+2023-12-20 18:00:45.897 [info] Extension installed successfully: naumovs.color-highlight
+2023-12-20 18:00:46.010 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/mongodb.mongodb-vscode-1.3.1: mongodb.mongodb-vscode
+2023-12-20 18:00:46.016 [info] Renamed to /home/vrivera/.vscode/extensions/mongodb.mongodb-vscode-1.3.1
+2023-12-20 18:00:46.020 [info] Extracting extension completed. mongodb.mongodb-vscode
+2023-12-20 18:00:46.030 [info] Extension installed successfully: mongodb.mongodb-vscode
+2023-12-20 18:00:46.163 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/astro-build.astro-vscode-2.5.4-linux-x64: astro-build.astro-vscode
+2023-12-20 18:00:46.170 [info] Renamed to /home/vrivera/.vscode/extensions/astro-build.astro-vscode-2.5.4-linux-x64
+2023-12-20 18:00:46.174 [info] Extracting extension completed. astro-build.astro-vscode
+2023-12-20 18:00:46.182 [info] Extension installed successfully: astro-build.astro-vscode
+2023-12-20 18:00:46.789 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/ms-vsliveshare.vsliveshare-1.0.5900: ms-vsliveshare.vsliveshare
+2023-12-20 18:00:46.798 [info] Renamed to /home/vrivera/.vscode/extensions/ms-vsliveshare.vsliveshare-1.0.5900
+2023-12-20 18:00:46.803 [info] Extracting extension completed. ms-vsliveshare.vsliveshare
+2023-12-20 18:00:46.811 [info] Extension installed successfully: ms-vsliveshare.vsliveshare
+2023-12-20 18:00:46.885 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:47.149 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/pkief.material-icon-theme-4.32.0: pkief.material-icon-theme
+2023-12-20 18:00:47.155 [info] Renamed to /home/vrivera/.vscode/extensions/pkief.material-icon-theme-4.32.0
+2023-12-20 18:00:47.159 [info] Extracting extension completed. pkief.material-icon-theme
+2023-12-20 18:00:47.169 [info] Extension installed successfully: pkief.material-icon-theme
+2023-12-20 18:00:47.241 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:47.410 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/dotjoshjohnson.xml-2.5.1: dotjoshjohnson.xml
+2023-12-20 18:00:47.415 [info] Renamed to /home/vrivera/.vscode/extensions/dotjoshjohnson.xml-2.5.1
+2023-12-20 18:00:47.418 [info] Extracting extension completed. dotjoshjohnson.xml
+2023-12-20 18:00:47.425 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/wallabyjs.console-ninja-1.0.268: wallabyjs.console-ninja
+2023-12-20 18:00:47.428 [info] Extension installed successfully: dotjoshjohnson.xml
+2023-12-20 18:00:47.429 [info] Renamed to /home/vrivera/.vscode/extensions/wallabyjs.console-ninja-1.0.268
+2023-12-20 18:00:47.432 [info] Extracting extension completed. wallabyjs.console-ninja
+2023-12-20 18:00:47.440 [info] Extension installed successfully: wallabyjs.console-ninja
+2023-12-20 18:00:47.501 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:47.994 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/pflannery.vscode-versionlens-1.9.2: pflannery.vscode-versionlens
+2023-12-20 18:00:48.001 [info] Renamed to /home/vrivera/.vscode/extensions/pflannery.vscode-versionlens-1.9.2
+2023-12-20 18:00:48.003 [info] Extracting extension completed. pflannery.vscode-versionlens
+2023-12-20 18:00:48.011 [info] Extension installed successfully: pflannery.vscode-versionlens
+2023-12-20 18:00:48.084 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:48.398 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/adpyke.codesnap-1.3.4: adpyke.codesnap
+2023-12-20 18:00:48.404 [info] Renamed to /home/vrivera/.vscode/extensions/adpyke.codesnap-1.3.4
+2023-12-20 18:00:48.406 [info] Extracting extension completed. adpyke.codesnap
+2023-12-20 18:00:48.418 [info] Extension installed successfully: adpyke.codesnap
+2023-12-20 18:00:48.490 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:50.030 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/ms-python.python-2023.22.1: ms-python.python
+2023-12-20 18:00:50.040 [info] Renamed to /home/vrivera/.vscode/extensions/ms-python.python-2023.22.1
+2023-12-20 18:00:50.047 [info] Extracting extension completed. ms-python.python
+2023-12-20 18:00:50.065 [info] Extension installed successfully: ms-python.python
+2023-12-20 18:00:50.138 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:50.229 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/gruntfuggly.activitusbar-0.0.47: gruntfuggly.activitusbar
+2023-12-20 18:00:50.233 [info] Renamed to /home/vrivera/.vscode/extensions/gruntfuggly.activitusbar-0.0.47
+2023-12-20 18:00:50.235 [info] Extracting extension completed. gruntfuggly.activitusbar
+2023-12-20 18:00:50.244 [info] Extension installed successfully: gruntfuggly.activitusbar
+2023-12-20 18:00:50.316 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:50.815 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/ritwickdey.liveserver-5.7.9: ritwickdey.liveserver
+2023-12-20 18:00:50.821 [info] Renamed to /home/vrivera/.vscode/extensions/ritwickdey.liveserver-5.7.9
+2023-12-20 18:00:50.823 [info] Extracting extension completed. ritwickdey.liveserver
+2023-12-20 18:00:50.830 [info] Extension installed successfully: ritwickdey.liveserver
+2023-12-20 18:00:50.903 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
+2023-12-20 18:00:51.533 [info] Extracted extension to file:///home/vrivera/.vscode/extensions/ms-python.vscode-pylance-2023.12.1: ms-python.vscode-pylance
+2023-12-20 18:00:51.543 [info] Renamed to /home/vrivera/.vscode/extensions/ms-python.vscode-pylance-2023.12.1
+2023-12-20 18:00:51.546 [info] Extracting extension completed. ms-python.vscode-pylance
+2023-12-20 18:00:51.572 [info] Extension installed successfully: ms-python.vscode-pylance
+2023-12-20 18:00:51.660 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/home/vrivera/.vscode/extensions/extensions.json.vsctmp'
+    at r.create (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30056)
+    at a (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:51:30170)
+    at s.fb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:36175)
+    at s.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:28621)
+    at async E.stat (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:56:15732)
+    at async Y.tb (/opt/visual-studio-code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:100:111319)
