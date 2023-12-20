@@ -5,8 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
-
 alias upt="sudo pacman -Syu && yay -Syu"
 alias cls="clear"
 
@@ -31,6 +29,7 @@ alias ls='lsd'
 alias l='ls -l'
 alias la='lsd -a'
 alias lla='lsd -la'
+alias wfix='wlr-randr --output HDMI-A-1 --pos 1920,0 --output HDMI-A-2 --pos 0,0'
 export LS_COLORS="ow=01;90;40"
 
 HISTFILE=~/.zsh_history
