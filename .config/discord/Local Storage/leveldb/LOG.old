@@ -1,0 +1,5 @@
+2023/12/13-02:10:48.384 2b47 Creating DB /home/vrivera/.config/discord/Local Storage/leveldb since it was missing.
+2023/12/13-02:10:48.390 2b47 Reusing MANIFEST /home/vrivera/.config/discord/Local Storage/leveldb/MANIFEST-000001
+2023/12/13-02:14:31.802 2b6f Level-0 table #5: started
+2023/12/13-02:14:31.815 2b6f Level-0 table #5: 2738446 bytes OK
+2023/12/13-02:14:31.816 2b6f Delete type=0 #3

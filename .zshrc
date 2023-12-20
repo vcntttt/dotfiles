@@ -1,4 +1,11 @@
-eval "$(starship init zsh)"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
 
 alias upt="sudo pacman -Syu && yay -Syu"
 alias cls="clear"
@@ -15,7 +22,10 @@ alias paci="sudo pacman -S"
 alias logout="cinnamon-session-quit --logout"
 alias nf="neofetch"
 alias tgz=comprimir
+alias tdc="tar -xf"
 alias xmp="sudo xampp"
+alias pwo="shutdown -h now"
+alias grub-reconf="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 # ver Archivos
 alias ls='lsd'
 alias l='ls -l'
@@ -37,9 +47,11 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 setopt NO_LIST_BEEP
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# bun completions
-[ -s "/home/vicente/.bun/_bun" ] && source "/home/vicente/.bun/_bun"
+source ~/git-packages/powerlevel10k/powerlevel10k.zsh-theme
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -1,0 +1,83 @@
+2023-12-16 23:16:44.362 [info] Using settings sync service https://vscode-sync.trafficmanager.net/
+2023-12-16 23:16:44.362 [info] Auto Sync is enabled.
+2023-12-16 23:16:44.362 [info] Auto Sync: Suspended until auth token is available.
+2023-12-16 23:16:44.619 [info] Deleting non existing profile from backup /home/vrivera/.config/Code/User/sync/extensions
+2023-12-16 23:16:44.747 [info] Deleting non existing profile from backup /home/vrivera/.config/Code/User/sync/globalState
+2023-12-16 23:16:44.831 [info] Deleting non existing profile from backup /home/vrivera/.config/Code/User/sync/keybindings
+2023-12-16 23:16:44.873 [info] Deleting non existing profile from backup /home/vrivera/.config/Code/User/sync/profiles
+2023-12-16 23:16:44.873 [info] Deleting non existing profile from backup /home/vrivera/.config/Code/User/sync/settings
+2023-12-16 23:16:44.874 [info] Deleting non existing profile from backup /home/vrivera/.config/Code/User/sync/snippets
+2023-12-16 23:16:44.876 [info] Deleting non existing profile from backup /home/vrivera/.config/Code/User/sync/tasks
+2023-12-16 23:16:45.151 [info] Auto Sync: Triggered by Interval
+2023-12-16 23:16:45.151 [info] Sync started.
+2023-12-16 23:16:45.989 [info] Settings: Last sync resource does not exist locally.
+2023-12-16 23:16:46.402 [info] Settings: Updated local settings
+2023-12-16 23:16:46.405 [info] Settings: Updated last synchronized settings
+2023-12-16 23:16:46.407 [info] Keybindings: Last sync resource does not exist locally.
+2023-12-16 23:16:46.568 [info] Keybindings: No changes found during synchronizing keybindings.
+2023-12-16 23:16:46.569 [info] Snippets: Last sync resource does not exist locally.
+2023-12-16 23:16:46.750 [info] Snippets: No changes found during synchronizing snippets.
+2023-12-16 23:16:46.751 [info] Tasks: Last sync resource does not exist locally.
+2023-12-16 23:16:46.907 [info] Tasks: No changes found during synchronizing tasks.
+2023-12-16 23:16:46.910 [info] GlobalState: Last sync resource does not exist locally.
+2023-12-16 23:16:47.082 [info] Request failed {"url":"https://vscode-sync.trafficmanager.net/v1/resource/globalState/e41d2be6-24a1-4d2e-a202-3e56abd7aab5","status":404,"execution-id":"18c6b3e9-6a72-4b96-a945-befe03d9d6d5","operation-id":"10941c32f6104bad86160662fce373be"} Not Found
+2023-12-16 23:16:47.082 [info] GlobalState: Last sync resource does not exist remotely.
+2023-12-16 23:16:47.358 [info] GlobalState: Last sync resource does not exist locally.
+2023-12-16 23:16:47.534 [info] GlobalState: Accepting remote because it was synced before and the last sync data is not available.
+2023-12-16 23:16:47.540 [info] GlobalState: Updated global state ["commandPalette.mru.cache","commandPalette.mru.counter","memento/gettingStartedService","memento/workbench.editor.keybindings","snippets.usageTimestamps","workbench.activity.pinnedViewlets2","workbench.statusbar.hidden","workbench.welcomePage.hiddenCategories"]
+2023-12-16 23:16:47.540 [info] GlobalState: Updated local ui state
+2023-12-16 23:16:47.679 [info] Request failed {"url":"https://vscode-sync.trafficmanager.net/v1/resource/globalState/e41d2be6-24a1-4d2e-a202-3e56abd7aab5","status":404,"execution-id":"18c6b3e9-6a72-4b96-a945-befe03d9d6d5","operation-id":"8ea2f90723964161b27b43cfd3d42040"} Not Found
+2023-12-16 23:16:47.679 [info] GlobalState: Last sync resource does not exist remotely.
+2023-12-16 23:16:47.795 [info] GlobalState: Last sync resource does not exist locally.
+2023-12-16 23:16:47.889 [info] GlobalState: Updated remote ui state.
+2023-12-16 23:16:47.894 [info] GlobalState: Updated last synchronized ui state
+2023-12-16 23:16:47.897 [info] Extensions: Last sync resource does not exist locally.
+2023-12-16 23:16:47.951 [info] Request failed {"url":"https://vscode-sync.trafficmanager.net/v1/resource/globalState/e41d2be6-24a1-4d2e-a202-3e56abd7aab5","status":404,"execution-id":"18c6b3e9-6a72-4b96-a945-befe03d9d6d5","operation-id":"b762c7d18398496bb88561bf68d6c235"} Not Found
+2023-12-16 23:16:47.952 [info] GlobalState: Last sync resource does not exist remotely.
+2023-12-16 23:16:52.735 [info] Extensions: Installed extension. zhucy.project-tree 0.3.0
+2023-12-16 23:16:52.736 [info] Extensions: Installed extension. yoavbls.pretty-ts-errors 0.5.2
+2023-12-16 23:16:52.737 [info] Extensions: Updated last synchronized extensions.
+2023-12-16 23:16:52.743 [info] Profiles: Last sync resource does not exist locally.
+2023-12-16 23:16:52.900 [info] Profiles: No changes found during synchronizing profiles.
+2023-12-16 23:16:52.908 [info] Sync done. Took 7756ms
+2023-12-16 23:16:52.908 [info] Auto Sync: Triggered by Activity
+2023-12-16 23:16:52.908 [info] Sync started.
+2023-12-16 23:16:53.062 [info] Settings: No changes found during synchronizing settings.
+2023-12-16 23:16:53.064 [info] Keybindings: No changes found during synchronizing keybindings.
+2023-12-16 23:16:53.068 [info] Snippets: No changes found during synchronizing snippets.
+2023-12-16 23:16:53.071 [info] Tasks: No changes found during synchronizing tasks.
+2023-12-16 23:16:53.544 [info] GlobalState: Updated remote ui state. Added: globalState.argv.locale,workbench.panel.repl.hidden,workbench.view.debug.state.hidden,colorThemeData,workbench.activity.pinnedViewlets2,workbench.telemetryOptOutShown,memento/gettingStartedService,workbench.panel.alignment,themeUpdatedNotificationShown,workbench.panel.markers.hidden,workbench.panel.output.hidden,terminal.hidden,workbench.explorer.views.state.hidden,workbench.scm.views.state.hidden,workbench.view.search.state.hidden,nps/lastSessionDate,nps/sessionCount,cpp.1.lastSessionDate,cpp.1.sessionCount,java.2.lastSessionDate,java.2.sessionCount,javascript.1.lastSessionDate,javascript.1.sessionCount,typescript.1.lastSessionDate,typescript.1.sessionCount,csharp.1.lastSessionDate,csharp.1.sessionCount,workbench.panel.pinnedPanels,~remote.forwardedPortsContainer.hidden,workbench.statusbar.hidden,workbench.view.sync.state.hidden,ces/skipSurvey,workbench.welcomePage.walkthroughMetadata,workbench.view.extension.jupyter.state.hidden,workbench.view.extension.test.state.hidden,workbench.view.extension.liveshare.state.hidden,workbench.view.extensions.state.hidden,workbench.welcomePage.hiddenCategories,terminal.integrated.showTerminalConfigPrompt,expandSuggestionDocs,commandPalette.mru.cache,commandPalette.mru.counter,tabs-list-width-horizontal,workbench.view.extension.custom-activitybar.state.hidden,workbench.view.extension.gitlens.state.hidden,workbench.view.extension.gitlensPanel.state.hidden,memento/workbench.editor.keybindings,workbench.view.extension.gitlensInspect.state.hidden,fileBasedRecommendations/promptedFileExtensions,workbench.view.extension.codium-sidebar-view-container.state.hidden,workbench.view.extension.codeium.state.hidden,codeium_auth-Vicente Rivera,fileBasedRecommendations/promptedRecommendations,snippets.usageTimestamps,workbench.view.extension.figma.state.hidden,workbench.view.extension.thunder-client.state.hidden,Comments.hidden,workbench.view.extension.tabnine-access.state.hidden,userDataProfiles.state.hidden,github-vcntttt,workbench.view.extension.wallaby.state.hidden,microsoft-vicenterivera225@gmail.com,extensionsAssistant/doNotCheckDeprecated,extensionTips/promptedExecutableTips,file.particpants.additionalEdits,extensionsAssistant/importantRecommendationsIgnore,workbench.view.extension.mongoDB.state.hidden,workbench.view.remote.state.hidden,remote.explorerType,remote.tunnels.toRestore.undefined.387069819,extensionsAssistant/deprecated,workbench.activityBar.location.
+2023-12-16 23:16:53.546 [info] GlobalState: Updated last synchronized ui state
+2023-12-16 23:16:53.598 [info] Extensions: No changes found during synchronizing extensions.
+2023-12-16 23:16:53.599 [info] Profiles: No changes found during synchronizing profiles.
+2023-12-16 23:16:53.600 [info] Sync done. Took 692ms
+2023-12-16 23:17:12.622 [info] Auto Sync: Triggered by Activity
+2023-12-16 23:17:12.622 [info] Sync started.
+2023-12-16 23:17:12.791 [info] Settings: No changes found during synchronizing settings.
+2023-12-16 23:17:12.793 [info] Keybindings: No changes found during synchronizing keybindings.
+2023-12-16 23:17:12.799 [info] Snippets: No changes found during synchronizing snippets.
+2023-12-16 23:17:12.801 [info] Tasks: No changes found during synchronizing tasks.
+2023-12-16 23:17:12.804 [info] GlobalState: No changes found during synchronizing ui state.
+2023-12-16 23:17:12.862 [info] Extensions: No changes found during synchronizing extensions.
+2023-12-16 23:17:12.863 [info] Profiles: No changes found during synchronizing profiles.
+2023-12-16 23:17:12.864 [info] Sync done. Took 242ms
+2023-12-16 23:17:48.858 [info] Auto Sync: Triggered by Activity
+2023-12-16 23:17:48.859 [info] Sync started.
+2023-12-16 23:17:49.037 [info] Settings: No changes found during synchronizing settings.
+2023-12-16 23:17:49.041 [info] Keybindings: No changes found during synchronizing keybindings.
+2023-12-16 23:17:49.051 [info] Snippets: No changes found during synchronizing snippets.
+2023-12-16 23:17:49.052 [info] Tasks: No changes found during synchronizing tasks.
+2023-12-16 23:17:49.055 [info] GlobalState: No changes found during synchronizing ui state.
+2023-12-16 23:17:49.149 [info] Extensions: No changes found during synchronizing extensions.
+2023-12-16 23:17:49.150 [info] Profiles: No changes found during synchronizing profiles.
+2023-12-16 23:17:49.151 [info] Sync done. Took 294ms
+2023-12-16 23:18:16.639 [info] Auto Sync: Triggered by Activity
+2023-12-16 23:18:16.639 [info] Sync started.
+2023-12-16 23:18:16.802 [info] Settings: No changes found during synchronizing settings.
+2023-12-16 23:18:16.805 [info] Keybindings: No changes found during synchronizing keybindings.
+2023-12-16 23:18:16.809 [info] Snippets: No changes found during synchronizing snippets.
+2023-12-16 23:18:16.811 [info] Tasks: No changes found during synchronizing tasks.
+2023-12-16 23:18:16.813 [info] GlobalState: No changes found during synchronizing ui state.
+2023-12-16 23:18:16.900 [info] Extensions: No changes found during synchronizing extensions.
+2023-12-16 23:18:16.903 [info] Profiles: No changes found during synchronizing profiles.
+2023-12-16 23:18:16.904 [info] Sync done. Took 266ms

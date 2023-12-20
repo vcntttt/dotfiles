@@ -3,7 +3,9 @@ configuration {
   display-window: "Windows:";
   drun-display-format: "{icon} {name}";
   font: "JetBrainsMono Nerd Font Medium 16";
-  modi: "window,run,drun";
+  modi: "window,run,drun,emoji,calc";
+  show-icons: true;
+  icon-theme: "Tela manjaro";
 }
 
 @theme "/dev/null"
@@ -46,7 +48,7 @@ element-text {
 }
 
 element-icon {
-  size: 40;
+  size: 42;
   padding: 0 10 0 0;
   background-color: transparent;
 }
@@ -79,5 +81,3 @@ prompt {
   background-color: @bg-alt;
   text-color: @fg;
 }
-
-/* vim: ft=sass
