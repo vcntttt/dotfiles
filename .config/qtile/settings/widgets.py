@@ -7,7 +7,7 @@ from qtile_extras.widget.decorations import PowerLineDecoration
 
 # Widgets
 widget_defaults = dict(
-    font= 'Roboto',
+    font='Roboto',
     fontsize=12,
     padding=3,
 )
@@ -29,6 +29,7 @@ powerline = {
         PowerLineDecoration(path="arrow_right")
     ],
 }
+
 
 def my_bar(systray=False):
     widgetList = [
@@ -82,10 +83,12 @@ def my_bar(systray=False):
         widget.KeyboardLayout(
             **statsColors1,
             **powerline,
+            configured_keyboards=['us', 'latam'],
+            display_map={'us': 'US', 'latam': 'LATAM'},
             fmt='⌨ : {}',
             padding=5,
             font=statsFont,
-            fontsize=12,
+            fontsize=12
         ),
         widget.ThermalSensor(
             **statsColors2,
@@ -144,9 +147,9 @@ def my_bar(systray=False):
             **powerline,
             format='{char} {percent:2.0%}',
             update_interval=10,
-            discharge_char='',
-            full_char='',
-            charge_char='',
+            discharge_char='󰁺',
+            full_char='󰁹',
+            charge_char='󰂄',
             empty_char='',
             padding=8,
             font=statsFont,
@@ -182,7 +185,7 @@ def my_bar(systray=False):
 
     if systray:
         widgetList.insert(6, widget.Systray(padding=10))
-        widgetList.insert(7, widget.Spacer(length=10, background=colors['background']))
+        widgetList.insert(7, widget.Spacer(length=10))
 
     # else:
     #     widgetList.insert(8,
@@ -190,5 +193,5 @@ def my_bar(systray=False):
     #                           linewidth=0,
     #                           padding=3,
     #                       ),)
-        
+
     return bar.Bar(widgetList, 30)
