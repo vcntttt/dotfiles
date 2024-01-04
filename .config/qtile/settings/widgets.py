@@ -62,7 +62,7 @@ def my_bar(systray=False):
             fontsize=18,
             padding=8
         ),
-        widget.Spacer(length=5, background=colors["foreground"]),
+        # widget.Spacer(length=5, background=colors["foreground"]),
         widget.WindowName(
             font=statsFont,
             fontsize=12,
@@ -74,13 +74,13 @@ def my_bar(systray=False):
         # --------------------------------------------------------------------------#
         # -------------------------------Lado Derecho-------------------------------#
         # --------------------------------------------------------------------------#
-        # Spotify(
-        #     font=barFont,
-        #     fontsize=12,
-        #     padding=10,
-        #     background=colors['spotify'],
-        #     foreground=colors['background'],
-        # ),
+        Spotify(
+            font=barFont,
+            fontsize=12,
+            padding=10,
+            background=colors['spotify'],
+            foreground=colors['background'],
+        ),
         widget.CurrentLayout(
             **statsColors2,
             **powerline,
@@ -99,6 +99,7 @@ def my_bar(systray=False):
         widget.ThermalSensor(
             **statsColors2,
             **powerline,
+            update_interval=2,
             padding=5,
         ),
         widget.CPU(
@@ -189,10 +190,9 @@ def my_bar(systray=False):
         )]
 
     if systray:
-        widgetList.insert(8,
-                          widget.Systray(
-                              **powerline,
-                          ))
+        widgetList.insert(6, widget.Systray(padding=10))
+        widgetList.insert(7, widget.Spacer(length=10, background=colors['background']))
+
     # else:
     #     widgetList.insert(8,
     #                       widget.Sep(
