@@ -1,5 +1,0 @@
-2023-12-06 17:16:12.451 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-dotnettools.dotnet-interactive-vscode' wants API proposal 'languageConfigurationAutoClosingPairs' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
-2023-12-06 17:16:12.491 [info] Initial editor state {"filesToOpenOrCreate":[{"fileUri":{"$mid":1,"path":"/home/vrivera/.zshrc","scheme":"file"},"type":1,"exists":true,"options":{}}],"filesToDiff":[],"filesToMerge":[]}
-2023-12-06 17:16:15.371 [info] [perf] Render performance baseline is 29ms
-2023-12-06 17:27:56.179 [info] Settings Sync: Updating due to change in sessions
-2023-12-06 17:27:56.181 [info] Settings Sync: Updated current session 3995dde3563f368e
