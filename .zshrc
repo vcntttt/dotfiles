@@ -32,9 +32,10 @@ alias reflec="sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirror
 alias grep='grep --color=auto'
 alias ls='lsd'
 alias l='ls -l'
-alias la='lsd -a'
+alias la='ll -a'
 alias lla='lsd -la'
 export LS_COLORS="ow=01;90;40"
+alias ll='lsd --tree --depth 1'
 # Historial y autocompletado
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
@@ -65,7 +66,7 @@ bindkey '^[[B' history-substring-search-down
 ## ENV
 export EDITOR="nvim"
 export TERM="alacritty"
-export CM_LAUNCHER="rofi"
+export CM_LAUNCHER=rofi
 
 ## PATH
 export PATH="$HOME/.local/bin:$PATH"
