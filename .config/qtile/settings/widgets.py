@@ -1,24 +1,18 @@
 from libqtile import bar, qtile
 from .keys import terminal
-from .theme import colors, barFont, DoomOne
+from .theme import colors, statsFont
 from customWidgets.spotify import Spotify
-import subprocess
 from qtile_extras import widget
 from qtile_extras.widget.decorations import PowerLineDecoration
 
 # Widgets
 widget_defaults = dict(
-    font="Roboto",
+    font= 'Roboto',
     fontsize=12,
     padding=3,
 )
 
 extension_defaults = widget_defaults.copy()
-
-constrastColors = {
-    'foreground': colors["dark"],
-    'background': colors["foreground"],
-}
 
 statsColors2 = {
     'background': "#ddd",
@@ -35,9 +29,6 @@ powerline = {
         PowerLineDecoration(path="arrow_right")
     ],
 }
-
-statsFont = "JetBrainsMono Nerd Font"
-
 
 def my_bar(systray=False):
     widgetList = [
@@ -75,7 +66,7 @@ def my_bar(systray=False):
         # -------------------------------Lado Derecho-------------------------------#
         # --------------------------------------------------------------------------#
         Spotify(
-            font=barFont,
+            font=statsFont,
             fontsize=12,
             padding=10,
             background=colors['spotify'],
@@ -176,17 +167,17 @@ def my_bar(systray=False):
             fontsize=12,
         ),
         widget.TextBox(
-            **constrastColors,
+            **statsColors2,
             text='',
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
                 '/home/vrivera/.local/bin/powermenu')},
             padding=8,
-            font=barFont,
+            font=statsFont,
             fontsize=16,
         ),
         widget.Spacer(
+            **statsColors2,
             length=5,
-            **constrastColors,
         )]
 
     if systray:
