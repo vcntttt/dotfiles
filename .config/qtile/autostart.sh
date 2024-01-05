@@ -24,3 +24,6 @@ nm-applet &
 
 #clipmenud
 clipmenud &
+
+#brillo de los monitores
+brightness-controller &
