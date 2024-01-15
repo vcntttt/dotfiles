@@ -7,14 +7,16 @@
 setxkbmap us
 
 # Wallpaper
-xwallpaper --maximize ~/git-packages/dotfiles/Wallpapers/32.jpg
+WALLPAPER_CONFIG="$HOME/.config/qtile/scripts/wallpaper"
+if [ -f "$WALLPAPER_CONFIG" ]; then
+    xwallpaper --maximize "$(cat "$WALLPAPER_CONFIG")"
+else
+    xwallpaper --maximize ~/git-packages/dotfiles/Wallpapers/32.jpg
+fi
 picom &
 
 # Keyring
 /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets &
-
-# #Polybar
-# "$HOME"/.config/polybar/launch.sh
 
 # Load notification service
 dunst &
@@ -25,5 +27,11 @@ nm-applet &
 #clipmenud
 clipmenud &
 
+#ss
+flameshot &
+
 #brillo de los monitores
 brightness-controller &
+
+#correo
+mailspring --b &
