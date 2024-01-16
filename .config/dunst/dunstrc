@@ -61,19 +61,19 @@
     background = "#181825FF"
     foreground = "#CDD6F4"
     highlight = "#CDD6F4"
-    timeout = 10
+    timeout = 3
 
 [urgency_normal]
     background = "#181825FF"
     foreground = "#CDD6F4"
     highlight = "#CDD6F4"
-    timeout = 10
+    timeout = 3
 
 [urgency_critical]
-    background = "#F38BA8"
-    foreground = "#181825"
-    frame_color = "#F38BA8"
-    timeout = 1000
+    background = "#BA2320"
+    foreground = "#ccc"
+    frame_color = "#BA2320"
+    timeout = 18
     format = "<b>%s</b>\n%b"
 
 # vim: ft=cfg
