@@ -64,11 +64,14 @@ keys = [
     Key([win], 'Tab', lazy.spawn('rofi -show window')),
     Key([win], 'l', lazy.spawn('betterlockscreen -l')),
     Key([win], 'BackSpace', lazy.spawn('/home/vrivera/.local/bin/powermenu')),
-    Key([win], 'V', lazy.spawn('clipmenu')),
+    Key([win], 'v', lazy.spawn('clipmenu')),
 
     # Screenshot
-    Key([], 'Print', lazy.spawn('/home/vrivera/.local/bin/screenshot select')),
-    Key(['shift'], 'Print', lazy.spawn('/home/vrivera/.local/bin/screenshot window')),
+#   Key([], 'Print', lazy.spawn('/home/vrivera/.local/bin/screenshot select')),
+#   Key(['shift'], 'Print', lazy.spawn('/home/vrivera/.local/bin/screenshot window')),
+
+    Key([], 'Print', lazy.spawn('flameshot gui')),
+    Key(['shift'], 'Print', lazy.spawn('flameshot screen')),
 
     # Brightness
     Key([], "XF86MonBrightnessUp", lazy.spawn("/home/vrivera/.local/bin/brillo up")),

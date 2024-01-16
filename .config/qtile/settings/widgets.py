@@ -35,7 +35,7 @@ def my_bar(systray=False):
     widgetList = [
         widget.Spacer(length=5),
         widget.Image(
-            filename="~/pictures/arch-icon.svg",
+            filename="~/Pictures/arch-icon.svg",
             scale="False",
             margin=4,
         ),

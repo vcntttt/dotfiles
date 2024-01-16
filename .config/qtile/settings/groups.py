@@ -2,19 +2,19 @@ from libqtile.config import Group, Key, ScratchPad, DropDown, Match, Rule
 from libqtile.command import lazy
 from .keys import keys, win
 from libqtile.dgroups import simple_key_binder
-from .theme import colors
 groups = []
 
 groupsNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 groupsLabels = ['', "\ue63c", '', '', '5', '6', '7', ' ', '']
 
-# groupsLayouts = [] En caso de que quiera dejar layouts por defecto en cada workspace
+groupsLayouts = ['columns', 'max', 'columns', 'columns', 'columns', 'columns', 'columns', 'columns', 'columns']
 
 for i in range(len(groupsNames)):
     groups.append(Group(
         name=groupsNames[i],
-        label=groupsLabels[i]
+        label=groupsLabels[i],
+        layout=groupsLayouts[i]
     ))
 
 for i in groups:
