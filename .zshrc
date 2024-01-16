@@ -14,8 +14,12 @@ comprimir(){
     local dir_name=$(basename "$1")
     tar -czvf "$dir_name".tar.gz "$1"
 }
+ghiFunction(){
+  gh repo create "$1" --public --source=.
+}
+
 ## Alias
-alias upt="sudo pacman -Syu && yay -Syu"
+alias update='yay -Syu --noconfirm'
 alias cls="clear"
 alias logout="sudo systemctl restart ly"
 alias gclone=gcloneFunction
@@ -24,10 +28,11 @@ alias xmp="sudo xampp"
 alias clean-pac="sudo pacman -Rns $(pacman -Qdtq) && sudo pacman -Sc"
 # alias - tar
 alias tgz=comprimir
-alias tdc="tar -xf"
+alias untar="tar -xf"
 # alias - arch configs
 alias grub-reconf="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias reflec="sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist"
+alias ghi=ghiFunction
 # alias - ver Archivos
 alias grep='grep --color=auto'
 alias ls='lsd'
@@ -65,8 +70,8 @@ bindkey '^[[B' history-substring-search-down
 
 ## ENV
 export EDITOR="nvim"
-export TERM="alacritty"
-export CM_LAUNCHER=rofi
+export TERM="xterm-256color"
+export CM_LAUNCHER="rofi"
 
 ## PATH
 export PATH="$HOME/.local/bin:$PATH"
