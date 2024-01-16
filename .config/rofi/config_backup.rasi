@@ -1,27 +1,24 @@
 configuration {
-    font: "JetBrainsMono Nerd Font 14";
+    font: "JetBrainsMono Nerd Font 15";
     show-icons:true;
     icon-theme:"Tela manjaro";
     display-drun:"Apps";
-    display-run:"Scripts";
     display-window: "Active";
-    display-ssh: "SSH";
-    display-emoji:"😃";
     drun-display-format:"{icon} {name}";
     scroll-method:0;
     disable-history:false;
     sidebar-mode:true;
-    modi: "window,drun,run,ssh,emoji";
+    modi: "window,drun,ssh,emoji";
 }
 
-@import "themes/bouquet.rasi"
+@import "themes/slime.rasi"
 
 window {
     background-color: @background;
     border: 0;
-    padding: 40;
+    padding: 30;
     height: 50%;
-    width: 35%;
+    width: 30%;
 }
 mainbox {
     border:  0;
