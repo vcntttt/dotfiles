@@ -55,12 +55,27 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 setopt NO_LIST_BEEP
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+
+# Git Alias
+alias ginit="git init --initial-branch=main"
+alias gs="git status"
+alias ga="git add"
+## commits
+alias gca="git commit -a -m"
+alias gc="git commit -m"
+## branchs
+alias gb="git branch"
+alias gch="git checkout"
+## pull - push
+alias gl="git pull"
+alias gp="git push"
+
 ## Plugins
 source ~/git-packages/zsh/powerlevel10k/powerlevel10k.zsh-theme
 source ~/git-packages/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source ~/git-packages/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/git-packages/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/git-packages/zsh/sudo.zsh
+source ~/git-packages/zsh/ohmyzsh/sudo.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
