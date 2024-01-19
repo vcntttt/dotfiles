@@ -14,8 +14,9 @@ comprimir(){
     local dir_name=$(basename "$1")
     tar -czvf "$dir_name".tar.gz "$1"
 }
+
 ghiFunction(){
-  gh repo create "$1" --public --source=.
+        gh repo create "$1" --public --source=.
 }
 
 ## Alias
@@ -32,7 +33,6 @@ alias untar="tar -xf"
 # alias - arch configs
 alias grub-reconf="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias reflec="sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist"
-alias ghi=ghiFunction
 # alias - ver Archivos
 alias grep='grep --color=auto'
 alias ls='lsd'
@@ -69,6 +69,8 @@ alias gch="git checkout"
 ## pull - push
 alias gl="git pull"
 alias gp="git push"
+## gh-cli
+alias ghinit=ghiFunction
 
 ## Plugins
 source ~/git-packages/zsh/powerlevel10k/powerlevel10k.zsh-theme
