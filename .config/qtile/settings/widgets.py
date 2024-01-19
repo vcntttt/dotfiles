@@ -66,13 +66,13 @@ def my_bar(systray=False):
         # --------------------------------------------------------------------------#
         # -------------------------------Lado Derecho-------------------------------#
         # --------------------------------------------------------------------------#
-        Spotify(
-            font=statsFont,
-            fontsize=12,
-            padding=10,
-            background=colors['spotify'],
-            foreground=colors['background'],
-        ),
+#        Spotify(
+#            font=statsFont,
+#            fontsize=12,
+#            padding=10,
+#            background=colors['spotify'],
+#            foreground=colors['background'],
+#        ),
         widget.CurrentLayout(
             **statsColors2,
             **powerline,
@@ -83,8 +83,8 @@ def my_bar(systray=False):
         widget.KeyboardLayout(
             **statsColors1,
             **powerline,
-            configured_keyboards=['us', 'latam'],
-            display_map={'us': 'US', 'latam': 'LATAM'},
+            configured_keyboards=['us','us intl', 'latam'],
+            display_map={'us': 'US', 'us intl': 'US INT', 'latam': 'LATAM'},
             fmt='⌨ : {}',
             padding=5,
             font=statsFont,
@@ -169,6 +169,9 @@ def my_bar(systray=False):
             font=statsFont,
             fontsize=12,
         ),
+       # widget.KhalCalendar(
+       #     **statsColors1,
+       # ),
         widget.TextBox(
             **statsColors2,
             text='',

@@ -5,7 +5,6 @@ from libqtile.command import lazy
 win = 'mod4'
 alt = 'mod1'
 terminal = 'alacritty'
-menu = 'rofi -show drun'
 fileManager = 'nemo'
 
 keys = [
@@ -59,13 +58,16 @@ keys = [
     Key([win], 'q', lazy.window.kill(), desc='Kill focused window'),
     Key([win, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
     Key([win, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
-    Key([win], 'r', lazy.spawn(menu), desc='Launch rofi'),
     Key([win], 'e', lazy.spawn(fileManager), desc='Launch Nemo'),
     Key([win], 'Tab', lazy.spawn('rofi -show window')),
     Key([win], 'l', lazy.spawn('betterlockscreen -l')),
     Key([win], 'BackSpace', lazy.spawn('/home/vrivera/.local/bin/powermenu')),
     Key([win], 'v', lazy.spawn('clipmenu')),
 
+    # Rofi
+    Key([win], 'r', lazy.spawn('rofi -show drun'), desc='Launch rofi'),
+    Key([win], 'period', lazy.spawn('rofi -show emoji'), desc='Launch rofi'),
+    
     # Screenshot
 #   Key([], 'Print', lazy.spawn('/home/vrivera/.local/bin/screenshot select')),
 #   Key(['shift'], 'Print', lazy.spawn('/home/vrivera/.local/bin/screenshot window')),

@@ -11,7 +11,7 @@ configuration {
     scroll-method:0;
     disable-history:false;
     sidebar-mode:true;
-    modi: "window,drun,run,ssh,emoji";
+    modi: "window,drun,ssh,emoji";
 }
 
 @import "themes/bouquet.rasi"

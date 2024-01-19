@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Layout
-"$HOME"/.screenlayout/layout.sh
+"$HOME"/.screenlayout/layout2.sh
 
 # Keyboard layout
 setxkbmap us
@@ -34,4 +34,4 @@ flameshot &
 brightness-controller &
 
 #correo
-mailspring --b &
+mailspring --b --password-store="gnome-libsecret" &
