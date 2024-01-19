@@ -19,21 +19,22 @@ ghiFunction(){
         gh repo create "$1" --public --source=.
 }
 
-## Alias
+# Alias
 alias update='yay -Syu --noconfirm'
 alias cls="clear"
 alias logout="sudo systemctl restart ly"
 alias gclone=gcloneFunction
 alias nf="neofetch"
 alias xmp="sudo xampp"
-alias clean-pac="sudo pacman -Rns $(pacman -Qdtq) && sudo pacman -Sc"
-# alias - tar
+alias cleanpac="sudo pacman -Rns $(pacman -Qdtq)"
+alias cleancache="sudo pacman -Sc"
+## Tar
 alias tgz=comprimir
 alias untar="tar -xf"
-# alias - arch configs
+## Arch configs
 alias grub-reconf="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias reflec="sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist"
-# alias - ver Archivos
+## Ver Archivos
 alias grep='grep --color=auto'
 alias ls='lsd'
 alias l='ls -l'
@@ -41,6 +42,30 @@ alias la='ll -a'
 alias lla='lsd -la'
 export LS_COLORS="ow=01;90;40"
 alias ll='lsd --tree --depth 1'
+## Git
+alias ginit="git init --initial-branch=main"
+alias gs="git status"
+alias ga="git add"
+### commits
+alias gca="git commit -a -m"
+alias gc="git commit -m"
+### branchs
+alias gb="git branch"
+alias gch="git checkout"
+### pull - push
+alias gl="git pull"
+alias gp="git push"
+### gh-cli
+alias ghinit=ghiFunction
+## Move
+alias bin="cd ~/.local/bin"
+alias config="cd ~/git-packages/dotfiles/.config"
+alias dots="cd ~/git-packages/dotfiles"
+alias home="cd ~"
+## zshrc
+alias zshrc="nvim ~/.zshrc"
+alias upzsh="source ~/.zshrc"
+
 # Historial y autocompletado
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
@@ -54,23 +79,6 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 setopt NO_LIST_BEEP
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-
-# Git Alias
-alias ginit="git init --initial-branch=main"
-alias gs="git status"
-alias ga="git add"
-## commits
-alias gca="git commit -a -m"
-alias gc="git commit -m"
-## branchs
-alias gb="git branch"
-alias gch="git checkout"
-## pull - push
-alias gl="git pull"
-alias gp="git push"
-## gh-cli
-alias ghinit=ghiFunction
 
 ## Plugins
 source ~/git-packages/zsh/powerlevel10k/powerlevel10k.zsh-theme
