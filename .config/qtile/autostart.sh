@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Layout
-"$HOME"/.screenlayout/layout2.sh
+"$HOME"/.screenlayout/layout.sh
 
 # Keyboard layout
 setxkbmap us
@@ -25,7 +25,7 @@ dunst &
 nm-applet &
 
 #clipmenud
-clipmenud &
+#clipmenud &
 
 #ss
 flameshot &
@@ -33,5 +33,6 @@ flameshot &
 #brillo de los monitores
 brightness-controller &
 
-#correo
+# comunication
 mailspring --b --password-store="gnome-libsecret" &
+discord --start-minimized &

@@ -6,7 +6,7 @@ groups = []
 
 groupsNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-groupsLabels = ['', "\ue63c", '', '', '5', '6', '7', ' ', '']
+groupsLabels = ['', "", '', '', '5', '6', '7', ' ', '']
 
 groupsLayouts = ['monadtall', 'max', 'columns', 'columns', 'columns', 'columns', 'columns', 'columns', 'columns']
 

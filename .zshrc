@@ -16,7 +16,11 @@ comprimir(){
 }
 
 ghiFunction(){
-        gh repo create "$1" --public --source=.
+    git init && gh repo create "$1" --public --source=.
+}
+
+brilloFunction(){
+    xrandr --output HDMI-"$1" --brightness "$2"
 }
 
 # Alias
@@ -25,7 +29,7 @@ alias cls="clear"
 alias logout="sudo systemctl restart ly"
 alias gclone=gcloneFunction
 alias nf="neofetch"
-alias xmp="sudo xampp"
+#alias xmp="sudo xampp"
 alias cleanpac="sudo pacman -Rns $(pacman -Qdtq)"
 alias cleancache="sudo pacman -Sc"
 ## Tar
@@ -59,12 +63,14 @@ alias gp="git push"
 alias ghinit=ghiFunction
 ## Move
 alias bin="cd ~/.local/bin"
-alias config="cd ~/git-packages/dotfiles/.config"
+alias conf="cd ~/git-packages/dotfiles/.config"
 alias dots="cd ~/git-packages/dotfiles"
-alias home="cd ~"
+alias ast="cd ~/git-packages/dots-assets/"
+alias h="cd ~"
 ## zshrc
-alias zshrc="nvim ~/.zshrc"
-alias upzsh="source ~/.zshrc"
+alias zsh="nvim ~/.zshrc && source ~/.zshrc"
+## brillo
+alias brillo=brilloFunction
 
 # Historial y autocompletado
 HISTFILE=~/.zsh_history
