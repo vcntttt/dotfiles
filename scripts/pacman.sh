@@ -87,6 +87,12 @@ packagesOfficial=(
     "telegram-desktop"
     "steam"
     "zsh"
+    "lxappearance"
+    "volumeicon"
+    "network-manager-applet"
+    "udiskie"
+    "ntfs-3g"
+    "geeqie"
 )
 
 for pkg in "${packagesOfficial[@]}"; do
