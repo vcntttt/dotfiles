@@ -12,6 +12,6 @@ ln -s $gitPath/dotfiles/.config/picom $HOME/.config
 ln -s $gitPath/dotfiles/.local/bin $HOME/.local/
 ln -s $gitPath/dotfiles/.local/share/icons/dunst $HOME/.local/share/icons
 
-git clone --depth 1 https://github.com/AstroNvim/AstroNvimdd ~/.config/nvim
+git clone --depth 1 git@github.com:AstroNvim/AstroNvim.git ~/.config/nvim
 
 echo "Dotfiles linked!"

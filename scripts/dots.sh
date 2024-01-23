@@ -9,8 +9,8 @@ echo -e "${NONE}"
 
 echo "Creating git-packages directory"
 mkdir -p $gitPath
-git clone https://github.com/vcntttt/dotfiles.git $gitPath/dotfiles
-git clone https://github.com/vcntttt/dots-assets.git $gitPath/dots-assets
+git clone git@github.com:vcntttt/dotfiles.git $gitPath/dotfiles
+git clone git@github.com:vcntttt/dots-assets.git $gitPath/dots-assets
 ./$gitPath/dots-assets/init.sh -i
 ./$gitPath/dots-assets/init.sh -t
 ./$gitPath/dots-assets/init.sh -f
@@ -26,9 +26,9 @@ zshpath="$gitPath/zsh"
 mkdir -p $zshpath
 
 reposZSH=(
-    'https://github.com/zdharma-continuum/fast-syntax-highlighting.git'
-    'https://github.com/zsh-users/zsh-autosuggestions.git'
-    'https://github.com/zsh-users/zsh-history-substring-search.git'
+    'git@github.com:zdharma-continuum/fast-syntax-highlighting.git'
+    'git@github.com:zsh-users/zsh-autosuggestions.git'
+    'git@github.com:zsh-users/zsh-history-substring-search.git'
 )
 
 for repo in "${reposZSH[@]}"; do
