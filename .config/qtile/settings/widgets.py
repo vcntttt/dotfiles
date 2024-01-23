@@ -110,7 +110,7 @@ def my_bar(systray=False):
         widget.Memory(
             **statsColors2,
             **powerline,
-            format='🖥 : {MemUsed: .0f}{mm} ',
+            format='{MemUsed: .0f}{mm} ',
             mouse_callbacks={
                 'Button1': lambda: qtile.cmd_spawn(terminal + ' -e btop')
             },
@@ -137,7 +137,7 @@ def my_bar(systray=False):
                 'Button1': lambda: qtile.cmd_spawn(terminal + ' -e df')},
             partition='/',
             format='{uf}{m} free',
-            fmt='🖴 : {}',
+            fmt='{}',
             padding=5,
             font=statsFont,
             fontsize=12,
@@ -156,12 +156,17 @@ def my_bar(systray=False):
         #     fontsize=12,
         # ),
         # https://docs.qtile.org/en/latest/manual/ref/widgets.html#pomodoro
-        widget.Pomodoro(
+        # widget.Pomodoro(
+            # **statsColors2,
+            # **powerline,
+            # prefix_inactive="P",
+            # fontsize=12,
+            # font=statsFont,
+        # ),
+        widget.Spacer(
             **statsColors2,
             **powerline,
-            prefix_inactive="P",
-            fontsize=12,
-            font=statsFont,
+            length=5
         ),
         widget.TextBox(
             **statsColors1,

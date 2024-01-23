@@ -11,7 +11,7 @@ WALLPAPER_CONFIG="$HOME/.config/qtile/scripts/wallpaper"
 if [ -f "$WALLPAPER_CONFIG" ]; then
     xwallpaper --maximize "$(cat "$WALLPAPER_CONFIG")"
 else
-    xwallpaper --maximize ~/git-packages/dotfiles/Wallpapers/32.jpg
+    xwallpaper --maximize ~/git-packages/dots-assets//Wallpapers/32.jpg
 fi
 picom &
 
