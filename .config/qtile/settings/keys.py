@@ -58,11 +58,11 @@ keys = [
     Key([win], 'q', lazy.window.kill(), desc='Kill focused window'),
     Key([win, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
     Key([win, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
-    Key([win], 'e', lazy.spawn(fileManager), desc='Launch Nemo'),
+    Key([win, 'shift'], 'e', lazy.spawn(fileManager), desc='Launch Nemo'),
     Key([win], 'Tab', lazy.spawn('rofi -show window')),
     Key([win], 'l', lazy.spawn('betterlockscreen -l')),
     Key([win], 'BackSpace', lazy.spawn('/home/vrivera/.local/bin/powermenu')),
-    Key([win], 'v', lazy.spawn('clipmenu')),
+    Key([win], 'v', lazy.spawn('rofi -modi "clipboard:greenclip print" -show clipboard -run-command "{cmd}"')),
 
     # Rofi
     Key([win], 'r', lazy.spawn('rofi -show drun'), desc='Launch rofi'),

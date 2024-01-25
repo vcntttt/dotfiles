@@ -51,10 +51,9 @@ def my_bar(systray=False):
             this_current_screen_border=colors['blue'],
             inactive=colors['inactiveGroup'],
             active=colors['dark'],
-            fontsize=18,
+            fontsize=16,
             padding=8
         ),
-        # widget.Spacer(length=5, background=colors["foreground"]),
         widget.WindowName(
             font=statsFont,
             fontsize=12,
@@ -66,13 +65,13 @@ def my_bar(systray=False):
         # --------------------------------------------------------------------------#
         # -------------------------------Lado Derecho-------------------------------#
         # --------------------------------------------------------------------------#
-#        Spotify(
-#            font=statsFont,
-#            fontsize=12,
-#            padding=10,
-#            background=colors['spotify'],
-#            foreground=colors['background'],
-#        ),
+        #        Spotify(
+        #            font=statsFont,
+        #            fontsize=12,
+        #            padding=10,
+        #            background=colors['spotify'],
+        #            foreground=colors['background'],
+        #        ),
         widget.CurrentLayout(
             **statsColors2,
             **powerline,
@@ -83,7 +82,7 @@ def my_bar(systray=False):
         widget.KeyboardLayout(
             **statsColors1,
             **powerline,
-            configured_keyboards=['us','us intl', 'latam'],
+            configured_keyboards=['us', 'us intl', 'latam'],
             display_map={'us': 'US', 'us intl': 'US INT', 'latam': 'LATAM'},
             fmt='⌨ : {}',
             padding=5,
@@ -118,16 +117,6 @@ def my_bar(systray=False):
             font=statsFont,
             fontsize=12,
         ),
-        # widget.Volume(
-        #     **statsColors2,
-        #     **powerline,
-        #     fmt='🕫  Vol: {}',
-        #     mouse_callbacks={
-        #         'Button1': lambda: qtile.cmd_spawn('pavucontrol')
-        #     },
-        #     padding=5
-
-        # ),
         widget.DF(
             **statsColors1,
             **powerline,
@@ -142,31 +131,25 @@ def my_bar(systray=False):
             font=statsFont,
             fontsize=12,
         ),
-        # widget.Battery(
-        #     **statsColors2,
-        #     **powerline,
-        #     format='{char} {percent:2.0%}',
-        #     update_interval=10,
-        #     discharge_char='󰁺',
-        #     full_char='󰁹',
-        #     charge_char='󰂄',
-        #     empty_char='',
-        #     padding=8,
-        #     font=statsFont,
-        #     fontsize=12,
-        # ),
         # https://docs.qtile.org/en/latest/manual/ref/widgets.html#pomodoro
         # widget.Pomodoro(
-            # **statsColors2,
-            # **powerline,
-            # prefix_inactive="P",
-            # fontsize=12,
-            # font=statsFont,
+        # **statsColors2,
+        # **powerline,
+        # prefix_inactive="P",
+        # fontsize=12,
+        # font=statsFont,
         # ),
-        widget.Spacer(
+        widget.CheckUpdates(
             **statsColors2,
             **powerline,
-            length=5
+            colour_have_updates='#121212',
+            colour_no_updates='#121212',
+            display_format=': {updates}',
+            distro="Arch_yay",
+            execute='alacritty -e /usr/bin/yay -Syu',
+            no_update_string=' ',
+            padding=4,
+            update_interval='60'
         ),
         widget.TextBox(
             **statsColors1,
@@ -182,9 +165,6 @@ def my_bar(systray=False):
             font=statsFont,
             fontsize=12,
         ),
-       # widget.KhalCalendar(
-       #     **statsColors1,
-       # ),
         widget.TextBox(
             **statsColors2,
             text='',
@@ -202,12 +182,5 @@ def my_bar(systray=False):
     if systray:
         widgetList.insert(6, widget.Systray(padding=10))
         widgetList.insert(7, widget.Spacer(length=10))
-
-    # else:
-    #     widgetList.insert(8,
-    #                       widget.Sep(
-    #                           linewidth=0,
-    #                           padding=3,
-    #                       ),)
 
     return bar.Bar(widgetList, 30)

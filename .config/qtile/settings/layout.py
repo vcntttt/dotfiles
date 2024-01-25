@@ -24,6 +24,9 @@ layouts = [
 ]
 
 floating_layout = layout.Floating(
+    border_width=1,
+    border_focus= colors['border_focus'],
+    border_normal= colors['border_normal'],
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,

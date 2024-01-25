@@ -6,10 +6,19 @@ groups = []
 
 groupsNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-groupsLabels = ['', "", '', '', '5', '6', '7', ' ', '']
+#groupsLabels = ['', "", '', '', '', '6', '', ' ', '']
+groupsLabels = ['', "", '', '', '', '6', '7', '8', '9']
+groupsLayouts = ['monadtall', 'max', 'monadtall', 'max', 'columns', 'columns', 'columns', 'columns', 'columns']
+# "   ", "   ", "   ", "   ", "  ", "   ", "   ", "   ", "   ",
 
-groupsLayouts = ['monadtall', 'max', 'columns', 'columns', 'columns', 'columns', 'columns', 'columns', 'columns']
-# icons: "   ", "   ", "   ", "   ", "  ", "   ", "   ", "   ", "   ",
+# Grupos
+# 1: Terminales 
+# 2: Navegador Principal
+# 3: vscode
+# 4: Discord, email, telegram, etc.
+# 5: Explorador, galeria, etc
+# 6:
+
 for i in range(len(groupsNames)):
     groups.append(Group(
         name=groupsNames[i],
@@ -63,12 +72,16 @@ groups.append(ScratchPad('scratchpad', [
     DropDown('term', 'alacritty --class=scratch', **conf),
     DropDown('btop', 'alacritty --class=btop -e btop', **conf),
     DropDown('ranger', 'alacritty --class=ranger -e ranger', **conf),
+    DropDown('spotify', 'spotify', **conf),
+    DropDown('pavucontrol', 'pavucontrol', **conf),
 ]))
 
 keys.extend([
-    Key([win, 'shift'], 'Return', lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([win], 'n', lazy.group['scratchpad'].dropdown_toggle('term')),
     Key([win], 'b', lazy.group['scratchpad'].dropdown_toggle('btop')),
-    Key([win], 'n', lazy.group['scratchpad'].dropdown_toggle('ranger')),
+    Key([win], 'e', lazy.group['scratchpad'].dropdown_toggle('ranger')),
+    Key([win], 's', lazy.group['scratchpad'].dropdown_toggle('spotify')),
+    Key([win], 'p', lazy.group['scratchpad'].dropdown_toggle('pavucontrol')),
 ])
 
 dgroups_key_binder = simple_key_binder("mod4")

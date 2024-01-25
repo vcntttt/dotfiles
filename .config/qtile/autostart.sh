@@ -21,13 +21,14 @@ picom &
 # Load notification service
 dunst &
 
-# nm-applet
+# systray
 nm-applet &
+volumeicon &
+udiskie -t &
 
-#clipmenud
-#clipmenud &
+# screenshots & clipboard
+greenclip daemon &
 
-#ss
 flameshot &
 
 #brillo de los monitores

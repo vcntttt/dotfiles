@@ -25,7 +25,7 @@ wmname = "qtile"
 @hook.subscribe.client_managed
 @hook.subscribe.client_killed
 def set_gaps(window=None):
-    gap_size = 10  
+    gap_size = 8  
     for group in qtile.groups:
         if isinstance(group.layout, layout.Max):
             group.layout.margin = 0
