@@ -1,5 +1,5 @@
 __pycache__/
-ranger/plugins/
+.config/ranger/plugins/
 Wallpapers/thumbnails
 addtask
 console-ninja
