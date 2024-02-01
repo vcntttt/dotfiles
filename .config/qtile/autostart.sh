@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Layout
-"$HOME"/.screenlayout/layout.sh
+"$HOME"/.local/.bin/layout.sh
 
 # Keyboard layout
 setxkbmap us
