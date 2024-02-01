@@ -67,11 +67,21 @@ alias conf="cd ~/git-packages/dotfiles/.config"
 alias dots="cd ~/git-packages/dotfiles"
 alias ast="cd ~/git-packages/dots-assets/"
 alias h="cd ~"
+alias dev="cd ~/dev"
+alias ob="cd ~/uct-drive/obsidian-notes/"
 ## zshrc
 alias zsh="nvim ~/.zshrc && source ~/.zshrc"
 ## brillo
 alias brillo=brilloFunction
 
+# Proyectos
+alias nextinit="bunx create-next-app@latest"
+alias astroinit="bun create astro@latest"
+alias viteinit="bunx create-vite"
+
+alias bund="bun run dev"
+alias buni="bun install"
+alias bunb="bun run build"
 # Historial y autocompletado
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
