@@ -28,12 +28,12 @@ udiskie -t &
 
 # screenshots & clipboard
 greenclip daemon &
-
 flameshot &
-
-#brillo de los monitores
-brightness-controller &
 
 # comunication
 mailspring --b --password-store="gnome-libsecret" &
 discord --start-minimized &
+
+# 
+dropbox &
+#"$HOME"/rclone.sh &

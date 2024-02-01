@@ -58,7 +58,6 @@ keys = [
     Key([win], 'q', lazy.window.kill(), desc='Kill focused window'),
     Key([win, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
     Key([win, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
-    Key([win, 'shift'], 'e', lazy.spawn(fileManager), desc='Launch Nemo'),
     Key([win], 'Tab', lazy.spawn('rofi -show window')),
     Key([win], 'l', lazy.spawn('betterlockscreen -l')),
     Key([win], 'BackSpace', lazy.spawn('/home/vrivera/.local/bin/powermenu')),

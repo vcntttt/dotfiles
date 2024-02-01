@@ -22,17 +22,17 @@ auto_minimize = True
 wl_input_rules = None
 wmname = "qtile"
 
-@hook.subscribe.client_managed
-@hook.subscribe.client_killed
-def set_gaps(window=None):
-    gap_size = 8  
-    for group in qtile.groups:
-        if isinstance(group.layout, layout.Max):
-            group.layout.margin = 0
-        else:
-            group.layout.margin = gap_size if len(group.windows) > 1 else 0
-
-    qtile.current_group.layout_all()
+#@hook.subscribe.client_managed
+#@hook.subscribe.client_killed
+# def set_gaps(window=None):
+#    gap_size = 8  
+#    for group in qtile.groups:
+#        if isinstance(group.layout, layout.Max):
+#            group.layout.margin = 0
+#        else:
+#            group.layout.margin = gap_size if len(group.windows) > 1 else 0
+#
+#    qtile.current_group.layout_all()
 
 @hook.subscribe.startup_once
 def startOnce():

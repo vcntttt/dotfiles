@@ -2,30 +2,27 @@ from libqtile.config import Group, Key, ScratchPad, DropDown, Match, Rule
 from libqtile.command import lazy
 from .keys import keys, win
 from libqtile.dgroups import simple_key_binder
+
 groups = []
-
 groupsNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+groupsLabels = ["", '', '', '', '󰕧', '', '', '', '']
+groupsLayouts = ['max', 'monadtall', 'monadtall', 'treetab', 'max', 'monadtall', 'monadtall', 'monadtall', 'monadtall']
+groupSpawn = {
+    '1': 'brave',
+    '3': 'obsidian'
+}
+groupsExclusive = {
+    '4': [Match(wm_class=["discord"]), Match(wm_class=["telegram-desktop"]), Match(wm_class=["mailspring"])]
+}
 
-#groupsLabels = ['', "", '', '', '', '6', '', ' ', '']
-groupsLabels = ['', "", '', '', '', '6', '7', '8', '9']
-groupsLayouts = ['monadtall', 'max', 'monadtall', 'max', 'columns', 'columns', 'columns', 'columns', 'columns']
-# "   ", "   ", "   ", "   ", "  ", "   ", "   ", "   ", "   ",
-
-# Grupos
-# 1: Terminales 
-# 2: Navegador Principal
-# 3: vscode
-# 4: Discord, email, telegram, etc.
-# 5: Explorador, galeria, etc
-# 6:
-
-for i in range(len(groupsNames)):
+for name, label, layout in zip(groupsNames, groupsLabels, groupsLayouts):
     groups.append(Group(
-        name=groupsNames[i],
-        label=groupsLabels[i],
-        layout=groupsLayouts[i]
+        name=name,
+        label=label,
+        layout=layout,
+        spawn=groupSpawn.get(name),
     ))
-
+    
 for i in groups:
     keys.extend(
         [
@@ -74,6 +71,8 @@ groups.append(ScratchPad('scratchpad', [
     DropDown('ranger', 'alacritty --class=ranger -e ranger', **conf),
     DropDown('spotify', 'spotify', **conf),
     DropDown('pavucontrol', 'pavucontrol', **conf),
+    DropDown('nemo', 'nemo', **conf),
+    DropDown('pomodoro', 'solanum', **conf),
 ]))
 
 keys.extend([
@@ -82,6 +81,8 @@ keys.extend([
     Key([win], 'e', lazy.group['scratchpad'].dropdown_toggle('ranger')),
     Key([win], 's', lazy.group['scratchpad'].dropdown_toggle('spotify')),
     Key([win], 'p', lazy.group['scratchpad'].dropdown_toggle('pavucontrol')),
+    Key([win, 'shift'], 'e', lazy.group['scratchpad'].dropdown_toggle('nemo')),
+    Key([win, 'shift'], 'p', lazy.group['scratchpad'].dropdown_toggle('pomodoro')),
 ])
 
 dgroups_key_binder = simple_key_binder("mod4")

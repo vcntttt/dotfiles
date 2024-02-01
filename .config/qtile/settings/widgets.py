@@ -131,14 +131,6 @@ def my_bar(systray=False):
             font=statsFont,
             fontsize=12,
         ),
-        # https://docs.qtile.org/en/latest/manual/ref/widgets.html#pomodoro
-        # widget.Pomodoro(
-        # **statsColors2,
-        # **powerline,
-        # prefix_inactive="P",
-        # fontsize=12,
-        # font=statsFont,
-        # ),
         widget.CheckUpdates(
             **statsColors2,
             **powerline,
@@ -182,5 +174,14 @@ def my_bar(systray=False):
     if systray:
         widgetList.insert(6, widget.Systray(padding=10))
         widgetList.insert(7, widget.Spacer(length=10))
+
+        #    else:
+        #        widgetList.insert(6,widget.Pomodoro(
+        #                                **statsColors1,
+        #                                prefix_inactive="Pomodoro",
+        #                                fontsize=12,
+        #                                font=statsFont,
+    #                            ))
+
 
     return bar.Bar(widgetList, 30)
