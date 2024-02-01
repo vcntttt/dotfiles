@@ -68,20 +68,18 @@ conf = {
 groups.append(ScratchPad('scratchpad', [
     DropDown('term', 'alacritty --class=scratch', **conf),
     DropDown('btop', 'alacritty --class=btop -e btop', **conf),
-    DropDown('ranger', 'alacritty --class=ranger -e ranger', **conf),
+    DropDown('term-fm', 'alacritty --class=yazi -e yazi', **conf),
     DropDown('spotify', 'spotify', **conf),
     DropDown('pavucontrol', 'pavucontrol', **conf),
-    DropDown('nemo', 'nemo', **conf),
     DropDown('pomodoro', 'solanum', **conf),
 ]))
 
 keys.extend([
     Key([win], 'n', lazy.group['scratchpad'].dropdown_toggle('term')),
     Key([win], 'b', lazy.group['scratchpad'].dropdown_toggle('btop')),
-    Key([win], 'e', lazy.group['scratchpad'].dropdown_toggle('ranger')),
+    Key([win], 'e', lazy.group['scratchpad'].dropdown_toggle('term-fm')),
     Key([win], 's', lazy.group['scratchpad'].dropdown_toggle('spotify')),
     Key([win], 'p', lazy.group['scratchpad'].dropdown_toggle('pavucontrol')),
-    Key([win, 'shift'], 'e', lazy.group['scratchpad'].dropdown_toggle('nemo')),
     Key([win, 'shift'], 'p', lazy.group['scratchpad'].dropdown_toggle('pomodoro')),
 ])
 

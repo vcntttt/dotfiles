@@ -62,7 +62,8 @@ keys = [
     Key([win], 'l', lazy.spawn('betterlockscreen -l')),
     Key([win], 'BackSpace', lazy.spawn('/home/vrivera/.local/bin/powermenu')),
     Key([win], 'v', lazy.spawn('rofi -modi "clipboard:greenclip print" -show clipboard -run-command "{cmd}"')),
-
+    Key([win, 'shift'], 'e', lazy.spawn('nemo'), desc='launch nemo'),
+    
     # Rofi
     Key([win], 'r', lazy.spawn('rofi -show drun'), desc='Launch rofi'),
     Key([win], 'period', lazy.spawn('rofi -show emoji'), desc='Launch rofi'),
