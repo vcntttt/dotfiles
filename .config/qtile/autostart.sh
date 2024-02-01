@@ -26,7 +26,7 @@ nm-applet &
 volumeicon &
 udiskie -t &
 
-# screenshots & clipboard
+# herramientas
 greenclip daemon &
 flameshot &
 
@@ -34,6 +34,6 @@ flameshot &
 mailspring --b --password-store="gnome-libsecret" &
 discord --start-minimized &
 
-# 
+# sync
 dropbox &
-#"$HOME"/rclone.sh &
+$HOME/.local/bin/sync &
