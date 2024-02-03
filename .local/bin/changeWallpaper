@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define la ruta a tu directorio de fondos de pantalla
-WALLPAPER_DIR="$HOME/git-packages/dots-assets//Wallpapers"
+WALLPAPER_DIR="$HOME/assets/Wallpapers"
 # Archivo para guardar la selección del fondo de pantalla
 WALLPAPER_CONFIG="$HOME/.config/qtile/scripts/wallpaper"
 
