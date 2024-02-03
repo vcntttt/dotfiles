@@ -12,7 +12,7 @@
 ```zsh
 sudo pacman -S stow
 ```
-## Instalation
+## Installation
 ```zsh
 cd ~
 git clone https://github.com/vcntttt/dotfiles.git
