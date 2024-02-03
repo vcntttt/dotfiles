@@ -64,7 +64,7 @@ alias ghinit=ghiFunction
 ## Move
 alias bin="cd ~/.local/bin"
 alias conf="cd ~/git-packages/dotfiles/.config"
-alias dots="cd ~/git-packages/dotfiles"
+alias dots="cd ~/dotfiles"
 alias ast="cd ~/uct-drive/dots-assets/"
 alias h="cd ~"
 alias dev="cd ~/dev"
