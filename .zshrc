@@ -1,5 +1,5 @@
 source ~/dotfiles/shell/alias.sh
-source ~/dotfiles/shell/enviroment.sh
+source ~/dotfiles/shell/env.sh
 
 # Historial y autocompletado
 HISTFILE=~/.zsh_history
@@ -14,9 +14,10 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 setopt NO_LIST_BEEP
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+export LS_COLORS="ow=01;90;40"
 
 ## zsh plugins
-source ~/git-packages/zsh/powerlevel10k/powerlevel10k.zsh-theme
+
 source ~/git-packages/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source ~/git-packages/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/git-packages/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -24,11 +25,13 @@ source ~/git-packages/zsh/ohmyzsh/sudo.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-## p10k
+# ## p10k
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source ~/git-packages/zsh/powerlevel10k/powerlevel10k.zsh-theme
+# eval "$(starship init zsh)"
 
 ## PATH
 export PATH="$HOME/.local/bin:$PATH"

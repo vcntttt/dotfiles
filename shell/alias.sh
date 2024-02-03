@@ -36,7 +36,6 @@ alias ls='lsd'
 alias l='ls -l'
 alias la='ll -a'
 alias lla='lsd -la'
-export LS_COLORS="ow=01;90;40"
 alias ll='lsd --tree --depth 1'
 ## Git
 alias ginit="git init --initial-branch=main"
@@ -55,8 +54,9 @@ alias gp="git push"
 alias ghinit=ghiFunction
 ## Move
 alias bin="cd ~/.local/bin"
-alias conf="cd ~/git-packages/dotfiles/.config"
 alias dots="cd ~/dotfiles"
+alias conf="cd ~/dotfiles/.config"
+alias elias="nvim ~/dotfiles/shell/alias.sh"
 alias ast="cd ~/uct-drive/dots-assets/"
 alias h="cd ~"
 alias dev="cd ~/dev"
@@ -66,7 +66,7 @@ alias zsh="nvim ~/.zshrc && source ~/.zshrc"
 ## brillo
 alias brillo=brilloFunction
 
-# Proyectos
+# Development
 alias nextinit="bunx create-next-app@latest"
 alias astroinit="bun create astro@latest"
 alias viteinit="bunx create-vite"
