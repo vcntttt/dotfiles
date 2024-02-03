@@ -14,7 +14,7 @@ configuration {
     modi: "window,drun,ssh,emoji";
 }
 
-@import "themes/bouquet.rasi"
+@import "theme.rasi"
 
 window {
     background-color: @background;
