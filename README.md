@@ -8,12 +8,11 @@
 
 ![Descripción de la imagen](demo.png)
 
-## Instalation
-### Requirements
-#### Stow
+## Requirements
 ```zsh
 sudo pacman -S stow
 ```
+## Instalation
 ```zsh
 cd ~
 git clone https://github.com/vcntttt/dotfiles.git
