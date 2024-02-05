@@ -111,6 +111,7 @@ packagesAUR=(
     "spotify"
     "mailspring"
     "solanum"
+    "rofi-greenclip"
 )
 
 yay -S "${packagesAUR[@]}"

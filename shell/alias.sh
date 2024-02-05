@@ -69,7 +69,7 @@ alias brillo=brilloFunction
 # Development
 alias nextinit="bunx create-next-app@latest"
 alias astroinit="bun create astro@latest"
-alias viteinit="bunx create-vite"
+alias viteinit="bunx create-vite@latest"
 
 alias bund="bun run dev"
 alias buni="bun install"
