@@ -1,12 +1,30 @@
 #! /bin/sh
-# by ericmurphyxyz 
+# inspired in ericmurphyxyz's script. 
 # https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/powermenu
 
-chosen=$(printf "	Power Off\n	Reboot\n	Lock" | rofi -dmenu -p "")
+chosen=$(printf "	Power Off\n	Reboot\n	Lock\n󰍃	Logout\n󰒲	Suspend" | rofi -dmenu -p "")
+
+confirm(){
+	echo -e "Yes\nNo" | rofi -dmenu -p "Are you sure?"
+}
 
 case "$chosen" in
-	"	Power Off") systemctl poweroff ;;
-	"	Reboot") systemctl reboot ;;
-	"	Lock") betterlockscreen -l ;;
-	*) exit 1 ;;
+    "	Power Off")
+        [[ "$(confirm)" == "Yes" ]] && systemctl poweroff
+        ;;
+    "	Reboot")
+        [[ "$(confirm)" == "Yes" ]] && systemctl reboot
+        ;;
+    "	Lock")
+        betterlockscreen -l
+        ;;
+    "󰍃	Logout")
+        loginctl terminate-session ${XDG_SESSION_ID-}
+        ;;
+    "󰒲	Suspend")
+        systemctl suspend
+        ;;
+    *)
+        exit 1
+        ;;
 esac
