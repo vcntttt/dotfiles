@@ -1,11 +1,12 @@
 #! /bin/sh
+# by ericmurphyxyz 
+# https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/powermenu
 
-chosen=$(printf "	Power Off\n	Restart\n	Lock" | rofi -dmenu -p "")
+chosen=$(printf "	Power Off\n	Reboot\n	Lock" | rofi -dmenu -p "")
 
 case "$chosen" in
 	"	Power Off") systemctl poweroff ;;
-	"	Restart") systemctl reboot ;;
+	"	Reboot") systemctl reboot ;;
 	"	Lock") betterlockscreen -l ;;
-	# "\uf08b	Log Out") systemctl restart ly.service ;;
 	*) exit 1 ;;
 esac

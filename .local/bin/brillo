@@ -1,5 +1,6 @@
 #!/bin/sh
-
+# Inspired by ericmurphyxyz
+#https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/backlight
 
 send_notification() {
     current_brightness=$(brightnessctl get)

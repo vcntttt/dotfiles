@@ -1,4 +1,6 @@
 #!/bin/sh
+# by ericmurphyxyz 
+# https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/volume
 
 # Increment, decrement, or mute the volume and send a notification
 # of the current volume level.
