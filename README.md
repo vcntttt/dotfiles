@@ -42,7 +42,6 @@ cd dotfiles
 
 | Key | Action |
 | ---- | ---- |
-| mod + l | lock screen |
 | mod + backspace | powermenu |
 | mod + space | change layout |
 | mod + Tab | view open apps |
@@ -51,8 +50,8 @@ cd dotfiles
 
 | Key | Application |
 | ---- | ---- |
-| mod + enter | alacritty|
-| mod + r | rofi |
+| mod + Return | alacritty|
+| mod + shift + Return | rofi |
 | mod + shift + e | nemo |
 | mod + v |  clipboard |
 | Print | screenshot |

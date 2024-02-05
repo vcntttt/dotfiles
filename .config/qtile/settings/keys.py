@@ -59,14 +59,16 @@ keys = [
     Key([win, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
     Key([win, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
     Key([win], 'Tab', lazy.spawn('rofi -show window')),
-    Key([win, 'shift'], 'l', lazy.spawn('betterlockscreen -l')),
+    # Key([win, 'shift'], 'l', lazy.spawn('betterlockscreen -l')),
     Key([win], 'BackSpace', lazy.spawn('/home/vrivera/.local/bin/powermenu')),
     Key([win], 'v', lazy.spawn('rofi -modi "clipboard:greenclip print" -show clipboard -run-command "{cmd}"')),
     Key([win, 'shift'], 'e', lazy.spawn('nemo'), desc='launch nemo'),
     
     # Rofi
-    Key([win], 'r', lazy.spawn('rofi -show drun'), desc='Launch rofi'),
+    Key([win, 'shift'], 'Return', lazy.spawn('rofi -show drun'), desc='Launch rofi'),
     Key([win], 'period', lazy.spawn('rofi -show emoji'), desc='Launch rofi'),
+    Key([win, 'shift'], 's', lazy.spawn('rofi -show ssh'), desc='Launch rofi'),
+    Key([alt, 'control'], 'Return', lazy.spawn('/home/vrivera/dev/rofi-todoist/rofi-todoist.sh'), desc='Launch rofi'),
     
     # Screenshot
 #   Key([], 'Print', lazy.spawn('/home/vrivera/.local/bin/screenshot select')),
