@@ -1,3 +1,4 @@
+eval "$(starship init zsh)"
 source ~/dotfiles/shell/alias.sh
 source ~/dotfiles/shell/env.sh
 
@@ -26,12 +27,12 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # ## p10k
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source ~/git-packages/zsh/powerlevel10k/powerlevel10k.zsh-theme
-# eval "$(starship init zsh)"
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#source ~/git-packages/zsh/powerlevel10k/powerlevel10k.zsh-theme
+
 
 ## PATH
 export PATH="$HOME/.local/bin:$PATH"
