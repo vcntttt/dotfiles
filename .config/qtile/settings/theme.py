@@ -1,16 +1,16 @@
 
 
 colors = {
-    "background": "#0E1415",
+    "background": "#282c34",
+    "foreground": "#bbc2cf",
     "primary": "#88DB3F",
-    "secondary": "4AC9E2",
+    "secondary": "#4AC9E2",
     "alert": "#F36868",
     "border_focus": "#ccc",
     "border_normal": "#121826cc",
-    "dark": "#0E1415",
-    "foreground": "#fafafa",
-    "blue" : "#0075ea",
-    "red": "#ff3029",
+    "dark": "#1c1f24",
+    "active_group" : "#51afef",
+    "other_screen_group": "#ff6c6b",
     "inactiveGroup": "#ccc",
     "spotify": "#1ED760",
 }

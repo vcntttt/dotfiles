@@ -1,7 +1,6 @@
 from libqtile import bar, qtile
 from .keys import terminal
 from .theme import colors, statsFont
-from customWidgets.spotify import Spotify
 from qtile_extras import widget
 from qtile_extras.widget.decorations import PowerLineDecoration
 
@@ -15,13 +14,13 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 statsColors2 = {
-    'background': "#ddd",
-    'foreground': "#121212",
+    'background': colors['foreground'],
+    'foreground': colors['background'],
 }
 
 statsColors1 = {
-    'background': "#121212",
-    'foreground': "#ddd",
+    'background': colors['background'],
+    'foreground': colors['foreground'],
 }
 
 powerline = {
@@ -30,48 +29,38 @@ powerline = {
     ],
 }
 
-
 def my_bar(systray=False):
     widgetList = [
         widget.Spacer(length=5),
-        widget.Image(
-            filename="~/Pictures/arch-icon.svg",
-            scale="False",
-            margin=4,
-        ),
         widget.Spacer(length=5),
         widget.GroupBox(
-            background=colors["foreground"],
-            highlight_method='line',
-            highlight_color=[colors['foreground']],
-            foreground='#000000',
-            other_screen_border=colors['red'],
-            other_current_screen_border=colors['red'],
-            rounded=True,
-            this_current_screen_border=colors['blue'],
-            inactive=colors['inactiveGroup'],
-            active=colors['dark'],
+            **statsColors1,
+            padding_x=10,
             fontsize=16,
-            padding=8
+            active='#f1ffff',
+            inactive='#4c566a',
+            rounded=False,
+            highlight_method='block',
+            urgent_alert_method='block',
+            urgent_border='#F07178',
+            this_current_screen_border='#a151d3',
+            this_screen_border="#353c4a",
+            other_current_screen_border='#353c4a',
+            other_screen_border='#353c4a',
+            disable_drag=True
         ),
         widget.WindowName(
+            background=colors['dark'],
+            foreground=colors['foreground'],
             font=statsFont,
             fontsize=12,
             max_chars=50,
             width=400,
             padding=10
         ),
-        widget.Spacer(),
-        # --------------------------------------------------------------------------#
-        # -------------------------------Lado Derecho-------------------------------#
-        # --------------------------------------------------------------------------#
-        #        Spotify(
-        #            font=statsFont,
-        #            fontsize=12,
-        #            padding=10,
-        #            background=colors['spotify'],
-        #            foreground=colors['background'],
-        #        ),
+        widget.Spacer(
+            background=colors['dark'],
+        ),
         widget.CurrentLayout(
             **statsColors2,
             **powerline,
@@ -100,7 +89,7 @@ def my_bar(systray=False):
             **powerline,
             format='CPU: {load_percent}% ',
             mouse_callbacks={
-                'Button1': lambda: qtile.cmd_spawn(terminal + ' -e btop')
+                'Button1': lambda: qtile.spawn(terminal + ' -e btop')
             },
             padding=5,
             font=statsFont,
@@ -111,7 +100,7 @@ def my_bar(systray=False):
             **powerline,
             format='{MemUsed: .0f}{mm} ',
             mouse_callbacks={
-                'Button1': lambda: qtile.cmd_spawn(terminal + ' -e btop')
+                'Button1': lambda: qtile.spawn(terminal + ' -e btop')
             },
             padding=5,
             font=statsFont,
@@ -123,7 +112,7 @@ def my_bar(systray=False):
             visible_on_warn=False,
             update_interval=60,
             mouse_callbacks={
-                'Button1': lambda: qtile.cmd_spawn(terminal + ' -e df')},
+                'Button1': lambda: qtile.spawn(terminal + ' -e df')},
             partition='/',
             format='{uf}{m} free',
             fmt='{}',
@@ -136,12 +125,12 @@ def my_bar(systray=False):
             **powerline,
             colour_have_updates='#121212',
             colour_no_updates='#121212',
-            display_format=': {updates}',
+            display_format=':  {updates}',
             distro="Arch_yay",
             execute='alacritty -e /usr/bin/yay -Syu',
             no_update_string=' ',
             padding=4,
-            update_interval='60'
+            update_interval=60
         ),
         widget.TextBox(
             **statsColors1,
@@ -160,7 +149,7 @@ def my_bar(systray=False):
         widget.TextBox(
             **statsColors2,
             text='',
-            mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
+            mouse_callbacks={'Button1': lambda: qtile.spawn(
                 '/home/vrivera/.local/bin/powermenu')},
             padding=8,
             font=statsFont,
@@ -172,8 +161,9 @@ def my_bar(systray=False):
         )]
 
     if systray:
-        widgetList.insert(6, widget.Systray(padding=10))
-        widgetList.insert(7, widget.Spacer(length=10))
+        widgetList.insert(6, widget.Systray(
+            **statsColors1, padding=10))
+        widgetList.insert(7, widget.Spacer( **statsColors1, length=10))
 
         #    else:
         #        widgetList.insert(6,widget.Pomodoro(
