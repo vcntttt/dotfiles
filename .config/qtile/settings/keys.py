@@ -59,10 +59,10 @@ keys = [
     Key([win, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
     Key([win, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
     Key([win], 'Tab', lazy.spawn('rofi -show window')),
-    # Key([win, 'shift'], 'l', lazy.spawn('betterlockscreen -l')),
+    Key([alt], 'l', lazy.spawn('betterlockscreen -l')),
     Key([win], 'BackSpace', lazy.spawn('/home/vrivera/.local/bin/powermenu')),
     Key([win], 'v', lazy.spawn('rofi -modi "clipboard:greenclip print" -show clipboard -run-command "{cmd}"')),
-    Key([win, 'shift'], 'e', lazy.spawn('nemo'), desc='launch nemo'),
+    Key([win], 'e', lazy.spawn('nemo'), desc='launch nemo'),
     
     # Rofi
     Key([win, 'shift'], 'Return', lazy.spawn('rofi -show drun'), desc='Launch rofi'),

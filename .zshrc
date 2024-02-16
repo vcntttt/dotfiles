@@ -1,4 +1,5 @@
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 source ~/dotfiles/shell/alias.sh
 source ~/dotfiles/shell/env.sh
 
@@ -46,3 +47,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # bun completions
 [ -s "/home/vrivera/.bun/_bun" ] && source "/home/vrivera/.bun/_bun"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

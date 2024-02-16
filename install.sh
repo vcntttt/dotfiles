@@ -51,7 +51,6 @@ packagesOfficial=(
     "telegram-desktop"
     "steam"
     "zsh"
-    "lxappearance"
     "volumeicon"
     "network-manager-applet"
     "udiskie"
@@ -112,6 +111,7 @@ packagesAUR=(
     "mailspring"
     "solanum"
     "rofi-greenclip"
+    "nwg-look-bin"
 )
 
 yay -S "${packagesAUR[@]}"

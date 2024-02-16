@@ -94,7 +94,8 @@ inactive = {}
 
 # Icons
 icon_file    = ""
-icon_folder  = ""
+# icon_folder  = ""
+icon_folder  = "󰉋"
 icon_command = ""
 
 # : }}}
@@ -311,7 +312,7 @@ rules = [
 
 	# Default
 	{ name = "*" , text = "" },
-	{ name = "*/", text = "" },
+	{ name = "*/", text = "󰉋" },
 ]
 
 # : }}}

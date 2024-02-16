@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Layout
-"$HOME"/.local/.bin/layout.sh
+"$HOME"/.local/bin/layout.sh &
 
 # Keyboard layout
-setxkbmap us
+setxkbmap us &
 
 # Wallpaper
 WALLPAPER_CONFIG="$HOME/.config/qtile/scripts/wallpaper"
@@ -37,3 +37,6 @@ discord --start-minimized &
 # sync
 dropbox &
 $HOME/.local/bin/sync &
+
+brave &
+python $HOME/dev/tmo-bot/main.py &

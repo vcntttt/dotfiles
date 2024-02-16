@@ -6,7 +6,7 @@ from libqtile.dgroups import simple_key_binder
 groups = []
 groupsNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 groupsLabels = ["", '', '', '', '󰕧', '', '', '', '']
-groupsLayouts = ['max', 'monadtall', 'monadtall', 'monadtall', 'max', 'monadtall', 'monadtall', 'monadtall', 'monadtall']
+groupsLayouts = ['max', 'monadtall', 'monadtall', 'max', 'max', 'monadtall', 'monadtall', 'monadtall', 'monadtall']
 groupSpawn = {
     '3': 'obsidian'
 }
@@ -64,7 +64,6 @@ conf = {
 groups.append(ScratchPad('scratchpad', [
     DropDown('term', 'alacritty --class=scratch', **conf),
     DropDown('btop', 'alacritty --class=btop -e btop', **conf),
-    DropDown('term-fm', 'alacritty --class=yazi -e yazi', **conf),
     DropDown('spotify', 'spotify', **conf),
     DropDown('pavucontrol', 'pavucontrol', **conf),
     DropDown('pomodoro', 'solanum', **conf),
@@ -73,7 +72,6 @@ groups.append(ScratchPad('scratchpad', [
 keys.extend([
     Key([win], 'n', lazy.group['scratchpad'].dropdown_toggle('term')),
     Key([win], 'b', lazy.group['scratchpad'].dropdown_toggle('btop')),
-    Key([win], 'e', lazy.group['scratchpad'].dropdown_toggle('term-fm')),
     Key([win], 's', lazy.group['scratchpad'].dropdown_toggle('spotify')),
     Key([win], 'p', lazy.group['scratchpad'].dropdown_toggle('pavucontrol')),
     Key([win, 'shift'], 'p', lazy.group['scratchpad'].dropdown_toggle('pomodoro')),
@@ -81,7 +79,4 @@ keys.extend([
 
 dgroups_key_binder = simple_key_binder("mod4")
 dgroups_app_rules = [
-    Rule(
-        Match(wm_class=['spotify']), group='8',
-    )
 ]

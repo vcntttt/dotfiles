@@ -8,7 +8,7 @@ comprimir(){
 }
 
 ghiFunction(){
-    git init && gh repo create "$1" --public --source=.
+    ginit && gh repo create "$1" --public --source=.
 }
 
 brilloFunction(){
@@ -21,7 +21,8 @@ alias cls="clear"
 alias logout="sudo systemctl restart ly"
 alias gclone=gcloneFunction
 alias nf="neofetch"
-#alias xmp="sudo xampp"
+alias qlog="cat ~/.local/share/qtile/qtile.log"
+alias xmp="sudo xampp"
 alias cleanpac="sudo pacman -Rns $(pacman -Qdtq)"
 alias cleancache="sudo pacman -Sc"
 ## Tar
@@ -46,17 +47,18 @@ alias gca="git commit -a -m"
 alias gc="git commit -m"
 ### branchs
 alias gb="git branch"
-alias gch="git checkout"
+alias gco="git checkout"
 ### pull - push
 alias gl="git pull"
 alias gp="git push"
 ### gh-cli
 alias ghinit=ghiFunction
 ## Move
+alias fm="yazi"
 alias bin="cd ~/.local/bin"
 alias dots="cd ~/dotfiles"
 alias conf="cd ~/dotfiles/.config"
-alias elias="nvim ~/dotfiles/shell/alias.sh"
+alias elias="nvim ~/dotfiles/shell/alias.sh && source ~/.zshrc"
 alias ast="cd ~/uct-drive/dots-assets/"
 alias h="cd ~"
 alias dev="cd ~/dev"
