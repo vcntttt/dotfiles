@@ -8,20 +8,31 @@ confirm(){
 	echo -e "Yes\nNo" | rofi -dmenu -p "Are you sure?"
 }
 
+syncOut(){
+    notify-send 'sync....'
+    $HOME/.local/bin/sync out
+}
+
 case "$chosen" in
     "	Power Off")
+        syncOut
         [[ "$(confirm)" == "Yes" ]] && systemctl poweroff
         ;;
     "	Reboot")
+        syncOut
         [[ "$(confirm)" == "Yes" ]] && systemctl reboot
         ;;
     "	Lock")
         betterlockscreen -l
         ;;
     "󰍃	Logout")
-        loginctl terminate-session ${XDG_SESSION_ID-}
+        syncOut
+        if [[ "$(confirm)" == "Yes" ]]; then
+            loginctl terminate-session ${XDG_SESSION_ID-} || pkill -KILL -u $USER
+        fi
         ;;
     "󰒲	Suspend")
+        syncOut
         systemctl suspend
         ;;
     *)
