@@ -1,2 +1,10 @@
-#! /bin/bash
-rclone bisync --resync drive-uct:/ ~/uct-drive/
+#!/bin/bash
+
+case $1 in
+    in)
+      rclone sync drive-uct:/ ~/uct-drive/
+      ;;
+    out)
+      rclone sync ~/uct-drive/ drive-uct:/
+      ;;
+esac
