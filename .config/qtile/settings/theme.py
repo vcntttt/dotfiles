@@ -9,9 +9,9 @@ colors = {
     "border_focus": "#ccc",
     "border_normal": "#121826cc",
     "dark": "#1c1f24",
-    "active_group" : "#51afef",
-    "other_screen_group": "#ff6c6b",
-    "inactiveGroup": "#ccc",
+    "active_group" : "#0068FF",
+    "other_screen_group": "#FF0000",
+    "inactiveGroup": "#848991",
     "spotify": "#1ED760",
     "white": "#fbfbfb",
 }
