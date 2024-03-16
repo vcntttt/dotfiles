@@ -4,7 +4,7 @@ from libqtile.command import lazy
 
 win = 'mod4'
 alt = 'mod1'
-terminal = 'alacritty'
+terminal = 'warp-terminal'
 fileManager = 'nemo'
 
 keys = [
@@ -65,7 +65,7 @@ keys = [
     Key([win], 'e', lazy.spawn('nemo'), desc='launch nemo'),
     
     # Rofi
-    Key([win, 'shift'], 'Return', lazy.spawn('rofi -show drun'), desc='Launch rofi'),
+    Key([alt], 'space', lazy.spawn('rofi -show drun'), desc='Launch rofi'),
     Key([win], 'period', lazy.spawn('rofi -show emoji'), desc='Launch rofi'),
     Key([win, 'shift'], 's', lazy.spawn('rofi -show ssh'), desc='Launch rofi'),
     Key([alt, 'control'], 'Return', lazy.spawn('/home/vrivera/dev/rofi-todoist/rofi-todoist.sh'), desc='Launch rofi'),

@@ -13,7 +13,11 @@ colors = {
     "other_screen_group": "#ff6c6b",
     "inactiveGroup": "#ccc",
     "spotify": "#1ED760",
+    "white": "#fbfbfb",
 }
+
+backgroundColor = "#282c34"
+foregroundColor = "#bbc2cf"
 
 statsFont = "JetBrainsMono Nerd Font"
 

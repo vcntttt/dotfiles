@@ -1,6 +1,6 @@
 from libqtile import bar, qtile
 from .keys import terminal
-from .theme import colors, statsFont
+from .theme import *
 from qtile_extras import widget
 from qtile_extras.widget.decorations import PowerLineDecoration
 
@@ -14,13 +14,13 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 statsColors2 = {
-    'background': colors['foreground'],
-    'foreground': colors['background'],
+    'background': foregroundColor,
+    'foreground': backgroundColor,
 }
 
 statsColors1 = {
-    'background': colors['background'],
-    'foreground': colors['foreground'],
+    'background': backgroundColor,
+    'foreground': foregroundColor,
 }
 
 powerline = {
@@ -34,20 +34,22 @@ def my_bar(systray=False):
         widget.Spacer(length=5),
         widget.Spacer(length=5),
         widget.GroupBox(
-            **statsColors1,
-            padding_x=10,
             fontsize=16,
-            active='#f1ffff',
-            inactive='#4c566a',
-            rounded=False,
-            highlight_method='block',
-            urgent_alert_method='block',
-            urgent_border='#F07178',
-            this_current_screen_border='#a151d3',
-            this_screen_border="#353c4a",
-            other_current_screen_border='#353c4a',
-            other_screen_border='#353c4a',
-            disable_drag=True
+            margin_x=10,
+            margin_y=4,
+            padding_x=6,
+            padding_y=6,
+            borderwidth=5,
+            background=colors["foreground"],
+            highlight_method='line',
+            highlight_color=[colors['foreground']],
+            foreground='#000000',
+            other_screen_border=colors['other_screen_group'],
+            other_current_screen_border=colors['other_screen_group'],
+            rounded=True,
+            this_current_screen_border=colors['active_group'],
+            inactive=colors['inactiveGroup'],
+            active=colors['dark'],
         ),
         widget.WindowName(
             background=colors['dark'],

@@ -8,7 +8,8 @@ groupsNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 groupsLabels = ["", '', '', '', '󰕧', '', '', '', '']
 groupsLayouts = ['max', 'monadtall', 'monadtall', 'max', 'max', 'monadtall', 'monadtall', 'monadtall', 'monadtall']
 groupSpawn = {
-    '3': 'obsidian'
+    '3': 'obsidian',
+    '4': 'mailspring --password-store="gnome-libsecret"'
 }
 
 for name, label, layout in zip(groupsNames, groupsLabels, groupsLayouts):
