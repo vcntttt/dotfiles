@@ -1,4 +1,3 @@
-
 from libqtile.config import Key
 from libqtile.command import lazy
 
@@ -69,6 +68,8 @@ keys = [
     Key([win], 'period', lazy.spawn('rofi -show emoji'), desc='Launch rofi'),
     Key([win, 'shift'], 's', lazy.spawn('rofi -show ssh'), desc='Launch rofi'),
     Key([alt, 'control'], 'Return', lazy.spawn('/home/vrivera/dev/rofi-todoist/rofi-todoist.sh'), desc='Launch rofi'),
+    Key([win, alt], 'L', lazy.spawn('betterlockscreen -l'), desc='Launch powermenu'),
+    Key([win, alt], 'space', lazy.spawn('/home/vrivera/.local/bin/keyboard'), desc='Launch keyboard menu'),
     
     # Screenshot
 #   Key([], 'Print', lazy.spawn('/home/vrivera/.local/bin/screenshot select')),
