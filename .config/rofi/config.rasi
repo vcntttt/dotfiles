@@ -1,7 +1,7 @@
 configuration {
     font: "JetBrainsMono Nerd Font 14";
     show-icons:true;
-    icon-theme:"Tela manjaro";
+    icon-theme:"Tela nord";
     display-drun:"Apps";
     display-run:"Scripts";
     display-window: "Active";

@@ -1,5 +1,3 @@
-
-
 colors = {
     "background": "#282c34",
     "foreground": "#bbc2cf",
