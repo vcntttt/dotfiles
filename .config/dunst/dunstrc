@@ -61,13 +61,13 @@
     background = "#181825FF"
     foreground = "#CDD6F4"
     highlight = "#CDD6F4"
-    timeout = 3
+    timeout = 5
 
 [urgency_normal]
     background = "#181825FF"
     foreground = "#CDD6F4"
     highlight = "#CDD6F4"
-    timeout = 3
+    timeout = 5
 
 [urgency_critical]
     background = "#BA2320"

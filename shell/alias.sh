@@ -12,16 +12,22 @@ ghiFunction(){
 }
 
 brilloFunction(){
-  xrandr --output HDMI-"$1" --brightness "$2"
+  if [ "$1" -eq 2 ]; then
+    xrandr --output HDMI-0 --brightness "$2"
+    xrandr --output HDMI-1 --brightness "$2"
+  else
+    xrandr --output HDMI-"$1" --brightness "$2"
+  fi
 }
-    
 
 alias update='yay -Syu --noconfirm'
 alias cls="clear"
 alias logout="sudo systemctl restart ly"
 alias gclone=gcloneFunction
-alias nf="neofetch"
+#alias nf="neofetch"
+alias ff="fastfetch --config ganyu"
 alias qlog="cat ~/.local/share/qtile/qtile.log"
+alias rmqlog="rm ~/.local/share/qtile/qtile.log"
 alias xmp="sudo xampp"
 alias cleanpac="sudo pacman -Rns $(pacman -Qdtq)"
 alias cleancache="sudo pacman -Sc"
@@ -45,6 +51,7 @@ alias ga="git add"
 ### commits
 alias gca="git commit -a -m"
 alias gc="git commit -m"
+alias gcfix="git commit --amend --no-edit"
 ### branchs
 alias gb="git branch"
 alias gco="git checkout"

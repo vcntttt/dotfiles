@@ -1,14 +1,17 @@
-from libqtile.config import Group, Key, ScratchPad, DropDown, Match, Rule
+from libqtile.config import Group, Key, ScratchPad, DropDown
 from libqtile.command import lazy
 from .keys import keys, win
 from libqtile.dgroups import simple_key_binder
 
 groups = []
 groupsNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-groupsLabels = ["", '', '', '', '󰕧', '', '', '', '']
+groupsLabels = ["", '', '', '', '󰕧', '', '', '', '']
 groupsLayouts = ['max', 'monadtall', 'monadtall', 'max', 'max', 'monadtall', 'monadtall', 'monadtall', 'monadtall']
+
 groupSpawn = {
-    '3': 'obsidian'
+    '2': 'warp-terminal',
+    '3': 'obsidian',
+    '4': 'mailspring --password-store="gnome-libsecret"',
 }
 
 for name, label, layout in zip(groupsNames, groupsLabels, groupsLayouts):
@@ -64,6 +67,7 @@ conf = {
 groups.append(ScratchPad('scratchpad', [
     DropDown('term', 'alacritty --class=scratch', **conf),
     DropDown('btop', 'alacritty --class=btop -e btop', **conf),
+    # DropDown('clip', 'alacritty --class=clipboard -e clipse', **conf),
     DropDown('spotify', 'spotify', **conf),
     DropDown('pavucontrol', 'pavucontrol', **conf),
     DropDown('pomodoro', 'solanum', **conf),
@@ -72,6 +76,7 @@ groups.append(ScratchPad('scratchpad', [
 keys.extend([
     Key([win], 'n', lazy.group['scratchpad'].dropdown_toggle('term')),
     Key([win], 'b', lazy.group['scratchpad'].dropdown_toggle('btop')),
+    # Key([win], 'v', lazy.group['scratchpad'].dropdown_toggle('clip')),
     Key([win], 's', lazy.group['scratchpad'].dropdown_toggle('spotify')),
     Key([win], 'p', lazy.group['scratchpad'].dropdown_toggle('pavucontrol')),
     Key([win, 'shift'], 'p', lazy.group['scratchpad'].dropdown_toggle('pomodoro')),

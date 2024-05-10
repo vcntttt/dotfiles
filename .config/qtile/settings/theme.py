@@ -1,5 +1,3 @@
-
-
 colors = {
     "background": "#282c34",
     "foreground": "#bbc2cf",
@@ -9,11 +7,15 @@ colors = {
     "border_focus": "#ccc",
     "border_normal": "#121826cc",
     "dark": "#1c1f24",
-    "active_group" : "#51afef",
-    "other_screen_group": "#ff6c6b",
-    "inactiveGroup": "#ccc",
+    "active_group" : "#0068FF",
+    "other_screen_group": "#FF0000",
+    "inactiveGroup": "#848991",
     "spotify": "#1ED760",
+    "white": "#fbfbfb",
 }
+
+backgroundColor = "#282c34"
+foregroundColor = "#bbc2cf"
 
 statsFont = "JetBrainsMono Nerd Font"
 

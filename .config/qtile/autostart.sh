@@ -30,13 +30,10 @@ udiskie -t &
 greenclip daemon &
 flameshot &
 
-# comunication
-mailspring --b --password-store="gnome-libsecret" &
-discord --start-minimized &
-
 # sync
 dropbox &
-$HOME/.local/bin/sync &
+$HOME/.local/bin/sync in &
 
 brave &
 python $HOME/dev/tmo-bot/main.py &
+discord --start-minimized &

@@ -300,7 +300,7 @@ rules = [
 	{ name = ".config/"    , text = "" },
 	{ name = ".git/"       , text = "" },
 	{ name = "Desktop/"    , text = "" },
-	{ name = "Development/", text = "" },
+	{ name = "development/", text = "" },
 	{ name = "Documents/"  , text = "" },
 	{ name = "Downloads/"  , text = "" },
 	{ name = "Library/"    , text = "" },
