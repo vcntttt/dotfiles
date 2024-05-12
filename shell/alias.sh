@@ -70,6 +70,7 @@ alias ast="cd ~/uct-drive/dots-assets/"
 alias h="cd ~"
 alias dev="cd ~/dev"
 alias ob="cd ~/uct-drive/obsidian-notes/"
+alias cdot="code ~/dotfiles/"
 ## zshrc
 alias zsh="nvim ~/.zshrc && source ~/.zshrc"
 ## brillo
