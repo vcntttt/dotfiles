@@ -1,24 +1,33 @@
 #!/bin/bash
 
-# Define la ruta a tu directorio de fondos de pantalla
 WALLPAPER_DIR="$HOME/uct-drive/assets/Wallpapers"
-# Archivo para guardar la selección del fondo de pantalla
-WALLPAPER_CONFIG="$HOME/.config/qtile/scripts/wallpaper"
+WALLPAPER_CONFIG1="$HOME/.config/qtile/scripts/wallpaper1"
+WALLPAPER_CONFIG2="$HOME/.config/qtile/scripts/wallpaper2"
 
-# Lista los archivos de imagen en el directorio
 wallpapers=$(ls $WALLPAPER_DIR)
 
-# Usa Rofi para seleccionar un fondo de pantalla
 selected_wallpaper=$(echo "$wallpapers" | rofi -dmenu -p "Select wallpaper:")
 
-# Aplica el fondo de pantalla seleccionado
 if [ -n "$selected_wallpaper" ]; then
-    # Ruta completa al archivo seleccionado
     full_path="$WALLPAPER_DIR/$selected_wallpaper"
 
-    # Configura el fondo de pantalla
-    xwallpaper --zoom "$full_path"
+    options="Pantalla Principal\nPantalla Secundaria\nAmbas Pantallas"
+    selected_option=$(echo -e "$options" | rofi -dmenu -p "Apply wallpaper to:")
 
-    # Guarda la selección en el archivo de configuración
-    echo "$full_path" > "$WALLPAPER_CONFIG"
+    case $selected_option in
+        "Pantalla Principal")
+            xwallpaper --output HDMI-1 --zoom "$full_path"
+            echo "$full_path" > "$WALLPAPER_CONFIG1"
+            ;;
+        "Pantalla Secundaria")
+            xwallpaper --output HDMI-0 --zoom "$full_path"
+            echo "$full_path" > "$WALLPAPER_CONFIG2"
+            ;;
+        "Ambas Pantallas")
+            xwallpaper --output HDMI-0 --zoom "$full_path"
+            xwallpaper --output HDMI-1 --zoom "$full_path"
+            echo "$full_path" > "$WALLPAPER_CONFIG1"
+            echo "$full_path" > "$WALLPAPER_CONFIG2"
+            ;;
+    esac
 fi
