@@ -20,12 +20,12 @@ export LS_COLORS="ow=01;90;40"
 
 ## zsh plugins
 
-source ~/git-packages/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source ~/git-packages/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/git-packages/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/dotfiles/shell/zsh/sudo.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+#source ~/git-packages/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+#source ~/git-packages/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/git-packages/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+#source ~/dotfiles/shell/zsh/sudo.zsh
+#bindkey '^[[A' history-substring-search-up
+#bindkey '^[[B' history-substring-search-down
 
 # ## p10k
 #if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
