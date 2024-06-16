@@ -5,12 +5,7 @@ confirm(){
 
 case $1 in
     in)
-      if [[ "$(confirm)" == "Yes" ]]; then
         rclone sync drive-uct:/ ~/uct-drive/
-        notify-send "Synchronization completed: in"
-      else
-        notify-send "Synchronization cancelled: in"
-      fi
       ;;
     out)
       if [[ "$(confirm)" == "Yes" ]]; then

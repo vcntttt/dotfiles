@@ -1,6 +1,6 @@
 from libqtile.config import Group, Key, ScratchPad, DropDown
-from libqtile.command import lazy
-from .keys import keys, win
+from libqtile.lazy import lazy
+from .keys import keys, win, alt
 from libqtile.dgroups import simple_key_binder
 
 groups = []
@@ -62,6 +62,7 @@ conf = {
     'x': 0.1,
     'y': 0.1,
     'opacity': 0.9,
+    'on_focus_lost_hide': True,
 }
 
 groups.append(ScratchPad('scratchpad', [
@@ -71,6 +72,7 @@ groups.append(ScratchPad('scratchpad', [
     DropDown('spotify', 'spotify', **conf),
     DropDown('pavucontrol', 'pavucontrol', **conf),
     DropDown('pomodoro', 'solanum', **conf),
+    DropDown('todoist', 'planify', **conf),
 ]))
 
 keys.extend([
@@ -78,7 +80,8 @@ keys.extend([
     Key([win], 'b', lazy.group['scratchpad'].dropdown_toggle('btop')),
     # Key([win], 'v', lazy.group['scratchpad'].dropdown_toggle('clip')),
     Key([win], 's', lazy.group['scratchpad'].dropdown_toggle('spotify')),
-    Key([win], 'p', lazy.group['scratchpad'].dropdown_toggle('pavucontrol')),
+    Key([win], 'p', lazy.group['scratchpad'].dropdown_toggle('todoist')),
+    Key([win, alt], 'p', lazy.group['scratchpad'].dropdown_toggle('pavucontrol')),
     Key([win, 'shift'], 'p', lazy.group['scratchpad'].dropdown_toggle('pomodoro')),
 ])
 

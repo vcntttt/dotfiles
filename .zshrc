@@ -2,7 +2,8 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 source ~/dotfiles/shell/alias.sh
 source ~/dotfiles/shell/env.sh
-
+alias xmpstart="sudo /opt/lampp/lampp start"
+alias xmpstop="sudo /opt/lampp/lampp stop"
 # Historial y autocompletado
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
@@ -53,5 +54,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-PATH=~/.console-ninja/.bin:$PATH
 #source $HOME/.cargo/env
+export PATH=$PATH:/home/vrivera/.spicetify
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+
+PATH=~/.console-ninja/.bin:$PATH

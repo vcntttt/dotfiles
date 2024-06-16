@@ -71,6 +71,7 @@ alias h="cd ~"
 alias dev="cd ~/dev"
 alias ob="cd ~/uct-drive/obsidian-notes/"
 alias cdot="code ~/dotfiles/"
+alias notes="nvim ~/uct-drive/obsidian-notes/"
 ## zshrc
 alias zsh="nvim ~/.zshrc && source ~/.zshrc"
 ## brillo
