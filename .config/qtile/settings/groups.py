@@ -6,7 +6,7 @@ from libqtile.dgroups import simple_key_binder
 groups = []
 groupsNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 groupsLabels = ["", '', '', '', '󰕧', '', '', '', '']
-groupsLayouts = ['max', 'monadtall', 'monadtall', 'max', 'max', 'monadtall', 'monadtall', 'monadtall', 'monadtall']
+groupsLayouts = ['max', 'max', 'monadtall', 'max', 'max', 'monadtall', 'monadtall', 'monadtall', 'monadtall']
 
 groupSpawn = {
     '2': 'warp-terminal',
