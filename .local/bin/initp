@@ -1,0 +1,118 @@
+#!/bin/bash
+
+# Verifica si Bun, gh-cli y code (VSCode) están instalados
+if ! command -v bun &> /dev/null || ! command -v gh &> /dev/null || ! command -v code &> /dev/null
+then
+    echo "Faltan programas. Por favor, asegúrese de tener instalados Bun, GitHub CLI y Visual Studio Code."
+    exit 1
+fi
+
+# Directorio base para todos los proyectos
+BASE_DIR="$HOME/dev/projects"
+
+# Crear directorio base si no existe
+mkdir -p "$BASE_DIR"
+
+create_project() {
+    PROJECT_NAME=$1
+    TEMPLATE=$2
+    CREATE_REPO=$3
+    REPO_VISIBILITY=$4
+
+    echo "Creating $PROJECT_NAME using $TEMPLATE..."
+
+    cd "$BASE_DIR" || exit
+
+    case $TEMPLATE in
+        astro)
+            bun create astro@latest "$PROJECT_NAME"
+            ;;
+        nextjs)
+            bunx create-next-app@latest "$PROJECT_NAME"
+            ;;
+        vitejs)
+            bunx create-vite@latest "$PROJECT_NAME"
+            ;;
+        *)
+            echo "Unknown template: $TEMPLATE"
+            exit 1
+            ;;
+    esac
+
+    cd "$PROJECT_NAME" || exit
+
+    echo "Initializing Git repository..."
+    git init --initial-branch=main
+    git add .
+    git commit -m "Initial commit"
+
+    if [ "$CREATE_REPO" == "s" ]; then
+        echo "Creating GitHub repository..."
+        gh repo create "$PROJECT_NAME" --$REPO_VISIBILITY --source=. --remote=origin
+
+        echo "Pushing to GitHub..."
+        git push -u origin main
+    fi
+
+    echo "Project $PROJECT_NAME created successfully!"
+}
+
+# Main script
+if [ $# -ne 1 ]; then
+    echo "Uso: $0 <nombre-del-proyecto>"
+    exit 1
+fi
+
+PROJECT_NAME=$1
+
+echo "Seleccione el framework:"
+echo "1) Astro"
+echo "2) Next.js"
+echo "3) Vite.js"
+read -p "Opción [1-3]: " FRAMEWORK_OPTION
+
+case $FRAMEWORK_OPTION in
+    1)
+        TEMPLATE="astro"
+        ;;
+    2)
+        TEMPLATE="nextjs"
+        ;;
+    3)
+        TEMPLATE="vitejs"
+        ;;
+    *)
+        echo "Opción no válida. Saliendo."
+        exit 1
+        ;;
+esac
+
+read -p "¿Desea crear un repositorio en GitHub? (s/n): " CREATE_REPO
+REPO_VISIBILITY="public"
+if [ "$CREATE_REPO" == "s" ]; then
+    echo "Seleccione la visibilidad del repositorio:"
+    echo "1) Público"
+    echo "2) Privado"
+    read -p "Opción [1-2]: " VISIBILITY_OPTION
+
+    case $VISIBILITY_OPTION in
+        1)
+            REPO_VISIBILITY="public"
+            ;;
+        2)
+            REPO_VISIBILITY="private"
+            ;;
+        *)
+            echo "Opción no válida. Se usará público por defecto."
+            REPO_VISIBILITY="public"
+            ;;
+    esac
+fi
+
+create_project $PROJECT_NAME $TEMPLATE $CREATE_REPO $REPO_VISIBILITY
+
+# Preguntar si se desea abrir el proyecto en VSCode
+read -p "¿Desea abrir el proyecto en Visual Studio Code? (s/n): " OPEN_VSCODE
+if [ "$OPEN_VSCODE" == "s" ]; then
+    code "$BASE_DIR/$PROJECT_NAME"
+fi
