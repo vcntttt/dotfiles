@@ -16,15 +16,15 @@ if [ -n "$selected_wallpaper" ]; then
 
     case $selected_option in
         "Pantalla Principal")
-            xwallpaper --output HDMI-1 --zoom "$full_path"
+            xwallpaper --output DP-0 --zoom "$full_path"
             echo "$full_path" > "$WALLPAPER_CONFIG1"
             ;;
         "Pantalla Secundaria")
-            xwallpaper --output HDMI-0 --zoom "$full_path"
+            xwallpaper --output HDMI-1 --zoom "$full_path"
             echo "$full_path" > "$WALLPAPER_CONFIG2"
             ;;
         "Ambas Pantallas")
-            xwallpaper --output HDMI-0 --zoom "$full_path"
+            xwallpaper --output DP-0 --zoom "$full_path"
             xwallpaper --output HDMI-1 --zoom "$full_path"
             echo "$full_path" > "$WALLPAPER_CONFIG1"
             echo "$full_path" > "$WALLPAPER_CONFIG2"

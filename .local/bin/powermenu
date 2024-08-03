@@ -15,18 +15,15 @@ syncOut(){
 
 case "$chosen" in
     "	Power Off")
-        syncOut
         [[ "$(confirm)" == "Yes" ]] && systemctl poweroff
         ;;
     "	Reboot")
-        syncOut
         [[ "$(confirm)" == "Yes" ]] && systemctl reboot
         ;;
     "	Lock")
         betterlockscreen -l
         ;;
     "󰍃	Logout")
-        syncOut
         if [[ "$(confirm)" == "Yes" ]]; then
             loginctl terminate-session ${XDG_SESSION_ID-} || pkill -KILL -u $USER
         fi

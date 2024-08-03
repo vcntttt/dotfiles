@@ -5,18 +5,18 @@ confirm(){
 
 case $1 in
     in)
-        rclone sync drive-uct:/ ~/uct-drive/
+        #rclone sync drive-uct:/ ~/uct-drive/
       ;;
     out)
       if [[ "$(confirm)" == "Yes" ]]; then
-        rclone sync ~/uct-drive/ drive-uct:/
-        notify-send "Synchronization completed: out"
+        #rclone sync ~/uct-drive/ drive-uct:/
+        #notify-send "Synchronization completed: out"
       else
-        notify-send "Synchronization cancelled: out"
+        #notify-send "Synchronization cancelled: out"
       fi
       ;;
     *)
-      echo "Usage: $0 {in|out}"
+      #echo "Usage: $0 {in|out}"
       exit 1
       ;;
 esac
