@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Solicitar cantidad de ramos y nombres
+read -p "En que semestre vamos?: " semestre
+read -p "Ingresa la cantidad de ramos: " num_ramos
+
+declare -a ramos
+for (( i=1; i<=num_ramos; i++ )); do
+    read -p "Ingresa el nombre del ramo $i: " ramo
+    ramos+=("$ramo")
+done
+
+# Definir los directorios base
+base_path_local="$HOME/test_Notas"
+base_path_obsidian="$HOME/test_Obsidian/semestre_$semestre"
+base_path_dropbox="$HOME/test_Dropbox/semestre_$semestre"  # Asegúrate de que tu carpeta de Dropbox esté correctamente configurada
+
+# Crear carpetas base si no existen
+mkdir -p "$base_path_local" "$base_path_obsidian" "$base_path_dropbox"
+
+# Crear carpetas locales y enlaces simbólicos
+for ramo in "${ramos[@]}"; do
+    # Crear carpetas locales
+    local_folder="$base_path_local/$ramo"
+    obsidian_folder="$base_path_obsidian/$ramo"
+    dropbox_folder="$base_path_dropbox/$ramo"
+
+    mkdir -p "$local_folder" "$obsidian_folder" "$dropbox_folder"
+    echo "Carpetas locales creadas: $local_folder, $obsidian_folder, $dropbox_folder"
+
+    # Crear enlaces simbólicos
+    obsidian_symlink="$obsidian_folder/Notas"
+    dropbox_symlink="$dropbox_folder/Notas"
+
+    if [ ! -L "$obsidian_symlink" ]; then
+        ln -s "$local_folder" "$obsidian_symlink"
+        echo "Enlace simbólico creado en Obsidian: $obsidian_symlink -> $local_folder"
+    fi
+
+    if [ ! -L "$dropbox_symlink" ]; then
+        ln -s "$local_folder" "$dropbox_symlink"
+        echo "Enlace simbólico creado en Dropbox: $dropbox_symlink -> $local_folder"
+    fi
+done

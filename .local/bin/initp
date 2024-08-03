@@ -8,7 +8,7 @@ then
 fi
 
 # Directorio base para todos los proyectos
-BASE_DIR="$HOME/dev/projects"
+BASE_DIR="$HOME/dev"
 
 # Crear directorio base si no existe
 mkdir -p "$BASE_DIR"

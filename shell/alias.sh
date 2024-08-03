@@ -20,7 +20,6 @@ brilloFunction(){
   fi
 }
 
-alias update='yay -Syu --noconfirm'
 alias cls="clear"
 alias logout="sudo systemctl restart ly"
 alias gclone=gcloneFunction
@@ -77,11 +76,14 @@ alias zsh="nvim ~/.zshrc && source ~/.zshrc"
 ## brillo
 alias brillo=brilloFunction
 
-# Development
-alias nextinit="bunx create-next-app@latest"
-alias astroinit="bun create astro@latest"
-alias viteinit="bunx create-vite@latest"
-
 alias bund="bun run dev"
 alias buni="bun install"
 alias bunb="bun run build"
+alias xmpstart="sudo /opt/lampp/lampp start"
+alias xmpstop="sudo /opt/lampp/lampp stop"
+alias mvttf="sudo mv *.ttf /usr/share/fonts/TTF && sudo fc-cache -fv"
+
+alias pup="sudo pacman -Syu"
+alias yup="yay -Syu --noconfirm"
+alias pi="sudo pacman -S"
+alias ps="pacman -Ss"

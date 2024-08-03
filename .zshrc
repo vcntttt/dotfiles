@@ -1,9 +1,13 @@
-eval "$(starship init zsh)"
+# god cli tools
 eval "$(zoxide init zsh)"
+eval $(thefuck --alias)
+eval $(thefuck --alias fk)
+eval "$(fzf --zsh)"
+eval "$(starship init zsh)"
+#
 source ~/dotfiles/shell/alias.sh
 source ~/dotfiles/shell/env.sh
-alias xmpstart="sudo /opt/lampp/lampp start"
-alias xmpstop="sudo /opt/lampp/lampp stop"
+
 # Historial y autocompletado
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
@@ -21,7 +25,7 @@ export LS_COLORS="ow=01;90;40"
 
 ## zsh plugins
 
-source ~/git-packages/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+#source ~/git-packages/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 #source ~/git-packages/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source ~/git-packages/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/dotfiles/shell/zsh/sudo.zsh
