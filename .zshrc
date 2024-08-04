@@ -1,12 +1,20 @@
-# god cli tools
-eval "$(zoxide init zsh)"
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
-eval "$(fzf --zsh)"
-eval "$(starship init zsh)"
-#
+# -------- my configs --------
 source ~/dotfiles/shell/alias.sh
 source ~/dotfiles/shell/env.sh
+
+# -------- god cli tools --------
+# zoxide - better cd
+eval "$(zoxide init zsh)"
+alias cd="z"
+# fzf - better find
+source ~/dotfiles/shell/fzf.sh
+# thefuck - corrector
+eval $(thefuck --alias)
+eval $(thefuck --alias fk)
+# starship - better prompt
+eval "$(starship init zsh)"
+# bat - better cat
+export BAT_THEME=base16
 
 # Historial y autocompletado
 HISTFILE=~/.zsh_history
@@ -24,21 +32,12 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 export LS_COLORS="ow=01;90;40"
 
 ## zsh plugins
-
-#source ~/git-packages/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-#source ~/git-packages/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/git-packages/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/git-packages/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source ~/git-packages/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/dotfiles/shell/zsh/sudo.zsh
 #bindkey '^[[A' history-substring-search-up
 #bindkey '^[[B' history-substring-search-down
-
-# ## p10k
-#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-#fi
-#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-#source ~/git-packages/zsh/powerlevel10k/powerlevel10k.zsh-theme
-
 
 ## PATH
 export PATH="$HOME/.local/bin:$PATH"
