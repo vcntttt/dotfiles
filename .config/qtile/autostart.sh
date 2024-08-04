@@ -14,16 +14,16 @@ DEFAULT_WALLPAPER2="$HOME/git-packages/dots-assets/Wallpapers/33.jpg"
 
 # Primer Monitor
 if [ -f "$WALLPAPER_CONFIG1" ]; then
-    xwallpaper --output HDMI-1 --maximize "$(cat "$WALLPAPER_CONFIG1")"
+    xwallpaper --output DP-0 --maximize "$(cat "$WALLPAPER_CONFIG1")"
 else
-    xwallpaper --output HDMI-1 --maximize "$DEFAULT_WALLPAPER1"
+    xwallpaper --output DP-0 --maximize "$DEFAULT_WALLPAPER1"
 fi
 
 # Segundo Monitor
 if [ -f "$WALLPAPER_CONFIG2" ]; then
-    xwallpaper --output HDMI-0 --maximize "$(cat "$WALLPAPER_CONFIG2")"
+    xwallpaper --output HDMI-1 --maximize "$(cat "$WALLPAPER_CONFIG2")"
 else
-    xwallpaper --output HDMI-0 --maximize "$DEFAULT_WALLPAPER2"
+    xwallpaper --output HDMI-1 --maximize "$DEFAULT_WALLPAPER2"
 fi
 
 # compositor
@@ -46,8 +46,8 @@ flameshot &
 
 # sync
 dropbox &
-$HOME/.local/bin/sync in &
 
 brave &
 python $HOME/dev/tmo-bot/main.py &
-discord --start-minimized &
+#discord --start-minimized &
+openrgb --profile "/home/vrivera/.config/OpenRGB/todo-celeste.orp" &

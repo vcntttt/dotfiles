@@ -9,9 +9,9 @@ groupsLabels = ["", '', '', '', '󰕧', '', '', '', '']
 groupsLayouts = ['max', 'max', 'monadtall', 'max', 'max', 'monadtall', 'monadtall', 'monadtall', 'monadtall']
 
 groupSpawn = {
-    '2': 'warp-terminal',
-    '3': 'obsidian',
-    '4': 'mailspring --password-store="gnome-libsecret"',
+    '2': ['warp-terminal'],
+    '3': ['obsidian'],
+    '4': ['mailspring --password-store="gnome-libsecret"', 'discord']
 }
 
 for name, label, layout in zip(groupsNames, groupsLabels, groupsLayouts):
@@ -19,7 +19,7 @@ for name, label, layout in zip(groupsNames, groupsLabels, groupsLayouts):
         name=name,
         label=label,
         layout=layout,
-        spawn=groupSpawn.get(name),
+        spawn=groupSpawn.get(name, [])
     ))
     
 for i in groups:

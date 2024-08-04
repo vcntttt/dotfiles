@@ -1,7 +1,8 @@
 # Vicente Rivera - 2023
-import subprocess
-from os import path, system
+import subprocess, time
+from os import path
 from libqtile import hook, qtile, layout
+
 # myconfig
 from settings.keys import keys
 from settings.groups import groups,dgroups_app_rules,dgroups_key_binder
@@ -22,6 +23,8 @@ auto_minimize = True
 wl_input_rules = None
 wmname = "qtile"
 
+keys = list(set(keys))
+
 #@hook.subscribe.client_managed
 #@hook.subscribe.client_killed
 # def set_gaps(window=None):
@@ -33,6 +36,14 @@ wmname = "qtile"
 #            group.layout.margin = gap_size if len(group.windows) > 1 else 0
 #
 #    qtile.current_group.layout_all()
+def delayed_setup():
+    time.sleep(2)  # Ajusta el tiempo de espera según sea necesario
+    qtile.cmd_reconfigure_screens()
+
+# Agrega la tarea de retardo al inicio de Qtile
+@hook.subscribe.startup_complete
+def startup():
+    delayed_setup()
 
 @hook.subscribe.startup_once
 def startOnce():
