@@ -50,6 +50,10 @@ alias untar="tar -xf"
 alias fm="yazi"
 alias cdot="code ~/dotfiles"
 alias notes="nvim ~/uct-drive/obsidian-notes/"
+alias mkdir="mkdir -pv"
+alias cp="cp -i" #i -> confirmacion
+alias mv="mv -i" 
+alias du="du -sh *" # Ver tamaño de archivos
 
 ## ------ EZA ------ ##
 alias l="eza --icons=always --color=always --long --all --no-user --no-filesize --git"
@@ -81,11 +85,6 @@ brilloFunction(){
 
 alias mvttf="sudo mv *.ttf /usr/share/fonts/TTF && sudo fc-cache -fv"
 alias brillo=brilloFunction
-
-## Ver Archivos
-# alias grep='grep --color=auto'
-# alias ls='lsd'
-# alias l='ls -l'
-# alias la='ll -a'
-# alias lla='lsd -la'
-# alias ll='lsd --tree --depth 1'
+alias weather="curl wttr.in"
+alias psu="ps aux | grep --color=auto"
+alias ipinfo="ip -br addr"
