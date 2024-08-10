@@ -17,6 +17,7 @@ colors = {
 backgroundColor = "#282c34"
 foregroundColor = "#bbc2cf"
 
+# statsFont = "FiraCode"
 statsFont = "JetBrainsMono Nerd Font"
 
 DoomOne = [

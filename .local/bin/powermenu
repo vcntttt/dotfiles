@@ -2,7 +2,7 @@
 # inspired in ericmurphyxyz's script. 
 # https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/powermenu
 
-chosen=$(printf "	Power Off\n	Reboot\n	Lock\n󰍃	Logout\n󰒲	Suspend" | rofi -dmenu -p "")
+chosen=$(printf "	Power Off\n	Reboot\n	Lock\n󰒲	Suspend" | rofi -dmenu -p "")
 
 confirm(){
 	echo -e "Yes\nNo" | rofi -dmenu -p "Are you sure?"
@@ -23,13 +23,12 @@ case "$chosen" in
     "	Lock")
         betterlockscreen -l
         ;;
-    "󰍃	Logout")
-        if [[ "$(confirm)" == "Yes" ]]; then
-            loginctl terminate-session ${XDG_SESSION_ID-} || pkill -KILL -u $USER
-        fi
-        ;;
+    # "󰍃	Logout")
+    #     if [[ "$(confirm)" == "Yes" ]]; then
+    #         loginctl terminate-session ${XDG_SESSION_ID-} || pkill -KILL -u $USER
+    #     fi
+    #     ;;
     "󰒲	Suspend")
-        syncOut
         systemctl suspend
         ;;
     *)

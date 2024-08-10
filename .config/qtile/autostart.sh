@@ -9,21 +9,20 @@ setxkbmap us &
 # Wallpapers
 WALLPAPER_CONFIG1="$HOME/.config/qtile/scripts/wallpaper1"
 WALLPAPER_CONFIG2="$HOME/.config/qtile/scripts/wallpaper2"
-DEFAULT_WALLPAPER1="$HOME/git-packages/dots-assets/Wallpapers/32.jpg"
-DEFAULT_WALLPAPER2="$HOME/git-packages/dots-assets/Wallpapers/33.jpg"
+DEFAULT_WALLPAPER="$HOME/Pictures/Wallpapers/spiderverse3.jpg"
 
 # Primer Monitor
 if [ -f "$WALLPAPER_CONFIG1" ]; then
     xwallpaper --output DP-0 --maximize "$(cat "$WALLPAPER_CONFIG1")"
 else
-    xwallpaper --output DP-0 --maximize "$DEFAULT_WALLPAPER1"
+    xwallpaper --output DP-0 --maximize "$DEFAULT_WALLPAPER"
 fi
 
 # Segundo Monitor
 if [ -f "$WALLPAPER_CONFIG2" ]; then
     xwallpaper --output HDMI-1 --maximize "$(cat "$WALLPAPER_CONFIG2")"
 else
-    xwallpaper --output HDMI-1 --maximize "$DEFAULT_WALLPAPER2"
+    xwallpaper --output HDMI-1 --maximize "$DEFAULT_WALLPAPER"
 fi
 
 # compositor
@@ -49,5 +48,5 @@ dropbox &
 
 brave &
 python $HOME/dev/tmo-bot/main.py &
-#discord --start-minimized &
+# discord --start-minimized &
 openrgb --profile "/home/vrivera/.config/OpenRGB/todo-celeste.orp" &

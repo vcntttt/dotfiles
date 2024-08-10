@@ -22,6 +22,7 @@ alias ps="pacman -Ss"
 ghiFunction(){
     ginit && gh repo create "$1" --public --source=.
 }
+alias gclone="git clone"
 alias ginit="git init --initial-branch=main"
 alias gs="git status"
 alias ga="git add"
@@ -56,7 +57,7 @@ alias mv="mv -i"
 alias du="du -sh *" # Ver tamaño de archivos
 
 ## ------ EZA ------ ##
-alias l="eza --icons=always --color=always --long --all --no-user --no-filesize --git"
+alias ll="eza --icons=always --color=always --long --all --no-user --no-filesize --git"
 alias ls="eza --icons=always -F always"
 alias lg="eza -l --git"
 alias la="eza --icons=always --color=always --long --all --git"

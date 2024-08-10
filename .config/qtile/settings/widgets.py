@@ -28,7 +28,7 @@ powerline = {
         PowerLineDecoration(path="arrow_right")
     ],
 }
-
+terminal = "alacritty"
 def my_bar(systray=False):
     widgetList = [
         widget.Spacer(length=5),
@@ -71,7 +71,7 @@ def my_bar(systray=False):
             fontsize=12,
         ),
         widget.KeyboardLayout(
-            **statsColors1,
+            **statsColors2,
             **powerline,
             configured_keyboards=['us', 'us intl', 'latam'],
             display_map={'us': 'US', 'us intl': 'US INT', 'latam': 'LATAM'},
@@ -81,69 +81,80 @@ def my_bar(systray=False):
             fontsize=12
         ),
         widget.ThermalSensor(
-            **statsColors2,
+            format=" {temp:.0f}{unit}",
+            **statsColors1,
             **powerline,
             update_interval=2,
             padding=5,
         ),
+        widget.TextBox(
+            **statsColors2,
+            text='󰍛',
+            font=statsFont,
+            fontsize=16,
+        ),
         widget.CPU(
-            **statsColors1,
+            **statsColors2,
             **powerline,
-            format='CPU: {load_percent}% ',
-            mouse_callbacks={
-                'Button1': lambda: qtile.spawn(terminal + ' -e btop')
-            },
+            # format="  {freq_current}GHz {load_percent}%",
+            format="{freq_current}GHz {load_percent}%",
+            # format='CPU: {load_percent}% ',
+            # mouse_callbacks={
+            #     'Button1': lambda: qtile.spawn(terminal + ' -e btop')
+            # },
             padding=5,
             font=statsFont,
             fontsize=12,
         ),
         widget.Memory(
-            **statsColors2,
+            **statsColors1,
             **powerline,
-            format='{MemUsed: .0f}{mm} ',
-            mouse_callbacks={
-                'Button1': lambda: qtile.spawn(terminal + ' -e btop')
-            },
+            format="   {MemUsed:.0f}{mm} ",
+            # format='{MemUsed: .0f}{mm} ',
+            # mouse_callbacks={
+            #     'Button1': lambda: qtile.spawn(terminal + ' -e btop')
+            # },
             padding=5,
             font=statsFont,
             fontsize=12,
         ),
         widget.DF(
-            **statsColors1,
+            **statsColors2,
             **powerline,
             visible_on_warn=False,
             update_interval=60,
-            mouse_callbacks={
-                'Button1': lambda: qtile.spawn(terminal + ' -e df')},
+            # mouse_callbacks={
+            #     'Button1': lambda: qtile.spawn(terminal + ' -e df')},
             partition='/',
-            format='{uf}{m} free',
+            format='  {uf}{m}/{s}G ',
             fmt='{}',
             padding=5,
             font=statsFont,
             fontsize=12,
         ),
-        widget.CheckUpdates(
-            **statsColors2,
-            **powerline,
-            colour_have_updates='#121212',
-            colour_no_updates='#121212',
-            display_format=':  {updates}',
-            distro="Arch",
-            execute='alacritty -e /usr/bin/yay -Syu',
-            no_update_string=' ',
-            padding=4,
-            update_interval=60
-        ),
-        widget.TextBox(
-            **statsColors1,
-            text='\uf017 ',
-            font=statsFont,
-            fontsize=18,
-        ),
+        # widget.CheckUpdates(
+        #     **statsColors2,
+        #     **powerline,
+        #     colour_have_updates='#121212',
+        #     colour_no_updates='#121212',
+        #     display_format=':  {updates}',
+        #     distro="Arch",
+        #     execute='alacritty -e /usr/bin/yay -Syu',
+        #     no_update_string=' ',
+        #     padding=4,
+        #     update_interval=60
+        # ),
+        # widget.TextBox(
+        #     **statsColors1,
+        #     text='\uf017 ',
+        #     font=statsFont,
+        #     fontsize=18,
+        # ),
         widget.Clock(
             **statsColors1,
             **powerline,
-            format="%a, %d %b - %H:%M",
+            format="  %a %d %b - %H:%M",
+            # format="%a, %d %b - %H:%M",
             padding=5,
             font=statsFont,
             fontsize=12,

@@ -12,8 +12,8 @@ keys = [
     Key([win], 'h', lazy.layout.right(), desc='Move focus to right'),
     Key([win], 'j', lazy.layout.down(), desc='Move focus down'),
     Key([win], 'k', lazy.layout.up(), desc='Move focus up'),
-    Key([win], 'space', lazy.layout.next(),
-        desc='Move window focus to other window'),
+    # Key([win], 'space', lazy.layout.next(),
+    #     desc='Move window focus to other window'),
 
     # Reacomodar ventanas
     Key([win, 'shift'], 'l', lazy.layout.shuffle_left(),

@@ -6,12 +6,15 @@ from libqtile.dgroups import simple_key_binder
 groups = []
 groupsNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 groupsLabels = ["", '', '', '', '󰕧', '', '', '', '']
-groupsLayouts = ['max', 'max', 'monadtall', 'max', 'max', 'monadtall', 'monadtall', 'monadtall', 'monadtall']
+groupsLayouts = ['max', 'max', 'monadtall', 'max', 'max',
+                 'monadtall', 'monadtall', 'monadtall', 'monadtall']
+
+scriptDiscord = "/home/vrivera/dotfiles/.config/qtile/scripts/checkDiscord"
 
 groupSpawn = {
     '2': ['warp-terminal'],
     '3': ['obsidian'],
-    '4': ['mailspring --password-store="gnome-libsecret"', 'discord']
+    '4': ['mailspring --password-store="gnome-libsecret"', scriptDiscord]
 }
 
 for name, label, layout in zip(groupsNames, groupsLabels, groupsLayouts):
@@ -21,7 +24,7 @@ for name, label, layout in zip(groupsNames, groupsLabels, groupsLayouts):
         layout=layout,
         spawn=groupSpawn.get(name, [])
     ))
-    
+
 for i in groups:
     keys.extend(
         [
