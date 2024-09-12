@@ -3,7 +3,7 @@ alias logout="sudo systemctl restart ly"
 alias qlog="cat ~/.local/share/qtile/qtile.log"
 alias rmqlog="rm ~/.local/share/qtile/qtile.log"
 alias ff="fastfetch --config default " # --logo-color-1 35 -> morado
-
+#alias ff="fastfetch --config groups"
 ## ------ ARCH ------ ##
 alias grub-reconf="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias reflec="sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist"
@@ -57,6 +57,7 @@ alias mv="mv -i"
 alias du="du -sh *" # Ver tamaño de archivos
 
 ## ------ EZA ------ ##
+alias l="eza --icons=always --color=always --long --no-filesize --git"
 alias ll="eza --icons=always --color=always --long --all --no-user --no-filesize --git"
 alias ls="eza --icons=always -F always"
 alias lg="eza -l --git"
@@ -68,6 +69,9 @@ alias bund="bun run dev"
 alias buni="bun install"
 alias bunb="bun run build"
 
+## ------ PNPM ------ ##
+alias pdev="pnpm dev"
+alias pii="pnpm install"
 ## ------ LAMP ------ ##
 alias xmpstart="sudo /opt/lampp/lampp start"
 alias xmpstop="sudo /opt/lampp/lampp stop"
@@ -85,7 +89,7 @@ brilloFunction(){
 }
 
 alias mvttf="sudo mv *.ttf /usr/share/fonts/TTF && sudo fc-cache -fv"
-alias brillo=brilloFunction
+alias brillodk=brilloFunction
 alias weather="curl wttr.in"
 alias psu="ps aux | grep --color=auto"
 alias ipinfo="ip -br addr"
