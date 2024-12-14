@@ -29,6 +29,8 @@ powerline = {
     ],
 }
 terminal = "alacritty"
+
+
 def my_bar(systray=False):
     widgetList = [
         widget.Spacer(length=5),
@@ -126,7 +128,7 @@ def my_bar(systray=False):
             # mouse_callbacks={
             #     'Button1': lambda: qtile.spawn(terminal + ' -e df')},
             partition='/',
-            format='  {uf}{m}/{s}G ',
+            format='  {uf}{m}/{s}G free ',
             fmt='{}',
             padding=5,
             font=statsFont,
@@ -159,6 +161,17 @@ def my_bar(systray=False):
             font=statsFont,
             fontsize=12,
         ),
+        # widget.DoNotDisturb(
+        #     **statsColors2,
+        #     format="  {dnd}",
+        #     padding=5,
+        #     font=statsFont,
+        #     fontsize=12,
+        # ),
+        # widget.Spacer(
+        #     **statsColors1,
+        #     length=1,
+        # ),
         widget.TextBox(
             **statsColors2,
             text='',
@@ -166,7 +179,7 @@ def my_bar(systray=False):
                 '/home/vrivera/.local/bin/powermenu')},
             padding=8,
             font=statsFont,
-            fontsize=16,
+            fontsize=14,
         ),
         widget.Spacer(
             **statsColors2,
@@ -176,7 +189,7 @@ def my_bar(systray=False):
     if systray:
         widgetList.insert(6, widget.Systray(
             **statsColors1, padding=10))
-        widgetList.insert(7, widget.Spacer( **statsColors1, length=10))
+        widgetList.insert(7, widget.Spacer(**statsColors1, length=10))
 
         #    else:
         #        widgetList.insert(6,widget.Pomodoro(
@@ -185,6 +198,5 @@ def my_bar(systray=False):
         #                                fontsize=12,
         #                                font=statsFont,
     #                            ))
-
 
     return bar.Bar(widgetList, 30)

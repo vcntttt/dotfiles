@@ -101,7 +101,8 @@
         },
         {
             "type": "gpu",
-            "key": "│ ├󰍛",
+            // "key": "│ ├󰍛",
+            "key": "│ ├",
             "keyColor": "green"
         },
         {
@@ -114,11 +115,11 @@
             "key": "│ ├󰑭",
             "keyColor": "green"
         },
-        {
-            "type": "swap",
-            "key": "│ ├󰓡",
-            "keyColor": "green"
-        },
+        // {
+        //     "type": "swap",
+        //     "key": "│ ├󰓡",
+        //     "keyColor": "green"
+        // },
         {
             "type": "uptime",
             "key": "│ ├󰅐",

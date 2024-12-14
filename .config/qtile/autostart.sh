@@ -13,16 +13,16 @@ DEFAULT_WALLPAPER="$HOME/Pictures/Wallpapers/spiderverse3.jpg"
 
 # Primer Monitor
 if [ -f "$WALLPAPER_CONFIG1" ]; then
-    xwallpaper --output DP-0 --maximize "$(cat "$WALLPAPER_CONFIG1")"
+    xwallpaper --output DP-0 --zoom "$(cat "$WALLPAPER_CONFIG1")"
 else
-    xwallpaper --output DP-0 --maximize "$DEFAULT_WALLPAPER"
+    xwallpaper --output DP-0 --zoom "$DEFAULT_WALLPAPER"
 fi
 
 # Segundo Monitor
 if [ -f "$WALLPAPER_CONFIG2" ]; then
-    xwallpaper --output HDMI-1 --maximize "$(cat "$WALLPAPER_CONFIG2")"
+    xwallpaper --output HDMI-1 --zoom "$(cat "$WALLPAPER_CONFIG2")"
 else
-    xwallpaper --output HDMI-1 --maximize "$DEFAULT_WALLPAPER"
+    xwallpaper --output HDMI-1 --zoom "$DEFAULT_WALLPAPER"
 fi
 
 # compositor
@@ -46,7 +46,9 @@ flameshot &
 # sync
 dropbox &
 
-brave &
+#brave &
+zen-browser &
 python $HOME/dev/tmo-bot/main.py &
 # discord --start-minimized &
-openrgb --profile "/home/vrivera/.config/OpenRGB/todo-celeste.orp" &
+openrgb --profile "/home/vrivera/.config/OpenRGB/todo-blanco.orp" &
+polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 700 &

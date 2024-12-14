@@ -15,7 +15,6 @@ def main():
     }
 
     filesDir = os.path.expanduser("~/Dropbox/")
-    notesDir = os.path.expanduser(f"{filesDir}/Obsidian-Notes/02 - UCT")
 
     numSemestre = int(input("Ingrese el número del semestre: "))
 
@@ -24,6 +23,7 @@ def main():
     if semestreDir is None:
         print("Número de semestre inválido.")
         return
+    notesDir = os.path.expanduser(f"{filesDir}/Obsidian-Notes/02 - UCT/{semestreDir}")
 
     os.makedirs(os.path.join(filesDir, semestreDir), exist_ok=True)
 
@@ -37,7 +37,7 @@ def main():
         os.makedirs(carpetaPrincipal, exist_ok=True)
         
         # Crear la segunda carpeta del ramo con el número de semestre en la segunda ubicación
-        segundaUbicacion = os.path.join(notesDir, f"{numSemestre} - {nombreRamo}")
+        segundaUbicacion = os.path.join(notesDir, nombreRamo)
         os.makedirs(segundaUbicacion, exist_ok=True)
         
         # Enlazar simbólicamente la carpeta de la segunda ubicación con la carpeta Notas en la primera ubicación

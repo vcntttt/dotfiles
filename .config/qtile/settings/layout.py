@@ -27,7 +27,6 @@ floating_layout = layout.Floating(
         Match(wm_class="maketag"),  # gitk
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(wm_class="pavucontrol"),
-        Match(wm_class="nemo"),
         Match(wm_class="dialog"),
         Match(wm_class="error"),
         Match(wm_class="file_progress"),
