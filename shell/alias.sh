@@ -94,4 +94,4 @@ alias weather="curl wttr.in"
 alias psu="ps aux | grep --color=auto"
 alias ipinfo="ip -br addr"
 alias fixrgb="openrgb --profile '/home/vrivera/.config/OpenRGB/todo-blanco.orp'"
-alias fixmouse='polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 700'
+alias fixmouse='polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 900'
