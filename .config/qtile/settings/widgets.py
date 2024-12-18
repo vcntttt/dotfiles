@@ -1,202 +1,167 @@
 from libqtile import bar, qtile
-from .keys import terminal
-from .theme import *
+from .keys import powermenu
 from qtile_extras import widget
-from qtile_extras.widget.decorations import PowerLineDecoration
+from .theme import catpuccin, fontsize
+from qtile_extras.widget.decorations import RectDecoration
 
 # Widgets
 widget_defaults = dict(
-    font='Roboto',
-    fontsize=12,
-    padding=3,
+    font="JetBrainsMono Nerd Font",
+    fontsize=15,
+    padding=2,
+    background=catpuccin["bg"],
 )
+
+
+def _left_decor(color: str, padding_x=None, padding_y=4, round=False):
+    radius = 4 if round else [4, 0, 0, 4]
+    return [
+        RectDecoration(
+            colour=color,
+            radius=radius,
+            filled=True,
+            padding_x=padding_x,
+            padding_y=padding_y,
+        )
+    ]
+
+
+def _right_decor(round=False):
+    radius = 4 if round else [0, 4, 4, 0]
+    return [
+        RectDecoration(
+            colour=catpuccin['darkgray'],
+            radius=radius,
+            filled=True,
+            padding_y=4,
+            padding_x=0,
+        )
+    ]
+
+
+spacer = widget.Spacer(length=5)
 
 extension_defaults = widget_defaults.copy()
 
-statsColors2 = {
-    'background': foregroundColor,
-    'foreground': backgroundColor,
-}
-
-statsColors1 = {
-    'background': backgroundColor,
-    'foreground': foregroundColor,
-}
-
-powerline = {
-    "decorations": [
-        PowerLineDecoration(path="arrow_right")
-    ],
-}
-terminal = "alacritty"
-
-
-def my_bar(systray=False):
+def statusBar(systray=False):
     widgetList = [
-        widget.Spacer(length=5),
-        widget.Spacer(length=5),
+        widget.Spacer(
+            background=catpuccin['blue'],
+            length=5,
+        ),
         widget.GroupBox(
-            fontsize=16,
-            margin_x=10,
-            margin_y=4,
-            padding_x=6,
-            padding_y=6,
-            borderwidth=5,
-            background=colors["foreground"],
+            active=catpuccin['blue'],
+            inactive=catpuccin['gray'],
+            this_current_screen_border=catpuccin['blue'],
+            this_screen_border=catpuccin['blue'],
+            other_current_screen_border=catpuccin['bg'],
+            other_screen_border=catpuccin['bg'],
+            urgent_border=catpuccin['red'],
+            background=catpuccin['bg'],
+            highlight_color=catpuccin['darkgray'],
             highlight_method='line',
-            highlight_color=[colors['foreground']],
-            foreground='#000000',
-            other_screen_border=colors['other_screen_group'],
-            other_current_screen_border=colors['other_screen_group'],
-            rounded=True,
-            this_current_screen_border=colors['active_group'],
-            inactive=colors['inactiveGroup'],
-            active=colors['dark'],
+            rounded=False,
+            disable_drag=True,
+            fontsize=16,
+            borderwidth=2,
+            padding_x=10,
+            padding_y=5,
+        ),spacer,spacer,
+        widget.CurrentLayout(
+            padding=8,
+            fontsize=fontsize,
+            decorations=_right_decor(),
+
         ),
         widget.WindowName(
-            background=colors['dark'],
-            foreground=colors['foreground'],
-            font=statsFont,
-            fontsize=12,
+            fontsize=fontsize,
             max_chars=50,
             width=400,
             padding=10
         ),
         widget.Spacer(
-            background=colors['dark'],
         ),
-        widget.CurrentLayout(
-            **statsColors2,
-            **powerline,
-            padding=8,
-            font=statsFont,
-            fontsize=12,
-        ),
+        spacer,
         widget.KeyboardLayout(
-            **statsColors2,
-            **powerline,
             configured_keyboards=['us', 'us intl', 'latam'],
             display_map={'us': 'US', 'us intl': 'US INT', 'latam': 'LATAM'},
             fmt='⌨ : {}',
             padding=5,
-            font=statsFont,
-            fontsize=12
-        ),
+            fontsize=fontsize,
+            decorations=_right_decor(),
+        ), spacer,
         widget.ThermalSensor(
             format=" {temp:.0f}{unit}",
-            **statsColors1,
-            **powerline,
             update_interval=2,
             padding=5,
-        ),
-        widget.TextBox(
-            **statsColors2,
-            text='󰍛',
-            font=statsFont,
-            fontsize=16,
-        ),
+            fontsize=fontsize,
+            decorations=_right_decor(),
+
+        ), spacer,
         widget.CPU(
-            **statsColors2,
-            **powerline,
             # format="  {freq_current}GHz {load_percent}%",
-            format="{freq_current}GHz {load_percent}%",
+            format="󰍛 {freq_current}GHz {load_percent}%",
             # format='CPU: {load_percent}% ',
             # mouse_callbacks={
             #     'Button1': lambda: qtile.spawn(terminal + ' -e btop')
             # },
             padding=5,
-            font=statsFont,
-            fontsize=12,
-        ),
+            fontsize=fontsize,
+            decorations=_right_decor(),
+            foreground=catpuccin['red'],
+
+        ), spacer,
         widget.Memory(
-            **statsColors1,
-            **powerline,
             format="   {MemUsed:.0f}{mm} ",
             # format='{MemUsed: .0f}{mm} ',
             # mouse_callbacks={
             #     'Button1': lambda: qtile.spawn(terminal + ' -e btop')
             # },
             padding=5,
-            font=statsFont,
-            fontsize=12,
+            fontsize=fontsize,
+            decorations=_right_decor(),
+            foreground=catpuccin['yellow'],
         ),
+        spacer,
         widget.DF(
-            **statsColors2,
-            **powerline,
+            foreground=catpuccin['green'],
             visible_on_warn=False,
             update_interval=60,
             # mouse_callbacks={
             #     'Button1': lambda: qtile.spawn(terminal + ' -e df')},
             partition='/',
-            format='  {uf}{m}/{s}G free ',
+            # format='  {uf}{m}/{s}G free ',
+            format='  {uf}G',
             fmt='{}',
             padding=5,
-            font=statsFont,
-            fontsize=12,
-        ),
-        # widget.CheckUpdates(
-        #     **statsColors2,
-        #     **powerline,
-        #     colour_have_updates='#121212',
-        #     colour_no_updates='#121212',
-        #     display_format=':  {updates}',
-        #     distro="Arch",
-        #     execute='alacritty -e /usr/bin/yay -Syu',
-        #     no_update_string=' ',
-        #     padding=4,
-        #     update_interval=60
-        # ),
-        # widget.TextBox(
-        #     **statsColors1,
-        #     text='\uf017 ',
-        #     font=statsFont,
-        #     fontsize=18,
-        # ),
+            fontsize=fontsize,
+            decorations=_right_decor(),
+        ), spacer,
+
         widget.Clock(
-            **statsColors1,
-            **powerline,
             format="  %a %d %b - %H:%M",
-            # format="%a, %d %b - %H:%M",
-            padding=5,
-            font=statsFont,
-            fontsize=12,
-        ),
-        # widget.DoNotDisturb(
-        #     **statsColors2,
-        #     format="  {dnd}",
-        #     padding=5,
-        #     font=statsFont,
-        #     fontsize=12,
-        # ),
-        # widget.Spacer(
-        #     **statsColors1,
-        #     length=1,
-        # ),
-        widget.TextBox(
-            **statsColors2,
-            text='',
-            mouse_callbacks={'Button1': lambda: qtile.spawn(
-                '/home/vrivera/.local/bin/powermenu')},
+            foreground=catpuccin['fg'],
             padding=8,
-            font=statsFont,
-            fontsize=14,
+            fontsize=fontsize,
+            decorations=_right_decor(),
+            # mouse_callbacks={'Button1': lambda: qtile.spawn(calendar)},
+        ),
+        spacer,
+        widget.TextBox(
+            text='',
+            background=catpuccin['blue'],
+            foreground=catpuccin['black'],
+            fontsize=18,
+            padding=12,
+            mouse_callbacks={'Button1': lambda: qtile.spawn(powermenu)},
         ),
         widget.Spacer(
-            **statsColors2,
+            background=catpuccin['blue'],
             length=5,
         )]
 
     if systray:
-        widgetList.insert(6, widget.Systray(
-            **statsColors1, padding=10))
-        widgetList.insert(7, widget.Spacer(**statsColors1, length=10))
-
-        #    else:
-        #        widgetList.insert(6,widget.Pomodoro(
-        #                                **statsColors1,
-        #                                prefix_inactive="Pomodoro",
-        #                                fontsize=12,
-        #                                font=statsFont,
-    #                            ))
+        widgetList.insert(8, widget.Systray(padding=10))
+        widgetList.insert(9, widget.Spacer(length=10))
 
     return bar.Bar(widgetList, 30)

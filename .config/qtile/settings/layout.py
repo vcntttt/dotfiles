@@ -1,6 +1,6 @@
 from libqtile import layout
 from libqtile.config import Match
-from .theme import colors, statsFont
+from .theme import colors
 
 bordersConfig = {
     'margin': 5,

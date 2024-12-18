@@ -1,8 +1,8 @@
 from libqtile.config import Screen
-from .widgets import my_bar
+from .widgets import statusBar
 
 # Configuración de las pantallas
 screens = [
-    Screen(top=my_bar(True)),
-    Screen(top=my_bar()),
+    Screen(top=statusBar(True)),
+    Screen(top=statusBar()),
 ]
