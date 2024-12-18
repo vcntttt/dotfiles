@@ -38,7 +38,7 @@ keys = list(set(keys))
 #    qtile.current_group.layout_all()
 def delayed_setup():
     time.sleep(2)  # Ajusta el tiempo de espera según sea necesario
-    qtile.cmd_reconfigure_screens()
+    qtile.reconfigure_screens()
 
 # Agrega la tarea de retardo al inicio de Qtile
 @hook.subscribe.startup_complete
