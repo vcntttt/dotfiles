@@ -29,7 +29,8 @@ fi
 picom &
 
 # Keyring
-/usr/bin/gnome-keyring-daemon --start --components=ssh,secrets &
+eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
+export SSH_AUTH_SOCK
 
 # Load notification service
 dunst &
@@ -47,8 +48,8 @@ flameshot &
 dropbox &
 
 #brave &
-zen-browser &
-python $HOME/dev/tmo-bot/main.py &
+# zen-browser &
+# python $HOME/dev/tmo-bot/main.py &
 # discord --start-minimized &
 openrgb --profile "/home/vrivera/.config/OpenRGB/todo-blanco.orp" &
-polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 700 &
+polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 800 &

@@ -1,6 +1,6 @@
 # My Dotfiles
 
-![App Screenshot](demo.png)
+![App Screenshot](screenshots/demo.png)
 
 ## Configuration
 
@@ -18,22 +18,13 @@
   sudo pacman -S git stow
 ```
 
-### Manual Installation
+### Installation
 
 ```zsh
 cd ~
 git clone https://github.com/vcntttt/dotfiles.git
 cd dotfiles
 stow .
-```
-
-### Install.sh (beta)
-
-```zsh
-cd ~
-git clone https://github.com/vcntttt/dotfiles.git
-cd dotfiles
-./install.sh
 ```
 
 ## Keybindings
@@ -50,7 +41,7 @@ cd dotfiles
 
 | Key | Application |
 | ---- | ---- |
-| mod + Return | alacritty|
+| mod + Return | warp-terminal|
 | mod + shift + Return | rofi |
 | mod + shift + e | nemo |
 | mod + v |  clipboard |
@@ -83,7 +74,7 @@ cd dotfiles
 | gl | git pull|
 | gp | git push|
 
-### Development
+<!-- ### Development
 
 | Alias | Command |
 | ---- | ---- |
@@ -92,4 +83,4 @@ cd dotfiles
 | nextinit | bunx create-next-app@latest|
 | bund | bun run dev |
 | buni | bun install |
-| bunb | bun run build |
+| bunb | bun run build | -->

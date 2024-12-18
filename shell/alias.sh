@@ -1,5 +1,5 @@
 ## ------ QTILE ------ ##
-alias logout="sudo systemctl restart ly"
+alias logout="qtile cmd-obj -o cmd -f shutdown"
 alias qlog="cat ~/.local/share/qtile/qtile.log"
 alias rmqlog="rm ~/.local/share/qtile/qtile.log"
 alias ff="fastfetch --config default " # --logo-color-1 35 -> morado
@@ -94,4 +94,4 @@ alias weather="curl wttr.in"
 alias psu="ps aux | grep --color=auto"
 alias ipinfo="ip -br addr"
 alias fixrgb="openrgb --profile '/home/vrivera/.config/OpenRGB/todo-blanco.orp'"
-alias fixmouse='polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 900'
+alias fixmouse='polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 800'

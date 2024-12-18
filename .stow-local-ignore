@@ -2,6 +2,6 @@
 .gitignore
 scripts
 README.md
-demo.png
+screenshots/
 install.sh
 shell

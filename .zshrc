@@ -7,7 +7,7 @@ source ~/dotfiles/shell/env.sh
 eval "$(zoxide init zsh)"
 alias cd="z"
 # fzf - better find
-source ~/dotfiles/shell/fzf.sh
+#source ~/dotfiles/shell/fzf.sh
 # thefuck - corrector
 eval $(thefuck --alias)
 eval $(thefuck --alias fk)
@@ -32,8 +32,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 export LS_COLORS="ow=01;90;40"
 
 ## zsh plugins
-source ~/git-packages/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source ~/git-packages/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/git-packages/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+#source ~/git-packages/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source ~/git-packages/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/dotfiles/shell/zsh/sudo.zsh
 #bindkey '^[[A' history-substring-search-up
