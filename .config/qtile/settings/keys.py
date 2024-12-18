@@ -4,7 +4,8 @@ from libqtile.lazy import lazy
 win = 'mod4'
 alt = 'mod1'
 terminal = 'warp-terminal'
-fileManager = 'nemo'
+fileManager = 'nautilus'
+powermenu = "rofi -show menu -modi 'menu:~/.local/bin/rofi-power-menu --choices=shutdown/reboot/lockscreen/suspend/logout' -config ~/.config/rofi/power.rasi"
 
 keys = [
     # Moverse entre ventanas
@@ -59,9 +60,9 @@ keys = [
     Key([win, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
     Key([win], 'Tab', lazy.spawn('rofi -show window')),
     Key([alt], 'l', lazy.spawn('betterlockscreen -l')),
-    Key([win], 'BackSpace', lazy.spawn('/home/vrivera/.local/bin/powermenu')),
+    Key([win], "BackSpace", lazy.spawn(powermenu), desc="Launch powermenu"),
     Key([win], 'v', lazy.spawn('rofi -modi "clipboard:greenclip print" -show clipboard -run-command "{cmd}"')),
-    Key([win], 'e', lazy.spawn('nemo'), desc='launch nemo'),
+    Key([win], 'e', lazy.spawn(fileManager), desc='launch file manager'),
     
     # Rofi
     Key([alt], 'space', lazy.spawn('rofi -show drun'), desc='Launch rofi'),

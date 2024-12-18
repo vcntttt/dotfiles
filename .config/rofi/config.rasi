@@ -10,8 +10,10 @@ configuration {
     drun-display-format:"{icon} {name}";
     scroll-method:0;
     disable-history:false;
-    sidebar-mode:true;
+    location: 0;
+    sidebar-mode:false;
     modi: "window,drun,ssh,emoji";
+    terminal: "alacritty";
 }
 
 @import "theme.rasi"
