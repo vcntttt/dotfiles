@@ -3,6 +3,7 @@ alias logout="qtile cmd-obj -o cmd -f shutdown"
 alias qlog="cat ~/.local/share/qtile/qtile.log"
 alias rmqlog="rm ~/.local/share/qtile/qtile.log"
 alias ff="fastfetch --config default " # --logo-color-1 35 -> morado
+alias autostart="nvim ~/dotfiles/.config/qtile/autostart.sh"
 #alias ff="fastfetch --config groups"
 ## ------ ARCH ------ ##
 alias grub-reconf="sudo grub-mkconfig -o /boot/grub/grub.cfg"
@@ -33,7 +34,9 @@ alias gcfix="git commit --amend --no-edit"
 # branchs
 alias gb="git branch"
 alias gco="git checkout"
+alias gw="git switch"
 alias gd="git diff"
+alias gm="git merge"
 # pull - push
 alias gl="git pull"
 alias gp="git push"
@@ -65,9 +68,11 @@ alias la="eza --icons=always --color=always --long --all --git"
 alias lt="eza --icons=always --color=always --tree"
 
 ## ------ BUN ------ ##
-alias bund="bun run dev"
-alias buni="bun install"
-alias bunb="bun run build"
+alias br="bun run"
+alias bd="bun run dev"
+alias bi="bun install"
+alias bb="bun run build"
+alias bcn="bunx --bun shadcn@latest"
 
 ## ------ PNPM ------ ##
 alias pdev="pnpm dev"
@@ -93,5 +98,5 @@ alias brillodk=brilloFunction
 alias weather="curl wttr.in"
 alias psu="ps aux | grep --color=auto"
 alias ipinfo="ip -br addr"
-alias fixrgb="openrgb --profile '/home/vrivera/.config/OpenRGB/todo-blanco.orp'"
-alias fixmouse='polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 800'
+alias ww="openrgb --profile '/home/vrivera/.config/OpenRGB/todo-blanco.orp'"
+alias dpi='polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 800'
