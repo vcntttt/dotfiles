@@ -7,7 +7,7 @@ colors = {
     "border_focus": "#ccc",
     "border_normal": "#121826cc",
     "dark": "#1c1f24",
-    "active_group" : "#0068FF",
+    "active_group": "#0068FF",
     "other_screen_group": "#FF0000",
     "inactiveGroup": "#848991",
     "spotify": "#1ED760",
@@ -28,19 +28,19 @@ catpuccin = {
     "pink": "#F5C2E7",
     "green": "#ABE9B3",
     "red": "#F28FAD",
-    "blue": "#96CDFB"
+    "blue": "#96CDFB",
 }
 
 fontsize = 14
 
 DoomOne = [
-    ["#282c34", "#282c34"], # bg
-    ["#bbc2cf", "#bbc2cf"], # fg
-    ["#1c1f24", "#1c1f24"], # color01
-    ["#ff6c6b", "#ff6c6b"], # color02
-    ["#98be65", "#98be65"], # color03
-    ["#da8548", "#da8548"], # color04
-    ["#51afef", "#51afef"], # color05
-    ["#c678dd", "#c678dd"], # color06
-    ["#46d9ff", "#46d9ff"]  # color15
-    ]
+    ["#282c34", "#282c34"],  # bg
+    ["#bbc2cf", "#bbc2cf"],  # fg
+    ["#1c1f24", "#1c1f24"],  # color01
+    ["#ff6c6b", "#ff6c6b"],  # color02
+    ["#98be65", "#98be65"],  # color03
+    ["#da8548", "#da8548"],  # color04
+    ["#51afef", "#51afef"],  # color05
+    ["#c678dd", "#c678dd"],  # color06
+    ["#46d9ff", "#46d9ff"],  # color15
+]

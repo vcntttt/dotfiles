@@ -3,9 +3,9 @@ from libqtile.config import Match
 from .theme import colors
 
 bordersConfig = {
-    'margin': 5,
-    'border_focus': colors['border_focus'],
-    'border_normal': colors['border_normal'],
+    "margin": 5,
+    "border_focus": colors["border_focus"],
+    "border_normal": colors["border_normal"],
 }
 
 layouts = [
@@ -17,8 +17,8 @@ layouts = [
 
 floating_layout = layout.Floating(
     border_width=2,
-    border_focus=colors['border_focus'],
-    border_normal=colors['border_normal'],
+    border_focus=colors["border_focus"],
+    border_normal=colors["border_normal"],
     float_rules=[
         *layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
@@ -36,5 +36,5 @@ floating_layout = layout.Floating(
         Match(wm_class="download"),
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-    ]
+    ],
 )

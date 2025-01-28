@@ -1,6 +1,6 @@
 from libqtile.config import Group, Key, ScratchPad, DropDown
 from libqtile.lazy import lazy
-from .keys import keys, win, alt
+from .keys import keys, win
 from libqtile.dgroups import simple_key_binder
 
 groups = []
@@ -12,6 +12,7 @@ groupsLayouts = ['max', 'max', 'max', 'max', 'max',
 scriptDiscord = "/home/vrivera/dotfiles/.config/qtile/scripts/checkDiscord"
 
 groupSpawn = {
+    '1': ['zen-browser'],
     '2': ['warp-terminal'],
     '3': ['obsidian'],
     '4': ['telegram-desktop', 'mailspring --password-store="gnome-libsecret"', 'vesktop']
@@ -74,8 +75,6 @@ groups.append(ScratchPad('scratchpad', [
     # DropDown('clip', 'alacritty --class=clipboard -e clipse', **conf),
     DropDown('spotify', 'spotify', **conf),
     DropDown('pavucontrol', 'pavucontrol', **conf),
-    DropDown('pomodoro', 'solanum', **conf),
-    DropDown('todoist', 'planify', **conf),
 ]))
 
 keys.extend([
@@ -83,9 +82,7 @@ keys.extend([
     Key([win], 'b', lazy.group['scratchpad'].dropdown_toggle('btop')),
     # Key([win], 'v', lazy.group['scratchpad'].dropdown_toggle('clip')),
     Key([win], 's', lazy.group['scratchpad'].dropdown_toggle('spotify')),
-    Key([win], 'p', lazy.group['scratchpad'].dropdown_toggle('todoist')),
-    Key([win, alt], 'p', lazy.group['scratchpad'].dropdown_toggle('pavucontrol')),
-    Key([win, 'shift'], 'p', lazy.group['scratchpad'].dropdown_toggle('pomodoro')),
+    Key([win], 'p', lazy.group['scratchpad'].dropdown_toggle('pavucontrol')),
 ])
 
 dgroups_key_binder = simple_key_binder("mod4")

@@ -4,7 +4,7 @@ from libqtile.lazy import lazy
 win = 'mod4'
 alt = 'mod1'
 terminal = 'warp-terminal'
-fileManager = 'nautilus'
+fileManager = 'nemo'
 powermenu = "rofi -show menu -modi 'menu:~/.local/bin/rofi-power-menu --choices=shutdown/reboot/lockscreen/suspend/logout' -config ~/.config/rofi/power.rasi"
 
 keys = [

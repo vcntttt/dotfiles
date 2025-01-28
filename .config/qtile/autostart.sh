@@ -37,7 +37,7 @@ dunst &
 
 # systray
 nm-applet &
-volumeicon &
+#volumeicon &
 udiskie -t &
 
 # herramientas
@@ -47,9 +47,13 @@ flameshot &
 # sync
 dropbox &
 
-#brave &
-# zen-browser &
-# python $HOME/dev/tmo-bot/main.py &
-# discord --start-minimized &
 openrgb --profile "/home/vrivera/.config/OpenRGB/todo-blanco.orp" &
 polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 800 &
+
+# scripts
+/home/vrivera/.pyenv/versions/3.11.8/envs/todoist/bin/python /home/vrivera/dev/ocio-automation/main.py &
+/home/vrivera/.pyenv/versions/3.11.8/envs/discord-bot/bin/python /home/vrivera/dev/tmo-bot/main.py &
+
+# idle
+xidlehook --not-when-audio --not-when-fullscreen &
+xset s off -dpms &
