@@ -2,13 +2,12 @@
 source ~/dotfiles/shell/alias.sh
 source ~/dotfiles/shell/env.sh
 source ~/dotfiles/shell/plugins.sh
+source ~/dotfiles/shell/fzf.sh
 
 # -------- god cli tools --------
 # zoxide - better cd
 eval "$(zoxide init zsh)"
 alias cd="z"
-# fzf - better find
-#source ~/dotfiles/shell/fzf.sh
 # thefuck - corrector
 eval $(thefuck --alias)
 eval $(thefuck --alias fk)

@@ -3,8 +3,8 @@ alias logout="qtile cmd-obj -o cmd -f shutdown"
 alias qlog="cat ~/.local/share/qtile/qtile.log"
 alias rmqlog="rm ~/.local/share/qtile/qtile.log"
 alias ff="fastfetch --config default " # --logo-color-1 35 -> morado
-alias autostart="nvim ~/dotfiles/.config/qtile/autostart.sh"
 #alias ff="fastfetch --config groups"
+alias autostart="nvim ~/dotfiles/.config/qtile/autostart.sh"
 ## ------ ARCH ------ ##
 alias grub-reconf="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias reflec="sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist"

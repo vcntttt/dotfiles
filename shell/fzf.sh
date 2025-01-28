@@ -1,6 +1,7 @@
 eval "$(fzf --zsh)"
 
-source ~/dotfiles/shell/fzf-git.sh/fzf-git.sh # Fuente: https://github.com/junegunn/fzf-git.sh
+# Fuente: https://github.com/junegunn/fzf-git.sh
+source ~/dotfiles/shell/external/fzf-git.sh 
 
 ## FZF
 fg="#CBE0F0"

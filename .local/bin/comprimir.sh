@@ -1,4 +1,5 @@
 #!/bin/bash
+# comprime todas las carpetas que se encuentren en el directorio actual
 
 for dir in */ ; do
     if [ "$dir" != "default/" ]; then

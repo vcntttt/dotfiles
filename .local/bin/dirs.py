@@ -1,5 +1,6 @@
 import os
 
+
 def main():
     semestres = {
         1: "1er-Semestre",
@@ -31,19 +32,20 @@ def main():
 
     for _ in range(numRamos):
         nombreRamo = input("Ingrese el nombre del ramo: ")
-        
+
         # Crear la primera carpeta del ramo en la ubicación principal
         carpetaPrincipal = os.path.join(filesDir, semestreDir, nombreRamo)
         os.makedirs(carpetaPrincipal, exist_ok=True)
-        
+
         # Crear la segunda carpeta del ramo con el número de semestre en la segunda ubicación
         segundaUbicacion = os.path.join(notesDir, nombreRamo)
         os.makedirs(segundaUbicacion, exist_ok=True)
-        
+
         # Enlazar simbólicamente la carpeta de la segunda ubicación con la carpeta Notas en la primera ubicación
         carpetaNotas = os.path.join(carpetaPrincipal, "Notas")
         if not os.path.exists(carpetaNotas):
             os.symlink(segundaUbicacion, carpetaNotas)
+
 
 if __name__ == "__main__":
     main()
