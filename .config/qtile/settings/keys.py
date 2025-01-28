@@ -65,17 +65,16 @@ keys = [
     Key([win], 'e', lazy.spawn(fileManager), desc='launch file manager'),
     
     # Rofi
-    Key([alt], 'space', lazy.spawn('rofi -show drun'), desc='Launch rofi'),
-    Key([win], 'period', lazy.spawn('rofi -show emoji'), desc='Launch rofi'),
-    Key([win, 'shift'], 's', lazy.spawn('rofi -show ssh'), desc='Launch rofi'),
-    Key([alt, 'control'], 'Return', lazy.spawn('/home/vrivera/dev/rofi-todoist/rofi-todoist.sh'), desc='Launch rofi'),
-    Key([win, alt], 'L', lazy.spawn('betterlockscreen -l'), desc='Launch powermenu'),
+    Key([alt], 'space', lazy.spawn('rofi -show drun'), desc='Launch rofi menu apps'),
+    Key([win], 'r', lazy.spawn('rofi -show run'), desc='Launch rofi scripts'),
+    Key([win], 'period', lazy.spawn('rofi -show emoji'), desc='Launch rofi emoji'),
+    Key([win, 'shift'], 's', lazy.spawn('rofi -show ssh'), desc='Launch rofi ssh'),
+    # Key([alt, 'control'], 'Return', lazy.spawn('/home/vrivera/dev/rofi-todoist/rofi-todoist.sh'), desc='Launch rofi'),
+    Key([win, alt], 'L', lazy.spawn('betterlockscreen -l'), desc='Launch rofi powermenu'),
     Key([win, alt], 'space', lazy.spawn('/home/vrivera/.local/bin/keyboard'), desc='Launch keyboard menu'),
+    Key([win], 'c', lazy.spawn('rofi -show calc -modi calc -no-show-match -no-sort > /dev/null'), desc='Launch rofi-calc'),
     
     # Screenshot
-#   Key([], 'Print', lazy.spawn('/home/vrivera/.local/bin/screenshot select')),
-#   Key(['shift'], 'Print', lazy.spawn('/home/vrivera/.local/bin/screenshot window')),
-
     Key([], 'Print', lazy.spawn('flameshot gui')),
     Key(['shift'], 'Print', lazy.spawn('flameshot screen')),
 
