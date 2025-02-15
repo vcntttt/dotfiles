@@ -12,6 +12,15 @@ matches:
   - trigger: ":espanso"
     replace: "Hi there!"
 
+  - trigger: ":ai-cv"
+    replace: "Re-write this bullet point using this structure: I accomplished X by the measure Y that resulted in Z"
+
+  - trigger: ":zip"
+    replace: "4880000"
+
+  - trigger: ":vdev"
+    replace: "vrivera.dev@gmail.com"
+
   # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
 
   # But matches can also be dynamic:
