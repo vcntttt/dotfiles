@@ -1,0 +1,11 @@
+[user]
+	email = vrivera.dev@gmail.com
+	name = Vicente Rivera
+
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+	default = current
+

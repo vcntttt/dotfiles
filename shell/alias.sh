@@ -4,7 +4,10 @@ alias qlog="cat ~/.local/share/qtile/qtile.log"
 alias rmqlog="rm ~/.local/share/qtile/qtile.log"
 alias ff="fastfetch --config default " # --logo-color-1 35 -> morado
 #alias ff="fastfetch --config groups"
-alias autostart="nvim ~/dotfiles/.config/qtile/autostart.sh"
+## ----- NVIM ----- ##
+alias qconf="nvim ~/dotfiles/.config/qtile/"
+alias nvimconf="nvim ~/.config/nvim"
+alias ee="nvim ~/dotfiles/.config/espanso/match/base.yml && espanso restart"
 ## ------ ARCH ------ ##
 alias grub-reconf="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias reflec="sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist"
@@ -53,19 +56,19 @@ alias tgz=comprimir
 alias untar="tar -xf"
 alias fm="yazi"
 alias cdot="code ~/dotfiles"
-alias notes="nvim ~/uct-drive/obsidian-notes/"
+alias ws="windsurf ."
 alias mkdir="mkdir -pv"
 alias cp="cp -i" #i -> confirmacion
 alias mv="mv -i" 
 alias du="du -sh *" # Ver tamaño de archivos
-
+alias lsc="cloc . --exclude-dir=node_modules,.next,dist,.turbo,.git,vendor --exclude-ext=svg,json,yaml --vcs git"
 ## ------ EZA ------ ##
 alias l="eza --icons=always --color=always --long --no-filesize --git"
 alias ll="eza --icons=always --color=always --long --all --no-user --no-filesize --git"
 alias ls="eza --icons=always -F always"
 alias lg="eza -l --git"
 alias la="eza --icons=always --color=always --long --all --git"
-alias lt="eza --icons=always --color=always --tree"
+alias lt="eza --icons=always --color=always --tree --ignore-glob='node_modules'"
 
 ## ------ BUN ------ ##
 alias br="bun run"
@@ -75,8 +78,9 @@ alias bb="bun run build"
 alias bcn="bunx --bun shadcn@latest"
 
 ## ------ PNPM ------ ##
-alias pdev="pnpm dev"
-alias pii="pnpm install"
+alias pr="pnpm run"
+alias ppd="pnpm dev"
+alias ppi="pnpm install"
 ## ------ LAMP ------ ##
 alias xmpstart="sudo /opt/lampp/lampp start"
 alias xmpstop="sudo /opt/lampp/lampp stop"
@@ -99,4 +103,15 @@ alias weather="curl wttr.in"
 alias psu="ps aux | grep --color=auto"
 alias ipinfo="ip -br addr"
 alias ww="openrgb --profile '/home/vrivera/.config/OpenRGB/todo-blanco.orp'"
-alias dpi='polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 800'
+alias dpi='polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi'
+alias cleanpm="npx npkill"
+alias typr="nvim -c 'Typr'"
+
+## Docker
+alias dcu="docker compose up"
+alias dcd="docker compose down"
+alias penpot="docker compose -p penpot -f ~/docker-apps/penpot/docker-compose.yaml"
+
+## Mobile
+alias android="emulator -avd Low_Cost_Device_API_35 &"
+alias easapk="eas build -p android --profile preview"
