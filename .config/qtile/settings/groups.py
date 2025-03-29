@@ -9,8 +9,6 @@ groupsLabels = ["", '', '', '', '󰕧', '', '', '', '']
 groupsLayouts = ['max', 'max', 'max', 'max', 'max',
                  'monadtall', 'monadtall', 'monadtall', 'monadtall']
 
-scriptDiscord = "/home/vrivera/dotfiles/.config/qtile/scripts/checkDiscord"
-
 groupSpawn = {
     '1': ['zen-browser'],
     '2': ['warp-terminal'],

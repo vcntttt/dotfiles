@@ -65,7 +65,7 @@ keys = [
     Key([win], 'e', lazy.spawn(fileManager), desc='launch file manager'),
     
     # Rofi
-    Key([alt], 'space', lazy.spawn('rofi -show drun'), desc='Launch rofi menu apps'),
+    Key([win, 'shift'], 'Return', lazy.spawn('rofi -show drun'), desc='Launch rofi menu apps'),
     Key([win], 'r', lazy.spawn('rofi -show run'), desc='Launch rofi scripts'),
     Key([win], 'period', lazy.spawn('rofi -show emoji'), desc='Launch rofi emoji'),
     Key([win, 'shift'], 's', lazy.spawn('rofi -show ssh'), desc='Launch rofi ssh'),
