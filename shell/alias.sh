@@ -12,6 +12,7 @@ alias reflec="sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirror
 ## ------ ZSH ------ ##
 alias zsh="nvim ~/.zshrc && source ~/.zshrc"
 alias elias="nvim ~/dotfiles/shell/alias.sh && source ~/.zshrc"
+alias lalias="bat ~/dotfiles/shell/alias.sh"
 alias sz="source ~/.zshrc"
 ## ------ PACMAN ------ ##
 alias pup="sudo pacman -Syu"
