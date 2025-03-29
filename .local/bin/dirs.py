@@ -1,6 +1,6 @@
 import os
 
-
+# TODO: carpetas generadas deben tener nombres en lowercase sin espacios
 def main():
     semestres = {
         1: "1er-Semestre",
@@ -24,7 +24,7 @@ def main():
     if semestreDir is None:
         print("Número de semestre inválido.")
         return
-    notesDir = os.path.expanduser(f"{filesDir}/Obsidian-Notes/02 - UCT/{semestreDir}")
+    notesDir = os.path.expanduser(f"{filesDir}/Notes/200 - UCT/{semestreDir}")
 
     os.makedirs(os.path.join(filesDir, semestreDir), exist_ok=True)
 
