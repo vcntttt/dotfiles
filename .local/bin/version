@@ -1,0 +1,63 @@
+#!/bin/bash
+# Script para incrementar la versión en package.json y en app.json (si se detecta "expo" en las dependencias)
+# Uso: ./bump_version.sh [major|minor|patch]
+# Requiere que 'jq' esté instalado en el sistema.
+
+# Verifica que se haya pasado un argumento
+if [ "$#" -ne 1 ]; then
+  echo "Uso: $0 [major|minor|patch]"
+  exit 1
+fi
+
+BUMP="$1"
+
+# Extrae la versión actual del package.json
+VERSION=$(jq -r '.version' package.json)
+if [ -z "$VERSION" ]; then
+  echo "No se encontró la propiedad 'version' en package.json"
+  exit 1
+fi
+
+# Separa la versión en componentes mayor, menor y patch
+IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+
+# Incrementa la versión según el parámetro recibido
+case "$BUMP" in
+  major)
+    ((MAJOR++))
+    MINOR=0
+    PATCH=0
+    ;;
+  minor)
+    ((MINOR++))
+    PATCH=0
+    ;;
+  patch)
+    ((PATCH++))
+    ;;
+  *)
+    echo "Opción inválida: $BUMP"
+    echo "Uso: $0 [major|minor|patch]"
+    exit 1
+    ;;
+esac
+
+NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+echo "Actualizando versión: $VERSION -> $NEW_VERSION"
+
+# Actualiza la versión en package.json
+jq --arg new_version "$NEW_VERSION" '.version = $new_version' package.json > package.json.tmp && mv package.json.tmp package.json
+echo "Versión en package.json actualizada correctamente."
+
+# Verifica si existe "expo" en las dependencias de package.json
+if jq -e '.dependencies | has("expo")' package.json >/dev/null; then
+  if [ -f "app.json" ]; then
+    echo "Se encontró 'expo' en las dependencias, actualizando app.json..."
+    # Actualiza la versión en app.json dentro del objeto "expo"
+    jq --arg new_version "$NEW_VERSION" '.expo.version = $new_version' app.json > app.json.tmp && mv app.json.tmp app.json
+    echo "Versión en app.json actualizada correctamente."
+  else
+    echo "El archivo app.json no existe. No se pudo actualizar la versión de Expo."
+  fi
+fi
+
