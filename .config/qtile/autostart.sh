@@ -48,7 +48,7 @@ flameshot &
 dropbox &
 
 openrgb --profile "/home/vrivera/.config/OpenRGB/todo-blanco.orp" &
-polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 800 &
+polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi 850 &
 
 # scripts
 /home/vrivera/.pyenv/versions/3.11.8/envs/todoist/bin/python /home/vrivera/dev/ocio-automation/main.py &
