@@ -18,6 +18,9 @@ matches:
   - trigger: ":zip"
     replace: "4880000"
 
+  - trigger: ":uct"
+    replace: "vrivera2023@alu.uct.cl"
+
   - trigger: ":vdev"
     replace: "vrivera.dev@gmail.com"
 
