@@ -92,7 +92,7 @@ alias dcd="docker compose down"
 alias penpot="docker compose -p penpot -f ~/docker-apps/penpot/docker-compose.yaml"
 alias tf="terraform"
 alias tfi="terraform init"
-alias tfa="terraform apply --auto-approve
+alias tfa="terraform apply --auto-approve"
 
 ### ------ MOBILE ------ ###
 alias android="emulator -avd Low_Cost_Device_API_35 &"
