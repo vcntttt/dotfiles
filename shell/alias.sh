@@ -57,16 +57,16 @@ alias lsc="cloc . --exclude-dir=node_modules,.next,dist,.turbo,.git,vendor --exc
 
 ## ------ GIT ------ ##
 ghiFunction(){
-    ginit && gh repo create "$1" --public --source=.
+    ginit && gh repo create "$1" --public --source=. --remote=origin
 }
-alias gclone="git clone"
+alias gcl="git clone"
 alias ginit="git init --initial-branch=main"
 alias gs="git status"
 alias ga="git add"
 # commits
 alias gca="git commit -a -m"
 alias gc="git commit -m"
-alias gcfix="git commit --amend --no-edit"
+alias gcam="git commit --amend "
 # branchs
 alias gb="git branch"
 alias gco="git checkout"
