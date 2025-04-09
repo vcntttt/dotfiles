@@ -107,6 +107,15 @@ alias ppi="pnpm install"
 alias xmpstart="sudo /opt/lampp/lampp start"
 alias xmpstop="sudo /opt/lampp/lampp stop"
 
+## ------ PYTHON ------ ##
+alias pip="uv pip"
+alias pif="pip freeze > requirements.txt"
+alias pir="uv pip install -r requirements.txt"
+alias pv="pyenv"
+alias pvv="pyenv virtualenv"
+alias pva="pyenv activate"
+alias pvd="pyenv deactivate"
+
 ## ------ OTROS ------ ##
 brilloFunction(){
   if [ "$1" -eq 0 ]; then
