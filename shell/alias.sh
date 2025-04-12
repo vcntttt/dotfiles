@@ -9,7 +9,7 @@ alias qconf="nvim ~/dotfiles/.config/qtile/"
 alias nconf="nvim ~/.config/nvim"
 alias ee="nvim ~/dotfiles/.config/espanso/match/base.yml && espanso restart"
 alias nv="nvim ."
-
+alias sn="sudo nvim"
 ## ------ ARCH ------ ##
 alias grub-reconf="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias reflec="sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist"
@@ -20,7 +20,7 @@ alias zsh="nvim ~/.zshrc && source ~/.zshrc"
 alias elias="nvim ~/dotfiles/shell/alias.sh && source ~/.zshrc"
 alias lalias="bat ~/dotfiles/shell/alias.sh"
 alias sz="source ~/.zshrc"
-
+alias cat="bat"
 ## ------ PACMAN ------ ##
 alias pup="sudo pacman -Syu"
 alias yup="yay -Syu --noconfirm"
