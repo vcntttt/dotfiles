@@ -57,7 +57,7 @@ alias lsc="cloc . --exclude-dir=node_modules,.next,dist,.turbo,.git,vendor --exc
 
 ## ------ GIT ------ ##
 ghiFunction(){
-    ginit && gh repo create "$1" --public --source=. --remote=origin
+    git init && gh repo create "$1" --public --source=. --remote=origin
 }
 alias gcl="git clone"
 alias ginit="git init --initial-branch=main"
@@ -78,6 +78,7 @@ alias gl="git pull"
 alias gp="git push"
 # gh-cli
 alias ghinit=ghiFunction
+alias ghrc="gh repo create "$1" --public --source=. --remote=origin"
 
 ### ------ BUN ------ ###
 alias br="bun run"
