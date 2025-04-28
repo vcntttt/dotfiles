@@ -52,8 +52,10 @@ alias la="eza --icons=always --color=always --long --all --git"
 alias lt="eza --icons=always --color=always --tree --ignore-glob='node_modules'"
 
 ## ------ DESARROLLO ------ ##
-alias cleanpm="npx npkill" # cli tool para eliminar paquetes de node_modules
+alias cleanpm="bunx npkill" # cli tool para eliminar paquetes de node_modules
 alias lsc="cloc . --exclude-dir=node_modules,.next,dist,.turbo,.git,vendor --exclude-ext=svg,json,yaml --vcs git" # cuenta la cantidad de archivos
+alias c="code ."
+alias checkseo="bunx check-site-meta"
 
 ## ------ GIT ------ ##
 ghiFunction(){
@@ -63,34 +65,38 @@ alias gcl="git clone"
 alias ginit="git init --initial-branch=main"
 alias gs="git status"
 alias ga="git add"
+alias gap="git add -p"
 # commits
 alias gca="git commit -a -m"
 alias gc="git commit -m"
+alias gcp="git commit -p"
 alias gcam="git commit --amend "
+alias ulc="git reset --soft HEAD~1"
 # branchs
 alias gb="git branch"
 alias gco="git checkout"
 alias gw="git switch"
 alias gd="git diff"
 alias gm="git merge"
+alias gf="git fetch"
 # pull - push
 alias gl="git pull"
 alias gp="git push"
 # gh-cli
 alias ghinit=ghiFunction
-alias ghrc="gh repo create "$1" --public --source=. --remote=origin"
+alias ghrc="gh repo create --public --source=. --remote=origin"
 
 ### ------ BUN ------ ###
+alias bx="bunx"
 alias br="bun run"
-alias bd="bun run dev"
+alias brd="bun run dev"
 alias bi="bun install"
-alias bb="bun run build"
-alias bcn="bunx --bun shadcn@latest"
+alias brb="bun run build"
+alias bcn="bunx --bun shadcn@latest add"
 
 ### ------ DOCKER ------ ###
-alias dcu="docker compose up"
+alias dcu="docker compose up -d"
 alias dcd="docker compose down"
-alias penpot="docker compose -p penpot -f ~/docker-apps/penpot/docker-compose.yaml"
 alias tf="terraform"
 alias tfi="terraform init"
 alias tfa="terraform apply --auto-approve"
