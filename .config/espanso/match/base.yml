@@ -27,6 +27,12 @@ matches:
   - trigger: ":mail"
     replace: "vicenterivera225@gmail.com"
 
+  - trigger: ":app"
+    replace: "https://play.google.com/store/apps/details?id=com.vrivera.ponderapp"
+
+  - trigger: ":portfolio"
+    replace: "https://vrivera.is-a.dev"
+
   # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
 
   # But matches can also be dynamic:
