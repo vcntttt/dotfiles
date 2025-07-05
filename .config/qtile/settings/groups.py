@@ -13,7 +13,7 @@ groupSpawn = {
     '1': ['zen-browser'],
     '2': ['warp-terminal'],
     '3': ['obsidian'],
-    '4': ['telegram-desktop', 'mailspring --password-store="gnome-libsecret"', 'vesktop']
+    '4': ['mailspring --password-store="gnome-libsecret"', 'vesktop']
 }
 
 for name, label, layout in zip(groupsNames, groupsLabels, groupsLayouts):
