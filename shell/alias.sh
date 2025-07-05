@@ -17,8 +17,8 @@ alias chx="chmod +x"
 
 ## ------ ZSH ------ ##
 alias zsh="nvim ~/.zshrc && source ~/.zshrc"
-alias elias="nvim ~/dotfiles/shell/alias.sh && source ~/.zshrc"
-alias lalias="bat ~/dotfiles/shell/alias.sh"
+alias al="nvim ~/dotfiles/shell/alias.sh && source ~/.zshrc"
+alias lal="bat ~/dotfiles/shell/alias.sh"
 alias sz="source ~/.zshrc"
 alias cat="bat"
 ## ------ PACMAN ------ ##
@@ -28,16 +28,25 @@ alias pi="sudo pacman -S"
 alias pss="pacman -Ss"
 
 ## ------ ARCHIVOS ------ ##
-comprimir(){
+copyfile() {
+    if [ -f "$1" ]; then
+        (echo "Nombre del archivo: $(basename "$1")" && echo "" && cat "$1") | xclip -selection clipboard
+        echo "Contenido de '$1' copiado al portapapeles."
+    else
+        echo "Error: El archivo '$1' no existe."
+    fi
+}
+alias cpn='copyfile'
+
+alias tgz='comprimir' 
+_comprimir(){
     local dir_name=$(basename "$1")
     tar -czvf "$dir_name".tar.gz "$1"
 }
 
-alias tgz=comprimir
 alias untar="tar -xf"
 alias fm="yazi"
 alias ndot="nvim ~/dotfiles"
-alias ws="windsurf ."
 alias mkdir="mkdir -pv"
 alias cp="cp -i" #i -> confirmacion
 alias mv="mv -i" 
@@ -47,10 +56,9 @@ alias du="du -sh *" # Ver tamaño de archivos
 alias l="eza --icons=always --color=always --long --no-filesize --git"
 alias ll="eza --icons=always --color=always --long --all --no-user --no-filesize --git"
 alias ls="eza --icons=always -F always"
-alias lg="eza -l --git"
 alias la="eza --icons=always --color=always --long --all --git"
 alias lt="eza --icons=always --color=always --tree --ignore-glob='node_modules'"
-
+alias lg="lazygit"
 ## ------ DESARROLLO ------ ##
 alias cleanpm="bunx npkill" # cli tool para eliminar paquetes de node_modules
 alias lsc="cloc . --exclude-dir=node_modules,.next,dist,.turbo,.git,vendor --exclude-ext=svg,json,yaml --vcs git" # cuenta la cantidad de archivos
@@ -87,24 +95,33 @@ alias ghinit=ghiFunction
 alias ghrc="gh repo create --public --source=. --remote=origin"
 
 ### ------ BUN ------ ###
+alias npm="bun"
+alias npx-"bunx"
 alias bx="bunx"
 alias br="bun run"
 alias brd="bun run dev"
+alias brs="bun run start"
 alias bi="bun install"
+alias ba="bun add"
 alias brb="bun run build"
 alias bcn="bunx --bun shadcn@latest add"
 
 ### ------ DOCKER ------ ###
 alias dcu="docker compose up -d"
 alias dcd="docker compose down"
+### ------ TERRAFORM ------ ###
 alias tf="terraform"
 alias tfi="terraform init"
+alias tfp="terraform plan"
 alias tfa="terraform apply --auto-approve"
 alias tfia="terraform init && terraform apply --auto-approve"
+alias rsh="ssh-keygen -R"
 ### ------ MOBILE ------ ###
 alias android="emulator -avd Low_Cost_Device_API_35 &"
 alias easapk="eas build -p android --profile preview"
-
+alias eap="eas build -p --auto-submit"
+alias bep="bunx expo prebuild"
+alias bra="bun run android"
 ## ------ PNPM ------ ##
 alias pr="pnpm run"
 alias ppd="pnpm dev"
@@ -146,3 +163,4 @@ alias ipinfo="ip -br addr"
 # Perifericos
 alias ww="openrgb --profile '/home/vrivera/.config/OpenRGB/todo-blanco.orp'"
 alias dpi='polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi'
+alias ssvps="ssh elvis@190.102.240.108"
