@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Define your Qtile layouts here in the same order as in layouts.py
+# These names should match the 'name' attribute of your layout objects in Qtile
+LAYOUT_NAMES_ARRAY=("max" "columns" "monadtall" "android")
+
+# Use Rofi to select a layout name
+selected_layout_name=$(printf "%s\n" "${LAYOUT_NAMES_ARRAY[@]}" | rofi -dmenu -p "Select Qtile Layout:")
+
+# If a layout was selected, find its index and apply it
+if [ -n "$selected_layout_name" ]; then
+    selected_layout_index=-1
+    for i in "${!LAYOUT_NAMES_ARRAY[@]}"; do
+        if [[ "${LAYOUT_NAMES_ARRAY[$i]}" == "$selected_layout_name" ]]; then
+            selected_layout_index=$i
+            break
+        fi
+    done
+
+    if [ "$selected_layout_index" -ne -1 ]; then
+        # Execute the command to change layout by index and capture output/errors
+        QTILE_CMD_OUTPUT=$(qtile cmd-obj -o root -f to_layout_index -a "$selected_layout_index" 2>&1)
+        QTILE_CMD_STATUS=$?
+
+        if [ $QTILE_CMD_STATUS -eq 0 ]; then
+            notify-send "Qtile Layout Changed" "Layout set to: $selected_layout_name"
+        else
+            notify-send "Qtile Layout Error" "Failed to set layout: $selected_layout_name\nError: $QTILE_CMD_OUTPUT"
+        fi
+    else
+        notify-send "Qtile Layout Error" "Could not find index for selected layout: $selected_layout_name"
+    fi
+else
+    notify-send "Qtile Layout Switcher" "No layout selected."
+fi
