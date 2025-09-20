@@ -1,13 +1,71 @@
 [user]
 	email = vrivera.dev@gmail.com
 	name = Vicente Rivera
+	signingkey = CE3DBC67EA1FDDC4
+
+[core]
+  pager = delta
+	compression = 9
+	whitespace = error
+	preloadindex = true
+
+[advice]
+	addEmptyPathspec = false
+	pushNonFastForward = false
+	# statusHints = false
 
 [init]
 	defaultBranch = main
 
+[status]
+	branch = true
+	showStash = true
+	showUntrackedFiles = all
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgsign = true
+
+[diff]
+	context = 3
+	renames = copies
+	interHunkContext = 10
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+
+[merge]
+    conflictstyle = zdiff3
+
+[interactive]
+  diffFilter = delta --color-only
+	singleKey = true
+
 [push]
 	autoSetupRemote = true
 	default = current
+	followTags = true
 
 [pull]
+	default = current
 	rebase = false
+
+# [rebase]
+# 	autoStash = true
+# 	missingCommitsCheck = warn
+
+[log]
+	abbrevCommit = true
+	graphColors = blue, yellow, cyan, magenta, green, red
+
+
+[url "git@github.com:vcntttt/"]
+	insteadOf = "v:"
+
+[url "git@github.com:"]
+	insteadOf = "gh:"
+
+
