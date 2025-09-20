@@ -38,8 +38,8 @@ keys = [
     Key([alt, 'shift'], 'Tab', lazy.layout.up()),
 
     # next layout
-    Key([win], 'space', lazy.next_layout(),
-        desc='Toggle between layouts'),
+    Key([win], 'space', lazy.spawn('/home/vrivera/dotfiles/.local/bin/rofi-qtile-layout-switcher'),
+        desc='Launch Rofi Qtile layout switcher'),
 
     # fullscreen
     Key(
