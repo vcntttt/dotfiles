@@ -8,6 +8,7 @@ alias ff="fastfetch --config default " # --logo-color-1 35 -> morado
 alias qconf="nvim ~/dotfiles/.config/qtile/"
 alias nconf="nvim ~/.config/nvim"
 alias ee="nvim ~/dotfiles/.config/espanso/match/base.yml && espanso restart"
+alias lee="cat ~/dotfiles/.config/espanso/match/base.yml"
 alias nv="nvim ."
 alias sn="sudo nvim"
 ## ------ ARCH ------ ##
@@ -29,19 +30,21 @@ alias pss="pacman -Ss"
 
 ## ------ ARCHIVOS ------ ##
 copyfile() {
-    if [ -f "$1" ]; then
-        (echo "Nombre del archivo: $(basename "$1")" && echo "" && cat "$1") | xclip -selection clipboard
-        echo "Contenido de '$1' copiado al portapapeles."
-    else
-        echo "Error: El archivo '$1' no existe."
-    fi
+  if [ -f "$1" ]; then
+    local rel_path
+    rel_path=$(realpath --relative-to="$PWD" "$1" 2>/dev/null) || rel_path="$1"
+    (echo "Ruta del archivo: ${rel_path}" && echo "" && cat "$1") | xclip -selection clipboard
+    echo "Contenido de '$1' copiado al portapapeles."
+  else
+    echo "Error: El archivo '$1' no existe."
+  fi
 }
 alias cpn='copyfile'
 
-alias tgz='comprimir' 
-_comprimir(){
-    local dir_name=$(basename "$1")
-    tar -czvf "$dir_name".tar.gz "$1"
+alias tgz='comprimir'
+_comprimir() {
+  local dir_name=$(basename "$1")
+  tar -czvf "$dir_name".tar.gz "$1"
 }
 
 alias untar="tar -xf"
@@ -49,7 +52,7 @@ alias fm="yazi"
 alias ndot="nvim ~/dotfiles"
 alias mkdir="mkdir -pv"
 alias cp="cp -i" #i -> confirmacion
-alias mv="mv -i" 
+alias mv="mv -i"
 alias du="du -sh *" # Ver tamaño de archivos
 
 ## ------ EZA ------ ##
@@ -57,17 +60,17 @@ alias l="eza --icons=always --color=always --long --no-filesize --git"
 alias ll="eza --icons=always --color=always --long --all --no-user --no-filesize --git"
 alias ls="eza --icons=always -F always"
 alias la="eza --icons=always --color=always --long --all --git"
-alias lt="eza --icons=always --color=always --tree --ignore-glob='node_modules'"
+alias lt="eza --icons=always --color=always --tree --ignore-glob='node_modules|__pycache__'"
 alias lg="lazygit"
 ## ------ DESARROLLO ------ ##
-alias cleanpm="bunx npkill" # cli tool para eliminar paquetes de node_modules
+alias cleanpm="bunx npkill"                                                                                       # cli tool para eliminar paquetes de node_modules
 alias lsc="cloc . --exclude-dir=node_modules,.next,dist,.turbo,.git,vendor --exclude-ext=svg,json,yaml --vcs git" # cuenta la cantidad de archivos
 alias c="code ."
 alias checkseo="bunx check-site-meta"
 
 ## ------ GIT ------ ##
-ghiFunction(){
-    git init && gh repo create "$1" --public --source=. --remote=origin
+ghiFunction() {
+  git init && gh repo create "$1" --public --source=. --remote=origin
 }
 alias gcl="git clone"
 alias ginit="git init --initial-branch=main"
@@ -79,16 +82,18 @@ alias gca="git commit -a -m"
 alias gc="git commit -m"
 alias gcp="git commit -p"
 alias gcam="git commit --amend "
-alias ulc="git reset --soft HEAD~1"
+alias ulc="git reset --soft HEAD~1 && git restore --staged ."
+alias gl="git log --all --graph"
+alias gd="git diff"
+alias gds="git diff --staged"
 # branchs
 alias gb="git branch"
 alias gco="git checkout"
 alias gw="git switch"
-alias gd="git diff"
 alias gm="git merge"
 alias gf="git fetch"
-# pull - push
-alias gl="git pull"
+alias gu="git pull"
+alias gur="git pull --rebase"
 alias gp="git push"
 # gh-cli
 alias ghinit=ghiFunction
@@ -139,14 +144,20 @@ alias pv="pyenv"
 alias pvv="pyenv virtualenv"
 alias pva="pyenv activate"
 alias pvd="pyenv deactivate"
+alias pt="python -m pytest"
+
+### manejo estandar de entornos virtuales en python
+alias vi="python -m venv .venv"
+alias va="source .venv/bin/activate"
+alias vd="deactivate"
 
 ## ------ OTROS ------ ##
-brilloFunction(){
+brilloFunction() {
   if [ "$1" -eq 0 ]; then
     xrandr --output DP-0 --brightness "$2"
   elif [ "$1" -eq 1 ]; then
     xrandr --output HDMI-1 --brightness "$2"
-  else 
+  else
     xrandr --output DP-0 --brightness "$2"
     xrandr --output HDMI-1 --brightness "$2"
   fi

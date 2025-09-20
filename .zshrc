@@ -61,3 +61,12 @@ export ANDROID_HOME=$HOME/Android/Sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+PATH=~/.console-ninja/.bin:$PATH
+. "$HOME/.cargo/env"
+export PATH=$PATH:$HOME/.maestro/bin
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/vrivera/.lmstudio/bin"
+# End of LM Studio CLI section
+
