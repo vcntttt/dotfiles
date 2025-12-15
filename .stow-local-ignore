@@ -1,7 +1,5 @@
 .git
 .gitignore
-scripts
 README.md
-screenshots/
-install.sh
+demo.png
 shell
