@@ -1,72 +1,19 @@
-# -------- my configs --------
-source ~/dotfiles/shell/alias.sh
-source ~/dotfiles/shell/env.sh
-source ~/dotfiles/shell/plugins.sh
-source ~/dotfiles/shell/fzf.sh
+# Historial
+export ZDOTDIR="$HOME"
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt appendhistory sharehistory
+setopt hist_ignore_dups hist_reduce_blanks
 
-# -------- god cli tools --------
-# zoxide - better cd
-eval "$(zoxide init zsh)"
-alias cd="z"
-# thefuck - corrector
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
-# starship - better prompt
-eval "$(starship init zsh)"
-# bat - better cat
-export BAT_THEME=base16
-
-# Historial y autocompletado
-HISTFILE=~/.zsh_history
-HISTSIZE=1000
-HISTFILESIZE=2000
-SAVEHIST=100
-setopt appendhistory
+# Completion (simple, suficiente)
 autoload -Uz compinit
 compinit
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':completion:*' menu select
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-setopt NO_LIST_BEEP
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-export LS_COLORS="ow=01;90;40"
 
-## PATH
-export PATH="$HOME/.local/bin:$PATH"
+# Load env + aliases
+source ~/dotfiles/shell/env.sh
+source ~/dotfiles/shell/alias.sh
 
-# nvm path
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# bun path
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# bun completions
-[ -s "/home/vrivera/.bun/_bun" ] && source "/home/vrivera/.bun/_bun"
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-export PATH=$PATH:/home/vrivera/.spicetify
-
-export PATH="$HOME/.config/composer/vendor/bin:$PATH"
-
-PATH=~/.console-ninja/.bin:$PATH
-
-export ANDROID_HOME=$HOME/Android/Sdk
-export ANDROID_SDK_ROOT=$ANDROID_HOME
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-PATH=~/.console-ninja/.bin:$PATH
-. "$HOME/.cargo/env"
-export PATH=$PATH:$HOME/.maestro/bin
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/home/vrivera/.lmstudio/bin"
-# End of LM Studio CLI section
-
+# Tools
+source ~/dotfiles/shell/fn.sh
+source ~/dotfiles/shell/tools.sh

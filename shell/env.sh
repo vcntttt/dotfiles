@@ -1,7 +1,25 @@
+# Editor
 export EDITOR="nvim"
+export VISUAL="nvim"
+
+# Terminal
 export TERM="xterm-256color"
 
-export NODE_COMPILE_CACHE=~/.cache/nodejs-compile-cache
-export CUDA_PATH=/opt/cuda
-export PATH=$CUDA_PATH/bin:$PATH
-export LD_LIBRARY_PATH=$CUDA_PATH/lib64:$LD_LIBRARY_PATH
+# XDG
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# PATH base
+export PATH="$HOME/.local/bin:$PATH"
+
+# Android (esto sí es entorno, no runtime)
+export ANDROID_HOME="$HOME/Android/Sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools"
+
+# Cargo
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+
+# Bat
+export BAT_THEME="base16"

@@ -29,24 +29,8 @@ alias pi="sudo pacman -S"
 alias pss="pacman -Ss"
 
 ## ------ ARCHIVOS ------ ##
-copyfile() {
-  if [ -f "$1" ]; then
-    local rel_path
-    rel_path=$(realpath --relative-to="$PWD" "$1" 2>/dev/null) || rel_path="$1"
-    (echo "Ruta del archivo: ${rel_path}" && echo "" && cat "$1") | xclip -selection clipboard
-    echo "Contenido de '$1' copiado al portapapeles."
-  else
-    echo "Error: El archivo '$1' no existe."
-  fi
-}
-alias cpn='copyfile'
-
-alias tgz='comprimir'
-_comprimir() {
-  local dir_name=$(basename "$1")
-  tar -czvf "$dir_name".tar.gz "$1"
-}
-
+alias ..="cd .."
+alias ...="cd ../.."
 alias untar="tar -xf"
 alias fm="yazi"
 alias ndot="nvim ~/dotfiles"
@@ -69,9 +53,7 @@ alias c="code ."
 alias checkseo="bunx check-site-meta"
 
 ## ------ GIT ------ ##
-ghiFunction() {
-  git init && gh repo create "$1" --public --source=. --remote=origin
-}
+
 alias gcl="git clone"
 alias ginit="git init --initial-branch=main"
 alias gs="git status"
@@ -96,7 +78,6 @@ alias gu="git pull"
 alias gur="git pull --rebase"
 alias gp="git push"
 # gh-cli
-alias ghinit=ghiFunction
 alias ghrc="gh repo create --public --source=. --remote=origin"
 
 ### ------ BUN ------ ###
@@ -152,19 +133,9 @@ alias va="source .venv/bin/activate"
 alias vd="deactivate"
 
 ## ------ OTROS ------ ##
-brilloFunction() {
-  if [ "$1" -eq 0 ]; then
-    xrandr --output DP-0 --brightness "$2"
-  elif [ "$1" -eq 1 ]; then
-    xrandr --output HDMI-1 --brightness "$2"
-  else
-    xrandr --output DP-0 --brightness "$2"
-    xrandr --output HDMI-1 --brightness "$2"
-  fi
-}
+
 
 alias mvttf="sudo mv *.ttf /usr/share/fonts/TTF && sudo fc-cache -fv"
-alias brillodk=brilloFunction
 alias typr="nvim -c 'Typr'"
 
 # Informacion
@@ -174,4 +145,3 @@ alias ipinfo="ip -br addr"
 # Perifericos
 alias ww="openrgb --profile '/home/vrivera/.config/OpenRGB/todo-blanco.orp'"
 alias dpi='polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi'
-alias ssvps="ssh elvis@190.102.240.108"
