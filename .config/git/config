@@ -15,8 +15,8 @@
 
 [advice]
 	addEmptyPathspec = false   # No muestra aviso al ejecutar 'git add' sin archivos
-	pushNonFastForward = false# No muestra advertencias al fallar push no fast-forward
-	statusHints = false       # Oculta sugerencias al final de 'git status'
+	pushNonFastForward = false # No muestra advertencias al fallar push no fast-forward
+	statusHints = false        # Oculta sugerencias al final de 'git status'
 
 
 [init]
