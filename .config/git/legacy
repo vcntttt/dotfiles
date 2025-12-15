@@ -12,7 +12,7 @@
 [advice]
 	addEmptyPathspec = false
 	pushNonFastForward = false
-	# statusHints = false
+	statusHints = false
 
 [init]
 	defaultBranch = main
@@ -29,9 +29,9 @@
     gpgsign = true
 
 [diff]
-	context = 3
+	context = 5
 	renames = copies
-	interHunkContext = 10
+	interHunkContext = 5
 
 [delta]
     navigate = true  # use n and N to move between diff sections

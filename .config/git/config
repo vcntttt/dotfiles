@@ -3,30 +3,90 @@
 [user]
 	email = vrivera.dev@gmail.com
 	name = Vicente Rivera
+	# signingkey = CE3DBC67EA1FDDC4
 
-[alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
+
+[core]
+	pager = delta              # Usa delta como visor de diffs (mejor legibilidad)
+	compression = 9            # Máxima compresión de objetos Git
+	whitespace = error         # Trata errores de whitespace como errores reales
+	preloadindex = true        # Precarga el índice para acelerar status/diff/add
+
+
+[advice]
+	addEmptyPathspec = false   # No muestra aviso al ejecutar 'git add' sin archivos
+	pushNonFastForward = false# No muestra advertencias al fallar push no fast-forward
+	statusHints = false       # Oculta sugerencias al final de 'git status'
+
+
 [init]
-	defaultBranch = master
+	defaultBranch = main       # Usa 'main' como rama por defecto al crear repos
+
+
 [pull]
-	rebase = true 			 # Rebase (instead of merge) on pull
+	rebase = false             # git pull ≡ git fetch + git merge (no reescribe historial)
+
+
 [push]
-	autoSetupRemote = true   # Automatically set upstream branch on push
+	autoSetupRemote = true     # Define upstream automáticamente en el primer push
+
+
 [diff]
-	algorithm = histogram    # Clearer diffs on moved/edited lines
-	colorMoved = plain       # Highlight moved blocks in diffs
-	mnemonicPrefix = true    # More intuitive refs in diff output
+	algorithm = histogram      # Diffs más claros en refactors y bloques movidos
+	colorMoved = plain         # Resalta líneas movidas sin marcarlas como borradas
+	mnemonicPrefix = true      # Prefijos i/ y w/ en lugar de a/ y b/
+	context = 5                # Muestra 5 líneas de contexto alrededor de cada cambio
+	renames = copies           # Detecta archivos renombrados y copiados
+	interHunkContext = 5       # Une bloques cercanos en un solo hunk
+
+
+[delta]
+	navigate = true            # Permite navegar entre bloques con n y N
+	dark = true                # Fuerza tema oscuro (útil si terminal no autodetecta)
+
+
+[interactive]
+	diffFilter = delta --color-only # Usa delta en 'git add -p'
+	singleKey = true                # Permite seleccionar hunks con una sola tecla
+
+
+[merge]
+	conflictstyle = zdiff3     # Muestra base + ambos lados al resolver conflictos
+
+
 [commit]
-	verbose = true           # Include diff comment in commit message template
+	verbose = true             # Incluye diff comentado en el mensaje de commit
+	# gpgsign = true            # Firma commits con GPG
+
+
 [column]
-	ui = auto 			     # Output in columns when possible
+	ui = auto                  # Muestra salidas en columnas cuando es posible
+
+
 [branch]
-	sort = -committerdate    # Sort branches by most recent commit first
+	sort = -committerdate     # Ordena ramas por último commit
+
+
 [tag]
-	sort = -version:refname  # Sort version numbers as you would expect
+	sort = -version:refname   # Ordena tags por versión semántica
+	# gpgsign = true           # Firma tags con GPG
+
+
+[log]
+	abbrevCommit = true       # Usa hashes cortos en git log
+	graphColors = blue, yellow, cyan, magenta, green, red
+	                           # Colores personalizados para el grafo
+
+
 [rerere]
-	enabled = true           # Record and reuse conflict resolutions
-	autoupdate = true        # Apply stored conflict resolutions automatically
+	enabled = true             # Guarda resoluciones de conflictos para reutilizarlas
+	autoupdate = true          # Aplica automáticamente resoluciones conocidas
+
+
+# Atajos para URLs de repositorios remotos
+[url "git@github.com:vcntttt/"]
+	insteadOf = "v:"           
+
+
+[url "git@github.com:"]
+	insteadOf = "gh:"
