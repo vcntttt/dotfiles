@@ -23,3 +23,6 @@ export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools"
 
 # Bat
 export BAT_THEME="base16"
+
+# BUN
+export PATH="/home/vrivera/.cache/.bun/bin:$PATH"
