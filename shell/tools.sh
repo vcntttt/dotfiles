@@ -13,3 +13,8 @@ if command -v zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
   alias cd="z"
 fi
+
+# direnv (environment variable manager)
+if command -v direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi

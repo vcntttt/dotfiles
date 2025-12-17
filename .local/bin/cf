@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# Copia el contenido de uno o más archivos de texto al portapapeles con sus rutas relativas.
+
+if [ $# -eq 0 ]; then
+  echo "Uso: cf <archivo1> [archivo2] [archivo3] ..." >&2
+  exit 1
+fi
+
+base_dir="$PWD"
+tmp_output=$(mktemp)
+
+# Función para validar que el archivo existe
+validate_file() {
+  if [ ! -f "$1" ]; then
+    echo "Error: el archivo '$1' no existe." >&2
+    return 1
+  fi
+  return 0
+}
+
+# Validar todos los archivos antes de procesar
+for file in "$@"; do
+  validate_file "$file" || exit 1
+done
+
+# Si es un solo archivo, formato simple
+if [ $# -eq 1 ]; then
+  rel_path=$(realpath --relative-to="$base_dir" "$1" 2>/dev/null || echo "$1")
+  {
+    echo "Nombre del archivo: ${rel_path}"
+    echo ""
+    cat "$1"
+  } > "$tmp_output"
+  
+  cat "$tmp_output" | xclip -selection clipboard
+  echo "Contenido de '$1' copiado al portapapeles."
+else
+  # Múltiples archivos, formato con separadores
+  {
+    echo "Archivos copiados: $#"
+    for file in "$@"; do
+      rel_path=$(realpath --relative-to="$base_dir" "$file" 2>/dev/null || echo "$file")
+      echo "- ${rel_path}"
+    done
+    echo ""
+    
+    for file in "$@"; do
+      rel_path=$(realpath --relative-to="$base_dir" "$file" 2>/dev/null || echo "$file")
+      echo "────────────────────────────────────────────────────"
+      echo "Ruta del archivo: ${rel_path}"
+      echo ""
+      cat "$file"
+      echo -e "\n"
+    done
+  } > "$tmp_output"
+  
+  cat "$tmp_output" | xclip -selection clipboard
+  echo "✅ Contenido de $# archivos copiado al portapapeles."
+fi
+
+rm -f "$tmp_output"
+

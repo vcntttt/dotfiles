@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+SERVICE="openvpn-client@galileo"
+
+if systemctl is-active --quiet "$SERVICE"; then
+  sudo systemctl stop "$SERVICE"
+  notify-send "VPN" "Galileo desconectada"
+else
+  sudo systemctl start "$SERVICE"
+  notify-send "VPN" "Galileo conectada"
+fi

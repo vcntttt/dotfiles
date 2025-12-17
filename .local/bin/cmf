@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+# Copia el contenido de todos los archivos de texto de la carpeta actual al portapapeles.
+# Uso:
+#   cmf                    # Copia todos los archivos de texto
+#   cmf -e ext1 ext2       # Copia solo archivos con extensiones específicas (sin punto)
+#   cmf -x file1 file2     # Copia todos excepto los archivos especificados
+
+set -e
+
+base_dir="$PWD"
+tmp_file=$(mktemp)
+tmp_files_list=$(mktemp)
+
+# Variables para filtros
+filter_mode="all"  # all, extension, exclude
+declare -a extensions=()
+declare -a exclude_files=()
+
+# Procesar argumentos
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -e|--extension)
+      filter_mode="extension"
+      shift
+      while [[ $# -gt 0 && ! "$1" =~ ^- ]]; do
+        extensions+=("$1")
+        shift
+      done
+      ;;
+    -x|--exclude)
+      filter_mode="exclude"
+      shift
+      while [[ $# -gt 0 && ! "$1" =~ ^- ]]; do
+        exclude_files+=("$1")
+        shift
+      done
+      ;;
+    -h|--help)
+      echo "Uso: cmf [opciones]"
+      echo ""
+      echo "Opciones:"
+      echo "  (sin opciones)           Copia todos los archivos de texto"
+      echo "  -e, --extension EXT...   Copia solo archivos con las extensiones especificadas"
+      echo "                           Ejemplo: cmf -e py js json"
+      echo "  -x, --exclude FILE...    Copia todos los archivos excepto los especificados"
+      echo "                           Ejemplo: cmf -x README.md package-lock.json"
+      echo "  -h, --help              Muestra esta ayuda"
+      exit 0
+      ;;
+    *)
+      echo "Error: opción desconocida '$1'" >&2
+      echo "Usa 'cmf --help' para ver las opciones disponibles." >&2
+      exit 1
+      ;;
+  esac
+done
+
+is_text_file() {
+  local mime_type
+  mime_type=$(/usr/bin/file --brief --mime-type "$1" 2>/dev/null)
+  case "$mime_type" in
+    text/*|application/json|application/xml|application/javascript|application/x-sh|application/x-shellscript|inode/x-empty)
+      return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+should_include_file() {
+  local file="$1"
+  local basename=$(basename "$file")
+  local extension="${basename##*.}"
+  
+  # Siempre ignorar .gitignore
+  [[ "$basename" == ".gitignore" ]] && return 1
+  
+  case "$filter_mode" in
+    extension)
+      # Solo incluir si tiene una de las extensiones especificadas
+      [[ "$basename" == *.* ]] || return 1
+      for ext in "${extensions[@]}"; do
+        [[ "$extension" == "$ext" ]] && return 0
+      done
+      return 1
+      ;;
+    exclude)
+      # Incluir todos excepto los excluidos
+      for excluded in "${exclude_files[@]}"; do
+        local excluded_basename=$(basename "$excluded")
+        [[ "$basename" == "$excluded_basename" ]] && return 1
+      done
+      return 0
+      ;;
+    *)
+      # Modo all: incluir todos
+      return 0
+      ;;
+  esac
+}
+
+echo "Archivos en la carpeta:" > "$tmp_file"
+
+if [ -d .git ]; then
+  all_files=$(git ls-files --others --cached --exclude-standard)
+else
+  all_files=$(/usr/bin/find . -type f -not -path "*/.git/*" | /usr/bin/sort)
+fi
+
+while IFS= read -r file; do
+  [ -z "$file" ] && continue
+  [[ "$file" != /* ]] && file="./$file"
+
+  if is_text_file "$file" && should_include_file "$file"; then
+    rel_path=$(/usr/bin/realpath --relative-to="$base_dir" "$file")
+    echo "- ${rel_path}" >> "$tmp_file"
+    echo "$file" >> "$tmp_files_list"
+  fi
+done <<< "$all_files"
+
+cat "$tmp_file"
+
+{
+  while IFS= read -r file; do
+    echo "────────────────────────────────────────────────────"
+    echo "Ruta del archivo: $(/usr/bin/realpath --relative-to="$base_dir" "$file")"
+    echo ""
+    /usr/bin/cat "$file"
+    echo -e "\n"
+  done < "$tmp_files_list"
+} | /usr/bin/xclip -selection clipboard
+
+echo ""
+echo "✅ Contenido de archivos de texto copiado al portapapeles."
+
+/usr/bin/rm -f "$tmp_file" "$tmp_files_list"
