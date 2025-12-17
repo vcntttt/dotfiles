@@ -17,3 +17,5 @@ source ~/dotfiles/shell/alias.sh
 # Tools
 source ~/dotfiles/shell/fn.sh
 source ~/dotfiles/shell/tools.sh
+source ~/dotfiles/shell/plugins.sh
+
