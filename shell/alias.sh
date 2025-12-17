@@ -29,6 +29,8 @@ alias rmqlog="rm ~/.local/share/qtile/qtile.log"
 alias qconf="nvim ~/dotfiles/.config/qtile/"
 alias ff="fastfetch --config default"
 
+# --- WM / Hyprland --- #
+alias rwb="pkill waybar && waybar &"
 
 # --- EDITOR / NVIM --- #
 alias nv="nvim ."

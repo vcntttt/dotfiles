@@ -13,6 +13,7 @@
   ],
   "modules-right": [
     "group/tray-expander",
+    "custom/vpn",
     "network",
     "pulseaudio",
     "cpu",
@@ -160,5 +161,10 @@
       "playing": "",
       "paused": "󰏤"
     }
+  },
+  "custom/vpn": {
+    "exec": "systemctl is-active openvpn-client@galileo >/dev/null && echo '󰖂 Galileo ON' || echo ''",
+    "on-click": "galileo",
+    "interval": 5
   }
 }

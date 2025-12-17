@@ -41,7 +41,7 @@
 }
 
 #tray {
-  margin-right: 16px;
+  margin-right: 0px;
 }
 
 #bluetooth {
@@ -53,7 +53,7 @@
 }
 
 #custom-expand-icon {
-  margin-right: 18px;
+  margin-right: 8px;
 }
 
 tooltip {
@@ -97,4 +97,12 @@ tooltip {
 
 #mpris.paused {
   color: alpha(@foreground, 0.5);
+}
+
+#custom-vpn {
+  padding: 0 12px;
+  margin: 4px 8px;
+  border-radius: 8px;
+  background: alpha(@foreground, 0.06);
+  font-size: 13px;
 }
