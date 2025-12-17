@@ -3,7 +3,7 @@
 [user]
 	email = vrivera.dev@gmail.com
 	name = Vicente Rivera
-	# signingkey = CE3DBC67EA1FDDC4
+	signingkey = CE3DBC67EA1FDDC4
 
 
 [core]
@@ -56,7 +56,7 @@
 
 [commit]
 	verbose = true             # Incluye diff comentado en el mensaje de commit
-	# gpgsign = true            # Firma commits con GPG
+	gpgsign = true            # Firma commits con GPG
 
 
 [column]
@@ -69,7 +69,7 @@
 
 [tag]
 	sort = -version:refname   # Ordena tags por versión semántica
-	# gpgsign = true           # Firma tags con GPG
+	gpgsign = true           # Firma tags con GPG
 
 
 [log]
