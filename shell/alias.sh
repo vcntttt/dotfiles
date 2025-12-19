@@ -142,7 +142,7 @@ alias tfa="terraform apply --auto-approve"
 alias tfia="terraform init && terraform apply --auto-approve"
 
 alias rsh="ssh-keygen -R"
-
+alias stga="systemctl status openvpn-client@galileo"
 
 # --- MOBILE / ANDROID --- #
 alias android="emulator -avd Low_Cost_Device_API_35 &"
