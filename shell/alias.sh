@@ -132,7 +132,8 @@ alias lsc="cloc . --exclude-dir=node_modules,.next,dist,.turbo,.git,vendor --exc
 # --- DOCKER --- #
 alias dcu="docker compose up -d"
 alias dcd="docker compose down"
-
+alias dc="docker compose"
+alias dcb="docker compose build"
 
 # --- TERRAFORM / INFRA --- #
 alias tf="terraform"
