@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Waybar updates checker (Arch)
+# Outputs compact JSON only when updates are available
+
+if ! command -v checkupdates >/dev/null 2>&1; then
+  exit 0
+fi
+
+COUNT=$(checkupdates 2>/dev/null | wc -l)
+
+if [ "$COUNT" -eq 0 ]; then
+  exit 0
+fi
+
+printf '{"text":"","tooltip":"%s updates available"}\n' "$COUNT"
