@@ -9,7 +9,7 @@ alias cat="bat"
 
 # --- SISTEMA / ARCH --- #
 alias pup="sudo pacman -Syu"
-alias pi="sudo pacman -S"
+alias pi="sudo pacman -S --needed"
 alias pss="pacman -Ss"
 
 alias yup="yay -Syu --noconfirm"
@@ -29,7 +29,7 @@ alias qconf="nvim ~/dotfiles/.config/qtile/"
 alias ff="fastfetch --config default"
 
 # --- WM / Hyprland --- #
-alias rwb="pkill waybar && waybar &"
+alias rwb="pkill waybar && waybar & disown"
 
 # --- EDITOR / NVIM --- #
 alias nv="nvim ."
@@ -67,7 +67,7 @@ alias lt="eza --icons=always --tree --ignore-glob='node_modules|__pycache__'"
 alias lg="lazygit"
 
 alias ginit="git init --initial-branch=main"
-alias gcl="git clone"
+alias gcl="git clone --depth=1"
 
 alias gs="git status"
 alias ga="git add"
