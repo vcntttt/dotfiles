@@ -1,1 +1,0 @@
-/home/vrivera/.config/omarchy/current/theme/neovim.lua
