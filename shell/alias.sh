@@ -7,7 +7,6 @@ alias lal="bat ~/dotfiles/shell/alias.sh"
 
 alias cat="bat"
 
-
 # --- SISTEMA / ARCH --- #
 alias pup="sudo pacman -Syu"
 alias pi="sudo pacman -S"
@@ -20,9 +19,9 @@ alias grub-reconf="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
 alias chx="chmod +x"
 
-
 # --- WM / QTILE --- #
-alias logout="qtile cmd-obj -o cmd -f shutdown"
+#alias logout="qtile cmd-obj -o cmd -f shutdown"
+alias logout="hyprctl dispatch exit"
 alias qlog="cat ~/.local/share/qtile/qtile.log"
 alias rmqlog="rm ~/.local/share/qtile/qtile.log"
 
@@ -43,7 +42,6 @@ alias ndot="nvim ~/dotfiles"
 alias ee="nvim ~/dotfiles/.config/espanso/match/base.yml && espanso restart"
 alias lee="cat ~/dotfiles/.config/espanso/match/base.yml"
 
-
 # --- ARCHIVOS / NAVEGACIÓN --- #
 alias ..="cd .."
 alias ...="cd ../.."
@@ -58,14 +56,12 @@ alias du="du -sh *"
 alias fm="yazi"
 alias fz="fzf"
 
-
 # --- LISTADO / EZA --- #
 alias ls="eza --icons=always -F always"
 alias l="eza --icons=always --color=always --long --no-filesize --git --header"
 alias la="eza --icons=always --color=always --long --all --git --header"
 alias ll="eza --icons=always --color=always --long --all --no-user --no-filesize --git --header"
 alias lt="eza --icons=always --tree --ignore-glob='node_modules|__pycache__'"
-
 
 # --- GIT --- #
 alias lg="lazygit"
@@ -101,7 +97,6 @@ alias gp="git push"
 # GitHub CLI
 alias ghrc="gh repo create --public --source=. --remote=origin"
 
-
 # --- BUN / NODE / PNPM --- #
 alias npm="bun"
 alias npx="bunx"
@@ -123,11 +118,9 @@ alias ppi="pnpm install"
 alias pr="pnpm run"
 alias ppd="pnpm dev"
 
-
 # --- DESARROLLO GENERAL --- #
 alias c="code ."
 alias lsc="cloc . --exclude-dir=node_modules,.next,dist,.turbo,.git,vendor --exclude-ext=svg,json,yaml --vcs git"
-
 
 # --- DOCKER --- #
 alias dcu="docker compose up -d"
@@ -153,7 +146,6 @@ alias easapk="eas build -p android --profile preview"
 alias eap="eas build -p --auto-submit"
 alias bep="bunx expo prebuild"
 
-
 # --- PYTHON --- #
 alias pip="uv pip"
 alias pif="pip freeze > requirements.txt"
@@ -171,18 +163,15 @@ alias vi="python -m venv .venv"
 alias va="source .venv/bin/activate"
 alias vd="deactivate"
 
-
 # --- SERVICIOS LOCALES --- #
 alias xmpstart="sudo /opt/lampp/lampp start"
 alias xmpstop="sudo /opt/lampp/lampp stop"
-
 
 # --- HARDWARE / PERIFÉRICOS --- #
 alias mvttf="sudo mv *.ttf /usr/share/fonts/TTF && sudo fc-cache -fv"
 
 alias ww="openrgb --profile '/home/vrivera/.config/OpenRGB/todo-blanco.orp'"
 alias dpi='polychromatic-cli -n "Razer Viper V3 HyperSpeed" --dpi'
-
 
 # --- INFO / UTILIDADES --- #
 alias weather="curl wttr.in"

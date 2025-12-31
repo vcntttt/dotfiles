@@ -28,3 +28,4 @@ export BAT_THEME="base16"
 # BUN
 export PATH="/home/vrivera/.cache/.bun/bin:$PATH"
 export SSH_AUTH_SOCK
+export GNOME_KEYRING_CONTROL
