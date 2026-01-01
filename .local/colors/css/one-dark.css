@@ -17,3 +17,12 @@
 @define-color grey0 #5c6370;
 @define-color grey1 #828997;
 @define-color grey2 #abb2bf;
+
+@define-color background @bg0;
+@define-color foreground @fg;
+@define-color color1 @bg1;
+@define-color color2 @red;
+@define-color color3 @blue;
+@define-color color4 @yellow;
+@define-color color5 @aqua;
+@define-color color6 @purple;
