@@ -27,7 +27,6 @@ configuration {
     element-padding:             80px 10px;
     element-radius:              100%;
     general-radius:              100%;
-    element-font:                "feather 64";
 }
 
 /*****----- Main Window -----*****/
@@ -84,7 +83,7 @@ dummy {
 }
 
 textbox-prompt-colon {
-    enabled:                     true;
+    enabled:                     false;
     expand:                      false;
     str:                         "SYSTEM";
     padding:                     var(general-padding);
@@ -95,7 +94,7 @@ textbox-prompt-colon {
 prompt {
     enabled:                     true;
     padding:                     var(general-padding);
-    border-radius:               0px 100% 100% 0px;
+    border-radius:               100%;
     background-color:            @active;
     text-color:                  @background;
 }
@@ -167,7 +166,7 @@ element {
     cursor:                      pointer;
 }
 element-text {
-    font:                        var(element-font);
+    font: "JetBrainsMono Nerd Font Propo 64";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
