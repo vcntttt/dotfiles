@@ -21,7 +21,7 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import "~/.config/rofi/colors/onedark.rasi"
+@import "~/.local/colors/rasi/onedark.rasi"
 
 * {
     font: "JetBrainsMono Nerd Font Propo 12";

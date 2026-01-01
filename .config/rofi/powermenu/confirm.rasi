@@ -13,8 +13,11 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import                          "colors.rasi"
-@import                          "fonts.rasi"
+@import "~/.local/colors/rasi/onedark.rasi"
+
+* {
+    font: "JetBrains Mono Nerd Font 12";
+}
 
 /*****----- Main Window -----*****/
 window {
