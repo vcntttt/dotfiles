@@ -5,8 +5,14 @@
   "spacing": 0,
   "height": 34,
 
-  "modules-left": ["hyprland/workspaces", "mpris"],
-  "modules-center": ["hyprland/window", "custom/update"],
+  "modules-left": [
+    "hyprland/workspaces", 
+    "mpris"
+  ],
+  "modules-center": [
+    //"hyprland/window", 
+    "custom/update"
+  ],
   "modules-right": [
     "group/tray-expander",
     "custom/vpn",
@@ -49,7 +55,7 @@
     "exec": "~/.local/bin/updates",
     "interval": 1800,
     "return-type": "json",
-    "on-click": "ghostty --class pacman-update -e sudo pacman -Syu",
+    "on-click": "uwsm-app -- ghostty --class pacman-update -e sudo pacman -Syu",
     "tooltip": true
   },
   "cpu": {
