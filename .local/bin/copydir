@@ -10,6 +10,7 @@ tmp_files_list=$(mktemp)
 filter_mode="all"
 declare -a extensions=()
 declare -a exclude_files=()
+declare -a target_dirs=()
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -30,16 +31,28 @@ while [[ $# -gt 0 ]]; do
       done
       ;;
     -h|--help)
-      echo "Uso: cmf [opciones]"
+      echo "Uso: copydir [opciones] [CARPETA...]"
       echo ""
-      echo "  (sin opciones)           Copia todos los archivos de texto"
+      echo "  (sin carpeta)            Usa la carpeta actual"
       echo "  -e, --extension EXT...   Copia solo archivos con extensiones"
       echo "  -x, --exclude FILE...    Excluye archivos específicos"
       exit 0
       ;;
+    --)
+      shift
+      while [[ $# -gt 0 ]]; do
+        target_dirs+=("$1")
+        shift
+      done
+      break
+      ;;
     *)
-      echo "Opción desconocida: $1" >&2
-      exit 1
+      if [[ "$1" == -* ]]; then
+        echo "Opción desconocida: $1" >&2
+        exit 1
+      fi
+      target_dirs+=("$1")
+      shift
       ;;
   esac
 done
@@ -78,24 +91,39 @@ should_include_file() {
   esac
 }
 
-echo "Archivos en la carpeta:" > "$tmp_file"
-
-if [ -d .git ]; then
-  all_files=$(git ls-files --others --cached --exclude-standard)
-else
-  all_files=$(find . -type f -not -path "*/.git/*" | sort)
+if [ ${#target_dirs[@]} -eq 0 ]; then
+  target_dirs=(".")
 fi
 
-while IFS= read -r file; do
-  [ -z "$file" ] && continue
-  [[ "$file" != /* ]] && file="./$file"
+echo "Archivos en la carpeta:" > "$tmp_file"
 
-  if is_text_file "$file" && should_include_file "$file"; then
-    rel=$(realpath --relative-to="$base_dir" "$file")
-    echo "- $rel" >> "$tmp_file"
-    echo "$file" >> "$tmp_files_list"
+for dir in "${target_dirs[@]}"; do
+  if [ ! -d "$dir" ]; then
+    echo "Directorio no encontrado: $dir" >&2
+    exit 1
   fi
-done <<< "$all_files"
+
+  (
+    cd "$dir"
+
+    if [ -d .git ]; then
+      all_files=$(git ls-files --others --cached --exclude-standard)
+    else
+      all_files=$(find . -type f -not -path "*/.git/*" | sort)
+    fi
+
+    while IFS= read -r file; do
+      [ -z "$file" ] && continue
+      [[ "$file" != /* ]] && file="$PWD/$file"
+
+      if is_text_file "$file" && should_include_file "$file"; then
+        rel=$(realpath --relative-to="$base_dir" "$file")
+        echo "- $rel" >> "$tmp_file"
+        echo "$file" >> "$tmp_files_list"
+      fi
+    done <<< "$all_files"
+  )
+done
 
 cat "$tmp_file"
 
