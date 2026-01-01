@@ -1,8 +1,8 @@
 # --- CORE / ZSH --- #
-alias sz="source ~/.zshrc"
+alias sz="source ~/.zshrc && abbr_sync_from_aliases"
 alias zsh="nvim ~/.zshrc && source ~/.zshrc"
 
-alias al="nvim ~/dotfiles/shell/alias.sh && source ~/.zshrc"
+alias al="nvim ~/dotfiles/shell/alias.sh && source ~/.zshrc && abbr_sync_from_aliases"
 alias lal="bat ~/dotfiles/shell/alias.sh"
 
 alias cat="bat"
@@ -29,8 +29,7 @@ alias ff="fastfetch --config default"
 
 # --- WM / Hyprland --- #
 alias logout="hyprctl dispatch exit"
-alias rwb="pkill waybar && waybar & disown"
-
+alias ra="restart-app"
 # --- EDITOR / NVIM --- #
 alias nv="nvim ."
 alias sn="sudo nvim"

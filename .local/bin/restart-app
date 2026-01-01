@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+app="$1"
+
+[[ -z "$app" ]] && exit 1
+
+pkill -x "$app" 2>/dev/null || true
+setsid "$app" >/dev/null 2>&1 &

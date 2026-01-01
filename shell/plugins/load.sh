@@ -12,12 +12,22 @@ source "$PLUGINS_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zs
 
 # zsh-abbr (pacman/aur)
 source /usr/share/zsh/plugins/zsh-abbr/zsh-abbr.plugin.zsh
+abbr_sync_from_aliases() {
+  local abbr_file="${ABBR_USER_ABBREVIATIONS_FILE:-$HOME/.config/zsh-abbr/user-abbreviations}"
+
+  mkdir -p "${abbr_file:h}"
+
+  # Backup opcional
+  [[ -f "$abbr_file" ]] && cp -f "$abbr_file" "$abbr_file.bak"
+
+  # Reset persistente
+  : > "$abbr_file"
+
+  # Recargar y reimportar aliases (silenciar output normal)
+  abbr load >/dev/null
+  abbr import-aliases >/dev/null
+}
 
 # keybinds for history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
-# convertir aliases -> abreviaciones
-if ! abbr list | grep -q gs; then
-  abbr import-aliases
-fi
