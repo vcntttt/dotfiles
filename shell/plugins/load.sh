@@ -17,9 +17,6 @@ abbr_sync_from_aliases() {
 
   mkdir -p "${abbr_file:h}"
 
-  # Backup opcional
-  [[ -f "$abbr_file" ]] && cp -f "$abbr_file" "$abbr_file.bak"
-
   # Reset persistente
   : > "$abbr_file"
 

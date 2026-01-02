@@ -1,41 +1,43 @@
 #!/usr/bin/env bash
-# Focus an existing window or launch it, then float + center + resize.
+# Focus an existing window (by class/title regex) or launch it floating.
 
-if [[ $# -lt 1 ]]; then
-  echo "Usage: launch-or-focus-float <window-pattern> [launch-command]"
+set -euo pipefail
+
+if [[ $# -lt 2 ]]; then
+  echo "Usage: launch-or-focus-float <window-pattern> <launch-command...>"
+  echo "Env: WIDTH (default 1300), HEIGHT (default 900)"
   exit 1
 fi
 
-WINDOW_PATTERN="$1"
-LAUNCH_COMMAND="${2:-$1}"
+PATTERN="$1"
+shift
+
 WIDTH="${WIDTH:-1300}"
 HEIGHT="${HEIGHT:-900}"
 
 find_addr() {
-  hyprctl clients -j | jq -r --arg p "$WINDOW_PATTERN" '
+  hyprctl clients -j | jq -r --arg p "$PATTERN" '
     .[] |
     select(
-      (.class | test("\\b"+$p+"\\b"; "i")) or
-      (.title | test("\\b"+$p+"\\b"; "i"))
+      (.class        | test($p; "i")) or
+      (.title        | test($p; "i")) or
+      (.initialClass | test($p; "i")) or
+      (.initialTitle | test($p; "i"))
     ) |
     .address
   ' | head -n1
 }
 
-addr=$(find_addr)
+addr="$(find_addr || true)"
 
-if [[ -z "$addr" ]]; then
-  hyprctl dispatch exec "[float; center; size $WIDTH $HEIGHT] $LAUNCH_COMMAND"
+if [[ -z "${addr:-}" ]]; then
+  cmd_str="$(printf '%q ' "$@")"
+  hyprctl dispatch exec "[float; center; size $WIDTH $HEIGHT] ${cmd_str% }"
   exit 0
 fi
 
-if [[ -n "$addr" ]]; then
-  hyprctl dispatch focuswindow "address:$addr"
-  floating=$(hyprctl clients -j | jq -r --arg a "$addr" '
-    .[] | select(.address==$a) | .floating
-  ')
-  if [[ "$floating" == "0" || "$floating" == "false" ]]; then
-    hyprctl dispatch togglefloating
-  fi
-  hyprctl dispatch centerwindow 1
-fi
+hyprctl -q --batch \
+  "dispatch focuswindow address:$addr;" \
+  "dispatch togglefloating address:$addr;" \
+  "dispatch resizeactive exact $WIDTH $HEIGHT address:$addr;" \
+  "dispatch centerwindow address:$addr;"

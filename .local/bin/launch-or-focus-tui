@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
-# Launch or focus a TUI app using its app-id
+# Launch/focus a Ghostty TUI with stable class, always floating.
 
-if [[ $# -eq 0 ]]; then
+set -euo pipefail
+
+if [[ $# -lt 1 ]]; then
   echo "Usage: launch-or-focus-tui <command> [args...]"
   exit 1
 fi
 
 APP_ID="org.user.$(basename "$1")"
-LAUNCH_COMMAND="launch-tui $*"
 
-exec launch-or-focus "$APP_ID" "$LAUNCH_COMMAND"
+exec launch-or-focus-float \
+  "$APP_ID" \
+  ghostty --class="$APP_ID" -e "$1" "${@:2}"

@@ -1,51 +1,86 @@
 @define-color foreground #cdd6f4;
 @define-color background #202020;
+@define-color bar-bg alpha(@background, 0.88);
+@define-color pill-bg alpha(@foreground, 0.08);
+@define-color pill-border alpha(@foreground, 0.18);
 
 
 * {
-  background-color: @background;
+  background-color: transparent;
   color: @foreground;
 
   border: none;
   border-radius: 0;
   min-height: 0;
-  font-family: 'JetBrainsMono Nerd Font';
+  font-family: 'JetBrainsMono Nerd Font Propo';
   font-size: 14px;
 }
 
+window#waybar {
+  background-color: @bar-bg;
+}
+
 .modules-left {
-  margin-left: 8px;
+  margin-left: 0px;
 }
 
 .modules-right {
-  margin-right: 8px;
+  margin-right: 0px;
+}
+
+#mpris,
+#custom-vpn,
+#custom-update,
+#network,
+#pulseaudio,
+#cpu,
+#memory,
+#clock,
+#custom-notification {
+  background: @pill-bg;
+  border: 1px solid @pill-border;
+  border-radius: 8px;
+  padding: 0 10px;
+  margin: 4px 6px;
+  min-height: 24px;
+}
+
+#workspaces {
+  margin: 4px 6px;
+  padding: 0;
+  border: none;
+  background: transparent;
 }
 
 #workspaces button {
   all: initial;
-  padding: 0 6px;
-  margin: 0 1.5px;
-  min-width: 9px;
+  padding: 0 7px;
+  margin: 0 2px;
+  min-width: 14px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid alpha(@foreground, 0.28);
+  color: @foreground;
 }
 
 #workspaces button.empty {
   opacity: 0.5;
 }
 
+#workspaces button.focused,
+#workspaces button.active {
+  background: alpha(@foreground, 0.18);
+  border-color: alpha(@foreground, 0.5);
+}
+
 #cpu,
 #pulseaudio,
-#custom-update {
-  min-width: 12px;
-  margin: 0 7.5px;
-}
-
-#tray {
-  margin-right: 5px;
-}
-
-
-#network {
-  margin-right: 13px;
+#custom-update,
+#network,
+#custom-notification,
+#memory {
+  min-width: 28px;
+  padding: 0 8px;
 }
 
 tooltip {
@@ -57,7 +92,7 @@ tooltip {
 }
 
 #clock {
-  margin: 0 8.75px;
+  padding: 0 12px;
 }
 
 .hidden {
@@ -66,11 +101,7 @@ tooltip {
 
 #mpris {
   padding: 0 12px;
-  margin: 4px 6px;
-  border-radius: 8px;
-  background: alpha(@foreground, 0.06);
   font-size: 13px;
-  margin-left: 20px;
 }
 
 #mpris.playing {
@@ -83,14 +114,10 @@ tooltip {
 
 #custom-vpn {
   padding: 0 12px;
-  margin: 4px 8px;
-  border-radius: 8px;
-  background: alpha(@foreground, 0.06);
   font-size: 13px;
 }
 
 #custom-notification {
   font-size: 13px;
   font-family: "NotoSansMono Nerd Font";
-  margin-right: 8.75px;
 }
