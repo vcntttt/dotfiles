@@ -62,7 +62,7 @@
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "btop"
+    "on-click": "launch-or-focus-tui btop"
   },
   "clock": {
     "locale": "es_CL.UTF-8",
@@ -84,7 +84,7 @@
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "pavucontrol",
+    "on-click": "launch-or-focus-float pavucontrol",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,

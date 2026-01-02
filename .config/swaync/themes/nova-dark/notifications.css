@@ -13,12 +13,9 @@
   /*text-selected:         @background; */
 
   color: @text;
-
-  all: unset;
-  font-size: 14px;
-  font-family: "JetBrains Mono Nerd Font 10";
-  transition: 200ms;
-
+  font-family: "JetBrains Mono Nerd Font";
+  font-size: 13px;
+  transition: 160ms ease;
 }
 
 .notification-row {
@@ -70,10 +67,6 @@
   color: @background;
 }
 
-.image {
-  margin: 10px 20px 10px 0px;
-}
-
 .summary {
   font-weight: 800;
   font-size: 1rem;
@@ -107,4 +100,44 @@
 .notification.low progress,
 .notification.normal progress {
   background-color: @selected;
+}
+
+/* ICONS ------------------------------------------------ */
+.image {
+  min-width: 44px;
+  min-height: 44px;
+  max-width: 44px;
+  max-height: 44px;
+
+  margin: 6px 12px 6px 0;
+  border-radius: 10px;
+  border: 1px solid alpha(@selected, .25);
+  background-color: alpha(@background, .45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* El icono en sí */
+.image > image {
+  min-width: 32px;
+  min-height: 32px;
+  max-width: 32px;
+  max-height: 32px;
+}
+
+/* Evita iconos enanos */
+.app-icon {
+  min-width: 44px;
+  min-height: 44px;
+  max-width: 44px;
+  max-height: 44px;
+}
+
+.image:empty {
+  background-color: alpha(@background-alt, .8);
+}
+
+.notification.no-image .image {
+  display: none;
 }

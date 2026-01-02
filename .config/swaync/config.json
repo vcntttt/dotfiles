@@ -41,7 +41,6 @@
   },
   "widgets": [
     "label",
-    "buttons-grid",
     "title",
     "dnd",
     "notifications"
