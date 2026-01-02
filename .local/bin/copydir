@@ -137,7 +137,6 @@ cat "$tmp_file"
   done < "$tmp_files_list"
 } | wl-copy
 
-echo ""
 echo "✅ Contenido de archivos de texto copiado al portapapeles."
 
 rm -f "$tmp_file" "$tmp_files_list"
