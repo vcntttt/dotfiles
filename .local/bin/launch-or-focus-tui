@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Launch or focus a TUI app using its app-id
+
+if [[ $# -eq 0 ]]; then
+  echo "Usage: launch-or-focus-tui <command> [args...]"
+  exit 1
+fi
+
+APP_ID="org.user.$(basename "$1")"
+LAUNCH_COMMAND="launch-tui $*"
+
+exec launch-or-focus "$APP_ID" "$LAUNCH_COMMAND"

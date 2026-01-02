@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Focus an existing window or launch it, then float + center + resize.
+
+if [[ $# -lt 1 ]]; then
+  echo "Usage: launch-or-focus-float <window-pattern> [launch-command]"
+  exit 1
+fi
+
+WINDOW_PATTERN="$1"
+LAUNCH_COMMAND="${2:-$1}"
+WIDTH="${WIDTH:-1300}"
+HEIGHT="${HEIGHT:-900}"
+
+find_addr() {
+  hyprctl clients -j | jq -r --arg p "$WINDOW_PATTERN" '
+    .[] |
+    select(
+      (.class | test("\\b"+$p+"\\b"; "i")) or
+      (.title | test("\\b"+$p+"\\b"; "i"))
+    ) |
+    .address
+  ' | head -n1
+}
+
+addr=$(find_addr)
+
+if [[ -z "$addr" ]]; then
+  hyprctl dispatch exec "[float; center; size $WIDTH $HEIGHT] $LAUNCH_COMMAND"
+  exit 0
+fi
+
+if [[ -n "$addr" ]]; then
+  hyprctl dispatch focuswindow "address:$addr"
+  floating=$(hyprctl clients -j | jq -r --arg a "$addr" '
+    .[] | select(.address==$a) | .floating
+  ')
+  if [[ "$floating" == "0" || "$floating" == "false" ]]; then
+    hyprctl dispatch togglefloating
+  fi
+  hyprctl dispatch centerwindow 1
+fi

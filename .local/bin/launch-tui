@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Launch a TUI with a stable app-id using Ghostty and force floating
+
+if [[ $# -eq 0 ]]; then
+  echo "Usage: launch-tui <command> [args...]"
+  exit 1
+fi
+
+APP_ID="org.user.$(basename "$1")"
+
+addr=$(hyprctl clients -j | jq -r --arg c "$APP_ID" '
+  .[] | select(.class==$c) | .address
+' | tail -n1)
+
+if [[ -n "$addr" ]]; then
+  hyprctl dispatch focuswindow "address:$addr"
+  floating=$(hyprctl clients -j | jq -r --arg a "$addr" '
+    .[] | select(.address==$a) | .floating
+  ')
+  if [[ "$floating" == "0" || "$floating" == "false" ]]; then
+    hyprctl dispatch togglefloating
+  fi
+  hyprctl dispatch centerwindow 1
+  exit 0
+fi
+
+cmd=(ghostty --class="$APP_ID" -e "$1" "${@:2}")
+cmd_str=$(printf '%q ' "${cmd[@]}")
+hyprctl dispatch exec "[float; center; size 1300 900] ${cmd_str% }"

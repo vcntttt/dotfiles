@@ -9,16 +9,20 @@ y=${4:-}
 active=$(hyprctl activewindow -j)
 addr=$(echo "$active" | jq -r '.address')
 pinned=$(echo "$active" | jq -r '.pinned')
+floating=$(echo "$active" | jq -r '.floating')
+has_pop=$(echo "$active" | jq -r '(.tags // []) | index("pop") | if . == null then "false" else "true" end')
 
 [[ -z "$addr" ]] && exit 0
 
-if [[ "$pinned" == "true" ]]; then
+if [[ "$pinned" == "true" || "$has_pop" == "true" ]]; then
   hyprctl -q --batch \
     "dispatch pin address:$addr;" \
     "dispatch togglefloating address:$addr;" \
     "dispatch tagwindow -pop address:$addr;"
 else
-  hyprctl dispatch togglefloating address:$addr
+  if [[ "$floating" == "0" || "$floating" == "false" ]]; then
+    hyprctl dispatch togglefloating address:$addr
+  fi
   hyprctl dispatch resizeactive exact "$width" "$height" address:$addr
 
   if [[ -n "$x" && -n "$y" ]]; then

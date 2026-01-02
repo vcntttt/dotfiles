@@ -10,7 +10,7 @@
     "mpris"
   ],
   "modules-center": [
-    //"hyprland/window", 
+    //"hyprland/window",
     "custom/update"
   ],
   "modules-right": [
