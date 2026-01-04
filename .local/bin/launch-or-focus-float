@@ -33,11 +33,26 @@ addr="$(find_addr || true)"
 if [[ -z "${addr:-}" ]]; then
   cmd_str="$(printf '%q ' "$@")"
   hyprctl dispatch exec "[float; center; size $WIDTH $HEIGHT] ${cmd_str% }"
+  for _ in {1..20}; do
+    addr="$(find_addr || true)"
+    [[ -n "${addr:-}" ]] && break
+    sleep 0.05
+  done
+  if [[ -n "${addr:-}" ]]; then
+    hyprctl dispatch focuswindow "address:$addr"
+  fi
   exit 0
 fi
 
-hyprctl -q --batch \
-  "dispatch focuswindow address:$addr;" \
-  "dispatch togglefloating address:$addr;" \
-  "dispatch resizeactive exact $WIDTH $HEIGHT address:$addr;" \
-  "dispatch centerwindow address:$addr;"
+hyprctl dispatch focuswindow "address:$addr"
+
+floating=$(hyprctl clients -j | jq -r --arg a "$addr" '
+  .[] | select(.address==$a) | .floating
+' | head -n1)
+
+if [[ "$floating" == "0" || "$floating" == "false" ]]; then
+  hyprctl dispatch togglefloating
+fi
+
+hyprctl dispatch resizeactive exact "$WIDTH" "$HEIGHT"
+hyprctl dispatch centerwindow 1

@@ -9,7 +9,8 @@ if [[ $# -lt 1 ]]; then
 fi
 
 APP_ID="org.user.$(basename "$1")"
+script_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 
-exec launch-or-focus-float \
+exec "$script_dir/launch-or-focus-float" \
   "$APP_ID" \
   ghostty --class="$APP_ID" -e "$1" "${@:2}"
