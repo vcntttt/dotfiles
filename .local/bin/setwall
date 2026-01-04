@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat >&2 <<'EOF'
+Uso: setwall [--force] <ruta-a-imagen>
+
+Reemplaza todas las líneas `path = ...` en ~/.config/hypr/hyprpaper.conf
+con la ruta absoluta de la imagen indicada.
+EOF
+}
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  usage
+  exit 0
+fi
+
+force=0
+if [[ "${1:-}" == "--force" ]]; then
+  force=1
+  shift
+fi
+
+if [[ $# -ne 1 ]]; then
+  usage
+  exit 1
+fi
+
+input_path="$1"
+if [[ "$input_path" == "~" || "$input_path" == "~/"* ]]; then
+  input_path="${HOME}${input_path:1}"
+fi
+
+if [[ ! -f "$input_path" ]]; then
+  echo "Error: no existe el archivo: $input_path" >&2
+  exit 1
+fi
+
+wall_abs="$(realpath -- "$input_path")"
+config_file="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/hyprpaper.conf"
+
+if [[ ! -f "$config_file" ]]; then
+  echo "Error: no existe el archivo de configuración: $config_file" >&2
+  exit 1
+fi
+
+config_abs="$(realpath -- "$config_file")"
+if [[ "$wall_abs" == "$config_abs" ]]; then
+  echo "Error: la ruta indicada apunta al mismo archivo de configuración." >&2
+  exit 1
+fi
+
+if [[ "$force" -eq 0 ]] && command -v file >/dev/null 2>&1; then
+  mime="$(file -b --mime-type -- "$wall_abs" 2>/dev/null || true)"
+  if [[ "$mime" != image/* ]]; then
+    echo "Error: '$wall_abs' no parece una imagen (mime: ${mime:-desconocido})." >&2
+    echo "Tip: usa --force si igual lo querés setear." >&2
+    exit 1
+  fi
+fi
+
+path_lines="$(perl -ne 'BEGIN{$in=0;$c=0} $in=1 if /^\s*wallpaper\s*\{\s*$/; $c++ if $in && /^\s*path\s*=\s*/; $in=0 if $in && /^\s*\}\s*$/; END{print $c}' "$config_file")"
+if [[ "${path_lines:-0}" -eq 0 ]]; then
+  echo "Error: no encontré líneas 'path = ...' dentro de bloques 'wallpaper { }' en: $config_file" >&2
+  exit 1
+fi
+
+tmp="$(mktemp)"
+trap 'rm -f "$tmp"' EXIT
+
+export SETWALL_PATH="$wall_abs"
+perl -pe 'BEGIN { $p = $ENV{SETWALL_PATH}; $in=0 } $in=1 if /^\s*wallpaper\s*\{\s*$/; if ($in && /^(\s*path\s*=\s*).*/) { $_ = $1 . $p . "\n" } $in=0 if $in && /^\s*\}\s*$/;' \
+  "$config_file" >"$tmp"
+
+mv -f -- "$tmp" "$config_file"
+trap - EXIT
+
+if ! command -v systemctl >/dev/null 2>&1; then
+  echo "Error: no encontré 'systemctl' para reiniciar hyprpaper." >&2
+  exit 1
+fi
+
+systemctl --user restart hyprpaper.service
+echo 'ok'

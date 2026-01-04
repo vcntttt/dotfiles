@@ -30,6 +30,8 @@ alias ff="fastfetch --config default"
 # --- WM / Hyprland --- #
 alias logout="hyprctl dispatch exit"
 alias ra="restart-app"
+alias rwall="systemctl --user restart hyprpaper.service"
+
 # --- EDITOR / NVIM --- #
 alias nv="nvim ."
 alias sn="sudo nvim"
