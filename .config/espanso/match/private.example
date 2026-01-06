@@ -1,0 +1,4 @@
+matches:
+  - trigger: ":zip"
+    replace: "0000000"
+

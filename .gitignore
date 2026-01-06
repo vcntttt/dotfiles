@@ -2,3 +2,4 @@ __pycache__/
 console-ninja
 omarchy/
 .local/share/icons/Bibata-Modern-Ice
+.config/espanso/match/private.yml
