@@ -36,6 +36,7 @@ window#waybar {
 #cpu,
 #memory,
 #clock,
+#custom-weather,
 #custom-notification {
   background: @pill-bg;
   border: 1px solid @pill-border;

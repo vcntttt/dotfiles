@@ -8,13 +8,14 @@
   "modules-left": [
     "hyprland/workspaces", 
     "mpris"
+    // "hyprland/window"
   ],
   "modules-center": [
-    "hyprland/window",
     "custom/update"
   ],
   "modules-right": [
     // "tray",
+    "custom/weather",
     "custom/vpn",
     "network",
     "pulseaudio",
@@ -91,7 +92,7 @@
     "spacing": 1
   },
   "pulseaudio": {
-    "format": "{icon}",
+    "format": "{icon} {volume}% ",
     "on-click": "$HOME/.local/bin/launch-or-focus-float pavucontrol pavucontrol",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
@@ -143,5 +144,12 @@
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
     "escape": true
+  },
+  "custom/weather": {
+    "format": "{}°",
+    "tooltip": true,
+    "interval": 600,
+    "exec": "wttrbar --location Temuco,Chile",
+    "return-type": "json"
   }
 }
