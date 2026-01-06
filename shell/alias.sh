@@ -186,3 +186,14 @@ alias psu="ps aux | grep --color=auto"
 alias ipinfo="ip -br addr"
 
 alias typr="nvim -c 'Typr'"
+
+# --- TMUX --- #
+alias t='tmux'
+alias ta='tmux attach -t'
+alias tn='tmux new -s'
+alias tls='tmux ls'
+alias tk='tmux kill-session -t'
+
+tm() {
+  tmux attach -t "$1" || tmux new -s "$1"
+}
