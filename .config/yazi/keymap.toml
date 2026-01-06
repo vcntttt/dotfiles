@@ -126,8 +126,9 @@ keymap = [
 
 	# Goto
 	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go home" },
-	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go ~/.config" },
-	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go ~/Downloads" },
+	{ on = [ "g", "c" ],       run = "cd ~/dotfiles/.config",     desc = "Go ~/dotfiles/.config" },
+	{ on = [ "g", "d" ],       run = "cd ~/dotfiles",   desc = "Go ~/dotfiles" },
+	{ on = [ "g", "b" ],       run = "cd ~/dotfiles/.local/bin",   desc = "Go ~/dotfiles/.local/bin" },
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
 	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
 
@@ -161,7 +162,7 @@ keymap = [
 prepend_keymap = [
   { on = [ "c", "a" ], run = "shell --block --confirm 'compress $@'", desc = "Compress selection" },
   { on = [ "c", "x" ], run = "shell --block --confirm 'decompress $@'", desc = "Extract archive" },
-	{ on = "g", run = "shell --block 'cd \"$PWD\" && lazygit'", desc = "Open lazygit (repo)" },
+	{ on = "G", run = "shell --block 'git rev-parse --is-inside-work-tree >/dev/null 2>&1 && lazygit || echo \"Not a git repo\"'", desc = "Open lazygit (repo)" },
 ]
 
 
