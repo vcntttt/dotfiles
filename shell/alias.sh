@@ -60,6 +60,8 @@ alias fz="fzf"
 alias cpf="copyfile"
 alias cpd="copydir"
 
+
+
 # --- LISTADO / EZA --- #
 alias ls="eza --icons=always -F always"
 alias l="eza --icons=always --color=always --long --no-filesize --git --header"
@@ -67,6 +69,7 @@ alias la="eza --icons=always --color=always --long --all --git --header"
 alias ll="eza --icons=always --color=always --long --all --no-user --no-filesize --git --header"
 alias lt="eza --icons=always --tree --ignore-glob='node_modules|__pycache__'"
 alias fl="fc-list : family | sort | uniq | grep -i"
+
 # --- GIT --- #
 alias lg="lazygit"
 
