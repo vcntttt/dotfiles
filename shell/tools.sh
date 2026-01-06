@@ -18,3 +18,11 @@ fi
 if command -v direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
 fi
+
+# edit command buffer
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+# magic space (expand !! in sudo !!)
+bindkey ' ' magic-space

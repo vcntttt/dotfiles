@@ -197,3 +197,5 @@ alias tk='tmux kill-session -t'
 tm() {
   tmux attach -t "$1" || tmux new -s "$1"
 }
+
+alias -s md="nvim"
