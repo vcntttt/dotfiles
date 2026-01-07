@@ -99,6 +99,9 @@ keymap = [
 	{ on = [ "c", "d" ], run = "copy dirname",          desc = "Copy the directory path" },
 	{ on = [ "c", "f" ], run = "copy filename",         desc = "Copy the filename" },
 	{ on = [ "c", "n" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
+	{ on = [ "c", "p", "f" ], run = "shell --block --confirm 'copyfile $@'",         desc = "Copy the file content" },
+	{ on = [ "c", "p", "d" ], run = "shell --block --confirm 'copydir $@'",          desc = "Copy the dir content" },
+
 
 	# Filter
 	{ on = "f", run = "filter --smart", desc = "Filter files" },
