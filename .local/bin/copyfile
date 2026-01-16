@@ -26,9 +26,9 @@ if [ $# -eq 1 ]; then
     echo "Nombre del archivo: ${rel_path}"
     echo ""
     cat "$1"
-  } > "$tmp_output"
+  } >"$tmp_output"
 
-  wl-copy < "$tmp_output"
+  clipcopy <"$tmp_output"
   echo "Contenido de '$1' copiado al portapapeles."
 else
   {
@@ -47,9 +47,9 @@ else
       cat "$file"
       echo ""
     done
-  } > "$tmp_output"
+  } >"$tmp_output"
 
-  wl-copy < "$tmp_output"
+  clipcopy <"$tmp_output"
   echo "✅ Contenido de $# archivos copiado al portapapeles."
 fi
 

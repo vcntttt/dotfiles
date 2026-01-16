@@ -14,46 +14,46 @@ declare -a target_dirs=()
 
 while [[ $# -gt 0 ]]; do
   case $1 in
-    -e|--extension)
-      filter_mode="extension"
+  -e | --extension)
+    filter_mode="extension"
+    shift
+    while [[ $# -gt 0 && ! "$1" =~ ^- ]]; do
+      extensions+=("$1")
       shift
-      while [[ $# -gt 0 && ! "$1" =~ ^- ]]; do
-        extensions+=("$1")
-        shift
-      done
-      ;;
-    -x|--exclude)
-      filter_mode="exclude"
+    done
+    ;;
+  -x | --exclude)
+    filter_mode="exclude"
+    shift
+    while [[ $# -gt 0 && ! "$1" =~ ^- ]]; do
+      exclude_files+=("$1")
       shift
-      while [[ $# -gt 0 && ! "$1" =~ ^- ]]; do
-        exclude_files+=("$1")
-        shift
-      done
-      ;;
-    -h|--help)
-      echo "Uso: copydir [opciones] [CARPETA...]"
-      echo ""
-      echo "  (sin carpeta)            Usa la carpeta actual"
-      echo "  -e, --extension EXT...   Copia solo archivos con extensiones"
-      echo "  -x, --exclude FILE...    Excluye archivos específicos"
-      exit 0
-      ;;
-    --)
-      shift
-      while [[ $# -gt 0 ]]; do
-        target_dirs+=("$1")
-        shift
-      done
-      break
-      ;;
-    *)
-      if [[ "$1" == -* ]]; then
-        echo "Opción desconocida: $1" >&2
-        exit 1
-      fi
+    done
+    ;;
+  -h | --help)
+    echo "Uso: copydir [opciones] [CARPETA...]"
+    echo ""
+    echo "  (sin carpeta)            Usa la carpeta actual"
+    echo "  -e, --extension EXT...   Copia solo archivos con extensiones"
+    echo "  -x, --exclude FILE...    Excluye archivos específicos"
+    exit 0
+    ;;
+  --)
+    shift
+    while [[ $# -gt 0 ]]; do
       target_dirs+=("$1")
       shift
-      ;;
+    done
+    break
+    ;;
+  *)
+    if [[ "$1" == -* ]]; then
+      echo "Opción desconocida: $1" >&2
+      exit 1
+    fi
+    target_dirs+=("$1")
+    shift
+    ;;
   esac
 done
 
@@ -61,9 +61,10 @@ is_text_file() {
   local mime
   mime=$(file --brief --mime-type "$1" 2>/dev/null)
   case "$mime" in
-    text/*|application/json|application/xml|application/javascript|application/x-sh|inode/x-empty)
-      return 0 ;;
-    *) return 1 ;;
+  text/* | application/json | application/xml | application/javascript | application/x-sh | inode/x-empty)
+    return 0
+    ;;
+  *) return 1 ;;
   esac
 }
 
@@ -75,19 +76,19 @@ should_include_file() {
   [[ "$name" == ".gitignore" ]] && return 1
 
   case "$filter_mode" in
-    extension)
-      for e in "${extensions[@]}"; do
-        [[ "$ext" == "$e" ]] && return 0
-      done
-      return 1
-      ;;
-    exclude)
-      for ex in "${exclude_files[@]}"; do
-        [[ "$name" == "$(basename "$ex")" ]] && return 1
-      done
-      return 0
-      ;;
-    *) return 0 ;;
+  extension)
+    for e in "${extensions[@]}"; do
+      [[ "$ext" == "$e" ]] && return 0
+    done
+    return 1
+    ;;
+  exclude)
+    for ex in "${exclude_files[@]}"; do
+      [[ "$name" == "$(basename "$ex")" ]] && return 1
+    done
+    return 0
+    ;;
+  *) return 0 ;;
   esac
 }
 
@@ -95,7 +96,7 @@ if [ ${#target_dirs[@]} -eq 0 ]; then
   target_dirs=(".")
 fi
 
-echo "Archivos en la carpeta:" > "$tmp_file"
+echo "Archivos en la carpeta:" >"$tmp_file"
 
 for dir in "${target_dirs[@]}"; do
   if [ ! -d "$dir" ]; then
@@ -118,10 +119,10 @@ for dir in "${target_dirs[@]}"; do
 
       if is_text_file "$file" && should_include_file "$file"; then
         rel=$(realpath --relative-to="$base_dir" "$file")
-        echo "- $rel" >> "$tmp_file"
-        echo "$file" >> "$tmp_files_list"
+        echo "- $rel" >>"$tmp_file"
+        echo "$file" >>"$tmp_files_list"
       fi
-    done <<< "$all_files"
+    done <<<"$all_files"
   )
 done
 
@@ -134,8 +135,8 @@ cat "$tmp_file"
     echo ""
     cat "$file"
     echo ""
-  done < "$tmp_files_list"
-} | wl-copy
+  done <"$tmp_files_list"
+} | clipcopy
 
 echo "✅ Contenido de archivos de texto copiado al portapapeles."
 
