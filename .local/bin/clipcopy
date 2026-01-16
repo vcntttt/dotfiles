@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Lee stdin completo
+data="$(cat)"
+
+# 1) Si estoy en una sesión Wayland LOCAL, uso wl-copy
+if [[ -n "${WAYLAND_DISPLAY:-}" ]] && command -v wl-copy >/dev/null 2>&1; then
+  printf "%s" "$data" | wl-copy
+  exit 0
+fi
+
+# 2) macOS (por si acaso)
+if command -v pbcopy >/dev/null 2>&1; then
+  printf "%s" "$data" | pbcopy
+  exit 0
+fi
+
+# 3) X11
+if command -v xclip >/dev/null 2>&1; then
+  printf "%s" "$data" | xclip -selection clipboard
+  exit 0
+fi
+
+# 4) SSH / terminal: OSC 52 (copia al clipboard del PC local si el terminal lo soporta)
+# Base64 sin saltos:
+b64="$(printf "%s" "$data" | base64 | tr -d '\n')"
+
+# Secuencia OSC52: ESC ] 52 ; c ; <base64> BEL
+# Imprimimos al terminal actual
+printf '\033]52;c;%s\a' "$b64"
+exit 0
+
