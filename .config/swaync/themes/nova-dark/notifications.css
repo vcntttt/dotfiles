@@ -103,35 +103,28 @@
 }
 
 /* ICONS ------------------------------------------------ */
-.image {
-  min-width: 44px;
-  min-height: 44px;
-  max-width: 44px;
-  max-height: 44px;
-
+.notification-content .image {
+  -gtk-icon-filter: none;
+  -gtk-icon-size: 44px;
+  -gtk-icon-shadow: 0 1px 3px rgba(0,0,0,.6);
   margin: 6px 12px 6px 0;
   border-radius: 10px;
   border: 1px solid alpha(@selected, .25);
   background-color: alpha(@background, .45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0;
 }
 
-/* El icono en sí */
-.image > image {
-  min-width: 32px;
-  min-height: 32px;
-  max-width: 32px;
-  max-height: 32px;
+.notification-content .app-icon {
+  -gtk-icon-filter: none;
+  -gtk-icon-size: 16px;
+  -gtk-icon-shadow: 0 1px 3px rgba(0,0,0,.6);
 }
 
-/* Evita iconos enanos */
-.app-icon {
-  min-width: 44px;
-  min-height: 44px;
-  max-width: 44px;
-  max-height: 44px;
+.notification-content .body-image {
+  margin-top: 6px;
+  border-radius: 10px;
+  background-color: transparent;
+  -gtk-icon-filter: none;
 }
 
 .image:empty {

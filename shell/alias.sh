@@ -48,7 +48,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 
 alias mkdir="mkdir -pv"
-alias cp="cp -i"
+alias cp="cp -iv"
 alias mv="mv -i"
 
 alias untar="tar -xf"
@@ -59,8 +59,6 @@ alias fz="fzf"
 
 alias cpf="copyfile"
 alias cpd="copydir"
-
-
 
 # --- LISTADO / EZA --- #
 alias ls="eza --icons=always -F always"
@@ -117,6 +115,7 @@ alias brd="bun run dev"
 alias brs="bun run start"
 alias brb="bun run build"
 
+# herramientas npm
 alias cleanpm="bunx npkill"
 alias checkseo="bunx check-site-meta"
 alias bcn="bunx --bun shadcn@latest add"
@@ -199,3 +198,4 @@ tm() {
 }
 
 alias -s md="nvim"
+alias mkey="openssl rand -hex 32"

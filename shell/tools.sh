@@ -26,3 +26,4 @@ bindkey '^e' edit-command-line
 
 # magic space (expand !! in sudo !!)
 bindkey ' ' magic-space
+

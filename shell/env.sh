@@ -16,6 +16,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Android (esto sí es entorno, no runtime)
 export ANDROID_HOME="$HOME/Android/Sdk"
+export ANDROID_AVD_HOME="$HOME/.config/.android/avd"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
 export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools"
 
