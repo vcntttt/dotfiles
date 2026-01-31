@@ -1,0 +1,129 @@
+{
+  "version": 3,
+  "skills": {
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "c2f31172b6f256272305a5e6e7228b258446899f",
+      "installedAt": "2026-01-29T14:25:33.502Z",
+      "updatedAt": "2026-01-29T14:25:37.350Z"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anthropics/skills.git",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "skillFolderHash": "928950704df8a8b885c03de5da626331e6f29cf8",
+      "installedAt": "2026-01-29T15:12:42.177Z",
+      "updatedAt": "2026-01-29T15:12:42.177Z"
+    },
+    "systematic-debugging": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/obra/superpowers.git",
+      "skillPath": "skills/systematic-debugging/SKILL.md",
+      "skillFolderHash": "828c239ac986cc1fc7edd10292f66e4a3640e9c0",
+      "installedAt": "2026-01-29T15:18:02.360Z",
+      "updatedAt": "2026-01-29T15:18:02.360Z"
+    },
+    "brainstorming": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/obra/superpowers.git",
+      "skillPath": "skills/brainstorming/SKILL.md",
+      "skillFolderHash": "761c2f359474328f40d73db9cb4cc1f5721917e5",
+      "installedAt": "2026-01-29T15:26:24.925Z",
+      "updatedAt": "2026-01-29T15:26:24.925Z"
+    },
+    "better-auth-best-practices": {
+      "source": "better-auth/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/better-auth/skills.git",
+      "skillPath": "better-auth/best-practices/SKILL.md",
+      "skillFolderHash": "83bdaa60f65da278dc513a64127f4e4db759cd20",
+      "installedAt": "2026-01-29T15:26:38.679Z",
+      "updatedAt": "2026-01-29T15:26:38.679Z"
+    },
+    "vercel-composition-patterns": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/composition-patterns/SKILL.md",
+      "skillFolderHash": "bf90d0a4b83ea054653350f9c67f6de235d3a368",
+      "installedAt": "2026-01-29T15:27:24.460Z",
+      "updatedAt": "2026-01-29T15:27:24.460Z"
+    },
+    "ui-ux-pro-max": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+      "skillPath": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "skillFolderHash": "986c64ad9b8e196a4a737c01872c2eda790daba1",
+      "installedAt": "2026-01-29T15:27:59.518Z",
+      "updatedAt": "2026-01-29T15:27:59.518Z"
+    },
+    "senior-architect": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/sickn33/antigravity-awesome-skills.git",
+      "skillPath": "skills/senior-architect/SKILL.md",
+      "skillFolderHash": "9e83a3260b3df24e23e8fcb83cb13be4ec3c8f5b",
+      "installedAt": "2026-01-29T15:34:13.045Z",
+      "updatedAt": "2026-01-29T15:34:13.045Z"
+    },
+    "convex": {
+      "source": "waynesutton/convexskills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/waynesutton/convexskills.git",
+      "skillPath": "skills/convex/SKILL.md",
+      "skillFolderHash": "b6d8ab8106ce2d207234dc453774195fc5915012",
+      "installedAt": "2026-01-29T15:38:28.905Z",
+      "updatedAt": "2026-01-29T15:41:02.997Z"
+    },
+    "git-master": {
+      "source": "code-yeongyu/oh-my-opencode",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/code-yeongyu/oh-my-opencode.git",
+      "skillPath": "src/features/builtin-skills/git-master/SKILL.md",
+      "skillFolderHash": "88de64d792ba696402ec9632cdc2e9d86f85894c",
+      "installedAt": "2026-01-29T15:41:44.036Z",
+      "updatedAt": "2026-01-29T15:41:44.036Z"
+    },
+    "bun-file-io": {
+      "source": "anomalyco/opencode",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anomalyco/opencode.git",
+      "skillPath": ".opencode/skill/bun-file-io/SKILL.md",
+      "skillFolderHash": "",
+      "installedAt": "2026-01-29T15:42:16.912Z",
+      "updatedAt": "2026-01-29T15:42:16.912Z"
+    },
+    "opencode-expert": {
+      "source": "s-hiraoku/synapse-a2a",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/s-hiraoku/synapse-a2a.git",
+      "skillPath": ".claude/skills/opencode-expert/SKILL.md",
+      "skillFolderHash": "89765ea25e6fb02b0968f63ed5781ab132c8b581",
+      "installedAt": "2026-01-29T15:42:49.858Z",
+      "updatedAt": "2026-01-29T15:42:49.858Z"
+    },
+    "opencode-primitives": {
+      "source": "different-ai/openwork",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/different-ai/openwork.git",
+      "skillPath": ".opencode/skills/opencode-primitives/SKILL.md",
+      "skillFolderHash": "",
+      "installedAt": "2026-01-29T15:43:15.451Z",
+      "updatedAt": "2026-01-29T15:43:15.451Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "opencode",
+    "github-copilot"
+  ]
+}
