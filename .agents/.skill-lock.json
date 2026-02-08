@@ -17,7 +17,7 @@
       "skillPath": "skills/frontend-design/SKILL.md",
       "skillFolderHash": "928950704df8a8b885c03de5da626331e6f29cf8",
       "installedAt": "2026-01-29T15:12:42.177Z",
-      "updatedAt": "2026-01-29T15:12:42.177Z"
+      "updatedAt": "2026-02-08T00:13:39.658Z"
     },
     "systematic-debugging": {
       "source": "obra/superpowers",
@@ -123,7 +123,11 @@
     "findSkillsPrompt": true
   },
   "lastSelectedAgents": [
-    "opencode",
-    "github-copilot"
+    "amp",
+    "codex",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-cli",
+    "opencode"
   ]
 }

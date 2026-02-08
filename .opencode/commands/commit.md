@@ -8,6 +8,7 @@ Crea uno o mas commits atomicos desde el working tree actual.
 Principios:
 - Usar la skill `git-master` para cualquier operacion de Git (status, diff, add, commit, log).
 - Responder siempre en español.
+- Mensajes de commit siempre en español.
 - No commitear secretos/credenciales (por ejemplo `.env`, `.env.local`, `credentials.json`).
 - No commitear exports grandes (por ejemplo `data/*.csv`) salvo pedido explicito.
 - No hacer `git commit --amend`.
@@ -16,7 +17,9 @@ Principios:
 Flujo base:
 - Ejecutar: `git status --porcelain=v1 -uall`, `git diff`, `git log -10 --oneline --decorate`.
 - Agrupar cambios en unidades atomicas logicas y buildables (schema, UI, docs, tests, etc.).
-- Hacer staging y commit por grupo con mensajes de intencion clara (Conventional Commits si el repo los usa).
+- No inferir estilo a partir de commits anteriores.
+- Hacer staging y commit por grupo con mensajes semanticos (Conventional Commits) en español.
+- Formato sugerido: `tipo(scope): resumen en español` (ej. `feat(auth): agrega login con SSO`).
 - Incluir una breve razon en el cuerpo del commit (1-2 lineas explicando el por que).
 
 Integracion Linear (solo si aplica):
