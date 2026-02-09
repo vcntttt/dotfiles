@@ -34,6 +34,8 @@ window#waybar {
 #network,
 #pulseaudio,
 #cpu,
+#temperature,
+#custom-gpu,
 #memory,
 #clock,
 #custom-weather,
@@ -79,7 +81,9 @@ window#waybar {
 #custom-update,
 #network,
 #custom-notification,
-#memory {
+#memory,
+#temperature,
+#custom-gpu {
   min-width: 28px;
   padding: 0 8px;
 }

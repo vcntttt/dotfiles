@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+nvidia_smi=""
+if command -v nvidia-smi >/dev/null 2>&1; then
+  nvidia_smi="nvidia-smi"
+elif [[ -x "/usr/bin/nvidia-smi" ]]; then
+  nvidia_smi="/usr/bin/nvidia-smi"
+fi
+
+if [[ -z "${nvidia_smi}" ]]; then
+  exit 0
+fi
+
+gpu_line=$(${nvidia_smi} --query-gpu=utilization.gpu,temperature.gpu --format=csv,noheader,nounits 2>/dev/null | head -n 1)
+if [[ -z "${gpu_line}" ]]; then
+  exit 0
+fi
+
+gpu_usage=$(printf '%s' "${gpu_line%%,*}" | xargs)
+gpu_temp=$(printf '%s' "${gpu_line##*,}" | xargs)
+
+printf '{"text":"󰢮 %s%% %s°C","tooltip":"GPU: %s%%\\nTemp: %s°C"}' "${gpu_usage}" "${gpu_temp}" "${gpu_usage}" "${gpu_temp}"

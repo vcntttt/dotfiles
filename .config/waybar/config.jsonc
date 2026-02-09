@@ -20,6 +20,8 @@
     "network",
     "pulseaudio",
     "cpu",
+    "temperature",
+    "custom/gpu",
     "memory",
     "clock",
     "custom/notification"
@@ -65,6 +67,17 @@
   "cpu": {
     "interval": 5,
     "format": "󰍛 {usage}%",
+    "on-click": "$HOME/.local/bin/launch-or-focus-tui btop"
+  },
+  "temperature": {
+    "interval": 5,
+    "format": " {temperatureC}°",
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input"
+  },
+  "custom/gpu": {
+    "exec": "$HOME/.local/bin/waybar-gpu",
+    "interval": 5,
+    "return-type": "json",
     "on-click": "$HOME/.local/bin/launch-or-focus-tui btop"
   },
   "memory": {
