@@ -37,6 +37,7 @@ If you add tests or a build system, document the commands here.
 - `zsh -n path/to/config.zsh` for zsh syntax checks.
 - `tmux source-file ~/.tmux.conf` to reload tmux config after edits.
 - `hyprctl reload` can be used to reload Hyprland config if running.
+- After any Hyprland config change, ensure `hyprctl configerrors` returns no errors.
 
 ## Agent workflow expectations
 - Keep edits minimal and focused; avoid broad formatting changes.
