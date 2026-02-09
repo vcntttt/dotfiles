@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Toggle default audio output between two sinks.
+
+set -euo pipefail
+
+SINK_A_DEFAULT="alsa_output.usb-Kingston_Technology_Company_HyperX_Cloud_Flight_Wireless-00.analog-stereo"
+SINK_B_DEFAULT="alsa_output.pci-0000_0a_00.6.analog-stereo"
+
+SINK_A_LABEL_DEFAULT="HyperX"
+SINK_B_LABEL_DEFAULT="Ryzen"
+
+SINK_A="${1:-${HYPERX_SINK:-$SINK_A_DEFAULT}}"
+SINK_B="${2:-${RYZEN_SINK:-$SINK_B_DEFAULT}}"
+
+SINK_A_LABEL="${HYPERX_LABEL:-$SINK_A_LABEL_DEFAULT}"
+SINK_B_LABEL="${RYZEN_LABEL:-$SINK_B_LABEL_DEFAULT}"
+
+if ! command -v pactl >/dev/null 2>&1; then
+  echo "toggle-audio-output: pactl not found" >&2
+  exit 1
+fi
+
+have_sink() {
+  local sink="$1"
+  pactl list short sinks | cut -f2 | grep -Fxq "$sink"
+}
+
+if ! have_sink "$SINK_A"; then
+  echo "toggle-audio-output: sink not found: $SINK_A" >&2
+  exit 1
+fi
+
+if ! have_sink "$SINK_B"; then
+  echo "toggle-audio-output: sink not found: $SINK_B" >&2
+  exit 1
+fi
+
+current="$(pactl get-default-sink)"
+
+if [[ "$current" == "$SINK_A" ]]; then
+  next="$SINK_B"
+  next_label="$SINK_B_LABEL"
+else
+  next="$SINK_A"
+  next_label="$SINK_A_LABEL"
+fi
+
+pactl set-default-sink "$next"
+
+# Move current playback streams to the new default sink.
+while IFS=$'\t' read -r input_id _rest; do
+  [[ -z "${input_id:-}" ]] && continue
+  pactl move-sink-input "$input_id" "$next" >/dev/null 2>&1 || true
+done < <(pactl list short sink-inputs)
+
+if command -v notify-send >/dev/null 2>&1; then
+  notify-send "Audio" "Salida: $next_label"
+fi
