@@ -18,3 +18,4 @@ source ~/dotfiles/shell/alias.sh
 source ~/dotfiles/shell/tools.sh
 source ~/dotfiles/shell/plugins/load.sh
 
+export PATH=$PATH:$HOME/.maestro/bin

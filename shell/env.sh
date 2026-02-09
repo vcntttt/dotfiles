@@ -19,6 +19,7 @@ export ANDROID_HOME="$HOME/Android/Sdk"
 export ANDROID_AVD_HOME="$HOME/.config/.android/avd"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
 export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools"
+export MAESTRO_OUTPUT_DIR="$PWD/.maestro/_runs"
 
 # Cargo
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
