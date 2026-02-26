@@ -199,3 +199,4 @@ tm() {
 
 alias -s md="nvim"
 alias mkey="openssl rand -hex 32"
+alias oc="opencode"
