@@ -1,0 +1,465 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+shopt -s nullglob
+
+DEV_ROOT="${DEV_ROOT:-$HOME/dev}"
+
+print_help() {
+  cat <<'EOF'
+Uso: dev <status|push|pull|pending-push|pending-pull>
+
+Comandos:
+  status [--refresh]  Escanea repos en ~/dev y muestra un informe corto
+  push               Hace push de commits no pusheados en repos con upstream
+  pull               Hace pull en todos los repos con upstream (ff-only)
+  pending-push       Devuelve cantidad de repos con commits sin push
+  pending-pull       Devuelve cantidad de repos con commits sin pull
+EOF
+}
+
+ensure_git() {
+  if ! command -v git >/dev/null 2>&1; then
+    echo "git no esta instalado."
+    exit 1
+  fi
+}
+
+is_repo() {
+  local path="$1"
+  if [ -d "$path/.git" ] || [ -f "$path/.git" ]; then
+    return 0
+  fi
+  return 1
+}
+
+list_repos() {
+  local repos=()
+  local dotfiles_path="$HOME/dotfiles"
+  local path
+  if [ -d "$dotfiles_path" ] && is_repo "$dotfiles_path"; then
+    if [ "$dotfiles_path" != "$DEV_ROOT" ]; then
+      repos+=("$dotfiles_path")
+    fi
+  fi
+  for path in "$DEV_ROOT"/*; do
+    if [ -d "$path" ] && is_repo "$path"; then
+      repos+=("$path")
+    fi
+  done
+  printf '%s\n' "${repos[@]-}"
+}
+
+repo_branch() {
+  local path="$1"
+  git -C "$path" rev-parse --abbrev-ref HEAD 2>/dev/null || echo "detached"
+}
+
+repo_has_upstream() {
+  local path="$1"
+  if git -C "$path" rev-parse --abbrev-ref "@{upstream}" >/dev/null 2>&1; then
+    return 0
+  fi
+  return 1
+}
+
+repo_dirty_count() {
+  local path="$1"
+  local count
+  count=$(git -C "$path" status --porcelain 2>/dev/null | wc -l | tr -d ' ')
+  echo "${count:-0}"
+}
+
+repo_ahead_count() {
+  local path="$1"
+  local count
+  count=$(git -C "$path" rev-list --count "@{upstream}..HEAD" 2>/dev/null | tr -d ' ')
+  echo "${count:-0}"
+}
+
+repo_behind_count() {
+  local path="$1"
+  local count
+  count=$(git -C "$path" rev-list --count "HEAD..@{upstream}" 2>/dev/null | tr -d ' ')
+  echo "${count:-0}"
+}
+
+repo_fetch() {
+  local path="$1"
+  git -C "$path" fetch --quiet --prune 2>/dev/null
+}
+
+cmd_status() {
+  ensure_git
+
+  local refresh="no"
+  case "${1-}" in
+    --refresh)
+      refresh="yes"
+      ;;
+    "")
+      ;;
+    *)
+      echo "Uso: dev status [--refresh]"
+      exit 1
+      ;;
+  esac
+
+  local repos
+  repos=$(list_repos)
+  if [ -z "$repos" ]; then
+    echo "No se encontraron repos en $DEV_ROOT"
+    exit 0
+  fi
+
+  local -a repo_names=()
+  local -a repo_branches=()
+  local -a repo_dirties=()
+  local -a repo_aheads=()
+  local -a repo_behinds=()
+  local -a no_upstream_names=()
+
+  local header_repo="repo"
+  local header_branch="branch"
+  local header_dirty="sin commit"
+  local header_ahead="sin push"
+  local header_behind="sin pull"
+
+  local max_name=${#header_repo}
+  local max_branch=${#header_branch}
+  local max_dirty=${#header_dirty}
+  local max_ahead=${#header_ahead}
+  local max_behind=${#header_behind}
+
+  local total_repos=0
+  local total_dirty=0
+  local total_ahead=0
+  local total_behind=0
+  local total_no_upstream=0
+
+  local path
+  while IFS= read -r path; do
+    [ -z "$path" ] && continue
+    total_repos=$((total_repos + 1))
+
+    local name
+    local branch
+    local dirty
+    local ahead
+    local behind
+
+    name=$(basename "$path")
+    branch=$(repo_branch "$path")
+    dirty=$(repo_dirty_count "$path")
+
+    if repo_has_upstream "$path"; then
+      if [ "$refresh" = "yes" ]; then
+        repo_fetch "$path" || true
+      fi
+      ahead=$(repo_ahead_count "$path")
+      behind=$(repo_behind_count "$path")
+    else
+      ahead="0"
+      behind="0"
+      total_no_upstream=$((total_no_upstream + 1))
+      no_upstream_names+=("$name")
+    fi
+
+    if [ "$dirty" -gt 0 ]; then
+      total_dirty=$((total_dirty + 1))
+    fi
+    if [ "$ahead" -gt 0 ]; then
+      total_ahead=$((total_ahead + 1))
+    fi
+    if [ "$behind" -gt 0 ]; then
+      total_behind=$((total_behind + 1))
+    fi
+
+    repo_names+=("$name")
+    repo_branches+=("$branch")
+    repo_dirties+=("$dirty")
+    repo_aheads+=("$ahead")
+    repo_behinds+=("$behind")
+
+    if [ "${#name}" -gt "$max_name" ]; then
+      max_name="${#name}"
+    fi
+    if [ "${#branch}" -gt "$max_branch" ]; then
+      max_branch="${#branch}"
+    fi
+    if [ "${#dirty}" -gt "$max_dirty" ]; then
+      max_dirty="${#dirty}"
+    fi
+    if [ "${#ahead}" -gt "$max_ahead" ]; then
+      max_ahead="${#ahead}"
+    fi
+    if [ "${#behind}" -gt "$max_behind" ]; then
+      max_behind="${#behind}"
+    fi
+  done <<< "$repos"
+
+  printf "%-${max_name}s  %-${max_branch}s  %${max_dirty}s  %${max_ahead}s  %${max_behind}s\n" \
+    "$header_repo" "$header_branch" "$header_dirty" "$header_ahead" "$header_behind"
+  printf "%-${max_name}s  %-${max_branch}s  %${max_dirty}s  %${max_ahead}s  %${max_behind}s\n" \
+    "----" "------" "----------" "--------" "--------"
+
+  local i
+  for i in "${!repo_names[@]}"; do
+    printf "%-${max_name}s  %-${max_branch}s  %${max_dirty}s  %${max_ahead}s  %${max_behind}s\n" \
+      "${repo_names[$i]}" "${repo_branches[$i]}" "${repo_dirties[$i]}" "${repo_aheads[$i]}" "${repo_behinds[$i]}"
+  done
+
+  echo "----"
+  echo "Total: $total_repos repos | Sin commit: $total_dirty | Sin push: $total_ahead | Sin pull: $total_behind | Sin upstream: $total_no_upstream"
+  if [ "$total_no_upstream" -gt 0 ]; then
+    echo "Sin upstream: ${no_upstream_names[*]}"
+  fi
+}
+
+cmd_push() {
+  ensure_git
+
+  local repos
+  repos=$(list_repos)
+  if [ -z "$repos" ]; then
+    echo "No se encontraron repos en $DEV_ROOT"
+    exit 0
+  fi
+
+  local path
+  while IFS= read -r path; do
+    [ -z "$path" ] && continue
+
+    local name
+    local ahead
+
+    name=$(basename "$path")
+
+    if ! repo_has_upstream "$path"; then
+      echo "$name | sin upstream, se omite"
+      continue
+    fi
+
+    ahead=$(repo_ahead_count "$path")
+    if [ "$ahead" -eq 0 ]; then
+      echo "$name | sin commits pendientes"
+      continue
+    fi
+
+    echo "$name | pushing ($ahead)"
+    if git -C "$path" push; then
+      echo "$name | push ok"
+    else
+      echo "$name | push fallo"
+    fi
+  done <<< "$repos"
+}
+
+cmd_pull() {
+  ensure_git
+
+  local repos
+  repos=$(list_repos)
+  if [ -z "$repos" ]; then
+    echo "No se encontraron repos en $DEV_ROOT"
+    exit 0
+  fi
+
+  local updated=0
+  local up_to_date=0
+  local skipped_dirty=0
+  local skipped_no_upstream=0
+  local failed=0
+
+  local path
+  while IFS= read -r path; do
+    [ -z "$path" ] && continue
+
+    local name
+    local dirty
+    local behind
+    name=$(basename "$path")
+
+    if ! repo_has_upstream "$path"; then
+      echo "$name | sin upstream, se omite"
+      skipped_no_upstream=$((skipped_no_upstream + 1))
+      continue
+    fi
+
+    dirty=$(repo_dirty_count "$path")
+    if [ "$dirty" -gt 0 ]; then
+      echo "$name | con cambios, se omite"
+      skipped_dirty=$((skipped_dirty + 1))
+      continue
+    fi
+
+    repo_fetch "$path" || true
+    behind=$(repo_behind_count "$path")
+    if [ "$behind" -eq 0 ]; then
+      up_to_date=$((up_to_date + 1))
+      echo "$name | al dia"
+      continue
+    fi
+
+    echo "$name | pulling"
+    if git -C "$path" pull --ff-only; then
+      updated=$((updated + 1))
+      echo "$name | pull ok"
+    else
+      failed=$((failed + 1))
+      echo "$name | pull fallo"
+    fi
+  done <<< "$repos"
+
+  echo "----"
+  echo "Pull: ok:$updated | al_dia:$up_to_date | omitidos:$skipped_dirty | sin_upstream:$skipped_no_upstream | fallos:$failed"
+}
+
+cmd_pending_push() {
+  ensure_git
+
+  local mode="count"
+  case "${1-}" in
+    --names)
+      mode="names"
+      ;;
+    --count|"")
+      mode="count"
+      ;;
+    *)
+      echo "Uso: dev pending-push [--count|--names]"
+      exit 1
+      ;;
+  esac
+
+  local repos
+  repos=$(list_repos)
+  if [ -z "$repos" ]; then
+    if [ "$mode" = "count" ]; then
+      echo "0"
+    fi
+    exit 0
+  fi
+
+  local count=0
+  local -a names=()
+
+  local path
+  while IFS= read -r path; do
+    [ -z "$path" ] && continue
+
+    if ! repo_has_upstream "$path"; then
+      continue
+    fi
+
+    local ahead
+    ahead=$(repo_ahead_count "$path")
+    if [ "$ahead" -gt 0 ]; then
+      count=$((count + 1))
+      names+=("$(basename "$path")")
+    fi
+  done <<< "$repos"
+
+  if [ "$mode" = "names" ]; then
+    printf '%s\n' "${names[@]-}"
+  else
+    echo "$count"
+  fi
+}
+
+cmd_pending_pull() {
+  ensure_git
+
+  local mode="count"
+  local refresh="no"
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --names)
+        mode="names"
+        ;;
+      --count)
+        mode="count"
+        ;;
+      --refresh)
+        refresh="yes"
+        ;;
+      *)
+        echo "Uso: dev pending-pull [--count|--names] [--refresh]"
+        exit 1
+        ;;
+    esac
+    shift
+  done
+
+  local repos
+  repos=$(list_repos)
+  if [ -z "$repos" ]; then
+    if [ "$mode" = "count" ]; then
+      echo "0"
+    fi
+    exit 0
+  fi
+
+  local count=0
+  local -a names=()
+
+  local path
+  while IFS= read -r path; do
+    [ -z "$path" ] && continue
+
+    if ! repo_has_upstream "$path"; then
+      continue
+    fi
+
+    if [ "$refresh" = "yes" ]; then
+      repo_fetch "$path" || true
+    fi
+
+    local behind
+    behind=$(repo_behind_count "$path")
+    if [ "$behind" -gt 0 ]; then
+      count=$((count + 1))
+      names+=("$(basename "$path")")
+    fi
+  done <<< "$repos"
+
+  if [ "$mode" = "names" ]; then
+    printf '%s\n' "${names[@]-}"
+  else
+    echo "$count"
+  fi
+}
+
+main() {
+  case "${1-}" in
+    status)
+      shift
+      cmd_status "${1-}"
+      ;;
+    push)
+      cmd_push
+      ;;
+    pull)
+      cmd_pull
+      ;;
+    pending-push)
+      shift
+      cmd_pending_push "${1-}"
+      ;;
+    pending-pull)
+      shift
+      cmd_pending_pull "${1-}"
+      ;;
+    -h|--help|help|"")
+      print_help
+      ;;
+    *)
+      echo "Comando invalido: $1"
+      print_help
+      exit 1
+      ;;
+  esac
+}
+
+main "$@"

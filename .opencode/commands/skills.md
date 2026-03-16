@@ -8,8 +8,8 @@ Actualiza el mapa de skills disponible en el `AGENTS.md` de la raiz del repo git
 Objetivo:
 - En cada ejecucion, detectar y consolidar skills desde:
   1) Built-in del runtime (si estan disponibles en el contexto del agente).
-  2) Skills globales en `~/.opencode/skills/*/SKILL.md`.
-  3) Skills del proyecto en `./.opencode/skills/*/SKILL.md`.
+  2) Skills globales en `~/.opencode/skills/*/SKILL.md` y `~/.agents/skills/*/SKILL.md`.
+  3) Skills del proyecto en `./.opencode/skills/*/SKILL.md` y `./.agents/skills/*/SKILL.md`.
 - Generar o actualizar la seccion `## Skill map (OpenCode)` en `AGENTS.md`.
 
 Reglas obligatorias:
@@ -31,13 +31,13 @@ Como recolectar skills:
    - Si no se puede enumerar built-ins de forma confiable, continuar con globales/proyecto y dejar nota breve en la seccion.
 
 2) Globales:
-   - Leer `~/.opencode/skills/*/SKILL.md`.
+   - Leer `~/.opencode/skills/*/SKILL.md` y `~/.agents/skills/*/SKILL.md`.
    - Extraer:
      - nombre (preferir `# Skill: <nombre>`; fallback: nombre de carpeta)
      - descripcion (primer parrafo util del archivo)
 
 3) Proyecto:
-   - Leer `./.opencode/skills/*/SKILL.md` si existe.
+   - Leer `./.opencode/skills/*/SKILL.md` y `./.agents/skills/*/SKILL.md` si existen.
    - Extraer con la misma logica.
 
 Normalizacion y deduplicacion:

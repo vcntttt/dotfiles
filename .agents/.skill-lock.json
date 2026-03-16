@@ -223,6 +223,7 @@
   },
   "lastSelectedAgents": [
     "amp",
+    "cline",
     "codex",
     "cursor",
     "gemini-cli",

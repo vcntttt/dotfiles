@@ -33,9 +33,8 @@ Integracion Linear (solo si aplica):
 
 Verificacion automatica (si aplica):
 - Buscar `package.json` en el repo actual.
-- Si existen scripts `check` y/o `test`, ejecutar con Bun:
   - `bun run check` si existe.
-  - `bun run test` si existe.
+  - `bun run lint` si existe.
 - Si no existen esos scripts, omitir verificacion.
 
 Si el agrupamiento es ambiguo, hacer una sola pregunta dirigida con una recomendacion por defecto.
