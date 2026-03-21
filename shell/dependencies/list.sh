@@ -1,0 +1,57 @@
+CORE_PACMAN_PKGS=(
+  base-devel
+  git
+  zsh
+  tmux
+  neovim
+  bat
+  eza
+  fzf
+  yazi
+  lazygit
+  fastfetch
+  ripgrep
+  fd
+  curl
+  wget
+  unzip
+  zip
+)
+
+DESKTOP_PACMAN_PKGS=(
+  hyprland
+  hypridle
+  hyprlock
+  hyprpaper
+  hyprsunset
+  waybar
+  rofi
+  swaync
+  swayosd
+  uwsm
+  polkit-gnome
+  wl-clipboard
+  cliphist
+  jq
+  grim
+  slurp
+  playerctl
+  alsa-utils
+  network-manager-applet
+  blueman
+  nwg-look
+  gnome-calculator
+  nautilus
+  ghostty
+)
+
+DESKTOP_APP_PACMAN_PKGS=(
+  obsidian
+)
+
+DESKTOP_AUR_PKGS=(
+  bibata-cursor-theme
+  vesktop
+  zen-browser-bin
+  spotify-launcher
+)

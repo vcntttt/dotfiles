@@ -25,6 +25,7 @@ If you need to validate changes:
 - Use `bash` or `zsh` depending on the shebang or file context.
 
 Examples of common entry points:
+- `bash shell/install-dependencies.sh desktop` installs base CLI, Hyprland stack, desktop apps, and zsh plugins on Arch/CachyOS.
 - `bash shell/plugins/install.sh` installs zsh plugins and packages.
 - `bash omarchy/install.sh` runs the Omarchy installer (system-changing).
 - `bash omarchy/boot.sh` performs Omarchy bootstrap steps.
