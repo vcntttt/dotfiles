@@ -10,6 +10,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+# Dotfiles host
+[ -f "$HOME/dotfiles/shell/host.sh" ] && source "$HOME/dotfiles/shell/host.sh"
+
 # PATH base
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/.local/bin:$PATH"
