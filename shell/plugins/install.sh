@@ -28,6 +28,10 @@ for pkg in "${ZSH_PACMAN_PKGS[@]}"; do
 done
 
 echo "==> Instalando paquetes AUR"
+if (( ${#ZSH_AUR_PKGS[@]} > 0 )) && ! command -v yay &>/dev/null; then
+  "$DOTFILES/.local/bin/install-yay"
+fi
+
 for pkg in "${ZSH_AUR_PKGS[@]}"; do
   pacman -Qi "$pkg" &>/dev/null || yay -S --needed "$pkg"
 done

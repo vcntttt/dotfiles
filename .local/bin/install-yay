@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+YAY_DIR="${YAY_DIR:-$HOME/git-packages/yay}"
+
+if ! command -v pacman >/dev/null 2>&1; then
+  echo "Este script requiere un sistema con pacman."
+  exit 1
+fi
+
+if command -v yay >/dev/null 2>&1; then
+  echo "yay ya esta instalado."
+  exit 0
+fi
+
+echo "==> Instalando dependencias para compilar yay"
+sudo pacman -S --needed base-devel git
+
+mkdir -p "${YAY_DIR%/*}"
+
+if [[ -d "$YAY_DIR/.git" ]]; then
+  echo "==> Actualizando repositorio de yay"
+  git -C "$YAY_DIR" pull --ff-only
+else
+  if [[ -e "$YAY_DIR" ]]; then
+    echo "La ruta $YAY_DIR existe pero no es un repositorio git."
+    exit 1
+  fi
+  echo "==> Clonando yay en $YAY_DIR"
+  git clone https://aur.archlinux.org/yay.git "$YAY_DIR"
+fi
+
+echo "==> Compilando e instalando yay"
+(
+  cd "$YAY_DIR"
+  makepkg -Csi --noconfirm --needed
+)
+
+echo "✔ yay instalado correctamente"
