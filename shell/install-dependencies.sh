@@ -91,6 +91,11 @@ main() {
   install_pacman_pkgs
   install_aur_pkgs
 
+  if [[ -f "$DOTFILES/.config/dotfiles/host" ]]; then
+    echo "==> Aplicando overrides locales por host"
+    bash "$DOTFILES/.local/bin/apply-host-config"
+  fi
+
   echo "==> Instalando plugins y paquetes de zsh"
   bash "$DOTFILES/shell/plugins/install.sh"
 

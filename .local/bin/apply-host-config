@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+DOTFILES="${DOTFILES:-$HOME/dotfiles}"
+HOST_FILE="${DOTFILES_HOST_FILE:-$DOTFILES/.config/dotfiles/host}"
+HYPR_HOST_FILE="$DOTFILES/.config/hypr/host.conf"
+ROFI_HOST_FILE="$DOTFILES/.config/rofi/host.rasi"
+WAYBAR_HOST_FILE="$DOTFILES/.config/waybar/host.css"
+
+if [[ ! -f "$HOST_FILE" ]]; then
+  echo "No existe $HOST_FILE"
+  exit 1
+fi
+
+IFS= read -r DOTFILES_HOST < "$HOST_FILE"
+DOTFILES_HOST="${DOTFILES_HOST//$'\n'/}"
+DOTFILES_HOST="${DOTFILES_HOST//$'\r'/}"
+DOTFILES_HOST="${DOTFILES_HOST//$'\t'/}"
+DOTFILES_HOST="${DOTFILES_HOST// /}"
+
+case "$DOTFILES_HOST" in
+  desktop|notebook|homelab)
+    ;;
+  *)
+    echo "Host no valido: $DOTFILES_HOST"
+    exit 1
+    ;;
+esac
+
+HYPR_TEMPLATE="$DOTFILES/.config/hypr/hosts/$DOTFILES_HOST.conf"
+ROFI_TEMPLATE="$DOTFILES/.config/rofi/hosts/$DOTFILES_HOST.rasi"
+WAYBAR_TEMPLATE="$DOTFILES/.config/waybar/hosts/$DOTFILES_HOST.css"
+
+if [[ ! -f "$HYPR_TEMPLATE" || ! -f "$ROFI_TEMPLATE" || ! -f "$WAYBAR_TEMPLATE" ]]; then
+  echo "Faltan overrides versionados para '$DOTFILES_HOST'"
+  exit 1
+fi
+
+mkdir -p "$DOTFILES/.config/dotfiles"
+mkdir -p "$DOTFILES/.config/hypr"
+mkdir -p "$DOTFILES/.config/rofi"
+mkdir -p "$DOTFILES/.config/waybar"
+
+{
+  printf '%s\n' '# Archivo local generado por apply-host-config'
+  cat "$HYPR_TEMPLATE"
+} > "$HYPR_HOST_FILE"
+
+cat > "$ROFI_HOST_FILE" <<EOF
+/* Archivo local generado por apply-host-config */
+@import "~/.config/rofi/hosts/$DOTFILES_HOST.rasi"
+EOF
+
+cat > "$WAYBAR_HOST_FILE" <<EOF
+@import url("hosts/$DOTFILES_HOST.css");
+EOF
+
+echo "✔ Overrides locales aplicados para '$DOTFILES_HOST'"
