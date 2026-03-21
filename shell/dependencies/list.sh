@@ -36,6 +36,7 @@ DESKTOP_PACMAN_PKGS=(
   grim
   slurp
   playerctl
+  brightnessctl
   alsa-utils
   network-manager-applet
   blueman
