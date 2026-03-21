@@ -51,6 +51,14 @@ If you add tests or a build system, document the commands here.
 - Paths are Linux-style and often rely on `$HOME`.
 - Many scripts are intended for interactive shells (zsh).
 
+## Host targets
+- Primary desktop: Arch Linux with Hyprland; this machine is the main reference environment.
+- Secondary notebook: CachyOS (Arch-based) with Hyprland; prefer keeping desktop setup changes compatible with the primary machine.
+- Homelab server: Ubuntu Server without GUI; it uses this repo for shell config, aliases, and custom scripts only.
+- Do not assume every host has Hyprland, Wayland, rofi, swaync, or other desktop tools installed.
+- Prioritize cross-distro compatibility in `shell/`, `.local/bin/`, and shared aliases/scripts.
+- Treat GUI config changes in `.config/hypr/`, `.config/rofi/`, `.config/swaync/`, and similar paths as desktop-only.
+
 ## Code style: shell (bash/zsh)
 - Use the correct shell: `#!/usr/bin/env bash` for bash scripts; zsh for interactive configs.
 - Prefer `set -e` (and optionally `set -u`) in installer-style scripts.
