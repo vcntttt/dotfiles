@@ -1,0 +1,20 @@
+* {
+    font:                       "JetBrainsMono Nerd Font Propo 12";
+}
+
+window {
+    width:                      1366px;
+    height:                     768px;
+}
+
+mainbox {
+    padding:                    25% 35%;
+}
+
+listview {
+    lines:                      12;
+}
+
+element-icon {
+    size:                       32px;
+}

@@ -258,6 +258,7 @@ textbox {
     padding:                     100px;
     border:                      0px solid;
     border-radius:               0px;
+
     border-color:                @border-colour;
     background-color:            @alternate-background;
     text-color:                  @foreground-colour;
@@ -276,3 +277,5 @@ error-message {
     background-color:            @background-colour;
     text-color:                  @foreground-colour;
 }
+
+@import "~/.config/rofi/host.rasi"

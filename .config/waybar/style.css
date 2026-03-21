@@ -1,3 +1,5 @@
+@import url("host.css");
+
 @define-color foreground #cdd6f4;
 @define-color background #202020;
 @define-color bar-bg alpha(@background, 0.88);

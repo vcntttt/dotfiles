@@ -1,0 +1,29 @@
+* {
+  font-size: 13px;
+}
+
+window#waybar {
+  min-height: 30px;
+}
+
+#mpris,
+#custom-vpn,
+#custom-update,
+#network,
+#pulseaudio,
+#cpu,
+#temperature,
+#custom-gpu,
+#memory,
+#clock,
+#custom-weather,
+#custom-notification {
+  padding: 0 8px;
+  margin: 3px 4px;
+  min-height: 22px;
+}
+
+#workspaces button {
+  padding: 0 6px;
+  margin: 0 1px;
+}
