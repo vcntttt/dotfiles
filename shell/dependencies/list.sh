@@ -26,8 +26,14 @@ DESKTOP_PACMAN_PKGS=(
   hyprsunset
   waybar
   rofi
+  noto-fonts
+  noto-fonts-emoji
+  otf-font-awesome
   swaync
   swayosd
+  ttf-jetbrains-mono-nerd
+  ttf-nerd-fonts-symbols
+  ttf-nerd-fonts-symbols-mono
   uwsm
   polkit-gnome
   wl-clipboard
