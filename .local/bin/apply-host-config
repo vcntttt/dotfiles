@@ -7,14 +7,16 @@ HOST_FILE="${DOTFILES_HOST_FILE:-$DOTFILES/.config/dotfiles/host}"
 HYPR_HOST_FILE="$DOTFILES/.config/hypr/host.conf"
 ROFI_HOST_FILE="$DOTFILES/.config/rofi/host.rasi"
 WAYBAR_HOST_FILE="$DOTFILES/.config/waybar/host.css"
+GHOSTTY_HOST_FILE="$DOTFILES/.config/ghostty/host"
 
 source "$DOTFILES/shell/host.sh"
 
 HYPR_TEMPLATE="$DOTFILES/.config/hypr/hosts/$DOTFILES_HOST.conf"
 ROFI_TEMPLATE="$DOTFILES/.config/rofi/hosts/$DOTFILES_HOST.rasi"
 WAYBAR_TEMPLATE="$DOTFILES/.config/waybar/hosts/$DOTFILES_HOST.css"
+GHOSTTY_TEMPLATE="$DOTFILES/.config/ghostty/hosts/$DOTFILES_HOST"
 
-if [[ ! -f "$HYPR_TEMPLATE" || ! -f "$ROFI_TEMPLATE" || ! -f "$WAYBAR_TEMPLATE" ]]; then
+if [[ ! -f "$HYPR_TEMPLATE" || ! -f "$ROFI_TEMPLATE" || ! -f "$WAYBAR_TEMPLATE" || ! -f "$GHOSTTY_TEMPLATE" ]]; then
   echo "Faltan overrides versionados para '$DOTFILES_HOST'"
   exit 1
 fi
@@ -23,6 +25,7 @@ mkdir -p "$DOTFILES/.config/dotfiles"
 mkdir -p "$DOTFILES/.config/hypr"
 mkdir -p "$DOTFILES/.config/rofi"
 mkdir -p "$DOTFILES/.config/waybar"
+mkdir -p "$DOTFILES/.config/ghostty"
 
 {
   printf '%s\n' '# Archivo local generado por apply-host-config'
@@ -37,5 +40,10 @@ EOF
 cat > "$WAYBAR_HOST_FILE" <<EOF
 @import url("hosts/$DOTFILES_HOST.css");
 EOF
+
+{
+  printf '%s\n' '# Archivo local generado por apply-host-config'
+  cat "$GHOSTTY_TEMPLATE"
+} > "$GHOSTTY_HOST_FILE"
 
 echo "✔ Overrides locales aplicados para '$DOTFILES_HOST'"

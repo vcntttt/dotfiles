@@ -26,6 +26,8 @@ alias rmqlog="rm ~/.local/share/qtile/qtile.log"
 alias qconf="nvim ~/dotfiles/.config/qtile/"
 
 alias ff="fastfetch --config default"
+alias ahc="apply-host-config"
+alias deps="bash ~/dotfiles/shell/install-dependencies.sh"
 
 # --- WM / Hyprland --- #
 alias logout="hyprctl dispatch exit"

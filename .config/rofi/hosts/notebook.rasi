@@ -1,5 +1,5 @@
 * {
-    font:                       "JetBrainsMono Nerd Font Propo 10";
+    font:                       "JetBrainsMono Nerd Font Propo 13";
 }
 
 window {
@@ -8,22 +8,22 @@ window {
 }
 
 mainbox {
-    padding:                    14% 18%;
+    padding:                    12% 14%;
 }
 
 inputbar {
-    padding:                    14px;
-}
-
-listview {
-    lines:                      10;
     padding:                    18px;
 }
 
+listview {
+    lines:                      12;
+    padding:                    24px;
+}
+
 element {
-    padding:                    6px;
+    padding:                    10px;
 }
 
 element-icon {
-    size:                       24px;
+    size:                       30px;
 }
