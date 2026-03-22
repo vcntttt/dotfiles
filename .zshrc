@@ -19,3 +19,6 @@ source ~/dotfiles/shell/tools.sh
 source ~/dotfiles/shell/plugins/load.sh
 
 export PATH=$PATH:$HOME/.maestro/bin
+
+# opencode
+export PATH=/home/vrivera/.opencode/bin:$PATH

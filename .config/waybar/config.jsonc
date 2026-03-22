@@ -6,13 +6,11 @@
   "height": 34,
 
   "modules-left": [
-    "hyprland/workspaces", 
+    "hyprland/workspaces",
     "mpris"
     // "hyprland/window"
   ],
-  "modules-center": [
-    "custom/update"
-  ],
+  "modules-center": ["custom/update"],
   "modules-right": [
     // "tray",
     "custom/weather",
@@ -23,8 +21,9 @@
     "temperature",
     "custom/gpu",
     "memory",
+    "battery#bat0",
     "clock",
-    "custom/notification"
+    "custom/notification",
   ],
 
   "hyprland/workspaces": {
@@ -85,6 +84,20 @@
     "format": "󰘚 {}%",
     "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
     "on-click": "$HOME/.local/bin/launch-or-focus-tui btop"
+  },
+  "battery#bat0": {
+    "bat": "BAT0",
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-full": " 100%",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "{timeTo} remaining",
+    "interval": 10
   },
   "clock": {
     "locale": "es_CL.UTF-8",

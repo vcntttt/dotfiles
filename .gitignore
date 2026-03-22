@@ -8,3 +8,4 @@ omarchy/
 .config/hypr/host.conf
 .config/rofi/host.rasi
 .config/waybar/host.css
+.opencode/bin/opencode

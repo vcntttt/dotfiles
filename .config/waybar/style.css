@@ -39,6 +39,8 @@ window#waybar {
 #temperature,
 #custom-gpu,
 #memory,
+#battery,
+#battery-bat0,
 #clock,
 #custom-weather,
 #custom-notification {
@@ -84,6 +86,8 @@ window#waybar {
 #network,
 #custom-notification,
 #memory,
+#battery,
+#battery-bat0,
 #temperature,
 #custom-gpu {
   min-width: 28px;
