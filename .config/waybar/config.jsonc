@@ -12,7 +12,7 @@
   ],
   "modules-center": ["custom/update"],
   "modules-right": [
-    // "tray",
+    "tray",
     "custom/weather",
     "custom/vpn",
     "network",
