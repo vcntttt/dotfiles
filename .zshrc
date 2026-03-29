@@ -19,3 +19,6 @@ source ~/dotfiles/shell/tools.sh
 source ~/dotfiles/shell/plugins/load.sh
 
 export PATH=$PATH:$HOME/.maestro/bin
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
