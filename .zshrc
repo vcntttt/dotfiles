@@ -22,3 +22,5 @@ export PATH=$PATH:$HOME/.maestro/bin
 
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
+# opencode
+export PATH=/home/vrivera/.opencode/bin:$PATH

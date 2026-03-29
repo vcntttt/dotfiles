@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  printf 'Uso: %s <semestre> [--link-existing]\n' "$(basename "$0")"
+  printf 'Ejemplo: %s 7mo-Semestre --link-existing\n' "$(basename "$0")"
+}
+
+if [[ $# -lt 1 || $# -gt 2 ]]; then
+  usage
+  exit 1
+fi
+
+semestre="$1"
+link_existing="false"
+
+if [[ $# -eq 2 ]]; then
+  if [[ "$2" != '--link-existing' ]]; then
+    usage
+    exit 1
+  fi
+  link_existing="true"
+fi
+
+nextcloud_root="$HOME/Nextcloud/informatica/$semestre"
+dev_root="$HOME/dev/$semestre"
+
+if [[ ! -d "$nextcloud_root" ]]; then
+  printf 'No existe el semestre en Nextcloud: %s\n' "$nextcloud_root" >&2
+  exit 1
+fi
+
+mkdir -p "$dev_root"
+
+for ramo_path in "$nextcloud_root"/*; do
+  [[ -d "$ramo_path" ]] || continue
+  ramo="$(basename "$ramo_path")"
+  mkdir -p "$dev_root/$ramo"
+  printf 'Ramo listo en dev: %s\n' "$dev_root/$ramo"
+done
+
+if [[ "$link_existing" != 'true' ]]; then
+  exit 0
+fi
+
+for ramo_path in "$dev_root"/*; do
+  [[ -d "$ramo_path" ]] || continue
+  ramo="$(basename "$ramo_path")"
+  [[ -d "$nextcloud_root/$ramo" ]] || continue
+
+  for repo_path in "$ramo_path"/*; do
+    [[ -d "$repo_path" ]] || continue
+    [[ -d "$repo_path/.git" ]] || continue
+
+    repo="$(basename "$repo_path")"
+    target_dir="$nextcloud_root/$ramo/$repo"
+
+    if [[ -L "$target_dir" ]]; then
+      printf 'Enlace ya presente: %s\n' "$target_dir"
+      continue
+    fi
+
+    if [[ -e "$target_dir" ]]; then
+      printf 'Se omite porque ya existe en Nextcloud: %s\n' "$target_dir" >&2
+      continue
+    fi
+
+    "$HOME/.local/bin/symbolycs" "$semestre" "$ramo" "$repo"
+  done
+done

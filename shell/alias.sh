@@ -18,7 +18,7 @@ alias reflec="sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirror
 alias grub-reconf="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
 alias chx="chmod +x"
-
+alias off="shutdown now"
 # --- WM / QTILE --- #
 #alias logout="qtile cmd-obj -o cmd -f shutdown"
 alias qlog="cat ~/.local/share/qtile/qtile.log"
@@ -34,6 +34,82 @@ alias logout="hyprctl dispatch exit"
 alias ra="restart-app"
 alias rwall="systemctl --user restart hyprpaper.service"
 
+projector_status() {
+  command -v hyprctl &>/dev/null || return 1
+  command -v jq &>/dev/null || return 1
+
+  local status
+
+  status="$(hyprctl -j monitors all 2>/dev/null | jq -r '
+    map(select(.name == "HDMI-A-1"))
+    | if length == 0 then "disconnected"
+      elif .[0].disabled then "disabled"
+      elif .[0].mirrorOf == "eDP-1" then "mirror"
+      else "extended"
+      end
+  ')"
+
+  printf '%s\n' "$status"
+}
+
+projector_off() {
+  hyprctl keyword workspace "6, monitor:eDP-1" >/dev/null
+  hyprctl keyword workspace "7, monitor:eDP-1" >/dev/null
+  hyprctl keyword monitor "HDMI-A-1, disable"
+  pkill -RTMIN+8 waybar >/dev/null 2>&1 || true
+}
+
+mirror() {
+  local status
+
+  status="$(projector_status)" || {
+    printf 'No pude consultar Hyprland o jq.\n'
+    return 1
+  }
+
+  [[ "$status" == "disconnected" ]] && {
+    printf 'No detecto el proyector en HDMI-A-1.\n'
+    return 1
+  }
+
+  if [[ "$status" == "mirror" ]]; then
+    projector_off
+    return
+  fi
+
+  hyprctl keyword monitor "HDMI-A-1, disable" >/dev/null 2>&1 || true
+  hyprctl keyword workspace "6, monitor:eDP-1" >/dev/null
+  hyprctl keyword workspace "7, monitor:eDP-1" >/dev/null
+  hyprctl keyword monitor "HDMI-A-1, preferred, auto, 1, mirror, eDP-1"
+  pkill -RTMIN+8 waybar >/dev/null 2>&1 || true
+}
+
+projector() {
+  local status
+
+  status="$(projector_status)" || {
+    printf 'No pude consultar Hyprland o jq.\n'
+    return 1
+  }
+
+  [[ "$status" == "disconnected" ]] && {
+    printf 'No detecto el proyector en HDMI-A-1.\n'
+    return 1
+  }
+
+  if [[ "$status" == "extended" ]]; then
+    projector_off
+    return
+  fi
+
+  hyprctl keyword monitor "HDMI-A-1, disable" >/dev/null 2>&1 || true
+  hyprctl keyword monitor "HDMI-A-1, preferred, auto-right, 1" >/dev/null
+  hyprctl keyword workspace "6, monitor:HDMI-A-1" >/dev/null
+  hyprctl keyword workspace "7, monitor:HDMI-A-1" >/dev/null
+  pkill -RTMIN+8 waybar >/dev/null 2>&1 || true
+}
+
+alias extend="projector"
 # --- EDITOR / NVIM --- #
 alias nv="nvim ."
 alias sn="sudo nvim"

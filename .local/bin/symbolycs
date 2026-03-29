@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  printf 'Uso: %s <semestre> <ramo> <repo>\n' "$(basename "$0")"
+  printf 'Ejemplo: %s 7mo-Semestre ayudantia-algoritmos programacion-lineal\n' "$(basename "$0")"
+}
+
+if [[ $# -ne 3 ]]; then
+  usage
+  exit 1
+fi
+
+semestre="$1"
+ramo="$2"
+repo="$3"
+
+dev_root="$HOME/dev/$semestre"
+nextcloud_root="$HOME/Nextcloud/informatica/$semestre"
+source_dir="$dev_root/$ramo/$repo"
+target_dir="$nextcloud_root/$ramo/$repo"
+
+if [[ ! -d "$dev_root/$ramo" ]]; then
+  printf 'No existe el ramo en dev: %s\n' "$dev_root/$ramo" >&2
+  exit 1
+fi
+
+if [[ ! -d "$nextcloud_root/$ramo" ]]; then
+  printf 'No existe el ramo en Nextcloud: %s\n' "$nextcloud_root/$ramo" >&2
+  exit 1
+fi
+
+if [[ ! -d "$source_dir" ]]; then
+  printf 'No existe el repo en dev: %s\n' "$source_dir" >&2
+  exit 1
+fi
+
+if [[ -L "$target_dir" ]]; then
+  if [[ "$(readlink -f "$target_dir")" == "$source_dir" ]]; then
+    printf 'El enlace ya existe: %s -> %s\n' "$target_dir" "$source_dir"
+    exit 0
+  fi
+
+  printf 'Ya existe un enlace distinto en Nextcloud: %s\n' "$target_dir" >&2
+  exit 1
+fi
+
+if [[ -e "$target_dir" ]]; then
+  printf 'Ya existe una carpeta o archivo en Nextcloud: %s\n' "$target_dir" >&2
+  exit 1
+fi
+
+ln -s "$source_dir" "$target_dir"
+printf 'Enlace creado: %s -> %s\n' "$target_dir" "$source_dir"
