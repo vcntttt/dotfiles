@@ -30,6 +30,9 @@ export MAESTRO_OUTPUT_DIR="$PWD/.maestro/_runs"
 # Bat
 export BAT_THEME="base16"
 
+# VPN
+export VPN_SERVICE="galileo"
+
 # BUN
 export PATH="/home/vrivera/.cache/.bun/bin:$PATH"
 export SSH_AUTH_SOCK
