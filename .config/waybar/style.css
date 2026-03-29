@@ -32,6 +32,7 @@ window#waybar {
 
 #mpris,
 #custom-vpn,
+#custom-projector,
 #custom-update,
 #network,
 #pulseaudio,
@@ -126,6 +127,14 @@ tooltip {
 #custom-vpn {
   padding: 0 12px;
   font-size: 13px;
+}
+
+#custom-projector.mirror {
+  color: #f9e2af;
+}
+
+#custom-projector.extended {
+  color: #a6e3a1;
 }
 
 #custom-notification {

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v hyprctl >/dev/null 2>&1 || ! command -v jq >/dev/null 2>&1; then
+  exit 0
+fi
+
+status=$(hyprctl -j monitors all 2>/dev/null | jq -r '
+  map(select(.name == "HDMI-A-1"))
+  | if length == 0 then "disconnected"
+    elif .[0].disabled then "off"
+    elif .[0].mirrorOf == "eDP-1" then "mirror"
+    else "extended"
+    end
+')
+
+case "$status" in
+  mirror)
+    printf '{"text":"󰍹 espejo","class":"mirror","tooltip":"Proyector: espejo"}\n'
+    ;;
+  extended)
+    printf '{"text":"󰍹 extendido","class":"extended","tooltip":"Proyector: extendido"}\n'
+    ;;
+  *)
+    exit 0
+    ;;
+esac
