@@ -52,6 +52,7 @@ If you add tests or a build system, document the commands here.
 - Prefer editing repo paths such as `.config/hypr/...`, `.config/rofi/...`, `.local/bin/...`, and `.zshrc` instead of editing the runtime paths directly.
 - Use runtime paths mainly for reloads, verification, or confirming how symlinks resolve on the current machine.
 - If a change affects a generated local override, keep the generated file in the repo path that backs the symlink unless the user explicitly wants a different layout.
+- For the host-based config model and university sync model, see `docs/config-model.md` and `docs/sync-model.md`.
 
 ## Runtime assumptions
 - Targets Arch-based Linux; package management uses `pacman` and `yay`.
