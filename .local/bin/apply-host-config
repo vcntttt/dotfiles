@@ -7,6 +7,7 @@ HOST_FILE="${DOTFILES_HOST_FILE:-$DOTFILES/.config/dotfiles/host}"
 HYPR_HOST_FILE="$DOTFILES/.config/hypr/host.conf"
 ROFI_HOST_FILE="$DOTFILES/.config/rofi/host.rasi"
 WAYBAR_HOST_FILE="$DOTFILES/.config/waybar/host.css"
+WAYBAR_CONFIG_FILE="$DOTFILES/.config/waybar/config.jsonc"
 GHOSTTY_HOST_FILE="$DOTFILES/.config/ghostty/host"
 
 source "$DOTFILES/shell/host.sh"
@@ -14,9 +15,10 @@ source "$DOTFILES/shell/host.sh"
 HYPR_TEMPLATE="$DOTFILES/.config/hypr/hosts/$DOTFILES_HOST.conf"
 ROFI_TEMPLATE="$DOTFILES/.config/rofi/hosts/$DOTFILES_HOST.rasi"
 WAYBAR_TEMPLATE="$DOTFILES/.config/waybar/hosts/$DOTFILES_HOST.css"
+WAYBAR_CONFIG_TEMPLATE="$DOTFILES/.config/waybar/hosts/$DOTFILES_HOST.jsonc"
 GHOSTTY_TEMPLATE="$DOTFILES/.config/ghostty/hosts/$DOTFILES_HOST"
 
-if [[ ! -f "$HYPR_TEMPLATE" || ! -f "$ROFI_TEMPLATE" || ! -f "$WAYBAR_TEMPLATE" || ! -f "$GHOSTTY_TEMPLATE" ]]; then
+if [[ ! -f "$HYPR_TEMPLATE" || ! -f "$ROFI_TEMPLATE" || ! -f "$WAYBAR_TEMPLATE" || ! -f "$WAYBAR_CONFIG_TEMPLATE" || ! -f "$GHOSTTY_TEMPLATE" ]]; then
   echo "Faltan overrides versionados para '$DOTFILES_HOST'"
   exit 1
 fi
@@ -38,8 +40,18 @@ cat > "$ROFI_HOST_FILE" <<EOF
 EOF
 
 cat > "$WAYBAR_HOST_FILE" <<EOF
+/* Archivo local generado por apply-host-config */
 @import url("hosts/$DOTFILES_HOST.css");
 EOF
+
+if command -v jq >/dev/null 2>&1; then
+  jq -s '.[0] * .[1]' \
+    "$DOTFILES/.config/waybar/config.base.jsonc" \
+    "$WAYBAR_CONFIG_TEMPLATE" > "$WAYBAR_CONFIG_FILE"
+else
+  echo "jq es requerido para generar .config/waybar/config.jsonc"
+  exit 1
+fi
 
 {
   printf '%s\n' '# Archivo local generado por apply-host-config'
