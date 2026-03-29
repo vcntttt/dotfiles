@@ -15,13 +15,13 @@ uptime="$(uptime -p | sed -e 's/up //g')"
 host=$(hostname)
 
 # Options
-shutdown=''
-reboot=''
-lock=''
-suspend=''
-logout=''
-yes=''
-no=''
+shutdown=''
+reboot=''
+lock=''
+suspend=''
+logout=''
+yes=''
+no=''
 push_now='push ahora'
 cancel='cancelar'
 dev_cmd="${DEV_CMD:-$HOME/.local/bin/dev}"
