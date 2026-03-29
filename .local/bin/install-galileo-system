@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+TARGET_USER="${GALILEO_USER:-${SUDO_USER:-${USER:-}}}"
+OPENVPN_DIR="/etc/openvpn/client"
+SUDOERS_FILE="/etc/sudoers.d/90-galileo-openvpn"
+
+require_root() {
+  if [[ "${EUID}" -ne 0 ]]; then
+    echo "Este script debe ejecutarse con sudo." >&2
+    exit 1
+  fi
+}
+
+require_file() {
+  local path="$1"
+
+  if [[ ! -f "$path" ]]; then
+    echo "Falta archivo requerido: $path" >&2
+    exit 1
+  fi
+}
+
+require_root
+
+if [[ -z "$TARGET_USER" ]]; then
+  echo "No se pudo determinar el usuario para sudoers." >&2
+  echo "Usa: GALILEO_USER=tu_usuario sudo $0" >&2
+  exit 1
+fi
+
+SOURCE_HOME="$(getent passwd "$TARGET_USER" | cut -d: -f6)"
+
+if [[ -z "$SOURCE_HOME" ]]; then
+  echo "No se pudo resolver el home de $TARGET_USER." >&2
+  exit 1
+fi
+
+SOURCE_DIR="${1:-$SOURCE_HOME/dev/galileo-TCP4-443-vrivera}"
+
+require_file "$SOURCE_DIR/galileo-TCP4-443-vrivera.ovpn"
+require_file "$SOURCE_DIR/galileo-TCP4-443-vrivera.p12"
+require_file "$SOURCE_DIR/galileo-TCP4-443-vrivera-tls.key"
+require_file "$SOURCE_DIR/credentials"
+
+install -d -m 750 "$OPENVPN_DIR"
+
+install -m 600 "$SOURCE_DIR/galileo-TCP4-443-vrivera.ovpn" "$OPENVPN_DIR/galileo.conf"
+install -m 600 "$SOURCE_DIR/galileo-TCP4-443-vrivera.p12" "$OPENVPN_DIR/galileo-TCP4-443-vrivera.p12"
+install -m 600 "$SOURCE_DIR/galileo-TCP4-443-vrivera-tls.key" "$OPENVPN_DIR/galileo-TCP4-443-vrivera-tls.key"
+install -m 600 "$SOURCE_DIR/credentials" "$OPENVPN_DIR/credentials"
+
+cat > "$SUDOERS_FILE" <<EOF
+$TARGET_USER ALL=(root) NOPASSWD: /usr/bin/systemctl start openvpn-client@galileo, /usr/bin/systemctl stop openvpn-client@galileo, /usr/bin/systemctl status openvpn-client@galileo, /usr/bin/systemctl is-active openvpn-client@galileo
+EOF
+
+chmod 440 "$SUDOERS_FILE"
+visudo -cf "$SUDOERS_FILE"
+
+systemctl daemon-reload
+systemctl reset-failed openvpn-client@galileo >/dev/null 2>&1 || true
+
+echo "Galileo instalada en $OPENVPN_DIR y sudoers listo para $TARGET_USER"
+echo "Puedes probar con: systemctl start openvpn-client@galileo"

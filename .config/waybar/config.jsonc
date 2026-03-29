@@ -139,7 +139,7 @@
   },
   "custom/vpn": {
     "exec": "systemctl is-active openvpn-client@galileo >/dev/null && echo '󰖂 Galileo ON' || echo ''",
-    "on-click": "galileo",
+    "on-click": "$HOME/.local/bin/galileo",
     "interval": 5
   },
   "custom/notification": {
