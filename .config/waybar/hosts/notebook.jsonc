@@ -1,0 +1,17 @@
+{
+  "modules-right": [
+    "tray",
+    "custom/projector",
+    "custom/weather",
+    "custom/vpn",
+    "network",
+    "pulseaudio",
+    "cpu",
+    "temperature",
+    "custom/gpu",
+    "memory",
+    "battery#bat0",
+    "clock",
+    "custom/notification"
+  ]
+}
