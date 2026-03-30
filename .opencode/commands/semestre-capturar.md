@@ -41,4 +41,4 @@ Formato de salida esperado:
 2. Hallazgos relevantes o inconsistencias.
 3. Bloque JSON propuesto listo para guardar en `.semester-state.json`.
 
-Si existe ya un `.semester-state.json`, comparar lo observado contra ese archivo y mostrar el diff conceptual, pero no editarlo.
+Si existe ya un `.semester-state.json`, comparar lo observado contra ese archivo y mostrar el diff conceptual, a la espera de confirmación para actualizar el archivo.
