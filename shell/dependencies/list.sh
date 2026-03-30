@@ -25,6 +25,7 @@ DESKTOP_PACMAN_PKGS=(
   hyprpaper
   hyprsunset
   waybar
+  xembedsniproxy
   rofi
   noto-fonts
   noto-fonts-emoji

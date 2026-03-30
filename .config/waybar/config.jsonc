@@ -15,7 +15,6 @@
     "tray",
     "custom/weather",
     "custom/vpn",
-    "network",
     "pulseaudio",
     "cpu",
     "temperature",

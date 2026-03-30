@@ -102,6 +102,25 @@ tooltip {
   padding: 2px;
 }
 
+menu {
+  background-color: @background;
+  color: @foreground;
+  border: 1px solid @pill-border;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+menuitem {
+  color: @foreground;
+  background-color: transparent;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+menuitem:hover {
+  background-color: alpha(@foreground, 0.14);
+}
+
 #custom-update {
   font-size: 10px;
 }
