@@ -134,7 +134,9 @@ keymap = [
 	{ on = [ "g", "b" ],       run = "cd ~/dotfiles/.local/bin",   desc = "Go ~/dotfiles/.local/bin" },
 	{ on = [ "g", "m" ],       run = "cd /mnt/hdd",   desc = "Go /mnt/hdd" },
 	{ on = [ "g", "p" ],       run = "cd ~/Pictures",   desc = "Go /mnt/hdd" },
-	{ on = [ "g", "d" ],       run = "cd ~/Documents",   desc = "Go /mnt/hdd" },
+	{ on = [ "g", "d" ],       run = "cd ~/Documents",   desc = "Go ~/Documents" },
+	{ on = [ "g", "i" ],       run = "cd ~/Nextcloud/informatica",   desc = "Go ~/Nextcloud/informatica" },
+	{ on = [ "g", "e" ],       run = "cd ~/dev",   desc = "Go ~/dev" },
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
 	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
 
