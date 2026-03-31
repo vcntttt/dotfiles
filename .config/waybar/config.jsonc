@@ -13,6 +13,7 @@
   ],
   "modules-right": [
     "tray",
+    "custom/projector",
     "custom/weather",
     "custom/vpn",
     "pulseaudio",
@@ -59,13 +60,6 @@
     "interval": 1800,
     "return-type": "json",
     "on-click": "$HOME/.local/bin/launch-or-focus-float pacman-update ghostty --class=\"pacman-update\" -e bash -lc 'yay -Syu'",
-    "tooltip": true
-  },
-  "custom/projector": {
-    "exec": "$HOME/.local/bin/waybar-projector",
-    "return-type": "json",
-    "interval": 0,
-    "signal": 8,
     "tooltip": true
   },
   "cpu": {
@@ -115,24 +109,6 @@
     "format": "  {:L%A %d %b - %H:%M}",
     "format-alt": "{:L%d %B W%V %Y}",
     "tooltip": false
-  },
-  "network": {
-    "format-icons": [
-      "󰤯",
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
-    ],
-    "format": "{icon}",
-    "format-wifi": "{icon}",
-    "format-ethernet": "",
-    "format-disconnected": "󰤮",
-    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-disconnected": "Disconnected",
-    "interval": 3,
-    "spacing": 1
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -205,5 +181,12 @@
     "interval": 600,
     "exec": "wttrbar --location Temuco,Chile",
     "return-type": "json"
+  },
+  "custom/projector": {
+    "exec": "$HOME/.local/bin/waybar-projector",
+    "return-type": "json",
+    "interval": 0,
+    "signal": 8,
+    "tooltip": true
   }
 }
