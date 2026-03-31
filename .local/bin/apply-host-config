@@ -6,6 +6,7 @@ DOTFILES="${DOTFILES:-$HOME/dotfiles}"
 HOST_FILE="${DOTFILES_HOST_FILE:-$DOTFILES/.config/dotfiles/host}"
 HYPR_HOST_FILE="$DOTFILES/.config/hypr/host.conf"
 ROFI_HOST_FILE="$DOTFILES/.config/rofi/host.rasi"
+ROFI_POWERMENU_HOST_FILE="$DOTFILES/.config/rofi/powermenu/host.rasi"
 WAYBAR_HOST_FILE="$DOTFILES/.config/waybar/host.css"
 WAYBAR_CONFIG_FILE="$DOTFILES/.config/waybar/config.jsonc"
 GHOSTTY_HOST_FILE="$DOTFILES/.config/ghostty/host"
@@ -14,11 +15,12 @@ source "$DOTFILES/shell/host.sh"
 
 HYPR_TEMPLATE="$DOTFILES/.config/hypr/hosts/$DOTFILES_HOST.conf"
 ROFI_TEMPLATE="$DOTFILES/.config/rofi/hosts/$DOTFILES_HOST.rasi"
+ROFI_POWERMENU_TEMPLATE="$DOTFILES/.config/rofi/powermenu/hosts/$DOTFILES_HOST.rasi"
 WAYBAR_TEMPLATE="$DOTFILES/.config/waybar/hosts/$DOTFILES_HOST.css"
 WAYBAR_CONFIG_TEMPLATE="$DOTFILES/.config/waybar/hosts/$DOTFILES_HOST.jsonc"
 GHOSTTY_TEMPLATE="$DOTFILES/.config/ghostty/hosts/$DOTFILES_HOST"
 
-if [[ ! -f "$HYPR_TEMPLATE" || ! -f "$ROFI_TEMPLATE" || ! -f "$WAYBAR_TEMPLATE" || ! -f "$WAYBAR_CONFIG_TEMPLATE" || ! -f "$GHOSTTY_TEMPLATE" ]]; then
+if [[ ! -f "$HYPR_TEMPLATE" || ! -f "$ROFI_TEMPLATE" || ! -f "$ROFI_POWERMENU_TEMPLATE" || ! -f "$WAYBAR_TEMPLATE" || ! -f "$WAYBAR_CONFIG_TEMPLATE" || ! -f "$GHOSTTY_TEMPLATE" ]]; then
   echo "Faltan overrides versionados para '$DOTFILES_HOST'"
   exit 1
 fi
@@ -26,6 +28,7 @@ fi
 mkdir -p "$DOTFILES/.config/dotfiles"
 mkdir -p "$DOTFILES/.config/hypr"
 mkdir -p "$DOTFILES/.config/rofi"
+mkdir -p "$DOTFILES/.config/rofi/powermenu"
 mkdir -p "$DOTFILES/.config/waybar"
 mkdir -p "$DOTFILES/.config/ghostty"
 
@@ -37,6 +40,11 @@ mkdir -p "$DOTFILES/.config/ghostty"
 cat > "$ROFI_HOST_FILE" <<EOF
 /* Archivo local generado por apply-host-config */
 @import "~/.config/rofi/hosts/$DOTFILES_HOST.rasi"
+EOF
+
+cat > "$ROFI_POWERMENU_HOST_FILE" <<EOF
+/* Archivo local generado por apply-host-config */
+@import "~/.config/rofi/powermenu/hosts/$DOTFILES_HOST.rasi"
 EOF
 
 cat > "$WAYBAR_HOST_FILE" <<EOF
