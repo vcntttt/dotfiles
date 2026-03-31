@@ -18,13 +18,12 @@ configuration {
 * {
     font: "JetBrains Mono Nerd Font 12";
 
-    /* Resolution : 1920x1080 */
-    box-spacing:                 50px;
-    box-margin:                  300px 200px;
+    box-spacing:                 24px;
+    box-margin:                  140px 60px;
     inputbar-spacing:            0px;
-    list-spacing:                30px;
+    list-spacing:                16px;
     general-padding:             20px;
-    element-padding:             80px 10px;
+    element-padding:             34px 10px;
     element-radius:              50%;
     general-radius:              10%;
 }
@@ -36,7 +35,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  true;
-    width:                       1366px;
+    width:                       100%;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -177,3 +176,5 @@ element selected.normal {
     background-color:            var(selected);
     text-color:                  var(background);
 }
+
+@import "~/.config/rofi/powermenu/host.rasi"

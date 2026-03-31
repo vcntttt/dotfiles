@@ -1,0 +1,14 @@
+* {
+    box-spacing:                 18px;
+    box-margin:                  110px 36px;
+    list-spacing:                12px;
+    element-padding:             26px 10px;
+}
+
+window {
+    width:                       100%;
+}
+
+element-text {
+    font:                        "JetBrainsMono Nerd Font Propo 56";
+}

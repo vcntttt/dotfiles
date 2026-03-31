@@ -1,0 +1,10 @@
+* {
+    box-spacing:                 24px;
+    box-margin:                  140px 60px;
+    list-spacing:                16px;
+    element-padding:             34px 10px;
+}
+
+window {
+    width:                       100%;
+}
