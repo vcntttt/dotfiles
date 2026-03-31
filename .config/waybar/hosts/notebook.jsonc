@@ -4,7 +4,6 @@
     "custom/projector",
     "custom/weather",
     "custom/vpn",
-    "network",
     "pulseaudio",
     "cpu",
     "temperature",
@@ -13,5 +12,12 @@
     "battery#bat0",
     "clock",
     "custom/notification"
-  ]
+  ],
+  "custom/projector": {
+    "exec": "$HOME/.local/bin/waybar-projector",
+    "return-type": "json",
+    "interval": 0,
+    "signal": 8,
+    "tooltip": true
+  }
 }
