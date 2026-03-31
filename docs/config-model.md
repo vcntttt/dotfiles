@@ -36,6 +36,7 @@ Archivos generados actuales:
 
 - `.config/hypr/host.conf`
 - `.config/rofi/host.rasi`
+- `.config/rofi/powermenu/host.rasi`
 - `.config/waybar/host.css`
 - `.config/waybar/config.jsonc`
 - `.config/ghostty/host`
@@ -52,7 +53,7 @@ Cada aplicacion debe seguir el mismo patron:
 Modelo actual:
 
 - Hyprland: `.config/hypr/hyprland.conf` carga base y luego `host.conf`
-- Rofi: `.config/rofi/launcher.rasi` carga base y luego `host.rasi`
+- Rofi: `.config/rofi/launcher.rasi` y `.config/rofi/powermenu/theme.rasi` cargan base y luego `host.rasi`
 - Waybar: `style.css` carga `base.css` y luego `host.css`; `config.jsonc` se genera desde `config.base.jsonc` y `hosts/<host>.jsonc`
 - Ghostty: `.config/ghostty/config` carga base y luego `host`
 
