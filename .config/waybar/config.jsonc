@@ -13,7 +13,6 @@
   ],
   "modules-right": [
     "tray",
-    "custom/projector",
     "custom/weather",
     "custom/vpn",
     "pulseaudio",
@@ -37,7 +36,7 @@
       "5": "5",
       "6": "6",
       "7": "7",
-      "8": "󰮟",
+      "8": "",
       "9": "󰓇",
       "10": "0",
       "active": "󱓻"
@@ -181,12 +180,5 @@
     "interval": 600,
     "exec": "wttrbar --location Temuco,Chile",
     "return-type": "json"
-  },
-  "custom/projector": {
-    "exec": "$HOME/.local/bin/waybar-projector",
-    "return-type": "json",
-    "interval": 0,
-    "signal": 8,
-    "tooltip": true
   }
 }
