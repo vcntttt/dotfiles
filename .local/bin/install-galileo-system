@@ -37,7 +37,7 @@ if [[ -z "$SOURCE_HOME" ]]; then
   exit 1
 fi
 
-SOURCE_DIR="${1:-$SOURCE_HOME/dev/galileo-TCP4-443-vrivera}"
+SOURCE_DIR="${1:-$SOURCE_HOME/Nextcloud/linux/galileo-TCP4-443-vrivera}"
 
 require_file "$SOURCE_DIR/galileo-TCP4-443-vrivera.ovpn"
 require_file "$SOURCE_DIR/galileo-TCP4-443-vrivera.p12"

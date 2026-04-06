@@ -113,10 +113,15 @@ Si necesitas verlo desde otro lado, usa un link, pero solo desde la vista secund
 
 Scripts relacionados hoy:
 
-- `.local/bin/dirs.py`
-- `.local/bin/setup-semestre`
-- `.local/bin/symbolycs`
-- `~/Nextcloud/sync.sh`
+- `.local/bin/dirs.py`: herramienta principal para crear o normalizar la estructura de ramos entre `Nextcloud`, `Notas` y `dev`. Crea la vista del ramo en `Nextcloud` y enlaza `Notas` y `work` hacia sus owners reales.
+- `.local/bin/setup-semestre`: bootstrap de un semestre ya existente en `Nextcloud` hacia `~/dev/<semestre>`. Puede crear carpetas base de ramos y, con `--link-existing`, pedir enlaces para repos git ya presentes.
+- `.local/bin/symbolycs`: helper puntual para crear un symlink desde `Nextcloud/informatica/<semestre>/<ramo>/<repo>` hacia el repo real en `~/dev/<semestre>/<ramo>/<repo>`.
+- `~/Nextcloud/setup-nextcloud-assets.sh`: bootstrap de assets sincronizados del sistema en una maquina nueva. Solo enlaza rutas globales como `Documents`, `Pictures`, `icons` y `themes` hacia `Nextcloud`.
+
+Separacion actual de responsabilidades:
+
+- `dirs.py`, `setup-semestre` y `symbolycs` pertenecen al modelo academico.
+- `setup-nextcloud-assets.sh` pertenece al setup global de assets sincronizados.
 
 Estos scripts deben evaluarse con una regla simple: cualquier automatizacion nueva debe reforzar el ownership unico de cada carpeta, no mezclarlo.
 

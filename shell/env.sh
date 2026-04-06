@@ -32,6 +32,7 @@ export BAT_THEME="base16"
 
 # VPN
 export VPN_SERVICE="galileo"
+export KUBECONFIG="$HOME/Nextcloud/linux/kubernetes-vrivera/kubeconfig"
 
 # BUN
 export PATH="/home/vrivera/.cache/.bun/bin:$PATH"
