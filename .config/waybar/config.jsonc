@@ -4,13 +4,9 @@
   "position": "top",
   "spacing": 0,
   "height": 34,
-  "modules-left": [
-    "hyprland/workspaces",
-    "mpris"
-  ],
-  "modules-center": [
-    "custom/update"
-  ],
+
+  "modules-left": ["hyprland/workspaces", "mpris"],
+  "modules-center": ["custom/update"],
   "modules-right": [
     "tray",
     "custom/weather",
@@ -24,6 +20,7 @@
     "clock",
     "custom/notification"
   ],
+
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{icon}",
@@ -93,13 +90,7 @@
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
     "format-full": " 100%",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
+    "format-icons": ["", "", "", "", ""],
     "tooltip-format": "{timeTo} remaining",
     "interval": 10
   },
@@ -118,16 +109,10 @@
     "scroll-step": 5,
     "format-muted": "",
     "format-icons": {
-      "alsa_output.pci-0000_0a_00.6.analog-stereo": [
-        "",
-        ""
-      ],
+      "alsa_output.pci-0000_0a_00.6.analog-stereo": ["", ""],
       "alsa_output.usb-Kingston_Technology_Company_HyperX_Cloud_Flight_Wireless-00.analog-stereo": "",
       "alsa_output.pci-0000_01_00.1.hdmi-stereo": "󰍹",
-      "default": [
-        "",
-        ""
-      ]
+      "default": ["", ""]
     }
   },
   "tray": {
