@@ -1,0 +1,28 @@
+* {
+    box-spacing:                 28px;
+    box-margin:                  150px 0px;
+    message-margin:              0px 200px;
+    list-spacing:                28px;
+    element-padding:             48px 28px;
+    element-font:                "JetBrainsMono Nerd Font Propo 46";
+}
+
+window {
+    width:                       100%;
+}
+
+listview {
+    columns:                     1;
+    lines:                       5;
+    dynamic:                     true;
+    fixed-columns:               false;
+    fixed-height:                false;
+    layout:                      horizontal;
+    flow:                        horizontal;
+    spacing:                     28px;
+    margin:                      0px 420px;
+}
+
+element {
+    border-radius:               24px;
+}

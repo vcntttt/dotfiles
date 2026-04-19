@@ -11,3 +11,4 @@ omarchy/
 .config/waybar/host.css
 .opencode/bin/opencode
 .local/share/icons/hicolor/
+/.config/waybar/config.jsonc
