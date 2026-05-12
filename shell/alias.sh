@@ -234,6 +234,7 @@ alias bep="bunx expo prebuild"
 alias pip="uv pip"
 alias pif="pip freeze > requirements.txt"
 alias pir="uv pip install -r requirements.txt"
+alias py="uv run"
 
 alias pv="pyenv"
 alias pvv="pyenv virtualenv"
@@ -280,3 +281,7 @@ alias mkey="openssl rand -hex 32"
 alias oc="opencode"
 alias zed="zeditor ."
 alias sshl="ssh vrivera@caburgua.tailf8b14c.ts.net"
+
+scphl() {
+  scp "$@" "vrivera@caburgua.tailf8b14c.ts.net:/home/vrivera"
+}
