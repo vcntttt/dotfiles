@@ -22,15 +22,6 @@ Flujo base:
 - Formato sugerido: `tipo(scope): resumen en español` (ej. `feat(auth): agrega login con SSO`).
 - Incluir una breve razon en el cuerpo del commit (1-2 lineas explicando el por que).
 
-Integracion Linear (solo si aplica):
-- Detectar si el `AGENTS.md` del repo actual menciona Linear (por ejemplo "Linear workflow").
-- Si aplica, hacer lo mismo que el flujo de Linear actual:
-  - Detectar IDs de issues mencionados en la sesion o el trabajo.
-  - Marcar issues activas como `In Progress` antes de finalizar commits (asignar a `me` si aplica).
-  - Luego de commitear, listar issues que se completarian y pedir confirmacion antes de cerrarlas.
-  - Si se confirma, comentar con hashes de commit + resultados de verificacion y mover a Done.
-  - Si no hay issues, pedir IDs y no cerrar nada.
-
 Verificacion automatica (si aplica):
 - Buscar `package.json` en el repo actual.
   - `bun run check` si existe.
