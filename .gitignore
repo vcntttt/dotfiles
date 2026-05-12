@@ -9,5 +9,6 @@ omarchy/
 .config/rofi/host.rasi
 .config/rofi/powermenu/host.rasi
 .config/waybar/host.css
+.config/waybar/config.jsonc
 .opencode/bin/opencode
 .local/share/icons/hicolor/
