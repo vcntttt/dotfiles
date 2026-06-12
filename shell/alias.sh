@@ -9,7 +9,7 @@ alias cat="bat"
 
 # --- SISTEMA / ARCH --- #
 alias pup="sudo pacman -Syu"
-alias pi="sudo pacman -S --needed"
+alias pas="sudo pacman -S --needed"
 alias pss="pacman -Ss"
 
 alias yup="yay -Syu --noconfirm"
@@ -285,3 +285,5 @@ alias sshl="ssh vrivera@caburgua.tailf8b14c.ts.net"
 scphl() {
   scp "$@" "vrivera@caburgua.tailf8b14c.ts.net:/home/vrivera"
 }
+
+alias kctl="kubectl"
