@@ -7,6 +7,18 @@ alias lal="bat ~/dotfiles/shell/alias.sh"
 
 alias cat="bat"
 
+# --- LATEX / PDF --- #
+mkpdf() {
+  local file="$1"
+
+  [[ -z "$file" ]] && {
+    printf 'Uso: mkpdf <ruta-al-tex>\n'
+    return 1
+  }
+
+  latexmk -pdf "$file" && latexmk -c "$file"
+}
+
 # --- SISTEMA / ARCH --- #
 alias pup="sudo pacman -Syu"
 alias pas="sudo pacman -S --needed"
