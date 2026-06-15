@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+DOTFILES="${DOTFILES:-$HOME/dotfiles}"
+SOURCE="$DOTFILES/.local/share/wayland-sessions/hyprland-uwsm.desktop"
+TARGET="/usr/local/share/wayland-sessions/hyprland-uwsm.desktop"
+
+if [[ ! -f "$SOURCE" ]]; then
+  echo "No encontre el override en $SOURCE" >&2
+  exit 1
+fi
+
+sudo install -Dm644 "$SOURCE" "$TARGET"
+
+echo "Override instalado en $TARGET"
+echo "Cierra sesion y vuelve a entrar para probar el login sin la espera de uwsm."

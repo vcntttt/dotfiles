@@ -14,6 +14,8 @@ compinit
 source ~/dotfiles/shell/env.sh
 source ~/dotfiles/shell/alias.sh
 
+export LIBVIRT_DEFAULT_URI=qemu:///system
+
 # Tools
 source ~/dotfiles/shell/tools.sh
 source ~/dotfiles/shell/plugins/load.sh

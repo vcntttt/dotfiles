@@ -38,9 +38,9 @@ projector_status() {
   command -v hyprctl &>/dev/null || return 1
   command -v jq &>/dev/null || return 1
 
-  local status
+  local projector_state
 
-  status="$(hyprctl -j monitors all 2>/dev/null | jq -r '
+  projector_state="$(hyprctl -j monitors all 2>/dev/null | jq -r '
     map(select(.name == "HDMI-A-1"))
     | if length == 0 then "disconnected"
       elif .[0].disabled then "disabled"
@@ -49,7 +49,7 @@ projector_status() {
       end
   ')"
 
-  printf '%s\n' "$status"
+  printf '%s\n' "$projector_state"
 }
 
 projector_off() {
@@ -60,19 +60,19 @@ projector_off() {
 }
 
 mirror() {
-  local status
+  local projector_state
 
-  status="$(projector_status)" || {
+  projector_state="$(projector_status)" || {
     printf 'No pude consultar Hyprland o jq.\n'
     return 1
   }
 
-  [[ "$status" == "disconnected" ]] && {
+  [[ "$projector_state" == "disconnected" ]] && {
     printf 'No detecto el proyector en HDMI-A-1.\n'
     return 1
   }
 
-  if [[ "$status" == "mirror" ]]; then
+  if [[ "$projector_state" == "mirror" ]]; then
     projector_off
     return
   fi
@@ -85,19 +85,19 @@ mirror() {
 }
 
 projector() {
-  local status
+  local projector_state
 
-  status="$(projector_status)" || {
+  projector_state="$(projector_status)" || {
     printf 'No pude consultar Hyprland o jq.\n'
     return 1
   }
 
-  [[ "$status" == "disconnected" ]] && {
+  [[ "$projector_state" == "disconnected" ]] && {
     printf 'No detecto el proyector en HDMI-A-1.\n'
     return 1
   }
 
-  if [[ "$status" == "extended" ]]; then
+  if [[ "$projector_state" == "extended" ]]; then
     projector_off
     return
   fi
