@@ -38,3 +38,6 @@ export KUBECONFIG="$HOME/Nextcloud/linux/kubernetes-vrivera/kubeconfig"
 export PATH="/home/vrivera/.cache/.bun/bin:$PATH"
 export SSH_AUTH_SOCK
 export GNOME_KEYRING_CONTROL
+
+# Zed
+export ZED_ALLOW_EMULATED_GPU=1

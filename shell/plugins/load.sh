@@ -14,14 +14,31 @@ source "$PLUGINS_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zs
 source /usr/share/zsh/plugins/zsh-abbr/zsh-abbr.plugin.zsh
 abbr_sync_from_aliases() {
   local abbr_file="${ABBR_USER_ABBREVIATIONS_FILE:-$HOME/.config/zsh-abbr/user-abbreviations}"
+  local -A alias_names
+  local line name
 
   mkdir -p "${abbr_file:h}"
 
-  # Reset persistente
-  : > "$abbr_file"
+  # Empezar desde una sesión limpia y reconstruir desde los aliases reales.
+  abbr clear-session >/dev/null
 
-  # Recargar y reimportar aliases (silenciar output normal)
+  while IFS= read -r line; do
+    name="${line#alias }"
+    name="${name%%=*}"
+    alias_names["$name"]=1
+  done < <(alias)
+
   abbr load >/dev/null
+
+  while IFS= read -r line; do
+    name="${line#\"}"
+    name="${name%%\"=*}"
+
+    [[ -n "${alias_names[$name]}" ]] && continue
+
+    abbr erase --user "$name" >/dev/null 2>&1 || true
+  done < <(abbr list)
+
   abbr import-aliases >/dev/null
 }
 

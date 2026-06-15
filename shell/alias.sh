@@ -7,9 +7,21 @@ alias lal="bat ~/dotfiles/shell/alias.sh"
 
 alias cat="bat"
 
+# --- LATEX / PDF --- #
+mkpdf() {
+  local file="$1"
+
+  [[ -z "$file" ]] && {
+    printf 'Uso: mkpdf <ruta-al-tex>\n'
+    return 1
+  }
+
+  latexmk -pdf "$file" && latexmk -c "$file"
+}
+
 # --- SISTEMA / ARCH --- #
 alias pup="sudo pacman -Syu"
-alias pi="sudo pacman -S --needed"
+alias pas="sudo pacman -S --needed"
 alias pss="pacman -Ss"
 
 alias yup="yay -Syu --noconfirm"
@@ -234,6 +246,7 @@ alias bep="bunx expo prebuild"
 alias pip="uv pip"
 alias pif="pip freeze > requirements.txt"
 alias pir="uv pip install -r requirements.txt"
+alias py="uv run"
 
 alias pv="pyenv"
 alias pvv="pyenv virtualenv"
@@ -280,3 +293,9 @@ alias mkey="openssl rand -hex 32"
 alias oc="opencode"
 alias zed="zeditor ."
 alias sshl="ssh vrivera@caburgua.tailf8b14c.ts.net"
+
+scphl() {
+  scp "$@" "vrivera@caburgua.tailf8b14c.ts.net:/home/vrivera"
+}
+
+alias kctl="kubectl"
