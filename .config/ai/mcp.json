@@ -1,0 +1,20 @@
+{
+  "$schema": "mcp.json",
+  "description": "Canonical MCP server definitions for all AI agents.",
+  "notes": "Put actual secrets/API keys in mcp.local.json (gitignored). The 'agents' array controls which agent gets this server.",
+
+  "context7": {
+    "type": "remote",
+    "url": "https://mcp.context7.com/mcp",
+    "headers": {
+      "CONTEXT7_API_KEY": ""
+    },
+    "agents": ["codex", "opencode"]
+  },
+
+  "linear": {
+    "type": "remote",
+    "url": "https://mcp.linear.app/mcp",
+    "agents": ["codex", "opencode"]
+  }
+}
