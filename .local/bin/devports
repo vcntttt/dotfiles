@@ -1,0 +1,166 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ─── Config ────────────────────────────────────────────────────────────────
+RANGE_START=3000
+RANGE_END=3010
+SCRIPT="${0##*/}"
+
+# ─── Colors ─────────────────────────────────────────────────────────────────
+if [[ -t 1 ]]; then
+    RST="\033[0m"
+    RED="\033[31m"
+    GRN="\033[32m"
+    YLW="\033[33m"
+    BLU="\033[34m"
+    CYN="\033[36m"
+    BLD="\033[1m"
+else
+    RST=""; RED=""; GRN=""; YLW=""; BLU=""; CYN=""; BLD=""
+fi
+
+# ─── Help ───────────────────────────────────────────────────────────────────
+usage() {
+    cat <<EOF
+${BLD}${SCRIPT}${RST} — List and kill processes on development ports ${RANGE_START}-${RANGE_END}.
+
+${BLD}USO${RST}
+  ${SCRIPT}                     Listar procesos en puertos ${RANGE_START}-${RANGE_END}
+  ${SCRIPT} kill                Matar ${BLD}todos${RST} los procesos en esos puertos
+  ${SCRIPT} kill <puerto>       Matar proceso en un puerto específico
+  ${SCRIPT} kill <p1> <p2> ...  Matar procesos en varios puertos
+  ${SCRIPT} -h | --help         Mostrar esta ayuda
+
+${BLD}EJEMPLOS${RST}
+  ${SCRIPT}
+  ${SCRIPT} kill
+  ${SCRIPT} kill 3000
+  ${SCRIPT} kill 3000 3001 5173
+EOF
+    exit 0
+}
+
+# ─── Helper: print a table row ──────────────────────────────────────────────
+print_row() {
+    printf "  ${BLD}%-6s${RST}  %-7s  %-6s  %s\n" "$1" "$2" "$3" "$4"
+}
+
+print_header() {
+    print_row "PUERTO" "PID" "PROTO" "COMANDO"
+    echo "  $(printf '%.0s─' {1..60})"
+}
+
+# ─── List processes on a range of ports ─────────────────────────────────────
+list_ports() {
+    local ports=("$@")
+    local header_printed=false
+
+    for port in "${ports[@]}"; do
+        # Try both TCP and UDP
+        while IFS= read -r line; do
+            local proto pid cmd
+            proto=$(echo "$line" | awk '{print $1}')
+            pid=$(echo "$line" | awk '{print $2}')
+            cmd=$(echo "$line" | awk '{$1=$2=""; sub(/^ +/, ""); print $0}')
+
+            # Truncate command to fit nicely
+            if [[ ${#cmd} -gt 40 ]]; then
+                cmd="${cmd:0:37}..."
+            fi
+
+            if ! $header_printed; then
+                echo ""
+                print_header
+                header_printed=true
+            fi
+
+            print_row "$port" "$pid" "$proto" "$cmd"
+        done < <(lsof -ti :"$port" 2>/dev/null | xargs -r ps -o pid= -o comm= 2>/dev/null | while read -r pid comm; do
+            # Check if it's TCP or UDP
+            local proto
+            if lsof -iTCP:"$port" -a -p "$pid" 2>/dev/null | grep -q .; then
+                proto="TCP"
+            elif lsof -iUDP:"$port" -a -p "$pid" 2>/dev/null | grep -q .; then
+                proto="UDP"
+            else
+                proto="?"
+            fi
+            echo "$proto $pid $comm"
+        done)
+    done
+
+    if ! $header_printed; then
+        echo -e "\n  ${GRN}✓${RST} Ningún proceso en los puertos ${RANGE_START}-${RANGE_END}."
+    fi
+    echo ""
+}
+
+# ─── Kill a specific port ──────────────────────────────────────────────────
+kill_port() {
+    local port=$1
+    local pids
+    pids=$(lsof -ti :"$port" 2>/dev/null) || true
+
+    if [[ -z "$pids" ]]; then
+        echo -e "  ${YLW}⚠${RST}  Puerto ${BLD}$port${RST} — no hay nada corriendo."
+        return
+    fi
+
+    local names
+    names=$(echo "$pids" | xargs -r ps -o comm= 2>/dev/null | sort -u | tr '\n' ' ')
+
+    echo -e "  ${RED}✗${RST}  Matando puerto ${BLD}$port${RST} → PID(s): ${CYN}$(echo "$pids" | tr '\n' ' ')${RST} (${names})"
+
+    echo "$pids" | xargs -r kill 2>/dev/null && sleep 0.3 || true
+
+    # Verify it's dead
+    local remaining
+    remaining=$(lsof -ti :"$port" 2>/dev/null) || true
+    if [[ -n "$remaining" ]]; then
+        echo -e "  ${RED}⚠${RST}  No se pudo matar (enviando SIGKILL)..."
+        echo "$remaining" | xargs -r kill -9 2>/dev/null || true
+        sleep 0.3
+        remaining=$(lsof -ti :"$port" 2>/dev/null) || true
+        if [[ -n "$remaining" ]]; then
+            echo -e "  ${RED}✗${RST}  Puerto $port — no se pudo liberar."
+        else
+            echo -e "  ${GRN}✓${RST}  Puerto $port — liberado con SIGKILL."
+        fi
+    else
+        echo -e "  ${GRN}✓${RST}  Puerto $port — liberado."
+    fi
+}
+
+# ─── Build the port list ────────────────────────────────────────────────────
+if [[ $# -eq 0 ]]; then
+    ports=($(seq "$RANGE_START" "$RANGE_END"))
+    list_ports "${ports[@]}"
+    exit 0
+fi
+
+case "$1" in
+    -h|--help) usage ;;
+    kill)
+        shift
+        if [[ $# -eq 0 ]]; then
+            # Kill all ports in range
+            echo -e "${BLD}Matando todos los procesos en puertos ${RANGE_START}-${RANGE_END}...${RST}"
+            for port in $(seq "$RANGE_START" "$RANGE_END"); do
+                kill_port "$port"
+            done
+        else
+            for port in "$@"; do
+                if ! [[ "$port" =~ ^[0-9]+$ ]]; then
+                    echo -e "${RED}Error:${RST} '$port' no es un número de puerto válido." >&2
+                    exit 1
+                fi
+                kill_port "$port"
+            done
+        fi
+        ;;
+    *)
+        echo -e "${RED}Error:${RST} Comando desconocido: '$1'" >&2
+        echo "Usa '$SCRIPT -h' para ver la ayuda." >&2
+        exit 1
+        ;;
+esac

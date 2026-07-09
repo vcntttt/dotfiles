@@ -1,0 +1,112 @@
+#!/usr/bin/env bash
+# Cambia la rotación de un monitor en caliente.
+#
+# Uso:
+#   monitor-rotate                    # lista monitores y su rotación actual
+#   monitor-rotate <output>           # muestra rotación actual del monitor
+#   monitor-rotate <output> <rot>     # establece rotación (0-3 o "toggle")
+#   monitor-rotate <output> toggle    # alterna entre 0 (normal) y 1 (vertical)
+#
+# rot:
+#   0 = normal
+#   1 = 90°  (vertical, sentido horario)
+#   2 = 180° (invertido)
+#   3 = 270° (vertical, sentido antihorario)
+#
+# Requiere: hyprctl, jq
+
+set -euo pipefail
+
+command -v hyprctl &>/dev/null || { echo "hyprctl no encontrado"; exit 1; }
+command -v jq &>/dev/null || { echo "jq no encontrado"; exit 1; }
+
+# --- Obtener datos de monitores ---
+monitors_json="$(hyprctl monitors all -j 2>/dev/null || hyprctl monitors -j 2>/dev/null)"
+
+list_monitors() {
+  echo "$monitors_json" | jq -r '
+    .[] | "\(.name)  transform=\(.transform)  \(.width)x\(.height)  disabled=\(.disabled // false)"
+  '
+}
+
+get_transform() {
+  local output="$1"
+  local val
+  val="$(echo "$monitors_json" | jq -r ".[] | select(.name == \"$output\") | .transform // empty")"
+  if [[ -z "$val" ]]; then
+    echo "Monitor '$output' no encontrado." >&2
+    exit 1
+  fi
+  echo "$val"
+}
+
+# --- Sin argumentos: listar ---
+if [[ $# -eq 0 ]]; then
+  echo "Monitores disponibles:"
+  list_monitors
+  echo ""
+  echo "Uso: monitor-rotate <output> [0|1|2|3|toggle]"
+  exit 0
+fi
+
+output="$1"
+
+# --- Validar que el monitor existe ---
+if ! echo "$monitors_json" | jq -e ".[] | select(.name == \"$output\")" &>/dev/null; then
+  echo "Monitor '$output' no encontrado." >&2
+  echo "Monitores disponibles:" >&2
+  list_monitors >&2
+  exit 1
+fi
+
+# --- Solo output: mostrar estado ---
+if [[ $# -eq 1 ]]; then
+  current="$(get_transform "$output")"
+  echo "$output: transform=$current"
+  exit 0
+fi
+
+rot="$2"
+
+# --- toggle: alternar entre 0 y 1 ---
+if [[ "$rot" == "toggle" ]]; then
+  current="$(get_transform "$output")"
+  if [[ "$current" == "0" ]]; then
+    rot=1
+  else
+    rot=0
+  fi
+  echo "$output: $current -> $rot"
+fi
+
+# --- Validar rotación ---
+case "$rot" in
+  0|1|2|3) ;;
+  *)
+    echo "Rotación inválida: '$rot'. Usa 0, 1, 2, 3 o toggle." >&2
+    exit 1
+    ;;
+esac
+
+# --- Obtener specs actuales del monitor ---
+read -r width height refresh x y scale <<< "$(echo "$monitors_json" | jq -r "
+  .[] | select(.name == \"$output\")
+  | \"\(.width) \(.height) \(.refreshRate) \(.x) \(.y) \(.scale)\"
+")"
+
+# Redondear refresh
+refresh_int="${refresh%.*}"
+
+# Aplicar la rotación
+new_mode="${width}x${height}"
+if [[ "$refresh_int" -gt 0 ]]; then
+  new_mode="${new_mode}@${refresh_int}"
+fi
+
+if [[ "$rot" == "0" ]]; then
+  hyprctl keyword monitor "$output, $new_mode, ${x}x${y}, $scale"
+else
+  hyprctl keyword monitor "$output, $new_mode, ${x}x${y}, $scale, transform, $rot"
+fi
+
+echo "  $output -> rotación $rot aplicada"

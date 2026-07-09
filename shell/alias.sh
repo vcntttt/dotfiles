@@ -122,6 +122,9 @@ projector() {
 }
 
 alias extend="projector"
+
+# --- ROTACIÓN DE MONITOR --- #
+alias mrot="monitor-rotate"
 # --- EDITOR / NVIM --- #
 alias nv="nvim ."
 alias sn="sudo nvim"
