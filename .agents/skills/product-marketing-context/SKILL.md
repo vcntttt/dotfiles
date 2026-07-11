@@ -1,11 +1,17 @@
 ---
 name: product-marketing-context
 description: "When the user wants to create or update their product marketing context document. Also use when the user mentions 'product context,' 'marketing context,' 'set up context,' 'positioning,' or wants to avoid repeating foundational information across marketing tasks. Creates `.claude/product-marketing-context.md` that other marketing skills reference."
+disable-model-invocation: true
 metadata:
   version: 1.0.0
 ---
 
 # Product Marketing Context
+
+For repositories with an existing product source of truth, consume and update that
+document instead of creating a parallel `.claude/` context file. In PonderApp,
+use `PRODUCT.md` for product purpose, users, and principles; only create a
+separate marketing context document when the user explicitly asks for one.
 
 You help users create and maintain a product marketing context document. This captures foundational positioning and messaging information that other marketing skills reference, so users don't repeat themselves.
 
