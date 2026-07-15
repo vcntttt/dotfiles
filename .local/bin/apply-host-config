@@ -32,10 +32,18 @@ mkdir -p "$DOTFILES/.config/rofi/powermenu"
 mkdir -p "$DOTFILES/.config/waybar"
 mkdir -p "$DOTFILES/.config/ghostty"
 
-{
-  printf '%s\n' '# Archivo local generado por apply-host-config'
-  cat "$HYPR_TEMPLATE"
-} > "$HYPR_HOST_FILE"
+MONITORV2_PARSER="$DOTFILES/.local/bin/monitorv2"
+if [[ -x "$MONITORV2_PARSER" ]]; then
+  {
+    printf '%s\n' '# Archivo local generado por apply-host-config'
+    "$MONITORV2_PARSER" < "$HYPR_TEMPLATE"
+  } > "$HYPR_HOST_FILE"
+else
+  {
+    printf '%s\n' '# Archivo local generado por apply-host-config'
+    cat "$HYPR_TEMPLATE"
+  } > "$HYPR_HOST_FILE"
+fi
 
 cat > "$ROFI_HOST_FILE" <<EOF
 /* Archivo local generado por apply-host-config */
