@@ -3,9 +3,14 @@ alias sz="source ~/.zshrc && abbr_sync_from_aliases"
 alias zsh="nvim ~/.zshrc && source ~/.zshrc"
 
 alias al="nvim ~/dotfiles/shell/alias.sh && source ~/.zshrc && abbr_sync_from_aliases"
-alias lal="bat ~/dotfiles/shell/alias.sh"
+alias lal="cat ~/dotfiles/shell/alias.sh"
 
-alias cat="bat"
+if command -v bat &>/dev/null; then
+  alias cat="bat"
+elif command -v batcat &>/dev/null; then
+  alias bat="batcat"
+  alias cat="batcat"
+fi
 
 # --- LATEX / PDF --- #
 mkpdf() {
@@ -296,6 +301,20 @@ alias sshl="ssh vrivera@caburgua.tailf8b14c.ts.net"
 
 scphl() {
   scp "$@" "vrivera@caburgua.tailf8b14c.ts.net:/home/vrivera"
+}
+
+# --- CALIBRE --- #
+booksend() {
+  [[ $# -eq 0 ]] && {
+    printf 'Uso: booksend <archivo...>\n'
+    return 1
+  }
+
+  if [[ -d /srv/data/apps/calibre-web/ingest ]]; then
+    cp -iv "$@" /srv/data/apps/calibre-web/ingest/
+  else
+    scp "$@" "vrivera@caburgua.tailf8b14c.ts.net:/srv/data/apps/calibre-web/ingest/"
+  fi
 }
 
 alias kctl="kubectl"
