@@ -40,3 +40,4 @@ complete -o nospace -C /usr/bin/terraform terraform
 
 # Pi
 export PATH="/home/vrivera/.local/share/mise/installs/node/25.2.1/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"

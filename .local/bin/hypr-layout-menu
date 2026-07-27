@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+# Selecciona o establece el layout del workspace activo.
+# Sin argumentos abre un menu de Rofi; con un argumento aplica ese layout.
+
+set -euo pipefail
+
+command -v hyprctl &>/dev/null || {
+  echo "hyprctl no encontrado" >&2
+  exit 1
+}
+command -v jq &>/dev/null || {
+  echo "jq no encontrado" >&2
+  exit 1
+}
+
+workspace_json="$(hyprctl -j activeworkspace)"
+workspace_id="$(jq -r '.id' <<< "$workspace_json")"
+workspace_name="$(jq -r '.name // empty' <<< "$workspace_json")"
+workspace_monitor="$(jq -r '.monitor' <<< "$workspace_json")"
+current_layout="$(jq -r '.tiledLayout // "desconocido"' <<< "$workspace_json")"
+
+if [[ "$workspace_name" == special:* ]]; then
+  workspace_selector="$workspace_name"
+else
+  workspace_selector="$workspace_id"
+fi
+
+if [[ $# -gt 1 ]]; then
+  echo "Uso: hypr-layout-menu [master|dwindle|scrolling|monocle]" >&2
+  exit 2
+fi
+
+if [[ $# -eq 1 ]]; then
+  selected_layout="$1"
+else
+  command -v rofi &>/dev/null || {
+    echo "rofi no encontrado" >&2
+    exit 1
+  }
+
+  selected_layout="$(printf '%s\n' master dwindle scrolling monocle |
+    rofi -dmenu -i \
+      -p "Layout WS $workspace_id [$current_layout]" \
+      -theme "$HOME/.config/rofi/launcher.rasi")" || exit 0
+fi
+
+case "$selected_layout" in
+  master|dwindle|scrolling|monocle) ;;
+  *)
+    echo "Layout invalido: $selected_layout" >&2
+    exit 2
+    ;;
+esac
+
+# Incluimos el monitor actual para conservar la regla de workspace al cambiar
+# dinamicamente el layout. El cambio dura hasta el siguiente hyprctl reload.
+hyprctl keyword workspace \
+  "$workspace_selector, monitor:$workspace_monitor, layout:$selected_layout"
+
+if command -v notify-send &>/dev/null; then
+  notify-send -t 1800 "Hyprland" \
+    "Workspace $workspace_id: $selected_layout"
+fi
