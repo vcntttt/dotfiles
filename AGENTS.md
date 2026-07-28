@@ -5,12 +5,12 @@ It is primarily shell scripts and application config files.
 Changes here often affect the local system directly; keep edits minimal and safe.
 
 ## Repository map
-- `shell/` contains zsh/bash env, aliases, and plugin setup.
-- `omarchy/` is a reference-only config pack; kept from a past setup to reuse ideas as needed.
-- `.config/hypr/` contains Hyprland configuration split across multiple `.conf` files.
+- `shell/` contains package manifests and the Arch/CachyOS dependency installer.
+- `.config/hypr/` contains the active Hyprland Lua configuration.
+- `.config/noctalia/` contains Noctalia's declarative TOML configuration.
+- `.local/state/noctalia/settings.toml` is the only versioned Noctalia state file; the GUI writes its overrides there.
+- `.config/fish/` contains the interactive shell configuration.
 - `.config/espanso/` stores Espanso snippets (`base.yml`, `private.yml`).
-- `.config/rofi/` contains rofi scripts and themes.
-- `.config/swaync/` contains notification center JSON config.
 - `.local/bin/` contains small helper scripts.
 - `.local/share/fastfetch/` contains custom fastfetch logos.
 - `.tmux.conf` is the tmux configuration.
@@ -22,23 +22,23 @@ There is no `package.json`, `Makefile`, or test framework config at the root.
 
 If you need to validate changes:
 - Shell scripts can be executed directly (see `shell/` and `.local/bin/`).
-- Use `bash` or `zsh` depending on the shebang or file context.
+- Use `bash` for scripts and `fish -n` for Fish configuration.
 
 Examples of common entry points:
-- `bash shell/install-dependencies.sh desktop` installs base CLI, Hyprland stack, desktop apps, and zsh plugins on Arch/CachyOS.
-- `bash shell/plugins/install.sh` installs zsh plugins and packages.
-- `bash omarchy/install.sh` runs the Omarchy installer (system-changing).
-- `bash omarchy/boot.sh` performs Omarchy bootstrap steps.
+- `bash shell/install-dependencies.sh desktop` installs base CLI tools, CachyOS Hyprland + Noctalia, and desktop apps.
+- `bash shell/install-dependencies.sh core` installs only CLI tools and Fish.
 
 Single test command: not applicable (no test suite found).
 If you add tests or a build system, document the commands here.
 
 ## Optional sanity checks (manual)
 - `bash -n path/to/script.sh` for bash syntax checks.
-- `zsh -n path/to/config.zsh` for zsh syntax checks.
+- `fish -n .config/fish/config.fish` for Fish syntax checks.
+- `noctalia config validate` after Noctalia changes.
 - `tmux source-file ~/.tmux.conf` to reload tmux config after edits.
 - `hyprctl reload` can be used to reload Hyprland config if running.
 - After any Hyprland config change, ensure `hyprctl configerrors` returns no errors.
+- Use `stow --no --verbose=1 .` before applying changes to runtime symlinks.
 
 ## Agent workflow expectations
 - Keep edits minimal and focused; avoid broad formatting changes.
@@ -48,49 +48,55 @@ If you add tests or a build system, document the commands here.
 - Default to ASCII; only introduce Unicode when the file already uses it.
 
 ## Source of truth and symlinks
-- This repository is the source of truth for dotfiles; runtime paths like `~/.config/...`, `~/.local/bin/...`, and `~/.zshrc` are typically symlinked to files in this repo.
-- Prefer editing repo paths such as `.config/hypr/...`, `.config/rofi/...`, `.local/bin/...`, and `.zshrc` instead of editing the runtime paths directly.
+- This repository is the source of truth for dotfiles; runtime paths like `~/.config/...` and `~/.local/bin/...` are symlinked to files in this repo.
+- Prefer editing repo paths such as `.config/hypr/...`, `.config/noctalia/...`, `.config/fish/...`, and `.local/bin/...`.
 - Use runtime paths mainly for reloads, verification, or confirming how symlinks resolve on the current machine.
-- If a change affects a generated local override, keep the generated file in the repo path that backs the symlink unless the user explicitly wants a different layout.
-- For the host-based config model and university sync model, see `docs/config-model.md` and `docs/sync-model.md`.
+- Noctalia GUI changes are the exception: it writes through the versioned symlink at `.local/state/noctalia/settings.toml`.
+- Keep all other Noctalia state, credentials, caches, and generated themes outside the repo.
+- See `docs/config-model.md` and `docs/sync-model.md`.
 
 ## Runtime assumptions
-- Targets Arch-based Linux; package management uses `pacman` and `yay`.
+- The `main` branch targets the primary CachyOS desktop with Hyprland, Noctalia, UWSM, and Fish.
+- Package management uses `pacman` and `yay`.
 - Paths are Linux-style and often rely on `$HOME`.
-- Many scripts are intended for interactive shells (zsh).
+- Bash helpers should remain portable when they are not desktop-specific.
 
 ## Host targets
-- Primary desktop: Arch Linux with Hyprland; this machine is the main reference environment.
-- Secondary notebook: CachyOS (Arch-based) with Hyprland; prefer keeping desktop setup changes compatible with the primary machine.
-- Homelab server: Ubuntu Server without GUI; it uses this repo for shell config, aliases, and custom scripts only.
-- Do not assume every host has Hyprland, Wayland, rofi, swaync, or other desktop tools installed.
-- Prioritize cross-distro compatibility in `shell/`, `.local/bin/`, and shared aliases/scripts.
-- Treat GUI config changes in `.config/hypr/`, `.config/rofi/`, `.config/swaync/`, and similar paths as desktop-only.
+- Primary desktop: CachyOS with Hyprland and Noctalia; this is the only target of `main`.
+- The notebook remains on the `arch-hyprland-vanilla` legacy branch until this setup stabilizes.
+- There is currently no host override model in `main`.
 
-## Code style: shell (bash/zsh)
-- Use the correct shell: `#!/usr/bin/env bash` for bash scripts; zsh for interactive configs.
+## Code style: shell (bash/Fish)
+- Use `#!/usr/bin/env bash` for Bash scripts and Fish syntax only under `.config/fish/`.
 - Prefer `set -e` (and optionally `set -u`) in installer-style scripts.
 - Use `[[ ... ]]` for conditionals and always quote variable expansions.
-- Indentation is typically 2 spaces in bash/zsh scripts.
+- Indentation is typically 2 spaces in Bash scripts.
 - Keep functions small and named in lower_case with clear intent.
-- Use `local` for function-scoped variables in bash/zsh.
+- Use `local` for function-scoped variables in Bash.
 - Prefer `$HOME` over hard-coded paths when reasonable.
 - Use `command -v tool &>/dev/null` before invoking optional tools.
-- Use arrays for lists of packages or plugins, with one entry per line.
+- Use arrays for package lists, with one entry per line.
 - Keep existing comments and language (many comments are Spanish).
 - Avoid reformatting or reordering unless needed for the change.
 
-## Code style: Zsh config specifics
-- Use `source` for loading files and keep plugin load order stable.
-- Use `autoload -Uz` and `bindkey` for keybindings.
-- Keep alias blocks grouped by topic and comment headers intact.
+## Code style: Fish config specifics
+- Keep CachyOS' shared Fish configuration sourced before local overrides.
+- Use `fish_add_path` for persistent path additions.
+- Keep local functions and aliases grouped by topic when they are added.
 
 ## Code style: Hyprland config
-- Files in `.config/hypr/` are composed with `source = ...` in `hyprland.conf`.
-- Keep the existing split-file structure (envs, monitors, bindings, etc.).
-- Use `#` for comments; keep commented rules for easy toggling.
-- Maintain ordering to preserve user expectations.
-- Preserve spacing around `=` and existing line grouping.
+- `.config/hypr/hyprland.lua` is the entry point.
+- Keep the split Lua modules under `.config/hypr/config/`.
+- Load modules with `require` and preserve their ordering.
+- Use the installed Hyprland Lua API (`hl.config`, `hl.bind`, `hl.window_rule`, and related helpers).
+- After edits, validate the live session with `hyprctl configerrors`.
+
+## Code style: Noctalia
+- Curated TOML belongs in `.config/noctalia/`.
+- GUI-managed overrides belong only in `.local/state/noctalia/settings.toml`.
+- Avoid defining the same value in both layers unless the override is intentional.
+- Do not version `state.toml`, histories, credentials, catalogs, caches, or generated `noctalia.*` themes.
+- Validate changes with `noctalia config validate`.
 
 ## Code style: Espanso YAML
 - Use 2-space indentation under `matches:`.
@@ -102,7 +108,6 @@ If you add tests or a build system, document the commands here.
 ## Code style: JSON configs
 - Preserve existing formatting; do not reformat whole files.
 - Keep keys as-is and maintain ordering for readability.
-- SwayNC config (`.config/swaync/config.json`) includes inline comments and mixed spacing.
 
 ## Code style: tmux
 - Keep plugin list at the top of `.tmux.conf`.
@@ -130,14 +135,13 @@ If you add tests or a build system, document the commands here.
 - Avoid running package managers (`pacman`, `yay`) in automation unless asked.
 
 ## System-changing scripts
-- `omarchy/install.sh` and `omarchy/boot.sh` modify system state.
-- `shell/plugins/install.sh` installs packages and clones repositories.
+- `shell/install-dependencies.sh` installs packages.
 - `fix-red.sh` modifies networking rules via `iptables`.
 
 ## Imports, sourcing, and ordering
-- Group environment variable exports together in `shell/env.sh`.
-- Group aliases by topic in `shell/alias.sh` and keep headings.
-- Keep `source` statements at the top of loader scripts.
+- Keep Fish `source` statements before local overrides.
+- Keep Hyprland `require` calls together in `hyprland.lua`.
+- Noctalia loads TOML files alphabetically; use intentional names if the config is split.
 
 ## Privacy and secrets
 - Treat `.config/espanso/match/private.yml` as sensitive.
@@ -146,7 +150,7 @@ If you add tests or a build system, document the commands here.
 - Avoid copying sample secrets into public files.
 
 ## File permissions
-- Preserve executable bits on scripts in `.local/bin/` and `shell/plugins/`.
+- Preserve executable bits on scripts in `.local/bin/`.
 - Do not change permissions unless required by the change.
 
 ## Cursor/Copilot rules

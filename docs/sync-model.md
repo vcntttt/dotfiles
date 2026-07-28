@@ -20,7 +20,8 @@ No deben mezclarse.
 ### Configuracion
 
 - `~/dotfiles` es la fuente de verdad
-- Los runtime paths como `~/.config/...`, `~/.local/bin/...` o `~/.zshrc` deben apuntar al repo o derivarse de el
+- Los runtime paths administrados, como `~/.config/...` o `~/.local/bin/...`,
+  deben apuntar al repo mediante Stow
 
 ### Codigo y proyectos
 
@@ -51,7 +52,7 @@ En este modelo, `Nextcloud` es un hub de sincronizacion y navegacion, no la raiz
 
 - Config del sistema
 - Scripts utilitarios
-- Config por host
+- Config del desktop principal
 
 ### `~/dev`
 
