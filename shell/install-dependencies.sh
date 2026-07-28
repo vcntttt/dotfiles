@@ -9,18 +9,17 @@ source "$DOTFILES/shell/dependencies/list.sh"
 
 print_help() {
   cat <<'EOF'
-Uso: install-dependencies [desktop|core|server]
+Uso: install-dependencies [desktop|core]
 
 Perfiles:
-  desktop  Instala CLI base, stack de Hyprland y apps del notebook/desktop
-  core     Instala solo CLI base y dependencias de zsh/plugins
-  server   Igual que core; pensado para hosts sin GUI
+  desktop  Instala CLI base, CachyOS Hyprland + Noctalia y apps del desktop
+  core     Instala solo las herramientas CLI y Fish
 EOF
 }
 
 ensure_pacman() {
   if ! command -v pacman >/dev/null 2>&1; then
-    echo "Este instalador esta pensado para Arch/CachyOS y requiere pacman."
+    echo "Este instalador está pensado para Arch/CachyOS y requiere pacman."
     exit 1
   fi
 }
@@ -73,7 +72,7 @@ main() {
       append_pkgs DESKTOP_APP_PACMAN_PKGS
       append_aur_pkgs DESKTOP_AUR_PKGS
       ;;
-    core|server)
+    core)
       append_pkgs CORE_PACMAN_PKGS
       ;;
     -h|--help|help)
@@ -81,7 +80,7 @@ main() {
       exit 0
       ;;
     *)
-      echo "Perfil no valido: $PROFILE"
+      echo "Perfil no válido: $PROFILE"
       print_help
       exit 1
       ;;
@@ -90,14 +89,6 @@ main() {
   ensure_pacman
   install_pacman_pkgs
   install_aur_pkgs
-
-  if [[ -f "$DOTFILES/.config/dotfiles/host" ]]; then
-    echo "==> Aplicando overrides locales por host"
-    bash "$DOTFILES/.local/bin/apply-host-config"
-  fi
-
-  echo "==> Instalando plugins y paquetes de zsh"
-  bash "$DOTFILES/shell/plugins/install.sh"
 
   echo "✔ Dependencias listas para el perfil '$PROFILE'"
 }

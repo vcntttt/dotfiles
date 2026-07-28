@@ -1,7 +1,9 @@
 CORE_PACMAN_PKGS=(
   base-devel
   git
-  zsh
+  stow
+  fish
+  cachyos-fish-config
   tmux
   neovim
   bat
@@ -19,47 +21,27 @@ CORE_PACMAN_PKGS=(
 )
 
 DESKTOP_PACMAN_PKGS=(
-  hyprland
-  hypridle
-  hyprlock
-  hyprpaper
-  hyprsunset
-  waybar
-  xembedsniproxy
-  rofi
-  noto-fonts
-  noto-fonts-emoji
-  otf-font-awesome
-  swaync
-  swayosd
-  ttf-jetbrains-mono-nerd
-  ttf-nerd-fonts-symbols
-  ttf-nerd-fonts-symbols-mono
-  uwsm
-  polkit-gnome
+  cachyos-hypr-noctalia
+  ghostty
   wl-clipboard
-  cliphist
   jq
   grim
   slurp
-  playerctl
   brightnessctl
   alsa-utils
-  network-manager-applet
-  blueman
-  nwg-look
-  gnome-calculator
-  nautilus
-  ghostty
+  pavucontrol
+  openvpn
+  networkmanager-openvpn
 )
 
 DESKTOP_APP_PACMAN_PKGS=(
+  betterbird-bin
   obsidian
+  vesktop
+  zen-browser-bin
+  spotify-launcher
 )
 
 DESKTOP_AUR_PKGS=(
   bibata-cursor-theme
-  vesktop
-  zen-browser-bin
-  spotify-launcher
 )
