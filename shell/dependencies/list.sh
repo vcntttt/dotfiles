@@ -14,6 +14,7 @@ CORE_PACMAN_PKGS=(
   fastfetch
   ripgrep
   fd
+  zoxide
   curl
   wget
   unzip
