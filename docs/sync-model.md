@@ -69,7 +69,7 @@ En este modelo, `Nextcloud` es un hub de sincronizacion y navegacion, no la raiz
 ### `~/Nextcloud`
 
 - Material sincronizado entre equipos
-- Documentos generales como `Documents/` y `Pictures/`
+- Documentos generales como `Documentos/` e `Imágenes/` dentro de Nextcloud
 - Material academico en `Nextcloud/informatica/`
 
 ## Regla de ownership
@@ -89,8 +89,8 @@ Los symlinks son utiles cuando exponen una vista conveniente del sistema.
 
 Buenos usos:
 
-- `Documents -> Nextcloud/Documents`
-- `Pictures -> Nextcloud/Pictures`
+- `Documentos -> Nextcloud/Documentos`
+- `Imágenes -> Nextcloud/Imágenes`
 - un link desde `Nextcloud/informatica/...` hacia un repo real en `~/dev`
 - un link desde un ramo hacia su carpeta de notas real en `~/Notas`
 
@@ -117,7 +117,7 @@ Scripts relacionados hoy:
 - `.local/bin/dirs.py`: herramienta principal para crear o normalizar la estructura de ramos entre `Nextcloud`, `Notas` y `dev`. Crea la vista del ramo en `Nextcloud` y enlaza `Notas` y `work` hacia sus owners reales.
 - `.local/bin/setup-semestre`: bootstrap de un semestre ya existente en `Nextcloud` hacia `~/dev/<semestre>`. Puede crear carpetas base de ramos y, con `--link-existing`, pedir enlaces para repos git ya presentes.
 - `.local/bin/symbolycs`: helper puntual para crear un symlink desde `Nextcloud/informatica/<semestre>/<ramo>/<repo>` hacia el repo real en `~/dev/<semestre>/<ramo>/<repo>`.
-- `~/Nextcloud/setup-nextcloud-assets.sh`: bootstrap de assets sincronizados del sistema en una maquina nueva. Solo enlaza rutas globales como `Documents`, `Pictures`, `icons` y `themes` hacia `Nextcloud`.
+- `~/Nextcloud/setup-nextcloud-assets.sh`: bootstrap de assets sincronizados del sistema en una maquina nueva. Configura las carpetas XDG en español, fusiona `Downloads` en `Descargas` y enlaza `Documentos` e `Imágenes` hacia `Nextcloud`.
 
 Separacion actual de responsabilidades:
 
