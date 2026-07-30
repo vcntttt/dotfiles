@@ -97,16 +97,16 @@ read -r width height refresh x y scale <<< "$(echo "$monitors_json" | jq -r "
 # Redondear refresh
 refresh_int="${refresh%.*}"
 
-# Aplicar la rotación
+# Aplicar la rotación mediante la API Lua de Hyprland. Desde Hyprland 0.55,
+# el parser de configuración de monitores antiguo ya no está disponible.
 new_mode="${width}x${height}"
 if [[ "$refresh_int" -gt 0 ]]; then
   new_mode="${new_mode}@${refresh_int}"
 fi
 
-if [[ "$rot" == "0" ]]; then
-  hyprctl keyword monitor "$output, $new_mode, ${x}x${y}, $scale"
-else
-  hyprctl keyword monitor "$output, $new_mode, ${x}x${y}, $scale, transform, $rot"
-fi
+lua_output="$(printf '%s' "$output" | jq -Rr '@json')"
+lua_mode="$(printf '%s' "$new_mode" | jq -Rr '@json')"
+lua_position="$(printf '%sx%s' "$x" "$y" | jq -Rr '@json')"
+hyprctl eval "hl.monitor({ output = $lua_output, mode = $lua_mode, position = $lua_position, scale = $scale, transform = $rot })"
 
 echo "  $output -> rotación $rot aplicada"

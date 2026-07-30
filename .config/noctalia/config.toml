@@ -1,10 +1,49 @@
 [accessibility]
 ui_scale = 1.20
 
+[control_center]
+hidden_tabs = [ "monitor" ]
+
+    [[control_center.shortcuts]]
+    type = "wifi"
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+    [[control_center.shortcuts]]
+    type = "caffeine"
+
+    [[control_center.shortcuts]]
+    type = "nightlight"
+
+    [[control_center.shortcuts]]
+    type = "notification"
+
+    [[control_center.shortcuts]]
+    type = "vrivera/display-controls:display"
+
+[brightness.monitor.HDMI-A-1]
+backend = "ddcutil"
+
+[brightness.monitor.DP-1]
+backend = "ddcutil"
+
+[location]
+address = "Vilcún, Araucanía, Chile"
+auto_locate = false
+
+[notification]
+monitors = [ "DP-1" ]
+
 [bar.default]
+capsule = true
+capsule_fill = "surface_variant"
+capsule_opacity = 1.0
+capsule_padding = 6.0
+capsule_radius = 8.0
 center = [ "workspaces", "spacer_1", "active_window" ]
 concave_edge_corners = true
-end = [ "media", "spacer_1", "tray", "notifications", "network", "volume", "session" ]
+end = [ "media", "spacer_1", "tray", "network", "galileo", "volume", "arch_updates", "notifications" ]
 margin_edge = 0
 margin_ends = 0
 radius_bottom_left = 12
@@ -12,8 +51,9 @@ radius_bottom_right = 12
 radius_top_left = 0
 radius_top_right = 0
 scale = 1.10
-start = [ "launcher", "clock", "spacer_1", "group:g1" ]
+start = [ "clock", "spacer_1", "group:g1", "layout" ]
 thickness = 35
+widget_spacing = 8.0
 
     [[bar.default.capsule_group]]
     border = ""
@@ -25,6 +65,7 @@ thickness = 35
 
 [shell]
 clipboard_image_action_command = "satty -f -"
+lang = "en"
 launch_apps_as_systemd_services = true
 polkit_agent = true
 settings_show_advanced = true
@@ -36,7 +77,8 @@ settings_show_advanced = true
 
     [shell.screenshot]
     copy_to_clipboard = false
-    pipe_command = "satty -f -"
+    freeze_screen = true
+    pipe_command = "/home/vrivera/dotfiles/.local/bin/screenshot-dispatch"
     pipe_to_command = true
     save_to_file = false
 
@@ -78,15 +120,23 @@ settings_show_advanced = true
 [system.monitor]
 gpu_poll_seconds = 2
 
+[weather]
+enabled = true
+refresh_minutes = 30
+unit = "metric"
+
 [theme.templates]
 builtin_ids = [ "btop", "gtk3", "gtk4", "kcolorscheme", "kitty", "qt", "alacritty" ]
 
 [widget.clock]
 color = "secondary"
-format = "{:%H:%M %A %m/%d/%y}"
+format = "{:%A %-d %b - %H:%M}"
 
 [widget.launcher]
 color = "secondary"
+
+[widget.layout]
+type = "vrivera/layout-controls:layout"
 
 [widget.media]
 hide_when_no_media = true
@@ -94,6 +144,10 @@ title_scroll = "on_hover"
 
 [widget.network]
 color = "secondary"
+show_label = false
+
+[widget.galileo]
+type = "vrivera/galileo:status"
 
 [widget.notifications]
 color = "secondary"
@@ -123,12 +177,38 @@ capsule = true
 capsule_fill = "on_secondary"
 
 [widget.volume]
-color = "secondary"
+type = "vrivera/audio-output:volume"
+
+[widget.arch_updates]
+type = "yuuto/arch-updater:widget"
+glyph = "package"
+show_count = true
+hide_on_empty = true
 
 [widget.workspaces]
+style = "regular"
+display = "name"
+max_label_chars = 2
 active_pill_size = 2.5
 capsule = true
 capsule_fill = "on_primary"
-display = "none"
 inactive_pill_size = 1.0
-pill_scale = 0.80
+pill_scale = 1.0
+
+[plugins]
+enabled = [ "vrivera/audio-output", "vrivera/display-controls", "vrivera/galileo", "vrivera/layout-controls", "yuuto/arch-updater" ]
+
+    [[plugins.source]]
+    name = "dotfiles"
+    kind = "path"
+    location = "/home/vrivera/dotfiles/.config/noctalia/plugins"
+    enabled = true
+
+        [[plugins.source]]
+        name = "community"
+        kind = "git"
+        location = "https://github.com/noctalia-dev/community-plugins"
+        enabled = true
+
+[plugin_settings."yuuto/arch-updater"]
+terminal = "ghostty"

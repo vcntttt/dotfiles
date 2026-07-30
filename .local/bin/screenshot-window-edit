@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+active_workspace_id="$(hyprctl activeworkspace -j | jq -r '.id')"
+window_geometry="$({
+  hyprctl clients -j |
+    jq -r --argjson workspace_id "$active_workspace_id" '
+      .[]
+      | select(.mapped and (.hidden | not) and .at and .size and .workspace.id == $workspace_id)
+      | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1]) \(.class) - \(.title | gsub("[\\r\\n]"; " "))"
+    '
+} | slurp -r)"
+
+[[ -n "$window_geometry" ]] || exit 0
+
+grim -g "$window_geometry" - | satty -f - --copy-command wl-copy

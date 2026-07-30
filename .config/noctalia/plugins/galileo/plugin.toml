@@ -1,0 +1,14 @@
+id = "vrivera/galileo"
+name = "Galileo VPN"
+version = "1.0.0"
+plugin_api = 14
+author = "vrivera"
+license = "MIT"
+description = "Indicador y control de la VPN Galileo"
+
+[[widget]]
+id = "status"
+entry = "widget.luau"
+
+  [widget.actions]
+  left = "exec /home/vrivera/dotfiles/.local/bin/galileo"

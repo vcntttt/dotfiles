@@ -1,0 +1,21 @@
+id = "vrivera/display-controls"
+name = "Controles de pantalla"
+version = "1.0.0"
+plugin_api = 9
+author = "vrivera"
+license = "MIT"
+icon = "device-desktop"
+description = "Brillo y orientación de las pantallas"
+dependencies = ["ddcutil"]
+
+[[panel]]
+id = "display-panel"
+entry = "panel.luau"
+width = 620
+height = 680
+placement = "floating"
+position = "center"
+
+[[shortcut]]
+id = "display"
+entry = "shortcut.luau"

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+mode_file="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/noctalia-screenshot-mode"
+mode="edit"
+
+if [[ -r "$mode_file" ]]; then
+  read -r mode < "$mode_file"
+  rm -f "$mode_file"
+fi
+
+case "$mode" in
+  copy)
+    exec /usr/bin/wl-copy
+    ;;
+  edit)
+    exec /usr/bin/satty -f - --copy-command /usr/bin/wl-copy
+    ;;
+  *)
+    printf 'Modo de captura desconocido: %s\n' "$mode" >&2
+    exit 1
+    ;;
+esac

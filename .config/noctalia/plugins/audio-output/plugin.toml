@@ -1,0 +1,16 @@
+id = "vrivera/audio-output"
+name = "Audio Output"
+version = "1.0.0"
+plugin_api = 14
+author = "vrivera"
+
+[[widget]]
+id = "volume"
+entry = "widget.luau"
+
+  [widget.actions]
+  left = "panel-toggle control-center"
+  middle = "exec /home/vrivera/dotfiles/.local/bin/toggle-audio-output"
+  right = "volume-mute"
+  scroll_down = "volume-down"
+  scroll_up = "volume-up"

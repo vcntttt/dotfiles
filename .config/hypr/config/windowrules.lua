@@ -46,9 +46,14 @@ hl.window_rule({
 })
 
 -- Apps
+hl.window_rule({ match = { class = "^(zen)$" }, workspace = "1" })
+hl.window_rule({ match = { class = "^(vesktop)$" }, workspace = "4", no_initial_focus = true, scrolling_width = 0.90 })
+hl.window_rule({ match = { class = "^(eu\\.betterbird\\.Betterbird|betterbird)$" }, workspace = "4", no_initial_focus = true, scrolling_width = 0.90 })
+hl.window_rule({ match = { class = "^(obsidian)$" }, workspace = "8", no_initial_focus = true })
+hl.window_rule({ match = { class = "^(Spotify|spotify)$" }, workspace = "9", no_initial_focus = true })
 hl.window_rule({ match = { class = "^(.*\\.exe)$", float = true }, monitor = PRIMARY_MONITOR, center = true, fullscreen_state = 0 })
 hl.window_rule({ match = { class = "^(.*[Ll]auncher.*)$" }, float = true, monitor = PRIMARY_MONITOR })
-hl.window_rule({ match = { class = "^(vesktop|discord)$" }, monitor = PRIMARY_MONITOR })
+hl.window_rule({ match = { class = "^(discord)$" }, monitor = PRIMARY_MONITOR })
 hl.window_rule({ match = { class = "^(.*[Cc]alc.*)$" }, float = true, size = { "max(monitor_w, monitor_h)*0.17", "min(monitor_w, monitor_h)*0.43" } })
 hl.window_rule({ match = { class = "^(org\\.kde\\.keditfiletype)$" }, float = true })
 hl.window_rule({ match = { class = "^(org\\.kde\\.ark)$" }, size = { "max(monitor_w, monitor_h)*0.40", "min(monitor_w, monitor_h)*0.40" } })

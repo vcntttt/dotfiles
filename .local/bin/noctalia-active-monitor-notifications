@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Keep Noctalia notifications on Hyprland's currently focused monitor.
+
+set -u
+
+lock_file="${XDG_RUNTIME_DIR:-/tmp}/noctalia-active-monitor-notifications.lock"
+exec 9>"$lock_file"
+flock -n 9 || exit 0
+
+config_file="$(readlink -f "${XDG_CONFIG_HOME:-$HOME/.config}/noctalia/config.toml")"
+event_socket="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/hypr/${HYPRLAND_INSTANCE_SIGNATURE:-}/.socket2.sock"
+last_monitor=""
+
+update_monitor() {
+    local monitor
+
+    monitor="$(hyprctl -j activeworkspace 2>/dev/null | jq -r '.monitor // empty')"
+    if [[ -z "$monitor" || "$monitor" == "$last_monitor" ]]; then
+        return
+    fi
+
+    if sed -i -E \
+        "/^\[notification\]$/,/^\[[^]]+\]$/ s|^monitors = .*|monitors = [ \"$monitor\" ]|" \
+        "$config_file"; then
+        last_monitor="$monitor"
+        noctalia msg config-reload >/dev/null 2>&1 || true
+    fi
+}
+
+if [[ ! -S "$event_socket" ]]; then
+    exit 0
+fi
+
+update_monitor
+
+while true; do
+    while IFS= read -r event; do
+        case "${event%%>>*}" in
+            activewindow|focusedmon|workspace|monitoradded|monitorremoved)
+                update_monitor
+                ;;
+        esac
+    done < <(nc -U "$event_socket" 2>/dev/null)
+
+    sleep 1
+done

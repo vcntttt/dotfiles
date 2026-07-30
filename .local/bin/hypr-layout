@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+
+# Consulta o aplica el layout del workspace activo en un monitor.
+
+set -euo pipefail
+
+layouts=(master dwindle scrolling)
+
+usage() {
+    echo "Uso: hypr-layout [--monitor NOMBRE] [master|dwindle|scrolling]" >&2
+    exit 2
+}
+
+command -v hyprctl >/dev/null || {
+    echo "hyprctl no encontrado" >&2
+    exit 1
+}
+command -v jq >/dev/null || {
+    echo "jq no encontrado" >&2
+    exit 1
+}
+
+target_monitor=""
+selected_layout=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --monitor)
+            [[ $# -ge 2 ]] || usage
+            target_monitor="$2"
+            shift 2
+            ;;
+        master|dwindle|scrolling)
+            [[ -z "$selected_layout" ]] || usage
+            selected_layout="$1"
+            shift
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+
+if [[ -n "$target_monitor" ]]; then
+    monitors_json="$(hyprctl -j monitors)"
+    workspace_id="$(jq -r --arg monitor "$target_monitor" \
+        '.[] | select(.name == $monitor) | .activeWorkspace.id' <<<"$monitors_json")"
+    workspace_name="$(jq -r --arg monitor "$target_monitor" \
+        '.[] | select(.name == $monitor) | .activeWorkspace.name // empty' <<<"$monitors_json")"
+    workspace_monitor="$target_monitor"
+
+    [[ -n "$workspace_id" && "$workspace_id" != "null" ]] || {
+        echo "Monitor no encontrado o sin workspace activo: $target_monitor" >&2
+        exit 1
+    }
+
+    workspaces_json="$(hyprctl -j workspaces)"
+    current_layout="$(jq -r --argjson id "$workspace_id" \
+        '.[] | select(.id == $id) | .tiledLayout // "desconocido"' <<<"$workspaces_json")"
+else
+    workspace_json="$(hyprctl -j activeworkspace)"
+    workspace_id="$(jq -r '.id' <<<"$workspace_json")"
+    workspace_name="$(jq -r '.name // empty' <<<"$workspace_json")"
+    workspace_monitor="$(jq -r '.monitor' <<<"$workspace_json")"
+    current_layout="$(jq -r '.tiledLayout // "desconocido"' <<<"$workspace_json")"
+fi
+
+if [[ "$workspace_name" == special:* ]]; then
+    workspace_selector="$workspace_name"
+else
+    workspace_selector="$workspace_id"
+fi
+
+if [[ -z "$selected_layout" ]]; then
+    printf '%s\n' "$current_layout"
+    exit 0
+fi
+
+eval_output="$(hyprctl eval \
+    "hl.workspace_rule({ workspace = \"$workspace_selector\", layout = \"$selected_layout\" })" \
+    2>&1)"
+
+if [[ "$eval_output" != "ok" ]]; then
+    echo "No se pudo aplicar el layout: $eval_output" >&2
+    exit 1
+fi
+
+applied_layout="$(hyprctl -j workspaces | jq -r --argjson id "$workspace_id" \
+    '.[] | select(.id == $id) | .tiledLayout // empty')"
+if [[ "$applied_layout" != "$selected_layout" ]]; then
+    echo "Hyprland no confirmó el layout solicitado" >&2
+    exit 1
+fi
+
+printf '%s\n' "$selected_layout"

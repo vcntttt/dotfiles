@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+mode="${1:-}"
+case "$mode" in
+  copy|edit)
+    ;;
+  *)
+    printf 'Uso: %s <copy|edit>\n' "$0" >&2
+    exit 2
+    ;;
+esac
+
+runtime_dir="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+mode_file="$runtime_dir/noctalia-screenshot-mode"
+temporary_file="$mode_file.$$"
+
+printf '%s\n' "$mode" > "$temporary_file"
+mv -f "$temporary_file" "$mode_file"
+
+if ! /usr/bin/noctalia msg screenshot-region; then
+  rm -f "$mode_file"
+  exit 1
+fi

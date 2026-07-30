@@ -2,6 +2,8 @@
 
 hl.config({
     input = {
+        kb_layout = "us",
+        kb_options = "compose:caps",
         -- sensitivity = -0.25,
         accel_profile = "flat",
     },

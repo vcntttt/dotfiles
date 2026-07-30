@@ -1,0 +1,58 @@
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-style = Regular
+font-size = 12
+
+# Appearance migrated from Kitty/Noctalia
+background-opacity = 0.6
+background-blur = true
+background = #141318
+foreground = #e6e1e9
+cursor-color = #e6e1e9
+cursor-text = #141318
+selection-foreground = #c9c4d0
+selection-background = #48454e
+palette = 0=#48454e
+palette = 1=#ffb4ab
+palette = 2=#cabeff
+palette = 3=#cac3dc
+palette = 4=#edb8cc
+palette = 5=#cabeff
+palette = 6=#cac3dc
+palette = 7=#e6e1e9
+palette = 8=#938f99
+palette = 9=#ffb4ab
+palette = 10=#cabeff
+palette = 11=#cac3dc
+palette = 12=#edb8cc
+palette = 13=#cabeff
+palette = 14=#cac3dc
+palette = 15=#e6e1e9
+
+# Window
+window-theme = ghostty
+window-padding-x = 25
+window-padding-y = 25
+confirm-close-surface = false
+resize-overlay = never
+gtk-toolbar-style = flat
+
+# Cursor styling
+cursor-style = block
+cursor-style-blink = false
+
+# Cursor styling + SSH session terminfo
+shell-integration-features = no-cursor,ssh-env
+
+# Keyboard bindings
+keybind = shift+insert=paste_from_clipboard
+keybind = control+insert=copy_to_clipboard
+keybind = super+control+shift+alt+arrow_down=resize_split:down,100
+keybind = super+control+shift+alt+arrow_up=resize_split:up,100
+keybind = super+control+shift+alt+arrow_left=resize_split:left,100
+keybind = super+control+shift+alt+arrow_right=resize_split:right,100
+
+# Kitty's cursor_trail has no direct Ghostty equivalent.
+# Slowdown mouse scrolling
+mouse-scroll-multiplier = 5
+theme = noctalia

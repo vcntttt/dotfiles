@@ -1,0 +1,22 @@
+id = "vrivera/layout-controls"
+name = "Layout del workspace"
+version = "1.0.0"
+plugin_api = 14
+author = "vrivera"
+license = "MIT"
+icon = "layout-grid"
+description = "Consulta y cambia el layout del workspace activo"
+
+[[widget]]
+id = "layout"
+entry = "widget.luau"
+
+[[panel]]
+id = "selector"
+entry = "panel.luau"
+width = 360
+height = 300
+placement = "floating"
+position = "center"
+keyboard_focus = "exclusive"
+capture_keys = [ "Up", "Down", "Left", "Right", "Return" ]
