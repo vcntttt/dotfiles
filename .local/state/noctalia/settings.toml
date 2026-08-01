@@ -110,20 +110,32 @@ wallpaper_scheme = "m3-tonal-spot"
 directory = "/home/vrivera/Imágenes/wallpapers/"
 
     [wallpaper.default]
-    path = "/home/vrivera/Imágenes/wallpapers/fantasy-city.jpg"
+    path = "/home/vrivera/Imágenes/wallpapers/spiderman-bnd.jpg"
 
     [wallpaper.last]
-    path = "/home/vrivera/Imágenes/wallpapers/fantasy-city.jpg"
+    path = "/home/vrivera/Imágenes/wallpapers/spiderman-bnd.jpg"
 
     [wallpaper.monitors.DP-1]
-    path = "/home/vrivera/Imágenes/wallpapers/fantasy-city.jpg"
+    path = "/home/vrivera/Imágenes/wallpapers/spiderman-bnd.jpg"
 
     [wallpaper.monitors.HDMI-A-1]
-    path = "/home/vrivera/Imágenes/wallpapers/fantasy-city.jpg"
+    path = "/home/vrivera/Imágenes/wallpapers/spiderman-bnd.jpg"
 
     [[wallpaper.favorite]]
     palette_source = "wallpaper"
     path = "/home/vrivera/Imágenes/wallpapers/catching-the-desert.jpeg"
+    theme_mode = "dark"
+    wallpaper_scheme = "m3-tonal-spot"
+
+    [[wallpaper.favorite]]
+    palette_source = "wallpaper"
+    path = "/home/vrivera/Imágenes/wallpapers/fantasy-city.jpg"
+    theme_mode = "dark"
+    wallpaper_scheme = "m3-tonal-spot"
+
+    [[wallpaper.favorite]]
+    palette_source = "wallpaper"
+    path = "/home/vrivera/Imágenes/wallpapers/spiderman-bnd.jpg"
     theme_mode = "dark"
     wallpaper_scheme = "m3-tonal-spot"
 

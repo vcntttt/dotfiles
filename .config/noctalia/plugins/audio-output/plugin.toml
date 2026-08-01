@@ -9,7 +9,7 @@ id = "volume"
 entry = "widget.luau"
 
   [widget.actions]
-  left = "panel-toggle control-center"
+  left = "panel-open control-center audio"
   middle = "exec /home/vrivera/dotfiles/.local/bin/toggle-audio-output"
   right = "volume-mute"
   scroll_down = "volume-down"

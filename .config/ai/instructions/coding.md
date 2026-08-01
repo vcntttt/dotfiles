@@ -18,6 +18,10 @@ No evites cambiar código existente cuando sea necesario. No tomes atajos agrega
 
 Respeta siempre la ortografía del español: usa tildes (acentos) y la letra ñ correctamente en todos los textos visibles para el usuario.
 
+## Herramientas
+
+El shell del usuario es Fish. Tenlo en cuenta al sugerir comandos para ejecutar; puedes seguir usando Bash para realizar tus comprobaciones.
+
 ## Interfaces frontend
 
 - Si el usuario está eligiendo, usa un dropdown.
