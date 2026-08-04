@@ -43,7 +43,7 @@ capsule_padding = 6.0
 capsule_radius = 8.0
 center = [ "workspaces", "spacer_1", "active_window" ]
 concave_edge_corners = true
-end = [ "media", "spacer_1", "tray", "network", "galileo", "volume", "arch_updates", "notifications" ]
+end = [ "media", "spacer_1", "tray", "network", "galileo", "volume", "arch_updates", "codex_usage", "notifications" ]
 margin_edge = 0
 margin_ends = 0
 radius_bottom_left = 12
@@ -185,6 +185,9 @@ glyph = "package"
 show_count = true
 hide_on_empty = true
 
+[widget.codex_usage]
+type = "vrivera/codex-usage:usage"
+
 [widget.workspaces]
 style = "regular"
 display = "name"
@@ -196,7 +199,7 @@ inactive_pill_size = 1.0
 pill_scale = 1.0
 
 [plugins]
-enabled = [ "vrivera/audio-output", "vrivera/display-controls", "vrivera/galileo", "vrivera/layout-controls", "yuuto/arch-updater" ]
+enabled = [ "vrivera/audio-output", "vrivera/codex-usage", "vrivera/display-controls", "vrivera/galileo", "vrivera/layout-controls", "yuuto/arch-updater" ]
 
     [[plugins.source]]
     name = "dotfiles"

@@ -1,0 +1,24 @@
+id = "vrivera/codex-usage"
+name = "Codex Usage"
+version = "1.0.0"
+plugin_api = 14
+author = "vrivera"
+license = "MIT"
+description = "Indicador del uso de Codex"
+
+[[widget]]
+id = "usage"
+entry = "widget.luau"
+
+  [widget.actions]
+  right = "exec xdg-open https://chatgpt.com/codex/cloud/settings/analytics#usage"
+
+[[panel]]
+id = "details"
+entry = "panel.luau"
+width = 430
+height = 540
+placement = "attached"
+position = "auto"
+open_near_click = true
+dismiss_on_outside_click = true

@@ -7,7 +7,7 @@ capsule_opacity = 1.0
 capsule_padding = 6.0
 capsule_radius = 8.0
 center = [ "active_window" ]
-end = [ "group:g1", "spacer_1", "tray", "network", "galileo", "volume", "clock", "notifications" ]
+end = [ "usage", "group:g1", "spacer_1", "tray", "network", "galileo", "volume", "clock", "notifications" ]
 start = [ "widget", "workspaces", "media", "layout" ]
 widget_spacing = 8.0
 
@@ -86,7 +86,8 @@ enabled = [
     "vrivera/galileo",
     "vrivera/layout-controls",
     "yuuto/arch-updater",
-    "vrivera/audio-output"
+    "vrivera/audio-output",
+    "vrivera/codex-usage"
 ]
 
 [shell]
@@ -144,6 +145,9 @@ type = "vrivera/layout-controls:layout"
 
 [widget.spacer_1]
 enabled = false
+
+[widget.usage]
+type = "vrivera/codex-usage:usage"
 
 [widget.widget]
 type = "yuuto/arch-updater:widget"

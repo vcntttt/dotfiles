@@ -1,0 +1,312 @@
+#!/usr/bin/env python3
+"""Read the authenticated Codex usage data for the Noctalia plugin."""
+
+import datetime
+import json
+import os
+import selectors
+import subprocess
+import time
+from typing import Any
+
+
+REQUEST_TIMEOUT_SECONDS = 10.0
+MONTHS = (
+    "enero",
+    "febrero",
+    "marzo",
+    "abril",
+    "mayo",
+    "junio",
+    "julio",
+    "agosto",
+    "septiembre",
+    "octubre",
+    "noviembre",
+    "diciembre",
+)
+
+
+def emit(payload: dict[str, Any]) -> None:
+    print(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
+
+
+def send(process: subprocess.Popen[bytes], message: dict[str, Any]) -> None:
+    assert process.stdin is not None
+    process.stdin.write(json.dumps(message, separators=(",", ":")).encode() + b"\n")
+    process.stdin.flush()
+
+
+def read_response(
+    process: subprocess.Popen[bytes],
+    selector: selectors.BaseSelector,
+    buffer: bytearray,
+    request_id: int,
+) -> dict[str, Any] | None:
+    assert process.stdout is not None
+    deadline = time.monotonic() + REQUEST_TIMEOUT_SECONDS
+
+    while time.monotonic() < deadline:
+        newline = buffer.find(b"\n")
+        if newline >= 0:
+            line = bytes(buffer[:newline])
+            del buffer[: newline + 1]
+            if not line:
+                continue
+            try:
+                message = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if message.get("id") == request_id:
+                return message
+            continue
+
+        remaining = max(0.0, deadline - time.monotonic())
+        if not selector.select(remaining):
+            break
+        chunk = os.read(process.stdout.fileno(), 4096)
+        if not chunk:
+            break
+        buffer.extend(chunk)
+
+    return None
+
+
+def format_reset(timestamp: int | None) -> str | None:
+    if timestamp is None:
+        return None
+
+    reset_at = datetime.datetime.fromtimestamp(timestamp).astimezone()
+    month = MONTHS[reset_at.month - 1]
+    return f"{reset_at.day} de {month}, {reset_at:%H:%M}"
+
+
+def active_seconds_until(reset_at: int | None) -> tuple[float, float]:
+    if reset_at is None:
+        return 0.0, 0.0
+
+    now = datetime.datetime.now().astimezone()
+    end = datetime.datetime.fromtimestamp(reset_at).astimezone()
+    if end <= now:
+        return 0.0, 0.0
+
+    active_until_reset = 0.0
+    active_today = 0.0
+    current_date = now.date()
+    end_date = end.date()
+    while current_date <= end_date:
+        active_start = datetime.datetime.combine(
+            current_date,
+            datetime.time(10, 0),
+            tzinfo=now.tzinfo,
+        )
+        active_end = datetime.datetime.combine(
+            current_date + datetime.timedelta(days=1),
+            datetime.time(0, 0),
+            tzinfo=now.tzinfo,
+        )
+        segment_start = max(now, active_start)
+        segment_end = min(end, active_end)
+        if segment_end > segment_start:
+            seconds = (segment_end - segment_start).total_seconds()
+            active_until_reset += seconds
+            if current_date == now.date():
+                active_today += seconds
+        current_date += datetime.timedelta(days=1)
+
+    return active_until_reset, active_today
+
+
+def calculate_daily_budget(remaining_percent: int, reset_at: int | None) -> dict[str, float | None]:
+    active_seconds, active_today_seconds = active_seconds_until(reset_at)
+    active_day_seconds = 14 * 60 * 60
+    active_days = active_seconds / active_day_seconds
+    recommended_daily = remaining_percent / active_days if active_days > 0 else None
+    recommended_today = (
+        recommended_daily * active_today_seconds / active_day_seconds
+        if recommended_daily is not None
+        else None
+    )
+
+    return {
+        "activeHoursUntilReset": round(active_seconds / 3600, 1),
+        "activeDaysUntilReset": round(active_days, 2),
+        "activeHoursToday": round(active_today_seconds / 3600, 1),
+        "recommendedDailyPercent": round(recommended_daily, 1) if recommended_daily is not None else None,
+        "recommendedTodayPercent": round(recommended_today, 1) if recommended_today is not None else None,
+    }
+
+
+def parse_reset_credits(result: dict[str, Any]) -> list[dict[str, Any]]:
+    reset_info = result.get("rateLimitResetCredits")
+    if not isinstance(reset_info, dict):
+        return []
+
+    credits = reset_info.get("credits")
+    if not isinstance(credits, list):
+        return []
+
+    available: list[dict[str, Any]] = []
+    for credit in credits:
+        if not isinstance(credit, dict) or credit.get("status") != "available":
+            continue
+
+        expires_at = credit.get("expiresAt")
+        available.append(
+            {
+                "title": credit.get("title") if isinstance(credit.get("title"), str) else "Reset Completo",
+                "expiresAt": expires_at if isinstance(expires_at, int) else None,
+                "expiresLabel": format_reset(expires_at if isinstance(expires_at, int) else None),
+            }
+        )
+
+    return available
+
+
+def window_label(duration_minutes: int | None) -> str:
+    if duration_minutes is None:
+        return "Ventana Actual"
+    if duration_minutes >= 10080:
+        return "Ventana Semanal"
+    if duration_minutes >= 1440:
+        return "Ventana Diaria"
+    return "Ventana Actual"
+
+
+def choose_window(snapshot: dict[str, Any]) -> tuple[dict[str, Any], str] | None:
+    buckets: list[dict[str, Any]] = []
+    by_limit_id = snapshot.get("rateLimitsByLimitId")
+    if isinstance(by_limit_id, dict):
+        buckets.extend(bucket for bucket in by_limit_id.values() if isinstance(bucket, dict))
+
+    legacy_bucket = snapshot.get("rateLimits")
+    if isinstance(legacy_bucket, dict):
+        buckets.append(legacy_bucket)
+
+    codex_buckets = [bucket for bucket in buckets if bucket.get("limitId") == "codex"]
+    if codex_buckets:
+        buckets = codex_buckets
+
+    candidates: list[tuple[int, dict[str, Any], str]] = []
+    for bucket in buckets:
+        for name in ("primary", "secondary"):
+            window = bucket.get(name)
+            if not isinstance(window, dict) or not isinstance(window.get("usedPercent"), int):
+                continue
+            duration = window.get("windowDurationMins")
+            score = duration if isinstance(duration, int) else -1
+            candidates.append((score, window, name))
+
+    if not candidates:
+        return None
+
+    _, selected_window, selected_name = max(candidates, key=lambda item: item[0])
+    return selected_window, selected_name
+
+
+def query_usage() -> dict[str, Any]:
+    try:
+        process = subprocess.Popen(
+            ["codex", "app-server", "--stdio"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        )
+    except OSError:
+        return {"ok": False, "error": "No se pudo iniciar codex app-server"}
+
+    selector = selectors.DefaultSelector()
+    buffer = bytearray()
+    assert process.stdout is not None
+    selector.register(process.stdout, selectors.EVENT_READ)
+
+    try:
+        send(
+            process,
+            {
+                "method": "initialize",
+                "id": 0,
+                "params": {
+                    "clientInfo": {
+                        "name": "noctalia_codex_usage",
+                        "title": "Noctalia Codex Usage",
+                        "version": "0.1.0",
+                    }
+                },
+            },
+        )
+        initialize_response = read_response(process, selector, buffer, 0)
+        if not initialize_response or "error" in initialize_response:
+            return {"ok": False, "error": "Codex no respondió al iniciar app-server"}
+
+        send(process, {"method": "initialized", "params": {}})
+        send(process, {"method": "account/rateLimits/read", "id": 1, "params": None})
+        rate_limits_response = read_response(process, selector, buffer, 1)
+        if not rate_limits_response or "error" in rate_limits_response:
+            return {"ok": False, "error": "Codex no pudo consultar sus límites"}
+
+        result = rate_limits_response.get("result")
+        if not isinstance(result, dict):
+            return {"ok": False, "error": "Codex devolvió una respuesta inválida"}
+
+        selected = choose_window(result)
+        if selected is None:
+            return {"ok": False, "error": "Codex no informó una ventana de uso"}
+
+        send(process, {"method": "account/usage/read", "id": 2, "params": None})
+        usage_response = read_response(process, selector, buffer, 2)
+
+        window, bucket_name = selected
+        used_percent = max(0, min(100, window["usedPercent"]))
+        duration = window.get("windowDurationMins")
+        reset_at = window.get("resetsAt")
+        bucket = result.get("rateLimits")
+        plan_type = bucket.get("planType") if isinstance(bucket, dict) else None
+
+        payload: dict[str, Any] = {
+            "ok": True,
+            "usedPercent": used_percent,
+            "remainingPercent": 100 - used_percent,
+            "window": bucket_name,
+            "windowDurationMins": duration if isinstance(duration, int) else None,
+            "windowLabel": window_label(duration if isinstance(duration, int) else None),
+            "resetsAt": reset_at if isinstance(reset_at, int) else None,
+            "resetLabel": format_reset(reset_at if isinstance(reset_at, int) else None),
+            "planType": plan_type if isinstance(plan_type, str) else None,
+            "availableResetCount": 0,
+            "resetCredits": parse_reset_credits(result),
+            "dailyBudget": calculate_daily_budget(100 - used_percent, reset_at if isinstance(reset_at, int) else None),
+        }
+
+        reset_info = result.get("rateLimitResetCredits")
+        if isinstance(reset_info, dict) and isinstance(reset_info.get("availableCount"), int):
+            payload["availableResetCount"] = reset_info["availableCount"]
+
+        if usage_response and "error" not in usage_response:
+            usage_result = usage_response.get("result")
+            if isinstance(usage_result, dict):
+                summary = usage_result.get("summary")
+                payload["usageSummary"] = summary if isinstance(summary, dict) else None
+                buckets = usage_result.get("dailyUsageBuckets")
+                payload["dailyUsageBuckets"] = buckets if isinstance(buckets, list) else None
+        else:
+            payload["usageError"] = "Codex no pudo consultar la actividad diaria"
+
+        return payload
+    finally:
+        selector.close()
+        if process.poll() is None:
+            process.terminate()
+            try:
+                process.wait(timeout=1)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait()
+
+
+def main() -> None:
+    emit(query_usage())
+
+
+if __name__ == "__main__":
+    main()

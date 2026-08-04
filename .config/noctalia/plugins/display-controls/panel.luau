@@ -124,7 +124,7 @@ local function render()
     end
   end
 
-  panel.render(ui.scroll({ gap = 14, padding = 4 }, children))
+  panel.render(ui.column({ gap = 14, padding = 4 }, children))
 end
 
 local function parse_ddc_displays(output)
