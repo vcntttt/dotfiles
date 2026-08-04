@@ -11,7 +11,6 @@ local reset_label = nil
 local plan_type = nil
 local reset_count = 0
 local reset_expires_label = nil
-local recommended_daily_percent = nil
 local last_error = nil
 local refresh_pending = false
 
@@ -59,16 +58,13 @@ local function render()
     tooltip = tooltip .. "\n" .. window_label
   end
   if reset_label ~= nil then
-    tooltip = tooltip .. " · Restablece: " .. reset_label
+    tooltip = tooltip .. " · Reset semanal: " .. reset_label
   end
   if reset_count > 0 then
-    tooltip = tooltip .. "\n" .. tostring(reset_count) .. " Reset Disponible"
+    tooltip = tooltip .. "\n" .. tostring(reset_count) .. " reset manual disponible"
     if reset_expires_label ~= nil then
       tooltip = tooltip .. " · Vence: " .. reset_expires_label
     end
-  end
-  if recommended_daily_percent ~= nil then
-    tooltip = tooltip .. "\nRitmo Recomendado: " .. tostring(recommended_daily_percent) .. "% por Día Activo"
   end
   if last_error ~= nil then
     tooltip = tooltip .. "\nÚltima Actualización Fallida: " .. last_error
@@ -120,8 +116,6 @@ local function update_from_result(result)
   reset_count = tonumber(data.availableResetCount) or 0
   local credits = type(data.resetCredits) == "table" and data.resetCredits or {}
   reset_expires_label = credits[1] and credits[1].expiresLabel or nil
-  local budget = type(data.dailyBudget) == "table" and data.dailyBudget or {}
-  recommended_daily_percent = budget.recommendedDailyPercent
   last_error = nil
   render()
 end

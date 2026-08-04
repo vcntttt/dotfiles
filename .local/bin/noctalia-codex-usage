@@ -81,62 +81,6 @@ def format_reset(timestamp: int | None) -> str | None:
     return f"{reset_at.day} de {month}, {reset_at:%H:%M}"
 
 
-def active_seconds_until(reset_at: int | None) -> tuple[float, float]:
-    if reset_at is None:
-        return 0.0, 0.0
-
-    now = datetime.datetime.now().astimezone()
-    end = datetime.datetime.fromtimestamp(reset_at).astimezone()
-    if end <= now:
-        return 0.0, 0.0
-
-    active_until_reset = 0.0
-    active_today = 0.0
-    current_date = now.date()
-    end_date = end.date()
-    while current_date <= end_date:
-        active_start = datetime.datetime.combine(
-            current_date,
-            datetime.time(10, 0),
-            tzinfo=now.tzinfo,
-        )
-        active_end = datetime.datetime.combine(
-            current_date + datetime.timedelta(days=1),
-            datetime.time(0, 0),
-            tzinfo=now.tzinfo,
-        )
-        segment_start = max(now, active_start)
-        segment_end = min(end, active_end)
-        if segment_end > segment_start:
-            seconds = (segment_end - segment_start).total_seconds()
-            active_until_reset += seconds
-            if current_date == now.date():
-                active_today += seconds
-        current_date += datetime.timedelta(days=1)
-
-    return active_until_reset, active_today
-
-
-def calculate_daily_budget(remaining_percent: int, reset_at: int | None) -> dict[str, float | None]:
-    active_seconds, active_today_seconds = active_seconds_until(reset_at)
-    active_day_seconds = 14 * 60 * 60
-    active_days = active_seconds / active_day_seconds
-    recommended_daily = remaining_percent / active_days if active_days > 0 else None
-    recommended_today = (
-        recommended_daily * active_today_seconds / active_day_seconds
-        if recommended_daily is not None
-        else None
-    )
-
-    return {
-        "activeHoursUntilReset": round(active_seconds / 3600, 1),
-        "activeDaysUntilReset": round(active_days, 2),
-        "activeHoursToday": round(active_today_seconds / 3600, 1),
-        "recommendedDailyPercent": round(recommended_daily, 1) if recommended_daily is not None else None,
-        "recommendedTodayPercent": round(recommended_today, 1) if recommended_today is not None else None,
-    }
-
-
 def parse_reset_credits(result: dict[str, Any]) -> list[dict[str, Any]]:
     reset_info = result.get("rateLimitResetCredits")
     if not isinstance(reset_info, dict):
@@ -154,7 +98,7 @@ def parse_reset_credits(result: dict[str, Any]) -> list[dict[str, Any]]:
         expires_at = credit.get("expiresAt")
         available.append(
             {
-                "title": credit.get("title") if isinstance(credit.get("title"), str) else "Reset Completo",
+                "title": credit.get("title") if isinstance(credit.get("title"), str) else "Restablecimiento Completo",
                 "expiresAt": expires_at if isinstance(expires_at, int) else None,
                 "expiresLabel": format_reset(expires_at if isinstance(expires_at, int) else None),
             }
@@ -275,7 +219,6 @@ def query_usage() -> dict[str, Any]:
             "planType": plan_type if isinstance(plan_type, str) else None,
             "availableResetCount": 0,
             "resetCredits": parse_reset_credits(result),
-            "dailyBudget": calculate_daily_budget(100 - used_percent, reset_at if isinstance(reset_at, int) else None),
         }
 
         reset_info = result.get("rateLimitResetCredits")
