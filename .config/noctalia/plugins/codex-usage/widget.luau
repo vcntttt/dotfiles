@@ -116,7 +116,7 @@ local function update_from_result(result)
   reset_count = tonumber(data.availableResetCount) or 0
   local credits = type(data.resetCredits) == "table" and data.resetCredits or {}
   reset_expires_label = credits[1] and credits[1].expiresLabel or nil
-  last_error = nil
+  last_error = data.stale == true and data.staleError or nil
   render()
 end
 
@@ -125,7 +125,7 @@ function onClick()
 end
 
 function update()
-  noctalia.setUpdateInterval(300000)
+  noctalia.setUpdateInterval(60000)
   if refresh_pending then
     return
   end

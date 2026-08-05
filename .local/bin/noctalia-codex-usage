@@ -2,15 +2,25 @@
 """Read the authenticated Codex usage data for the Noctalia plugin."""
 
 import datetime
+import fcntl
 import json
 import os
 import selectors
 import subprocess
+import tempfile
 import time
 from typing import Any
 
 
 REQUEST_TIMEOUT_SECONDS = 10.0
+CACHE_TTL_SECONDS = 60.0
+CACHE_DIRECTORY = os.path.join(
+    os.environ.get("XDG_CACHE_HOME", os.path.expanduser("~/.cache")),
+    "noctalia",
+    "codex-usage",
+)
+CACHE_PATH = os.path.join(CACHE_DIRECTORY, "usage.json")
+LOCK_PATH = os.path.join(CACHE_DIRECTORY, "usage.lock")
 MONTHS = (
     "enero",
     "febrero",
@@ -29,6 +39,90 @@ MONTHS = (
 
 def emit(payload: dict[str, Any]) -> None:
     print(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
+
+
+def read_cache() -> tuple[dict[str, Any], float] | None:
+    try:
+        with open(CACHE_PATH, encoding="utf-8") as cache_file:
+            record = json.load(cache_file)
+    except (OSError, json.JSONDecodeError):
+        return None
+
+    if not isinstance(record, dict) or not isinstance(record.get("payload"), dict):
+        return None
+
+    cached_at = record.get("cachedAt")
+    if not isinstance(cached_at, (int, float)):
+        return None
+
+    return record["payload"], float(cached_at)
+
+
+def fresh_cache() -> dict[str, Any] | None:
+    cached = read_cache()
+    if cached is None:
+        return None
+
+    payload, cached_at = cached
+    if not payload.get("ok") or time.time() - cached_at >= CACHE_TTL_SECONDS:
+        return None
+    return payload
+
+
+def write_cache(payload: dict[str, Any]) -> None:
+    try:
+        os.makedirs(CACHE_DIRECTORY, mode=0o700, exist_ok=True)
+    except OSError:
+        return query_usage()
+    record = {"cachedAt": time.time(), "payload": payload}
+    descriptor, temporary_path = tempfile.mkstemp(
+        prefix="usage.", suffix=".tmp", dir=CACHE_DIRECTORY
+    )
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8") as cache_file:
+            json.dump(record, cache_file, ensure_ascii=False, separators=(",", ":"))
+            cache_file.flush()
+            os.fsync(cache_file.fileno())
+        os.replace(temporary_path, CACHE_PATH)
+    finally:
+        if os.path.exists(temporary_path):
+            os.unlink(temporary_path)
+
+
+def cached_usage() -> dict[str, Any]:
+    cached = fresh_cache()
+    if cached is not None:
+        return cached
+
+    os.makedirs(CACHE_DIRECTORY, mode=0o700, exist_ok=True)
+    with open(LOCK_PATH, "a", encoding="utf-8") as lock_file:
+        fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
+
+        cached = fresh_cache()
+        if cached is not None:
+            return cached
+
+        payload = query_usage()
+        if payload.get("ok"):
+            try:
+                write_cache(payload)
+            except OSError:
+                # The cache is an optimization; a filesystem failure must
+                # not hide a valid live response.
+                pass
+            return payload
+
+        cached_record = read_cache()
+        if cached_record is not None:
+            cached_payload, cached_at = cached_record
+            if cached_payload.get("ok"):
+                stale_payload = dict(cached_payload)
+                stale_payload["stale"] = True
+                stale_payload["staleError"] = payload.get("error", "Consulta fallida")
+                stale_payload["cacheAgeSeconds"] = max(0, int(time.time() - cached_at))
+                return stale_payload
+
+        return payload
 
 
 def send(process: subprocess.Popen[bytes], message: dict[str, Any]) -> None:
@@ -248,7 +342,7 @@ def query_usage() -> dict[str, Any]:
 
 
 def main() -> None:
-    emit(query_usage())
+    emit(cached_usage())
 
 
 if __name__ == "__main__":

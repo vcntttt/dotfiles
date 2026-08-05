@@ -28,7 +28,7 @@ local last_query_at = 0
 
 local ACTIVE_START_HOUR = 10
 local ACTIVE_HOURS_PER_DAY = 14
-local QUERY_INTERVAL_SECONDS = 300
+local QUERY_INTERVAL_SECONDS = 60
 local UPDATE_INTERVAL_MS = 60000
 
 local function shell_quote(value)
@@ -724,10 +724,11 @@ local function render_weekly_bar(state)
   for index, segment in ipairs(state.segments or {}) do
     local amount = math.max(0, tonumber(segment.amount) or 0)
     if amount > 0.01 then
-      local fill = "primary/0.30"
-      if segment.kind == "past" then
-        fill = "primary/0.45"
-      elseif segment.kind == "today" then
+      -- The used area is primary underneath. A translucent primary layer
+      -- over the same color would remain visually indistinguishable, so
+      -- historical usage uses a muted track layer instead.
+      local fill = "surface_variant/0.70"
+      if segment.kind == "today" then
         fill = "#00000000"
       end
 
@@ -1038,7 +1039,7 @@ local function update_from_result(result)
   end
 
   if apply_data(data) then
-    error_message = nil
+    error_message = data.stale == true and data.staleError or nil
   else
     error_message = usage_error or "Respuesta de Uso Inválida"
   end
