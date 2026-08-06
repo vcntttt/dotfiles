@@ -50,9 +50,9 @@ En este modelo, `Nextcloud` es un hub de sincronizacion y navegacion, no la raiz
 
 ### `~/dotfiles`
 
-- Config del sistema
-- Scripts utilitarios
-- Config del desktop principal
+- Configuracion comun y overlays por host
+- Scripts de setup y utilitarios compartidos
+- Fuente de verdad para desktop, notebook y shell de Caburgua
 
 ### `~/dev`
 
@@ -112,11 +112,11 @@ Si necesitas verlo desde otro lado, usa un link, pero solo desde la vista secund
 
 ## Scripts actuales
 
-Scripts relacionados hoy:
+Scripts relacionados hoy (en runtime aparecen bajo `~/.local/bin`):
 
-- `.local/bin/dirs.py`: herramienta principal para crear o normalizar la estructura de ramos entre `Nextcloud`, `Notas` y `dev`. Crea la vista del ramo en `Nextcloud` y enlaza `Notas` y `work` hacia sus owners reales.
-- `.local/bin/setup-semestre`: bootstrap de un semestre ya existente en `Nextcloud` hacia `~/dev/<semestre>`. Puede crear carpetas base de ramos y, con `--link-existing`, pedir enlaces para repos git ya presentes.
-- `.local/bin/symbolycs`: helper puntual para crear un symlink desde `Nextcloud/informatica/<semestre>/<ramo>/<repo>` hacia el repo real en `~/dev/<semestre>/<ramo>/<repo>`.
+- `shell-common/.local/bin/dirs.py`: herramienta principal para crear o normalizar la estructura de ramos entre `Nextcloud`, `Notas` y `dev`. Crea la vista del ramo en `Nextcloud` y enlaza `Notas` y `work` hacia sus owners reales.
+- `shell-common/.local/bin/setup-semestre`: bootstrap de un semestre ya existente en `Nextcloud` hacia `~/dev/<semestre>`. Puede crear carpetas base de ramos y, con `--link-existing`, pedir enlaces para repos git ya presentes.
+- `shell-common/.local/bin/symbolycs`: helper puntual para crear un symlink desde `Nextcloud/informatica/<semestre>/<ramo>/<repo>` hacia el repo real en `~/dev/<semestre>/<ramo>/<repo>`.
 - `~/Nextcloud/setup-nextcloud-assets.sh`: bootstrap de assets sincronizados del sistema en una maquina nueva. Configura las carpetas XDG en español, fusiona `Downloads` en `Descargas` y enlaza `Documentos` e `Imágenes` hacia `Nextcloud`.
 
 Separacion actual de responsabilidades:

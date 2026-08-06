@@ -58,7 +58,7 @@ install_aur_pkgs() {
     return 0
   fi
 
-  "$DOTFILES/.local/bin/install-yay"
+  "$DOTFILES/graphical/.local/bin/install-yay"
 
   echo "==> Instalando paquetes AUR (${#AUR_PKGS[@]})"
   yay -S --needed "${AUR_PKGS[@]}"

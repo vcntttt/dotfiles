@@ -3,6 +3,7 @@ console-ninja
 omarchy/
 .config/espanso/match/private.yml
 .config/ai/mcp.local.json
+.config/dotfiles/host
 .opencode/bin/opencode
 
 # Estado runtime y salidas generadas por Noctalia
