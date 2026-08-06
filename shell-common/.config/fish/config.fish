@@ -41,3 +41,6 @@ fish_add_path "$ANDROID_SDK_ROOT/platform-tools" "$ANDROID_SDK_ROOT/emulator" "$
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# opencode
+fish_add_path /home/vrivera/.opencode/bin

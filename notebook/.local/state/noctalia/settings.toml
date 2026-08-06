@@ -6,9 +6,9 @@ capsule_fill = "surface_variant"
 capsule_opacity = 1.0
 capsule_padding = 6.0
 capsule_radius = 8.0
-center = [ "active_window" ]
-end = [ "usage", "group:g1", "spacer_1", "tray", "network", "galileo", "volume", "clock", "notifications" ]
-start = [ "widget", "workspaces", "media", "layout" ]
+center = []
+end = [ "usage", "group:g1", "tray", "network", "galileo", "volume", "battery", "clock", "notifications" ]
+start = [ "widget", "workspaces", "media", "layout", "active_window" ]
 widget_spacing = 8.0
 
 [brightness]
@@ -87,8 +87,17 @@ directory = "/home/vrivera/Imágenes/wallpapers/"
     theme_mode = "dark"
     wallpaper_scheme = "m3-tonal-spot"
 
+[widget.active_window]
+max_length = 180.0
+min_length = 60.0
+title_scroll = "on_hover"
+type = "active_window"
+
 [widget.layout]
 type = "vrivera/layout-controls:layout"
+
+[widget.sysmon_2]
+enabled = false
 
 [widget.usage]
 type = "vrivera/codex-usage:usage"

@@ -2,7 +2,12 @@ HOST_NAME = "notebook"
 HOST_MONITOR1 = "eDP-1"
 HOST_MONITOR2 = nil
 HOST_PRIMARY_MONITOR = HOST_MONITOR1
-HOST_TOTAL_WORKSPACES = 10
+HOST_WORKSPACES = { 1, 2, 3, 4, 8, 9 }
+HOST_WORKSPACE_NAMES = {
+    [1] = "󰖟",
+    [8] = "",
+    [9] = "󰓇",
+}
 
 HOST_MONITORS = {
     {

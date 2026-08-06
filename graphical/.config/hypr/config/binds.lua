@@ -34,7 +34,7 @@ hl.bind(mainMod .. " + CONTROL + SHIFT + Right",      hl.dsp.window.move({ works
 hl.bind(mainMod .. " + CONTROL + SHIFT + Left",       hl.dsp.window.move({ workspace = "m-1" }))
 hl.bind(mainMod .. " + CONTROL + SHIFT + mouse_up",   hl.dsp.window.move({ workspace = "m-1" }))
 hl.bind(mainMod .. " + CONTROL + SHIFT + mouse_down", hl.dsp.window.move({ workspace = "m+1" }))
-for i = 1, TOTAL_WORKSPACES do
+for _, i in ipairs(WORKSPACES) do
     local key = i % 10
     hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end

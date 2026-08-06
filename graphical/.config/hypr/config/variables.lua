@@ -13,4 +13,13 @@ PRIMARY_MONITOR = HOST_PRIMARY_MONITOR or MONITOR1
 
 -- Workspaces
 WORKSPACES_PER_MONITOR = 5
-TOTAL_WORKSPACES = HOST_TOTAL_WORKSPACES or WORKSPACES_PER_MONITOR * (MONITOR2 and 2 or 1)
+WORKSPACES = HOST_WORKSPACES
+    or (function()
+        local workspaces = {}
+        local total = HOST_TOTAL_WORKSPACES or WORKSPACES_PER_MONITOR * (MONITOR2 and 2 or 1)
+        for i = 1, total do
+            table.insert(workspaces, i)
+        end
+        return workspaces
+    end)()
+TOTAL_WORKSPACES = #WORKSPACES

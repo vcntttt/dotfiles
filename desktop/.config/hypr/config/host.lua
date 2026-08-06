@@ -3,6 +3,18 @@ HOST_MONITOR1 = "DP-1"
 HOST_MONITOR2 = "HDMI-A-1"
 HOST_PRIMARY_MONITOR = HOST_MONITOR1
 HOST_TOTAL_WORKSPACES = 10
+HOST_WORKSPACE_NAMES = {
+    [1] = "󰖟",
+    [2] = "󰖟",
+    [3] = "",
+    [4] = "",
+    [8] = "",
+    [9] = "󰓇",
+}
+HOST_SCROLLING_WORKSPACES = {
+    [3] = true,
+    [4] = true,
+}
 
 HOST_MONITORS = {
     {
