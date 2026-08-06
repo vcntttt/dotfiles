@@ -89,24 +89,89 @@ case "$rot" in
 esac
 
 # --- Obtener specs actuales del monitor ---
-read -r width height refresh x y scale <<< "$(echo "$monitors_json" | jq -r "
+read -r width height refresh x y scale current_transform <<< "$(echo "$monitors_json" | jq -r "
   .[] | select(.name == \"$output\")
-  | \"\(.width) \(.height) \(.refreshRate) \(.x) \(.y) \(.scale)\"
+  | \"\(.width) \(.height) \(.refreshRate) \(.x) \(.y) \(.scale) \(.transform // 0)\"
 ")"
 
-# Redondear refresh
-refresh_int="${refresh%.*}"
+# Hyprland expone el modo físico sin intercambiar width/height al rotar,
+# pero la caja lógica sí cambia. Si no actualizamos las posiciones vecinas,
+# queda un hueco entre pantallas y el ratón/foco no puede cruzarlo.
+logical_width() {
+  local transform="$1"
+  if (( transform % 2 == 1 )); then
+    echo "$height"
+  else
+    echo "$width"
+  fi
+}
+
+logical_height() {
+  local transform="$1"
+  if (( transform % 2 == 1 )); then
+    echo "$width"
+  else
+    echo "$height"
+  fi
+}
+
+old_logical_width="$(logical_width "$current_transform")"
+old_logical_height="$(logical_height "$current_transform")"
+new_logical_width="$(logical_width "$rot")"
+new_logical_height="$(logical_height "$rot")"
+delta_x=$((new_logical_width - old_logical_width))
+delta_y=$((new_logical_height - old_logical_height))
+target_right=$((x + old_logical_width))
+target_bottom=$((y + old_logical_height))
 
 # Aplicar la rotación mediante la API Lua de Hyprland. Desde Hyprland 0.55,
 # el parser de configuración de monitores antiguo ya no está disponible.
-new_mode="${width}x${height}"
-if [[ "$refresh_int" -gt 0 ]]; then
-  new_mode="${new_mode}@${refresh_int}"
-fi
+lua_monitor_calls=()
+add_monitor_call() {
+  local monitor_name="$1"
+  local monitor_width="$2"
+  local monitor_height="$3"
+  local monitor_refresh="$4"
+  local monitor_x="$5"
+  local monitor_y="$6"
+  local monitor_scale="$7"
+  local monitor_transform="$8"
+  local mode="${monitor_width}x${monitor_height}"
+  local lua_name lua_mode lua_position
 
-lua_output="$(printf '%s' "$output" | jq -Rr '@json')"
-lua_mode="$(printf '%s' "$new_mode" | jq -Rr '@json')"
-lua_position="$(printf '%sx%s' "$x" "$y" | jq -Rr '@json')"
-hyprctl eval "hl.monitor({ output = $lua_output, mode = $lua_mode, position = $lua_position, scale = $scale, transform = $rot })"
+  monitor_refresh="${monitor_refresh%.*}"
+  if [[ "$monitor_refresh" -gt 0 ]]; then
+    mode="${mode}@${monitor_refresh}"
+  fi
+  lua_name="$(printf '%s' "$monitor_name" | jq -Rr '@json')"
+  lua_mode="$(printf '%s' "$mode" | jq -Rr '@json')"
+  lua_position="$(printf '%sx%s' "$monitor_x" "$monitor_y" | jq -Rr '@json')"
+  lua_monitor_calls+=("hl.monitor({ output = $lua_name, mode = $lua_mode, position = $lua_position, scale = $monitor_scale, transform = $monitor_transform })")
+}
+
+add_monitor_call "$output" "$width" "$height" "$refresh" "$x" "$y" "$scale" "$rot"
+
+# Ajustar únicamente monitores que estaban en la misma fila o columna y
+# después del borde afectado. Así se conserva el layout del resto.
+while IFS=$'\t' read -r monitor_name monitor_width monitor_height monitor_refresh monitor_x monitor_y monitor_scale monitor_transform; do
+  [[ "$monitor_name" == "$output" ]] && continue
+
+  new_x="$monitor_x"
+  new_y="$monitor_y"
+  if [[ "$monitor_y" -eq "$y" && "$monitor_x" -ge "$target_right" ]]; then
+    new_x=$((monitor_x + delta_x))
+  elif [[ "$monitor_x" -eq "$x" && "$monitor_y" -ge "$target_bottom" ]]; then
+    new_y=$((monitor_y + delta_y))
+  fi
+
+  if [[ "$new_x" != "$monitor_x" || "$new_y" != "$monitor_y" ]]; then
+    add_monitor_call "$monitor_name" "$monitor_width" "$monitor_height" "$monitor_refresh" "$new_x" "$new_y" "$monitor_scale" "$monitor_transform"
+  fi
+done < <(echo "$monitors_json" | jq -r '.[] | [.name, .width, .height, .refreshRate, .x, .y, .scale, (.transform // 0)] | @tsv')
+
+hyprctl eval "$(IFS='; '; echo "${lua_monitor_calls[*]}")"
 
 echo "  $output -> rotación $rot aplicada"
+if (( delta_x != 0 || delta_y != 0 )); then
+  echo "  geometría adyacente ajustada: Δx=$delta_x Δy=$delta_y"
+fi

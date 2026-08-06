@@ -13,6 +13,7 @@ x-scheme-handler/discord=vesktop.desktop
 application/pdf=zen.desktop
 x-scheme-handler/antigravity=antigravity.desktop
 x-scheme-handler/t3code=t3code.desktop
+x-scheme-handler/bruno=bruno.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;
