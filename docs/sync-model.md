@@ -20,8 +20,10 @@ No deben mezclarse.
 ### Configuracion
 
 - `~/dotfiles` es la fuente de verdad
-- Los runtime paths administrados, como `~/.config/...` o `~/.local/bin/...`,
-  deben apuntar al repo mediante Stow
+- Los runtime paths administrados, como `~/.config/...` o los scripts propios de
+  `~/.local/bin/...`, deben apuntar al repo mediante Stow
+- Los enlaces a herramientas instaladas localmente (`bun`, `codex`, `pi`, etc.)
+  viven solo en la máquina y no forman parte del repo
 
 ### Codigo y proyectos
 

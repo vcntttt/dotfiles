@@ -58,6 +58,81 @@ backup_package_conflicts() {
     done < <(find "$DOTFILES_ROOT/$package" \( -type f -o -type l \) -print0)
 }
 
+migrate_legacy_local_bin() {
+    local legacy_bin="$TARGET_HOME/.local/bin"
+    local legacy_real backup_path
+
+    [[ -L "$legacy_bin" ]] || return 0
+
+    legacy_real="$(readlink -f -- "$legacy_bin" || true)"
+    [[ "$legacy_real" == "$DOTFILES_ROOT/.local/bin" ]] || return 0
+
+    backup_path="$backup_root/.local/bin"
+    mkdir -p "$(dirname -- "$backup_path")"
+    mv -- "$legacy_bin" "$backup_path"
+    echo "setup-host: migra enlace legado .local/bin -> $backup_path"
+}
+
+remove_obsolete_local_bin_links() {
+    local name target target_real backup_path
+
+    for name in herdr uv uvx; do
+        target="$TARGET_HOME/.local/bin/$name"
+        [[ -L "$target" ]] || continue
+
+        target_real="$(readlink -m -- "$target")"
+        [[ "$target_real" == "$DOTFILES_ROOT/shell-common/.local/bin/$name" ]] || continue
+
+        backup_path="$backup_root/.local/bin/$name"
+        mkdir -p "$(dirname -- "$backup_path")"
+        mv -- "$target" "$backup_path"
+        echo "setup-host: retira binario legado $name -> $backup_path"
+    done
+}
+
+reload_active_hyprland() {
+    command -v hyprctl >/dev/null 2>&1 || return 0
+    hyprctl instances >/dev/null 2>&1 || return 0
+
+    if ! hyprctl reload >/dev/null 2>&1; then
+        echo "setup-host: advertencia: no se pudo recargar Hyprland" >&2
+    fi
+}
+
+migrate_legacy_dotfiles_links() {
+    local root path target relative_path backup_path
+    local -a roots=(
+        "$TARGET_HOME/.config"
+        "$TARGET_HOME/.local/share/fastfetch"
+        "$TARGET_HOME/.local/state/noctalia"
+        "$TARGET_HOME/.icons"
+        "$TARGET_HOME/.t3"
+    )
+
+    while IFS= read -r -d '' path; do
+        [[ "$path" == "$backup_root"/* ]] && continue
+
+        target="$(readlink -m -- "$path")"
+        case "$target" in
+            "$DOTFILES_ROOT/.config/"*|"$DOTFILES_ROOT/.local/"*|"$DOTFILES_ROOT/.icons/"*|"$DOTFILES_ROOT/.tmux.conf"|"$DOTFILES_ROOT/.npmrc")
+                relative_path="${path#"$TARGET_HOME/"}"
+                backup_path="$backup_root/$relative_path"
+                mkdir -p "$(dirname -- "$backup_path")"
+                mv -- "$path" "$backup_path"
+                echo "setup-host: migra enlace legado $relative_path -> $backup_path"
+                ;;
+        esac
+    done < <(
+        for root in "${roots[@]}"; do
+            [[ -e "$root" || -L "$root" ]] || continue
+            find -P "$root" -maxdepth 4 -type l -print0
+        done
+        for path in "$TARGET_HOME/.tmux.conf" "$TARGET_HOME/.npmrc"; do
+            [[ -L "$path" ]] && printf '%s\0' "$path"
+        done
+    )
+}
+
 unstow_profiles() {
     local package
 
@@ -95,6 +170,9 @@ main() {
     backup_root="$TARGET_HOME/.local/state/dotfiles/backups/$timestamp-$host"
 
     unstow_profiles
+    migrate_legacy_local_bin
+    migrate_legacy_dotfiles_links
+    remove_obsolete_local_bin_links
 
     for package in "${packages[@]}"; do
         backup_package_conflicts "$package" "$backup_root"
@@ -105,6 +183,7 @@ main() {
     export DOTFILES_HOST="$host"
 
     stow --dir="$DOTFILES_ROOT" --target="$TARGET_HOME" --no-folding --stow "${packages[@]}"
+    reload_active_hyprland
 
     echo "setup-host: host activo: $host"
     echo "setup-host: paquetes aplicados: ${packages[*]}"
