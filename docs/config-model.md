@@ -2,64 +2,79 @@
 
 ## Objetivo
 
-`~/dotfiles` es la fuente de verdad del desktop principal. La rama `main`
-representa CachyOS con Hyprland Lua, Noctalia y Fish.
+`~/dotfiles` es la fuente de verdad para tres entornos:
 
-Por ahora no existen overrides por host. El notebook conserva el setup anterior
-en la rama `arch-hyprland-vanilla`.
+- desktop: CachyOS, Hyprland, Noctalia y dos pantallas;
+- notebook: CachyOS, Hyprland, Noctalia, una pantalla interna y mirror;
+- caburgua: Ubuntu Server y solo configuración de shell.
 
-## Stow
+Desktop y notebook comparten la mayor parte de la configuración. Las
+diferencias se mantienen como overlays pequeños, enlazados directamente por
+Stow.
 
-Los archivos runtime deben ser symlinks hacia este repositorio. `.stowrc`
-establece `--no-folding` para impedir que un directorio completo como
-`~/.local/state/noctalia` apunte al repo.
+## Paquetes Stow
 
-Esto permite mezclar:
+Los paquetes son:
 
-- archivos declarativos enlazados al repo;
-- temas generados por Noctalia;
-- estado runtime y cachés locales.
+- `shell-common`: Fish, tmux y utilidades de shell compartidas;
+- `common`: configuraciones CLI compartidas por las máquinas de trabajo;
+- `graphical`: base común de Hyprland, Noctalia, Ghostty y GUI;
+- `desktop`, `notebook`: overrides del entorno gráfico;
+- `caburgua`: override de shell para Ubuntu Server.
 
-## Noctalia
+Los scripts aplican estos conjuntos:
 
-Noctalia carga su configuración en este orden:
+```text
+desktop   shell-common common graphical desktop
+notebook  shell-common common graphical notebook
+caburgua  shell-common caburgua
+```
 
-1. defaults internos;
-2. archivos TOML de `.config/noctalia/`;
-3. `.local/state/noctalia/settings.toml`.
+`.stowrc` activa `--no-folding` para enlazar archivos individuales y permitir
+que existan directorios runtime junto a archivos administrados.
 
-La última capa contiene los cambios de la GUI y gana cuando una clave también
-está presente en la configuración declarativa.
+## Selección del host
 
-Para modificar desde código una opción administrada por la GUI, se edita
-directamente el `settings.toml` versionado. `config.toml` queda para valores
-declarativos que no compiten con esa capa.
+Cada máquina conserva un archivo local no versionado:
 
-Se versiona:
+```text
+~/.config/dotfiles/host
+```
 
-- `.config/noctalia/`;
-- `.local/state/noctalia/settings.toml`.
-
-No se versiona:
-
-- `state.toml`;
-- historiales y contadores de uso;
-- cachés y catálogos descargados;
-- credenciales;
-- temas `noctalia.*` generados para otras aplicaciones.
+Los scripts `shell/setup-desktop.sh`, `shell/setup-notebook.sh` y
+`shell/setup-caburgua.sh` lo escriben y aplican los paquetes necesarios. El
+archivo seleccionado del host queda como symlink directo al paquete elegido;
+por eso editar un override no requiere regenerar un bridge.
 
 ## Hyprland
 
-Hyprland usa Lua desde `.config/hypr/hyprland.lua`. Los módulos viven en
-`.config/hypr/config/` y se cargan mediante `require`.
+`graphical/.config/hypr/` contiene los módulos comunes. El archivo
+`config/host.lua` pertenece al paquete seleccionado y define monitores,
+teclado, touchpad, workspaces y autostart. `hyprland.lua` carga ese módulo
+antes del resto de la configuración.
 
-La configuración antigua en formato Hyprlang, junto con Waybar, Rofi, SwayNC,
-SwayOSD, Hyprpaper e Hyprlock, permanece únicamente en la rama legacy.
+## Noctalia
+
+Los plugins viven en `graphical/.config/noctalia/plugins/`. Como el formato de
+configuración de Noctalia no ofrece overlays TOML equivalentes a los módulos de
+Lua, `desktop/` y `notebook/` mantienen su propio `config.toml` y
+`settings.toml`; el resto de la integración sigue siendo común.
+
+El resto de `.local/state/noctalia/`, caches, catálogos, credenciales,
+historiales y temas generados permanecen locales. Los scripts de setup solo
+respaldan los archivos versionados que reemplazan.
+
+## Caburgua
+
+Caburgua no recibe los paquetes `common` ni `graphical`. Solo instala
+`shell-common` y su overlay de Fish, evitando cargar configuración de CachyOS,
+Hyprland, Noctalia o aliases gráficos.
 
 ## Validación
 
 ```bash
-stow --no --verbose=1 .
+stow --no --verbose=1 --dir=. --target="$HOME" --no-folding \
+  shell-common common graphical notebook
 fish -n ~/.config/fish/config.fish
 noctalia config validate
 hyprctl configerrors

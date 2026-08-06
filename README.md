@@ -1,45 +1,61 @@
 # Dotfiles
 
-Configuración del desktop principal con CachyOS, Hyprland Lua, Noctalia y Fish.
-La rama `arch-hyprland-vanilla` conserva el setup anterior como referencia.
+Configuración compartida para CachyOS/Hyprland/Noctalia en el desktop y el
+notebook, más una capa de shell para el servidor Ubuntu de Caburgua.
 
 ## Instalación
 
+Instala `git` y `stow`, clona el repositorio y ejecuta el script del equipo:
+
 ```bash
-sudo pacman -S git stow
-cd ~
-git clone https://github.com/vcntttt/dotfiles.git
-cd dotfiles
-bash shell/install-dependencies.sh desktop
-stow .
+cd ~/dotfiles
+bash shell/setup-notebook.sh
 ```
 
-`.stowrc` desactiva el folding de directorios. De esta forma, Stow enlaza
-archivos individuales y Noctalia puede seguir generando temas y estado local
-sin escribirlos dentro del repositorio.
+Scripts disponibles:
 
-Si una instalación nueva ya contiene los mismos archivos como archivos reales,
-respáldalos y retíralos antes de ejecutar Stow. No uses `stow --adopt` sin
-revisar cuidadosamente el resultado.
+```bash
+bash shell/setup-desktop.sh
+bash shell/setup-notebook.sh
+bash shell/setup-caburgua.sh
+```
 
-## Noctalia
+Los scripts escriben el host local en `~/.config/dotfiles/host`, respaldan los
+archivos reales que serán reemplazados en
+`~/.local/state/dotfiles/backups/` y aplican los paquetes Stow correspondientes.
+No usan `--adopt` ni borran el estado runtime de Noctalia.
 
-- `.config/noctalia/` contiene la configuración declarativa.
-- `.local/state/noctalia/settings.toml` contiene los cambios persistidos por la
-  GUI y también se versiona.
-- El resto de `.local/state/noctalia/`, las credenciales y los temas generados
-  permanecen locales.
+Perfiles aplicados:
 
-La GUI escribe a través del symlink de `settings.toml`; sus cambios aparecen
-como modificaciones normales en Git y deben revisarse antes de hacer commit.
-Si un valor también se administra desde la GUI, edítalo desde código en ese
-mismo `settings.toml`; evita duplicarlo en `config.toml`.
+```text
+desktop   shell-common + common + graphical + desktop
+notebook  shell-common + common + graphical + notebook
+caburgua  shell-common + caburgua
+```
+
+La configuración común y los overrides host-specific quedan enlazados
+directamente al repositorio. Editar un archivo de `desktop/`, `notebook/` o
+`caburgua/` no requiere otro comando de aplicación; solo hay que recargar la
+aplicación correspondiente cuando el cambio deba verse inmediatamente.
+
+## Organización
+
+- `shell-common/`: Fish, tmux y utilidades CLI compartidas.
+- `common/`: configuraciones compartidas entre los equipos de escritorio.
+- `graphical/`: base común de Hyprland, Noctalia, Ghostty y aplicaciones GUI.
+- `desktop/`: dos monitores, autostart y estado de Noctalia del desktop.
+- `notebook/`: `eDP-1`, touchpad, mirror/extend y estado de Noctalia del notebook.
+- `caburgua/`: aliases y ajustes de Fish para Ubuntu Server.
 
 ## Validación
 
-```fish
-stow --no --verbose=1 .
+```bash
+stow --no --verbose=1 --dir=. --target="$HOME" --no-folding \
+  shell-common common graphical notebook
 fish -n ~/.config/fish/config.fish
 noctalia config validate
 hyprctl configerrors
 ```
+
+El estado generado, caches, catálogos, credenciales y temas de Noctalia
+permanecen fuera del repositorio.
