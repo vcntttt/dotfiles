@@ -163,7 +163,6 @@ type = "sysmon"
 
 [widget.sysmon_3]
 glyph = "cpu-2"
-show_label = false
 stat = "ram_used"
 type = "sysmon"
 

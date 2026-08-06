@@ -1,5 +1,16 @@
 config_version = 8
 
+[bar.default]
+capsule = true
+capsule_fill = "surface_variant"
+capsule_opacity = 1.0
+capsule_padding = 6.0
+capsule_radius = 8.0
+center = [ "active_window" ]
+end = [ "usage", "group:g1", "spacer_1", "tray", "network", "galileo", "volume", "clock", "notifications" ]
+start = [ "widget", "workspaces", "media", "layout" ]
+widget_spacing = 8.0
+
 [brightness]
 enable_ddcutil = false
 
