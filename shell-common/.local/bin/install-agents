@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+curl -fsSL https://pi.dev/install.sh | sh
+
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+
+curl -fsSL https://opencode.ai/install | bash
+
+yay -S t3code

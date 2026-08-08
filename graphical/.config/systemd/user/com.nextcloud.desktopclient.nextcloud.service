@@ -1,0 +1,13 @@
+[Unit]
+Description=Nextcloud desktop user service
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/env -u QT_QPA_PLATFORMTHEME -u QT_STYLE_OVERRIDE /usr/bin/nextcloud --background
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=true
+RestrictRealtime=true
+
+[Install]
+WantedBy=default.target

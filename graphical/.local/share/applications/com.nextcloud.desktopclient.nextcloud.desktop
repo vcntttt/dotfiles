@@ -1,0 +1,11 @@
+[Desktop Entry]
+Categories=Utility;X-SuSE-SyncUtility;
+Type=Application
+Exec=/usr/bin/env -u QT_QPA_PLATFORMTHEME -u QT_STYLE_OVERRIDE /usr/bin/nextcloud %u
+Name=Nextcloud Desktop
+Comment=Nextcloud desktop synchronization client
+GenericName=Folder Sync
+Icon=Nextcloud
+Keywords=Nextcloud;syncing;file;sharing;
+MimeType=application/vnd.nextcloud;x-scheme-handler/nc;
+SingleMainWindow=true
